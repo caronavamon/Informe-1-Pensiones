@@ -1,0 +1,40 @@
+---
+output:
+  rmdformats::robobook:
+        code_folding: show
+  html_document:
+    toc: TRUE
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Producto Interno Bruto
+```{r}
+library(openxlsx)
+library(readxl)
+library(ggplot2)
+library(tidyr)
+library(zoo)
+```
+
+```{r}
+PIB <- read_excel("PIB Trimestral.xlsx")
+```
+
+```{r}
+PIB$Trimestre <- as.yearqtr(PIB$Trimestre)
+PIB$`Producto Interno Bruto a precios de mercado` <- as.numeric(PIB$`Producto Interno Bruto a precios de mercado`)
+```
+
+```{r}
+ggplot(PIB, aes(x = Trimestre, y = `Producto Interno Bruto a precios de mercado`)) +
+  geom_point() +  # Agrega puntos
+  geom_line() +    # Agrega líneas
+  labs(x = "Trimestre", y = "Producto Interno Bruto", title = "Evolucion del PIB") +
+  theme_minimal()
+```
+
+
