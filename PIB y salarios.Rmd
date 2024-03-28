@@ -11,14 +11,16 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Producto Interno Bruto
+
 ```{r}
 library(openxlsx)
 library(readxl)
 library(ggplot2)
 library(tidyr)
 library(zoo)
+library(dplyr)
 ```
+# Producto Interno Bruto
 
 ```{r}
 PIB <- read_excel("PIB Trimestral.xlsx")
@@ -26,7 +28,6 @@ PIB <- read_excel("PIB Trimestral.xlsx")
 
 ```{r}
 PIB$Trimestre <- as.yearqtr(PIB$Trimestre)
-PIB$`Producto Interno Bruto a precios de mercado` <- as.numeric(PIB$`Producto Interno Bruto a precios de mercado`)
 ```
 
 ```{r}
@@ -37,4 +38,42 @@ ggplot(PIB, aes(x = Trimestre, y = `Producto Interno Bruto a precios de mercado`
   theme_minimal()
 ```
 
+```{r}
+ggplot(PIB, aes(x = Trimestre, y = `Tasa de Variación Interanual`)) +
+  geom_bar(stat = "identity", fill = "turquoise", alpha = 0.7) + 
+  labs(x = "Trimestre", y = "Tasa de Variación Interanual", title = "Tasa de Variación Interanual del PIB") +
+  theme_minimal()
+```
 
+
+# Variación de salarios 
+
+```{r}
+salarios_nominales <- read_excel("Variación de salarios nominales.xlsx")
+salarios_reales <- read_excel("Variación de salarios reales.xlsx")
+```
+
+```{r}
+salarios_nominales$Fecha <- as.yearmon(salarios_nominales$Fecha, format = "%B/%Y")
+salarios_reales$Fecha <- as.yearmon(salarios_reales$Fecha, format = "%B/%Y")
+```
+
+```{r}
+salarios_nominales_inter <- salarios_nominales[, c("Fecha", "Variación interanual (%)")]
+salarios_reales_inter <- salarios_reales[, c("Fecha", "Variación interanual (%)")]
+```
+
+```{r}
+variaciones_salarios <- merge(salarios_nominales_inter, salarios_reales_inter, by = "Fecha", suffixes = c(" nominal", " real"))
+```
+
+```{r}
+ggplot(variaciones_salarios, aes(x = Fecha)) +
+  geom_bar(aes(y = `Variación interanual (%) nominal`), stat = "identity", fill = "turquoise", alpha = 0.7) + # Barras para las variaciones nominales
+  geom_bar(aes(y = `Variación interanual (%) real`), stat = "identity", fill = "orange", alpha = 0.7) +     # Barras para las variaciones reales
+  labs(title = "Variaciones Nominales vs. Reales",
+       x = "Fecha",
+       y = "Variación",
+       fill = "Tipo de Variación") +
+  theme_minimal()
+```
