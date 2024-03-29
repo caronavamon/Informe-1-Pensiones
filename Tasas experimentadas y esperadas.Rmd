@@ -1,0 +1,42 @@
+---
+title: "Tasas de interés experimentadas y esperadas"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, warning=FALSE, echo=FALSE}
+library(readxl)
+library(tidyr)
+library(ggplot2)
+```
+
+```{r, message=FALSE, echo=FALSE}
+Tasas_esperadas <- read_excel("TBP.xlsx")
+colnames(Tasas_esperadas)[1]<- "Mes"
+Tasas_esperadas <- Tasas_esperadas[, -c(2:34,37)]
+Tasas_esperadas <- Tasas_esperadas %>% gather(Año, Interés, "2022":"2023" ) 
+```
+
+# Tasas de interés experimentadas
+
+Se analizan las tasas básicas pasivas mensuales del 2022 y del 2023 calculadas por el Banco Central de 
+Costa Rica, las cuales corresponden a las tasas de interés del mercado.
+
+
+```{r, echo=FALSE}
+  TBP_plot <- ggplot(Tasas_esperadas, aes(x = 1:24, y = Interés)) + 
+  geom_line(color = "#7AC5CD", lwd = 1) + 
+  labs(title = "Tasa Básica Pasiva en Costa Rica, 2022-2023", x = "Años", y = "Tasa Básica Pasiva (%)")   + geom_point(color = "blue") +
+  scale_x_continuous(breaks = c(12, 24), labels = c("2022", "2023")) +
+  cowplot::theme_cowplot()
+TBP_plot
+```
+
+En los primeros 4 meses del 2022 la tasa básica pasiva experimentó un leve decrecimiento.Para 
+el resto del año tuvo una gran subida, pasando de una tasa de 2.90% en abril a una de 6.35% en diciembre. Sin embargo, este comportamiento solo se mantuvo hasta enero del 2023. En los meses posteriores la tasa básica pasiva mostró una tendencia a la baja presentando en diciembre una tasa de 5.36%.
+Aunque, en el 2023 la tasa básica pasiva sufrió decrecimientos, las tasas experimentadas en este periodo siguen siendo superiores a las presentadas a inicios del 2022.
+
+
