@@ -14,29 +14,36 @@ library(ggplot2)
 ```
 
 ```{r, message=FALSE, echo=FALSE}
-Tasas_esperadas <- read_excel("TBP.xlsx")
-colnames(Tasas_esperadas)[1]<- "Mes"
-Tasas_esperadas <- Tasas_esperadas[, -c(2:34,37)]
-Tasas_esperadas <- Tasas_esperadas %>% gather(Año, Interés, "2022":"2023" ) 
+TBP_experimentadas <- read_excel("TBP.xlsx")
+colnames(TBP_experimentadas)[1]<- "Mes"
+TBP_experimentadas <- TBP_experimentadas %>% gather(Año, Tasa, "2022":"2023" )
+
+TPM_experimentadas <- read_excel("TPM.xlsx")
+colnames(TPM_experimentadas)[1]<- "Mes"
+TPM_experimentadas <- TPM_experimentadas %>% gather(Año, Tasa, "2022":"2023" )
 ```
 
 # Tasas de interés experimentadas
 
-Se analizan las tasas básicas pasivas mensuales del 2022 y del 2023 calculadas por el Banco Central de 
-Costa Rica, las cuales corresponden a las tasas de interés del mercado.
+Se analizan las tasas básicas pasivas y las tasas de política monetaria mensuales del 2022 y del 2023 calculadas por el Banco Central de Costa Rica (BCCR). Las primeras corresponden a las tasas de interés del mercado.
+En el siguiente gráfico se muestra el comportamiento de estas tasas.
 
 
 ```{r, echo=FALSE}
-  TBP_plot <- ggplot(Tasas_esperadas, aes(x = 1:24, y = Interés)) + 
-  geom_line(color = "#7AC5CD", lwd = 1) + 
-  labs(title = "Tasa Básica Pasiva en Costa Rica, 2022-2023", x = "Años", y = "Tasa Básica Pasiva (%)")   + geom_point(color = "blue") +
-  scale_x_continuous(breaks = c(12, 24), labels = c("2022", "2023")) +
-  cowplot::theme_cowplot()
-TBP_plot
+  Tasas_experimentadas_plot <- ggplot() + 
+  geom_line(aes(x = 1:24, y = TBP_experimentadas$Tasa, color = "Tasa Básica Pasiva"), lwd = 1)+      
+  geom_line(aes(x = 1:24, y = TPM_experimentadas$Tasa, color = "Tasa de Política Monetaria"), lwd = 1)+
+  scale_color_manual(values = c("Tasa Básica Pasiva" =  "#7AC5CD", "Tasa de Política Monetaria" =    "#A2CD5A"))+
+  labs(title = "Tasa Básica Pasiva y de Política Monetaria en Costa Rica, 2022-2023", x = "Años", y = "Tasa (%)", color = "")+
+  scale_x_continuous(breaks = c(1, 12, 24), labels = c("2022", "2022/2023", "2023"))+ theme_minimal()
+Tasas_experimentadas_plot
 ```
 
 En los primeros 4 meses del 2022 la tasa básica pasiva experimentó un leve decrecimiento.Para 
-el resto del año tuvo una gran subida, pasando de una tasa de 2.90% en abril a una de 6.35% en diciembre. Sin embargo, este comportamiento solo se mantuvo hasta enero del 2023. En los meses posteriores la tasa básica pasiva mostró una tendencia a la baja presentando en diciembre una tasa de 5.36%.
+el resto del año tuvo una gran subida, pasando de una tasa de 2.90% en abril a una de 6.35% en diciembre. Sin embargo, este comportamiento solo se mantuvo hasta enero del 2023. En los meses posteriores, la tasa básica pasiva mostró una tendencia a la baja presentando en diciembre una tasa de 5.36%. 
 Aunque, en el 2023 la tasa básica pasiva sufrió decrecimientos, las tasas experimentadas en este periodo siguen siendo superiores a las presentadas a inicios del 2022.
 
+En cuanto a las tasa de política monetaria, en el 2022 se presentó un comportamiento al alza y en los últimos tres meses del año las tasas fueron constantes, especificamente de 9%. Sin embargo,sucede lo opuesto para el 2023, donde se mostró una tendencia a la baja, pasando de una tasa de 9% a inicio del año a una de 6% al final de este.
+
+En general, las tasas de política monetaria experimentadas en ambos años fueron superiores a las tasas básicas pasivas. Además, el 2022 significó un año de crecimiento para ambas tasas las cuales recayeron en el año siguiente.
 
