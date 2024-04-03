@@ -7,7 +7,7 @@ date: "2024-04-01"
 
 
 ```{r}
-TipoCambio1 <- read.csv2("C:/Users/Jimena/Desktop/Pensiones/InformeEconomico/TipoCambio1.csv")
+TipoCambio1 <- read.csv2("TipoCambio1.csv")
 TipoCambio1 <- TipoCambio1[, -c(4:10)]
 TipoCambio1$Fecha <- as.Date(TipoCambio1$Fecha, format = "%d/%m/%Y")
 ```
@@ -36,7 +36,7 @@ ggplot(TipoCambio1, aes(x = Fecha)) +
 ```
 
 ```{r}
-Inflacion <- read.csv2("C:/Users/Jimena/Desktop/Pensiones/InformeEconomico/Inflacion.csv")
+Inflacion <- read.csv2("Inflacion.csv")
 Inflacion$Fecha <- as.Date(Inflacion$Fecha, format = "%d/%m/%Y")
 ```
 
