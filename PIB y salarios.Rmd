@@ -32,16 +32,16 @@ PIB$Trimestre <- as.yearqtr(PIB$Trimestre)
 
 ```{r}
 ggplot(PIB, aes(x = Trimestre, y = `Producto Interno Bruto a precios de mercado`)) +
-  geom_point() +  # Agrega puntos
-  geom_line() +    # Agrega líneas
-  labs(x = "Trimestre", y = "Producto Interno Bruto", title = "Evolucion del PIB") +
+  geom_line(color = "cadetblue3") +
+  geom_point(color = "#2F4F4F") +
+  labs(x = "Trimestre", y = "Producto Interno Bruto", title = "Evolucion del Producto Interno Bruto por trimestre en Costa Rica, 2022-2023") +
   theme_minimal()
 ```
 
 ```{r}
 ggplot(PIB, aes(x = Trimestre, y = `Tasa de Variación Interanual`)) +
-  geom_bar(stat = "identity", fill = "turquoise", alpha = 0.7) + 
-  labs(x = "Trimestre", y = "Tasa de Variación Interanual", title = "Tasa de Variación Interanual del PIB") +
+  geom_bar(stat = "identity", fill = "#2F4F4F", alpha = 0.7) + 
+  labs(x = "Trimestre", y = "Tasa de Variación Interanual (%)", title = "Tasa de Variación Interanual del Producto Interno Bruto por trimestre en Costa Rica, 2022-2023") +
   theme_minimal()
 ```
 
@@ -68,12 +68,18 @@ variaciones_salarios <- merge(salarios_nominales_inter, salarios_reales_inter, b
 ```
 
 ```{r}
-ggplot(variaciones_salarios, aes(x = Fecha)) +
-  geom_bar(aes(y = `Variación interanual (%) nominal`), stat = "identity", fill = "turquoise", alpha = 0.7) + # Barras para las variaciones nominales
-  geom_bar(aes(y = `Variación interanual (%) real`), stat = "identity", fill = "orange", alpha = 0.7) +     # Barras para las variaciones reales
-  labs(title = "Variaciones Nominales vs. Reales",
+variaciones_largas <- pivot_longer(variaciones_salarios, cols = c(`Variación interanual (%) nominal`, `Variación interanual (%) real`), names_to = "Tipo", values_to = "Variación")
+```
+
+```{r}
+ggplot(variaciones_largas, aes(x = Fecha, y = Variación, fill = Tipo)) +
+  geom_bar(stat = "identity", alpha = 0.7, position = position_dodge(width = 0)) +
+  scale_fill_manual(values = c(`Variación interanual (%) nominal` = "#2F4F4F", `Variación interanual (%) real` = "cadetblue3"),
+                    name = "Tipo de Variación",  # Define el nombre en la leyenda
+                    labels = c("Variación Nominal", "Variación Real")) +  # Define las etiquetas
+  labs(title = "Variaciones Interanuales del Índice de Salario Mínimo Nominal vs Real en Costa Rica,\n 2022-2023",
        x = "Fecha",
-       y = "Variación",
-       fill = "Tipo de Variación") +
+       y = "Variación (%)") +
   theme_minimal()
 ```
+
