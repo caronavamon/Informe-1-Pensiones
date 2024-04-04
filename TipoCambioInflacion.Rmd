@@ -65,5 +65,12 @@ ggplot(Inflacion, aes(x = Fecha)) +
         plot.subtitle = element_text(hjust = 0.5))
 ```
 
+En enero de 2022, el país experimentó una inflación interanual del 3.50%. A lo largo del año, este índice se mantuvo por encima del límite superior de la meta inflacionaria establecida por el Banco Central de Costa Rica (3%, ±1 p.p.), con la excepción del mes de enero. El valor más alto se registró en agosto, alcanzando un 12.13%, seguido de una desaceleración en los cuatro meses siguientes, donde en diciembre se registró una inflación interanual de 7.88%. La inflación importada fue la principal causa del aumento de esta variable, lo que provocó un alza en los precios de los alimentos y los derivados del petróleo. La situación geopolítica, particularmente la Guerra entre Rusia y Ucrania, contribuyó a estas presiones inflacionarias, aunque se observó un freno en ellas a partir del mes de agosto, coincidiendo con una disminución en el tipo de cambio.
+
+En el primer trimestre del 2023, la inflación general mantuvo la tendencia a la baja iniciada en septiembre del 2022. Luego de alcanzar una tasa de variación máxima en agosto del 2022, retrocedió de manera sostenida hasta ubicarse en marzo del 2023 en 4,4%. Según el Informe de Política Monetaria de abril del 2023, el comportamiento de la inflación en el primer trimestre del presente año es explicado en mayor medida por los precios de los bienes, cuyos aumentos interanuales se moderaron con respecto a los trimestres previos.
+
+Durante el segundo trimestre del 2023 se acentuó la reducción de la inflación general, lo que llevó a que se ubicara por debajo del límite inferior del rango de tolerancia al final de este periodo. A finales de junio, la inflación general, se ubicó en -1,0%.
+Para el cuarto trimestre del 2023, al igual que en el previo, la inflación general interanual fue negativa (deflación. En diciembre del 2023, la inflación general se ubicó en -1,8%. Según el Informe de Política Monetaria de Enero del 2024, la reducción de la inflación, con valores negativos desde junio del 2023, ha estado determinada, en mayor medida, por la reversión de los choques de oferta externos y la política monetaria restrictiva.
+
 
 
