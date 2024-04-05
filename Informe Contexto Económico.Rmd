@@ -3,7 +3,8 @@ title: "Informe Contexto Económico Nacional"
 author:
   - "Maria Carolina Navarro Monge C05513"
   - "Tábata Picado Carmona C05961"
-  - "Jimena Marchena Mendoza"
+  - "Jimena Marchena Mendoza B74425"
+  - "Valentin Chavarría Ubeda B82098"
 
 output:
   pdf_document:
@@ -52,11 +53,11 @@ ggplot(Inflacion, aes(x = Fecha)) +
   geom_line(aes(y = `Variacion.acumulada.....n3`, color = "Variación Acumulada"),size = 1) +
   scale_color_manual(values = c("Variación Mensual" = "#2F4F4F", "Variación Interanual" = "#BCEE68", "Variación Acumulada" = "cadetblue3")) +
   labs(title = "Inflación",
-       subtitle = "Ene 2022 a Dic 2023",
+       subtitle = "2022-2023",
        x = "Fecha",
        y = "Variación",
        color = "Tipo de Variación",
-       caption = expression(bold("Fuente: ") * "Elaboración propia a partir de datos del BCCR.")) +
+       caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del BCCR.")) +
   theme_minimal()+
   scale_y_continuous(labels = scales::percent_format(scale = 1), breaks = seq(-4, 13, by = 1))+
   geom_hline(yintercept = 2, linetype = "dashed", color = "black")+
@@ -114,7 +115,7 @@ En el siguiente gráfico se muestra el comportamiento de estas tasas.
         plot.subtitle = element_text(hjust = 0.5),
         plot.caption = element_text(hjust = 0, color = "black", size = 8),
         legend.title = element_blank()) +
-  labs(caption = "Fuente: Elaborado con datos del BCCR.")
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del BCCR."))
 
 Tasas_experimentadas_plot
 ```
@@ -152,28 +153,38 @@ PIB$Trimestre <- as.yearqtr(PIB$Trimestre)
 ggplot(PIB, aes(x = Trimestre, y = `Producto Interno Bruto a precios de mercado`)) +
   geom_line(color = "cadetblue3") +
   geom_point(color = "#2F4F4F") +
-  labs(x = "Trimestre", y = "Producto Interno Bruto", title = "Evolucion del Producto Interno Bruto por trimestre en Costa Rica, \n 2022-2023") +
+  labs(x = "Trimestre", y = "Producto Interno Bruto", title = "Evolución del Producto Interno Bruto por trimestre en Costa Rica", subtitle = "2022-2023") +
   theme_minimal() +
-    theme(plot.caption = element_text(hjust = 0, margin = margin(t = 10, r = 0, b = 0, l = 0))) +
-  labs(caption = "Fuente: Elaborado con datos del BCCR.")
+    theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del BCCR."))
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
 ggplot(PIB, aes(x = Trimestre, y = `Tasa de Variación Interanual`)) +
   geom_line(color = "cadetblue3") +
   geom_point(color = "#2F4F4F") +
-  geom_text(aes(label = paste(round(`Tasa de Variación Interanual`, 2), "%")), vjust = -0.5, hjust = 0.5, size = 3, nudge_y = 0.1) +
-  labs(x = "Trimestre", y = "Tasa de Variación Interanual (%)", title = "Tasa de Variación Interanual del Producto Interno Bruto por trimestre en Costa Rica, \n 2022-2023") +
+  geom_text(aes(label = paste(round(`Tasa de Variación Interanual`, 2), "%")), vjust = -0.05, hjust = 0.05, size = 3, nudge_y = 0.1) +
+  labs(x = "Trimestre", y = "Tasa de Variación Interanual (%)", title = "Tasa de Variación Interanual del Producto Interno Bruto por trimestre en \n Costa Rica", subtitle = "2022-2023") +
   theme_minimal() + 
-  theme(plot.caption = element_text(hjust = 0, margin = margin(t = 10, r = 0, b = 0, l = 0))) +
-  labs(caption = "Fuente: Elaborado con datos del BCCR.")
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del BCCR."))
 ```
 
 Tras la pandemia del COVID-19, en el 2022 la economía del mundo se comenzó a recuperar debido a las campañas de vacunación contra el virus y en consecuencia la eliminación de muchas de las restricciones sanitarias que impedían el desenvolvimiento económico. Esto se puede observar por medio del gráfico que muestra la evolución del PIB en donde para cada uno de los trimestres del año 2022 existe un crecimiento. 
 
 Al estudiar la variación del PIB entre el primer trimestre del 2021 y el primero del 2022 se obtiene la mayor variación interanual del PIB para el periodo de estudio con relación a la reapertura de la economía del país. Se puede notar que en los próximos trimestres del año las variaciones interanuales son positivas, no obstante, mucho menores que al inicio. 
 
-En el primer trimestre del 2023 se tuvo un decremento en el PIB, sin embargo, al analizar la variación interanual se afirma que este tuvo un crecimiento del 3,99%. El resto del año, al hablar de cantidades, se mantuvo en aumento. Con lo que respecta al cambio del trimestre respectivo del año anterior este decrece durante todo el año. Es importante recalcar que según el informe de política monetaria publicado por el BCCR se proyecta una desacelerecaión en el Producto Interno Bruto hasta alcanzar el 4% anual en el 2024 y 2025. 
+En el primer trimestre del 2023 se tuvo un decremento en el PIB, sin embargo, al analizar la variación interanual se afirma que este tuvo un crecimiento del 3,99%. El resto del año, al hablar de cantidades, se mantuvo en aumento, por otra parte, con lo que respecta al cambio del trimestre respectivo del año anterior este decrece durante todo el año. 
+
+Es importante recalcar que según el informe de política monetaria publicado por el BCCR al calcular el PIB por medio de los componentes del gasto, se puede notar para el último  trimestre del 2023 que el resultado del mismo se debe particularmente a la acelaración del consumo privado atribuido al aumento en el ingreso real como se muestra en la sección de variación del salario mínimo, también el incremento en la inversión y una reducción de las exportaciones.
+
+Además, se proyecta una desaceleración en el Producto Interno Bruto hasta alcanzar el 4% anual en el 2024 y 2025 en vista de que, exista una demanda interna que estimule la economía dada por la inversión y el consumo de los hogares costarricenses. Aunado a esto, el crecimiento de la demana externa se espera que continúe disminuyendo por causa de la desaceleración en la actividad económica de los principales socios comerciales del país. 
 
 # Variación de Salarios
 
@@ -206,31 +217,34 @@ ggplot(variaciones_largas, aes(x = Fecha, y = Variación, fill = Tipo)) +
   scale_fill_manual(values = c(`Variación interanual (%) nominal` = "#2F4F4F", `Variación interanual (%) real` = "cadetblue3"),
                     name = "Tipo de Variación",  # Define el nombre en la leyenda
                     labels = c("Variación Nominal", "Variación Real")) +  # Define las etiquetas
-  labs(title = "Variaciones Interanuales del Índice de Salario Mínimo Nominal vs Real en \n Costa Rica, 2022-2023",
-       x = "Fecha",
-       y = "Variación (%)") +
+  labs(title = "Variaciones Interanuales del Índice de Salario Mínimo Nominal vs Real en Costa Rica",subtitle = "2022-2023", x = "Fecha", y = "Variación (%)") +
   theme_minimal() +
-  theme(plot.caption = element_text(hjust = 0, margin = margin(t = 10, r = 0, b = 0, l = 0))) +
-  labs(caption = "Fuente: Elaborado con datos del BCCR.")
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del BCCR."))
 ```
 
-Según el informe de la Organzación Mundial del Trabajo (OIT), entre enero y octubre del 2022 el salario mínimo real de Costa Rica en promedio se desvalorizó en un 4,7% ya que, como se puede observar en el gráfico anterior en donde se refleja que si bien las variaciones nominales muestran una estabilidad positiva y un aumento en julio del 2022, las variaciones reales son todo lo contrario pues, cada mes se da un aumento de manera negativa hasta en agosto de ese año donde empiezan a disminuir. Hasta enero del 2023 la variación real logra un valor positivo de 0,38%, a partir de ese momento mantuvo una tendencia a la alza hasta agosto del mismo año. 
+Según el informe de la Organzación Mundial del Trabajo (OIT), entre enero y octubre del 2022 el salario mínimo real de Costa Rica en promedio se desvalorizó en un 4,7% ya que, como se puede observar en el gráfico anterior en donde se refleja que si bien las variaciones nominales muestran una estabilidad positiva y un aumento en julio del 2022, las variaciones reales son todo lo contrario pues, cada mes se da un aumento de manera negativa hasta en agosto de ese año donde empiezan a disminuir. 
 
-Por otro lado, las variaciones nominales en el 2023 continuaron creciendo hasta julio en donde decrecen a 6,74%, un mes antes por primera vez durante el periodo de estudio las variaciones reales sobrepasan las nominales.  
+Como se evidencia en el gráfico hasta enero del 2023 la variación real logra un valor positivo de 0,38%, a partir de ese momento mantuvo una tendencia a la alza hasta agosto del mismo año. Por otro lado, las variaciones nominales en el 2023 continuaron creciendo hasta julio en donde decrecen a 6,74%, un mes antes por primera vez durante el periodo de estudio las variaciones reales sobrepasan las nominales.  
 
 El informe indica que la tendencia a la baja del salario real en el 2022 se debe al aumento de la inflación para este periodo y como se analiza en el apartado correspondiente a esta variable por medio del gráfico se evidencia la clara relación inversa existente entre estas dos variables, justo en agosto de 2022 la inflación toma su valor más alto superando al 12%, misma fecha en la que el salario real toma su valor más bajo de -10,35%. Mientras que, para el 2023 la inflación sufre de una reducción importante llegando a una deflación, por consecuencia el salario real se recupera. 
+
+No obstante, es evidente que los salarios reales llegaron a caer en el 2022 incluso más que la inflación para el 2023 por lo que realmente los trabajadores, en especial los del sector público, no perciben mejores condiciones. Para el sector privado según el presidente del BCCR se tuvo una mejora del 8,7% con respecto a febrero del 2020 en los salarios promovido especialmente por los trabajadores de califiación baja y media.  
 
 # Índices de Precios al Consumidor
 # Déficit fiscal
 # Tipo de cambio
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 TipoCambio1 <- read.csv2("TipoCambio1.csv")
 TipoCambio1 <- TipoCambio1[, -c(4:10)]
 TipoCambio1$Fecha <- as.Date(TipoCambio1$Fecha, format = "%d/%m/%Y")
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 ggplot(TipoCambio1, aes(x = Fecha)) +
   geom_line(aes(y = TIPO.CAMBIO.COMPRA, color = "Compra")) +
   geom_line(aes(y = TIPO.DE.CAMBIO.VENTA, color = "Venta")) +
@@ -240,7 +254,7 @@ ggplot(TipoCambio1, aes(x = Fecha)) +
        title = "Tipo de cambio del dólar de los Estados Unidos de América", 
        subtitle = "Ene 2022 a Dic 2023",
        color = "Tipo de Cambio",
-       caption = expression(bold("Fuente: ") * "Elaboración propia a partir de datos del BCCR."))+
+       caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del BCCR."))+
   scale_y_continuous(limits = c(500, 700),  # Establece los límites del eje y
                      breaks = seq(500, 700, by = 20))+
    scale_x_date(date_labels = "%b-%Y", date_breaks = "2 month")+
