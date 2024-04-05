@@ -12,13 +12,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(openxlsx)
 library(readxl)
 library(ggplot2)
 library(tidyr)
 library(zoo)
 library(dplyr)
+library(scales)
 ```
 # Producto Interno Bruto
 
@@ -35,16 +36,26 @@ ggplot(PIB, aes(x = Trimestre, y = `Producto Interno Bruto a precios de mercado`
   geom_line(color = "cadetblue3") +
   geom_point(color = "#2F4F4F") +
   labs(x = "Trimestre", y = "Producto Interno Bruto", title = "Evolucion del Producto Interno Bruto por trimestre en Costa Rica, 2022-2023") +
-  theme_minimal()
+  theme_minimal() +
+    theme(plot.caption = element_text(hjust = 0, margin = margin(t = 10, r = 0, b = 0, l = 0))) +
+  labs(caption = "Fuente: Elaborado con datos del BCCR.")
 ```
 
 ```{r}
 ggplot(PIB, aes(x = Trimestre, y = `Tasa de Variación Interanual`)) +
-  geom_bar(stat = "identity", fill = "#2F4F4F", alpha = 0.7) + 
+  geom_line(color = "cadetblue3") +
+  geom_point(color = "#2F4F4F") +
+  geom_text(aes(label = paste(round(`Tasa de Variación Interanual`, 2), "%")), vjust = -0.5, hjust = 0.5, size = 3, nudge_y = 0.1) +
   labs(x = "Trimestre", y = "Tasa de Variación Interanual (%)", title = "Tasa de Variación Interanual del Producto Interno Bruto por trimestre en Costa Rica, 2022-2023") +
-  theme_minimal()
+  theme_minimal() + 
+  theme(plot.caption = element_text(hjust = 0, margin = margin(t = 10, r = 0, b = 0, l = 0))) +
+  labs(caption = "Fuente: Elaborado con datos del BCCR.")
 ```
+Tras la pandemia del COVID-19, en el 2022 la economía del mundo se comienzó a recuperar debido a las campañas de vacunación contra el virus y en consecuencia la eliminación de muchas de las restricciones sanitarias que impedían el desenvolvimiento económico. Esto se puede observar por medio del gráfico que muestra la evolución del PIB en donde para cada uno de los trimestres del año 2022 existe un crecimiento. 
 
+Al estudiar la variación del PIB entre el primer trimestre del 2021 y el primero del 2022 se obtiene la mayor variación interanual del PIB para el periodo de estudio con relación a la reapertura de la economía del país. Se puede notar que en los próximos trimestres del año las variaciones interanuales son positivas, no obstante, mucho menores que al inicio. 
+
+En el primer trimestre del 2023 se tuvo un decremento en el PIB, sin embargo, al analizar la variación interanual se afirma que este tuvo un crecimiento del 5,53%. El resto del año, al hablar de cantidades, se mantuvo en aumento. Con lo que respecta al cambio del trimestre respectivo del año anterior este decrece durante todo el año. Es importante recalcar que según el informe de política monetaria publicado por el BCCR se proyecta una desacelerecaión en el Producto Interno Bruto hasta alcanzar el 4% anual en el 2024 y 2025. 
 
 # Variación de salarios 
 
@@ -80,6 +91,14 @@ ggplot(variaciones_largas, aes(x = Fecha, y = Variación, fill = Tipo)) +
   labs(title = "Variaciones Interanuales del Índice de Salario Mínimo Nominal vs Real en Costa Rica,\n 2022-2023",
        x = "Fecha",
        y = "Variación (%)") +
-  theme_minimal()
+  theme_minimal() +
+  theme(plot.caption = element_text(hjust = 0, margin = margin(t = 10, r = 0, b = 0, l = 0))) +
+  labs(caption = "Fuente: Elaborado con datos del BCCR.")
 ```
+Según el informe de la Organzación Mundial del Trabajo (OIT), entre enero y octubre del 2022 el salario mínimo real de Costa Rica en promedio se desvalorizó en un 4,7% ya que, como se puede observar en el gráfico anterior en donde se refleja que si bien las variaciones nonimales muestran una estabilidad positiva y un aumento en julio del 2022, las variaciones reales son todo lo contrario pues, cada mes se da un aumento de manera negativa hasta en agosto de ese año donde empiezan a disminuir. Hasta enero del 2023 la variación real logra un valor positivo de 0,38%, a partir de ese momento mantuvo una tendencia a la alza hasta agosto del mismo año. 
+
+Por otro lado, las variaciones nominales en el 2023 continuaron creciendo hasta julio en donde decrecen a 6,74%, un mes antes por primera vez durante el periodo de estudio las variaciones reales sobrepasan las nominales.  
+
+El informe indica que la tendencia a la baja del salario real en el 2022 se debe al aumento de la inflación para este periodo y como se analiza en el apartado correspondiente a esta variable por medio del gráfico se evidencia la clara relación inversa existente entre estas dos variables, justo en agosto de 2022 la inflación toma su valor más alto superando al 12%, misma fecha en la que el salario real toma su valor más bajo de -10,35%. Mientras que, para el 2023 la inflación sufre de una reducción importante llegando a una deflación, por consecuencia el salario real se recupera. 
+
 
