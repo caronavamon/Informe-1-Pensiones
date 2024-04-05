@@ -28,7 +28,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 \newpage
 
-```{r message=FALSE, warning=FALSE, include=FALSE}
+```{r message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
 library(openxlsx)
 library(readxl)
 library(ggplot2)
@@ -40,12 +40,12 @@ library(scales)
 
 # Inflación
 
-```{r}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 Inflacion <- read.csv2("Inflacion.csv")
 Inflacion$Fecha <- as.Date(Inflacion$Fecha, format = "%d/%m/%Y")
 ```
 
-```{r}
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
 ggplot(Inflacion, aes(x = Fecha)) +
   geom_line(aes(y = `Variacion.mensual....`, color = "Variación Mensual"),size = 1) +
   geom_line(aes(y = `Variacion.interanual....`, color = "Variación Interanual"),size = 1) +
@@ -80,19 +80,69 @@ Para el cuarto trimestre del 2023, al igual que en el previo, la inflación gene
 En cuanto a las expectativas para el año 2024, se espera un repunte gradual en la inflación en Costa Rica, aunque se mantendría dentro de los objetivos establecidos por el Banco Central. Este repunte se atribuye en gran medida al comportamiento de las materias primas importadas. Se proyecta que la inflación alcance alrededor del 1,9% (interanual) para ese año, marcando una salida del periodo de deflación en el que se encuentra actualmente. Sin embargo, el momento exacto en que se dará este cambio aún no está determinado. A pesar de este repunte, el país podría cerrar el año nuevamente fuera del rango objetivo del Banco Central, según proyecciones de la OCDE. Se espera que, para el año siguiente, 2025, la inflación regrese al rango objetivo, ubicándose en torno al 3,1%, reflejando una mejora en las condiciones económicas que podría generar presiones inflacionarias internas.
 
 # Tasas de interés experimentadas y esperadas
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE}
+TBP_experimentadas <- read_excel("TBP.xlsx")
+colnames(TBP_experimentadas)[1]<- "Mes"
+TBP_experimentadas <- TBP_experimentadas %>% gather(Año, Tasa, "2022":"2023" )
+
+TPM_experimentadas <- read_excel("TPM.xlsx")
+colnames(TPM_experimentadas)[1]<- "Mes"
+TPM_experimentadas <- TPM_experimentadas %>% gather(Año, Tasa, "2022":"2023" )
+```
+
 ## Tasas de interés experimentadas
+
+Se analiza el comportamiento de  la  tasa básica  pasiva (TBP) y la tasa de política monetaria (TPM) mensuales del 2022 y del 2023 calculadas por el Banco Central de Costa Rica (BCCR). La primera corresponde a la tasa de interés del mercado. Las segunda, es la tasa objetivo del BCCR que se emplea como referencia para regular el costo de las operaciones crediticias y del sistema financiero. Es definida por la Junta Directiva del Banco Central. 
+
+En el siguiente gráfico se muestra el comportamiento de estas tasas.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+ Tasas_experimentadas_plot <- ggplot() + 
+  geom_line(aes(x = 1:24, y = TBP_experimentadas$Tasa, color = "Tasa Básica Pasiva"), lwd = 1) +      
+  geom_line(aes(x = 1:24, y = TPM_experimentadas$Tasa, color = "Tasa de Política Monetaria"), lwd = 1) +
+  labs(title = "Tasa Básica Pasiva y de Política Monetaria en Costa Rica",
+       subtitle = "2022-2023",
+       x = "Años", 
+       y = "Tasa (%)",
+       color = "") +
+  theme_minimal()+
+  scale_color_manual(values = c("Tasa Básica Pasiva" =  "#2F4F4F", "Tasa de Política Monetaria" = "cadetblue3")) +
+  scale_x_continuous(breaks = c(1, 12, 24), labels = c("2022", "2022/2023", "2023")) +
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  labs(caption = "Fuente: Elaborado con datos del BCCR.")
+
+Tasas_experimentadas_plot
+```
+
+La tasa de política monetaria en el 2022 presentó un comportamiento al alza, iniciando con un 1.75%  y en los últimos tres meses del año las tasas fueron constantes, especificamente de 9%. Esto se debe a las presiones inflacionarias sufridas en el 2021 ,por lo que, con el fin de contrarrestar la tendencia al crecimiento de la inflación y alcanzar la neutralidad en la política monetaria, el BCCR realizó ocho ajustes al alza de la TPM durante ese año. Esto ocasionó incrementos en la tasa básica pasiva  donde, en los primeros 4 meses del 2022 dicha tasa experimentó un leve decrecimiento pero para el resto del año tuvo una gran subida, pasando de una tasa de 2.90% en abril a una de 6.35% en diciembre.
+
+Sin embargo, la decisión de elevar la TPM fue motivo de críticas hacia el BCCR debido al incremento de las tasas de interés que encarecieron las transacciones del mercado. Por lo tanto, a partir de marzo del 2023 el BCCR empezó a bajar la TPM. Según la Junta Directiva del BCCR, estas reducciones se basan en el comportamiento de la inflación y su evolución,  que para ese año presentó bajos niveles incluso mostró una inflación interanual negativa. Por lo cual, en el 2023 se mostró una tendencia a la baja, pasando de una tasa de 9% en los dos primeros meses del año a una de 6% al final de este. Como consecuencia, incidió en la baja de la TBP donde, se inició con una tasa de 6.52% en enero y cerró con una de 5.36% en diciembre.
+
 ## Tasas de interés esperadas
+
+Las expectativas sobre las tasas de interés se encuentran principalemente sujetas a las evoluciones previstas de la inflación. Dado que, se prevee que la inflación se siga manteniendo por debajo de la meta objetivo establecido por el BCCR (3%) se espera que para el 2024 el Banco Central mantenga una política monetaria menos restrictiva y por ende, realice ajustes sobre la TPM para que tienda a la baja y reducirla  alrededor del 4.5% a finales del año. Consecuentemente, se prevee una reducción de la TBP. Lo mismo se espera para el 2025, donde se proyecta que la tasa de política monetaria disminuya en 150 puntos básicos a finales de ese año, de acuerdon con la OCDE.
+
+Tomando en cuenta la influencia del contexto internacional, también se considera que Estados Unidos suavice su política monetaria en el 2024, de tal manera, el BCCR  reduzca gradualmente la tasa de política monetaria y consigo la tasa básica pasiva.
+
+Además, expertos opinan que el Banco Central mantiene bajas las tasas de interés como una estrategia para eludir la salida o entrada de dólares de la economía que afecten el tipo de cambio. Por lo tanto, ante una situación de aumento de la inflación internacional, de la deuda externa y exceso de dólares, se espera que para el 2024 el BCCR realice cambios moderados para ajustar la inflación en valores cercanos a la meta de inflación. 
+
+
 # Producto Interno Bruto
 
-```{r, message=FALSE, warning=FALSE, include=FALSE}
+```{r, message=FALSE, warning=FALSE, include=FALSE,echo=FALSE}
 PIB <- read_excel("PIB Trimestral.xlsx")
 ```
 
-```{r, message=FALSE, warning=FALSE, include=FALSE}
+```{r, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
 PIB$Trimestre <- as.yearqtr(PIB$Trimestre)
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
 ggplot(PIB, aes(x = Trimestre, y = `Producto Interno Bruto a precios de mercado`)) +
   geom_line(color = "cadetblue3") +
   geom_point(color = "#2F4F4F") +
@@ -102,7 +152,7 @@ ggplot(PIB, aes(x = Trimestre, y = `Producto Interno Bruto a precios de mercado`
   labs(caption = "Fuente: Elaborado con datos del BCCR.")
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
 ggplot(PIB, aes(x = Trimestre, y = `Tasa de Variación Interanual`)) +
   geom_line(color = "cadetblue3") +
   geom_point(color = "#2F4F4F") +
@@ -121,30 +171,30 @@ En el primer trimestre del 2023 se tuvo un decremento en el PIB, sin embargo, al
 
 # Variación de Salarios
 
-```{r, message=FALSE, warning=FALSE, include=FALSE}
+```{r, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
 salarios_nominales <- read_excel("Variación de salarios nominales.xlsx")
 salarios_reales <- read_excel("Variación de salarios reales.xlsx")
 ```
 
-```{r, message=FALSE, warning=FALSE, include=FALSE}
+```{r, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
 salarios_nominales$Fecha <- as.yearmon(salarios_nominales$Fecha, format = "%B/%Y")
 salarios_reales$Fecha <- as.yearmon(salarios_reales$Fecha, format = "%B/%Y")
 ```
 
-```{r, message=FALSE, warning=FALSE, include=FALSE}
+```{r, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
 salarios_nominales_inter <- salarios_nominales[, c("Fecha", "Variación interanual (%)")]
 salarios_reales_inter <- salarios_reales[, c("Fecha", "Variación interanual (%)")]
 ```
 
-```{r, message=FALSE, warning=FALSE, include=FALSE}
+```{r, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
 variaciones_salarios <- merge(salarios_nominales_inter, salarios_reales_inter, by = "Fecha", suffixes = c(" nominal", " real"))
 ```
 
-```{r, message=FALSE, warning=FALSE, include=FALSE}
+```{r, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
 variaciones_largas <- pivot_longer(variaciones_salarios, cols = c(`Variación interanual (%) nominal`, `Variación interanual (%) real`), names_to = "Tipo", values_to = "Variación")
 ```
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
 ggplot(variaciones_largas, aes(x = Fecha, y = Variación, fill = Tipo)) +
   geom_bar(stat = "identity", alpha = 0.7, position = position_dodge(width = 0)) +
   scale_fill_manual(values = c(`Variación interanual (%) nominal` = "#2F4F4F", `Variación interanual (%) real` = "cadetblue3"),
@@ -168,13 +218,13 @@ El informe indica que la tendencia a la baja del salario real en el 2022 se debe
 # Déficit fiscal
 # Tipo de cambio
 
-```{r}
+```{r, echo=FALSE}
 TipoCambio1 <- read.csv2("TipoCambio1.csv")
 TipoCambio1 <- TipoCambio1[, -c(4:10)]
 TipoCambio1$Fecha <- as.Date(TipoCambio1$Fecha, format = "%d/%m/%Y")
 ```
 
-```{r}
+```{r, echo=FALSE}
 ggplot(TipoCambio1, aes(x = Fecha)) +
   geom_line(aes(y = TIPO.CAMBIO.COMPRA, color = "Compra")) +
   geom_line(aes(y = TIPO.DE.CAMBIO.VENTA, color = "Venta")) +
