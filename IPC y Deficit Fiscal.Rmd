@@ -51,8 +51,6 @@ Ingresos Totales: Los ingresos totales a diciembre fueron de ¢7.341.175 millone
 Gasto Total: El gasto total sin intereses a diciembre fue de ¢6.413.783 millones (equivalente al 14,5% del PIB 2022), presentando un decrecimiento en comparación con el año anterior.
 En el 2023, el déficit fiscal aumentó nuevamente a 3,3% del PIB, atribuido a un mayor pago de intereses sobre la deuda. Sin embargo, en junio del 2023, se registró un déficit financiero de 0,9% del PIB, el mejor resultado de los últimos 13 años.
 
-Estos datos reflejan la situación económica y fiscal de Costa Rica durante esos años. Para obtener más detalles, puedes consultar los boletines oficiales proporcionados por el Ministerio de Hacienda.
-
 
 ```{r}
 
