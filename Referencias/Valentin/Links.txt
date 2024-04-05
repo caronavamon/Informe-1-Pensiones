@@ -1,0 +1,30 @@
+https://admin.inec.cr/sites/default/files/2022-09/coeconomipc052022-01.pdf
+IPC
+
+https://inec.cr/busqueda?searchtext=base%2520diciembre%25202020&startdate=2020-01-01&enddate=2022-01-01
+IPC 2
+
+https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fadmin.inec.cr%2Fsites%2Fdefault%2Ffiles%2Fmedia%2Fseeconomipc012021-06_0_2.xlsx&wdOrigin=BROWSELINK
+IPC. Base diciembre 2020. Enlace de índices de precios al consumidor a la base diciembre 2020. Enero 1995-Diciembre 2020
+Ponderacion
+Hoja 5 hasta el cuadro 5.13
+1156 -> 289
+ 
+IPC.Comp <- data.frame(
+  Categoria = c(
+    "Alimentos y bebidas no alcohólicas",
+    "Transporte",
+    "Alquiler y servicios de la vivienda",
+    "Comunicaciones",
+    "Bienes y servicios diversos",
+    "Salud",
+    "Comidas fuera del hogar y servicio de alojamiento",
+    "Muebles, artículos para la vivienda y servicio doméstico",
+    "Educación",
+    "Entretenimiento y cultura",
+    "Prendas de vestir y calzado",
+    "Servicios financieros y seguros",
+    "Bebidas alcohólicas y cigarrillos"
+  ),
+  Porcentage = c(24.32, 14.82, 12.51, 7.84, 6.8, 6.04, 6.03, 5.94, 5.36, 5.09, 3.98, 0.67, 0.62)
+)

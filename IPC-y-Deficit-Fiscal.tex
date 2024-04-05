@@ -1,0 +1,402 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage[spanish, provide=*]{babel}
+\usepackage{titling}
+\usepackage{fontspec}
+\setmainfont{Arial}
+\usepackage{xcolor}
+\definecolor{azul}{RGB}{49, 126, 153 }
+\definecolor{gris}{RGB}{12, 76, 99}
+\usepackage{sectsty}
+\sectionfont{\color{azul}}
+\subsectionfont{\color{gris}}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Informe Contexto Económico Nacional},
+  pdfauthor={Maria Carolina Navarro Monge C05513; Tábata Picado Carmona C05961; Jimena Marchena Mendoza; Valentin Chavarria Ubeda B82098},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Informe Contexto Económico Nacional}
+\author{Maria Carolina Navarro Monge C05513 \and Tábata Picado Carmona
+C05961 \and Jimena Marchena Mendoza \and Valentin Chavarria Ubeda
+B82098}
+\date{}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readxl)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'readxl' was built under R version 4.3.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'tidyverse' was built under R version 4.3.1
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 4.3.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'tidyr' was built under R version 4.3.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'readr' was built under R version 4.3.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'purrr' was built under R version 4.3.1
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'dplyr' was built under R version 4.3.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'stringr' was built under R version 4.3.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'forcats' was built under R version 4.3.1
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'lubridate' was built under R version 4.3.1
+\end{verbatim}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.4     v readr     2.1.5
+## v forcats   1.0.0     v stringr   1.5.1
+## v ggplot2   3.5.0     v tibble    3.2.1
+## v lubridate 1.9.3     v tidyr     1.3.1
+## v purrr     1.0.2     
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(openxlsx)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'openxlsx' was built under R version 4.3.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(zoo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'zoo' was built under R version 4.3.3
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'zoo'
+## 
+## The following objects are masked from 'package:base':
+## 
+##     as.Date, as.Date.numeric
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(kableExtra) }\CommentTok{\# Para las tablas}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'kableExtra' was built under R version 4.3.3
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'kableExtra'
+## 
+## The following object is masked from 'package:dplyr':
+## 
+##     group_rows
+\end{verbatim}
+
+\hypertarget{inidice-de-precios-al-consumidor-ipc}{%
+\section{Inidice de precios al consumidor
+(IPC)}\label{inidice-de-precios-al-consumidor-ipc}}
+
+El IPC es una variable muy importante a tener en cuenta. Este indice
+sirve para medir la variación de los precios de los bienes y servicios
+de consumo cotidiano de la población de estudio. Este esta ponderado por
+289 productos los cuales el INEC los puede dividir de diversas formas
+pero la mas utilizada se se desglosa a continuación.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{IPC\_Comp }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Categoria =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"Alimentos y bebidas no alcohólicas"}\NormalTok{,}
+    \StringTok{"Transporte"}\NormalTok{,}
+    \StringTok{"Alquiler y servicios de la vivienda"}\NormalTok{,}
+    \StringTok{"Comunicaciones"}\NormalTok{,}
+    \StringTok{"Bienes y servicios diversos"}\NormalTok{,}
+    \StringTok{"Salud"}\NormalTok{,}
+    \StringTok{"Comidas fuera del hogar y servicio de alojamiento"}\NormalTok{,}
+    \StringTok{"Muebles, artículos para la vivienda y servicio doméstico"}\NormalTok{,}
+    \StringTok{"Educación"}\NormalTok{,}
+    \StringTok{"Entretenimiento y cultura"}\NormalTok{,}
+    \StringTok{"Prendas de vestir y calzado"}\NormalTok{,}
+    \StringTok{"Servicios financieros y seguros"}\NormalTok{,}
+    \StringTok{"Bebidas alcohólicas y cigarrillos"}
+\NormalTok{  ),}
+  \AttributeTok{Porcentage =} \FunctionTok{c}\NormalTok{(}\FloatTok{24.32}\NormalTok{, }\FloatTok{14.82}\NormalTok{, }\FloatTok{12.51}\NormalTok{, }\FloatTok{7.84}\NormalTok{, }\FloatTok{6.8}\NormalTok{, }\FloatTok{6.04}\NormalTok{, }\FloatTok{6.03}\NormalTok{, }\FloatTok{5.94}\NormalTok{, }\FloatTok{5.36}\NormalTok{, }\FloatTok{5.09}\NormalTok{, }\FloatTok{3.98}\NormalTok{, }\FloatTok{0.67}\NormalTok{, }\FloatTok{0.62}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{IPC\_Comp }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+Categoria & Porcentage \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Alimentos y bebidas no alcohólicas & 24.32 \\
+Transporte & 14.82 \\
+Alquiler y servicios de la vivienda & 12.51 \\
+Comunicaciones & 7.84 \\
+Bienes y servicios diversos & 6.80 \\
+Salud & 6.04 \\
+Comidas fuera del hogar y servicio de alojamiento & 6.03 \\
+Muebles, artículos para la vivienda y servicio doméstico & 5.94 \\
+Educación & 5.36 \\
+Entretenimiento y cultura & 5.09 \\
+Prendas de vestir y calzado & 3.98 \\
+Servicios financieros y seguros & 0.67 \\
+Bebidas alcohólicas y cigarrillos & 0.62 \\
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Deficit\_Fiscal }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"Deficit Fiscal.xlsx"}\NormalTok{)}
+
+\NormalTok{PIB }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"PIB Trimestral.xlsx"}\NormalTok{)}
+\NormalTok{PIB}\SpecialCharTok{$}\NormalTok{Trimestre }\OtherTok{\textless{}{-}} \FunctionTok{as.yearqtr}\NormalTok{(PIB}\SpecialCharTok{$}\NormalTok{Trimestre)}
+
+\FunctionTok{rep}\NormalTok{(PIB}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Producto Interno Bruto a precios de mercado}\StringTok{\textasciigrave{}}\NormalTok{,}\AttributeTok{each=} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  9559153  9559153  9559153  9653062  9653062  9653062  9804771  9804771
+##  [9]  9804771  9967346  9967346  9967346  9941039  9941039  9941039 10186509
+## [17] 10186509 10186509 10336319 10336319 10336319 10493067 10493067 10493067
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{8}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 1 2 3 4 5 6 7 8 1 2 3 4 5 6 7 8 1 2 3 4 5 6 7 8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Deficit\_Fiscal }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{A Ingreso mensual}\StringTok{\textasciigrave{}} \OtherTok{=} 
+           \FunctionTok{c}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{A{-} Ingresos totales}\StringTok{\textasciigrave{}}\NormalTok{[}\DecValTok{1}\NormalTok{],}
+             \FunctionTok{diff}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{A{-} Ingresos totales}\StringTok{\textasciigrave{}}\NormalTok{[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{12}\NormalTok{]),}
+             \StringTok{\textasciigrave{}}\AttributeTok{A{-} Ingresos totales}\StringTok{\textasciigrave{}}\NormalTok{[}\DecValTok{13}\NormalTok{],}
+             \FunctionTok{diff}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{A{-} Ingresos totales}\StringTok{\textasciigrave{}}\NormalTok{[}\DecValTok{13}\SpecialCharTok{:}\DecValTok{24}\NormalTok{]))) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{B Gasto mensual}\StringTok{\textasciigrave{}} \OtherTok{=} 
+           \FunctionTok{c}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{B{-} Gastos totales}\StringTok{\textasciigrave{}}\NormalTok{[}\DecValTok{1}\NormalTok{],}
+             \FunctionTok{diff}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{B{-} Gastos totales}\StringTok{\textasciigrave{}}\NormalTok{[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{12}\NormalTok{]),}
+             \StringTok{\textasciigrave{}}\AttributeTok{B{-} Gastos totales}\StringTok{\textasciigrave{}}\NormalTok{[}\DecValTok{13}\NormalTok{],}
+             \FunctionTok{diff}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{B{-} Gastos totales}\StringTok{\textasciigrave{}}\NormalTok{[}\DecValTok{13}\SpecialCharTok{:}\DecValTok{24}\NormalTok{]))) }\SpecialCharTok{\%\textgreater{}\%} 
+  \CommentTok{\# ggplot(aes(x=Mes,y = \textasciigrave{}A Ingreso mensual\textasciigrave{})) +}
+  \CommentTok{\# geom\_bar(stat="identity")+}
+  \CommentTok{\# geom\_line(aes(x=Mes,y = \textasciigrave{}B Gasto mensual\textasciigrave{}))}
+  \FunctionTok{mutate}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{C Balance Fiscal}\StringTok{\textasciigrave{}}\OtherTok{=} \StringTok{\textasciigrave{}}\AttributeTok{A Ingreso mensual}\StringTok{\textasciigrave{}} \SpecialCharTok{{-}}
+           \StringTok{\textasciigrave{}}\AttributeTok{B Gasto mensual}\StringTok{\textasciigrave{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{PIB =} \FunctionTok{rep}\NormalTok{(PIB}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Producto Interno Bruto a precios de mercado}\StringTok{\textasciigrave{}}\NormalTok{,}\AttributeTok{each=} \DecValTok{3}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Balance Porcentual}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{\textasciigrave{}}\AttributeTok{C Balance Fiscal}\StringTok{\textasciigrave{}}\SpecialCharTok{/}\NormalTok{PIB) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Mes,}\AttributeTok{y=}\StringTok{\textasciigrave{}}\AttributeTok{Balance Porcentual}\StringTok{\textasciigrave{}}\NormalTok{,}\AttributeTok{fill=}\StringTok{\textasciigrave{}}\AttributeTok{Balance Porcentual}\StringTok{\textasciigrave{}}\NormalTok{))}\SpecialCharTok{+}
+    \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} 
+         \StringTok{"Balance Fiscal"}\NormalTok{,}
+       \AttributeTok{subtitle =} 
+         \StringTok{"Como porcentaje del PIB"}
+\NormalTok{       )}\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_gradient}\NormalTok{(}\AttributeTok{low=}\StringTok{"\#2F4F4F"}\NormalTok{, }\AttributeTok{high=}\StringTok{"cadetblue3"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} 
+          \StringTok{"none"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{IPC-y-Deficit-Fiscal_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Deficit\_Fiscal}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{A{-} Ingresos totales}\StringTok{\textasciigrave{}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  612345.8 1102230.3 1937252.7 2395717.1 2892197.8 3537356.3 4125241.2
+##  [8] 4809698.3 5467186.0 5988806.8 6516604.6 7340656.6  677016.0 1153407.1
+## [15] 2014095.0 2504943.5 3019749.5 3677239.3 4211169.4 4699229.7 5320934.9
+## [22] 5846983.8 6396181.0 7182231.5
+\end{verbatim}
+
+\end{document}

@@ -1,0 +1,145 @@
+---
+title: "Untitled"
+output: html_document
+date: "2024-04-05"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(readxl)
+library(tidyverse)
+library(openxlsx)
+library(zoo)
+library(kableExtra) # Para las tablas
+```
+<!-- # Inidice de precios al consumidor (IPC) -->
+
+<!-- Desde el Este indice sirve para medir la variación de los precios de los bienes y servicios de consumo cotidiano de la población de estudio. Este esta ponderado por 289 productos los cuales el INEC los puede dividir de diversas formas pero la mas utilizada se se desglosa a continuación. -->
+
+<!-- ```{r} -->
+<!-- IPC_Comp <- data.frame( -->
+<!--   Categoria = c( -->
+<!--     "Alimentos y bebidas no alcohólicas", -->
+<!--     "Transporte", -->
+<!--     "Alquiler y servicios de la vivienda", -->
+<!--     "Comunicaciones", -->
+<!--     "Bienes y servicios diversos", -->
+<!--     "Salud", -->
+<!--     "Comidas fuera del hogar y servicio de alojamiento", -->
+<!--     "Muebles, artículos para la vivienda y servicio doméstico", -->
+<!--     "Educación", -->
+<!--     "Entretenimiento y cultura", -->
+<!--     "Prendas de vestir y calzado", -->
+<!--     "Servicios financieros y seguros", -->
+<!--     "Bebidas alcohólicas y cigarrillos" -->
+<!--   ), -->
+<!--   Porcentage = c(24.32, 14.82, 12.51, 7.84, 6.8, 6.04, 6.03, 5.94, 5.36, 5.09, 3.98, 0.67, 0.62) -->
+<!-- ) -->
+<!-- IPC_Comp %>% knitr::kable() -->
+
+<!-- ``` -->
+
+# Ideas
+Superávit Primario: Después de 13 años de déficits primarios, en el 2022 se logró un superávit primario de ¢927.392 millones (equivalente al 2,1% del PIB 2022). Esto marca un cambio importante, ya que anteriormente se habían registrado déficits primarios. Además, se cumplió con la meta pactada con el Fondo Monetario Internacional (FMI).
+Déficit Financiero: A pesar de registrar un pago de intereses por 4,6% del PIB, el déficit financiero en el 2022 se redujo a ¢1.116.751 millones (equivalente al 2,5% del PIB 2022), cifra menor en comparación con el año anterior. Es importante destacar que el pago de intereses de la deuda alcanzó su nivel más alto en los últimos 17 años.
+Deuda Pública: La deuda a diciembre del 2022 alcanzó ¢28.223.523 millones, por debajo de la meta evaluativa acordada con el FMI. La razón Deuda/PIB también disminuyó a 63,8% del PIB 2022.
+Ingresos Totales: Los ingresos totales a diciembre fueron de ¢7.341.175 millones (equivalente al 16,6% del PIB 2022), mayor en comparación con el mismo período del 2021.
+Gasto Total: El gasto total sin intereses a diciembre fue de ¢6.413.783 millones (equivalente al 14,5% del PIB 2022), presentando un decrecimiento en comparación con el año anterior.
+En el 2023, el déficit fiscal aumentó nuevamente a 3,3% del PIB, atribuido a un mayor pago de intereses sobre la deuda. Sin embargo, en junio del 2023, se registró un déficit financiero de 0,9% del PIB, el mejor resultado de los últimos 13 años.
+
+Estos datos reflejan la situación económica y fiscal de Costa Rica durante esos años. Para obtener más detalles, puedes consultar los boletines oficiales proporcionados por el Ministerio de Hacienda.
+
+
+```{r}
+
+library(reshape2)
+Deficit_Fiscal <- read_excel("Deficit Fiscal.xlsx")
+
+Balance_Fiscal_L <- melt(
+    Deficit_Fiscal,
+    id.vars = "Detalle",
+    variable.name = "Mes",
+    value.name = "Balance"
+  ) %>% 
+  mutate()
+
+
+Balance_Fiscal_L$Mes <- Balance_Fiscal_L$Mes %>%
+  as.character() %>%
+  as.numeric()
+Balance_Fiscal_L <- Balance_Fiscal_L %>% 
+  mutate(
+    MesD = 
+      as.Date(
+        Balance_Fiscal_L$Mes,
+        origin = "1899-12-30"
+        )
+    )
+
+Balance_Fiscal_L %>%
+  filter(
+    Detalle == 
+        "Resultado primario" |
+    Detalle ==
+       "B- Gastos totales"
+    ) %>% 
+  ggplot(
+    aes(
+      y = 
+        Balance,
+      x =
+        MesD,
+      color = 
+        Detalle
+      )
+  )+
+  geom_line()
+
+PIB <- read_excel("PIB Trimestral.xlsx")
+PIB$Trimestre <- as.yearqtr(PIB$Trimestre)
+
+rep(PIB$`Producto Interno Bruto a precios de mercado`,each= 3)
+rep(1:8,3)
+```
+
+```{r}
+# Deficit_Fiscal %>%
+#   mutate(`A Ingreso mensual` = 
+#            c(`A- Ingresos totales`[1],
+#              diff(`A- Ingresos totales`[1:12]),
+#              `A- Ingresos totales`[13],
+#              diff(`A- Ingresos totales`[13:24]))) %>%
+#   mutate(`B Gasto mensual` = 
+#            c(`B- Gastos totales`[1],
+#              diff(`B- Gastos totales`[1:12]),
+#              `B- Gastos totales`[13],
+#              diff(`B- Gastos totales`[13:24]))) %>% 
+#   # ggplot(aes(x=Mes,y = `A Ingreso mensual`)) +
+#   # geom_bar(stat="identity")+
+#   # geom_line(aes(x=Mes,y = `B Gasto mensual`))
+#   mutate(`C Balance Fiscal`= `A Ingreso mensual` -
+#            `B Gasto mensual`) %>% 
+#   mutate(PIB = rep(PIB$`Producto Interno Bruto a precios de mercado`,each= 3)) %>% 
+#   mutate(`Balance Porcentual` = `C Balance Fiscal`/PIB*100) %>% 
+#   ggplot(aes(x=Mes,y=`Balance Porcentual`,fill=`Balance Porcentual`))+
+#     geom_bar(stat = "identity")+
+#   labs(title = 
+#          "Balance Fiscal",
+#        subtitle = 
+#          "Como porcentaje del PIB"
+#        )+
+#   scale_fill_gradient(low="#2F4F4F", high="cadetblue3")+
+#   theme_minimal() +
+#   theme(legend.position = 
+#           "none")
+# 
+# 
+# 
+# Deficit_Fiscal$`A- Ingresos totales`
+```
+Similar a las otras variables analizadas el balance fiscal ha mostrado una mejora en el periodo posterior al 2021. Siendo que consecutivamente los años 2022 y 2023 generaron un superávit primario lo cual no sucedía desde el 2006. 
+
