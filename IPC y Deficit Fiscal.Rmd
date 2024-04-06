@@ -70,11 +70,12 @@ En el 2023, el déficit fiscal aumentó nuevamente a 3,3% del PIB, atribuido a u
 <!--   howpublished = {\url{https://www.hacienda.go.cr/docs/CP102023.pdf}} -->
 <!-- } -->
 
-Como se ha analizado en el presente informe Costa Rica en los años 2022 y 2023 esta mostrando una mejora a en la economía, y el caso del déficit fiscal no es la excepción. El siguiente gráfico esta representado el comportamiento del ingreso y gastos públicos de manera mensual durante el periodo analizado. 
+C# Déficit fiscal
+Como se ha analizado en el presente informe, Costa Rica en los años 2022 y 2023 esta mostrando una mejora a en la economía, y el caso del déficit fiscal no es la excepción. El siguiente gráfico esta representado el comportamiento del ingreso y gastos públicos de manera mensual durante el periodo analizado. 
 
-```{r}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
 
-library(reshape2)
+
 Deficit_Fiscal <- read_excel("Deficit Fiscal.xlsx")
 
 Balance_Fiscal_L <- melt(
@@ -173,12 +174,6 @@ Balance_Fiscal_L %>%
     labels = 
       comma
   )
-
-PIB <- read_excel("PIB Trimestral.xlsx")
-PIB$Trimestre <- as.yearqtr(PIB$Trimestre)
-
-rep(PIB$`Producto Interno Bruto a precios de mercado`,each= 3)
-rep(1:8,3)
 ```
 
 
