@@ -52,6 +52,8 @@ Gasto Total: El gasto total sin intereses a diciembre fue de ¢6.413.783 millone
 En el 2023, el déficit fiscal aumentó nuevamente a 3,3% del PIB, atribuido a un mayor pago de intereses sobre la deuda. Sin embargo, en junio del 2023, se registró un déficit financiero de 0,9% del PIB, el mejor resultado de los últimos 13 años.
 
 
+Como se ha analizado en el presente informe Costa Rica en los años 2022 y 2023 esta mostrando una mejora a en la economía en el caso del déficit fiscal no es la excepción. En siguiente gráfico esta representado el comportamiento del ingreso y gastos públicos. 
+
 ```{r}
 
 library(reshape2)
@@ -81,9 +83,11 @@ Balance_Fiscal_L <- Balance_Fiscal_L %>%
 Balance_Fiscal_L %>%
   filter(
     Detalle == 
-        "Resultado primario" |
+        "A- Ingresos totales" |
     Detalle ==
-       "B- Gastos totales"
+       "B- Gastos Totales" |
+    Detalle == 
+      "C- Gastos primarios"
     ) %>% 
   ggplot(
     aes(
@@ -95,7 +99,58 @@ Balance_Fiscal_L %>%
         Detalle
       )
   )+
-  geom_line()
+  geom_line(
+    ) +
+  geom_point(
+    ) +
+  labs(
+    x =
+      "Mes",
+    y = 
+      "Balance Fiscal",
+    title = 
+      "Evolución del Balance Fiscal mensual en Costa Rica",
+    subtitle =
+      "2022-2023") +
+  theme_minimal() +
+    theme(
+      legend.position =
+        "bottom",
+      plot.title = 
+        element_text(
+          hjust = 
+            0.5
+        ),
+      plot.subtitle =
+        element_text(
+          hjust = 
+            0.5
+        ),
+      plot.caption =
+        element_text(
+          hjust =
+            0,
+          color =
+            "black",
+          size =
+            8
+          )
+      ) +
+  labs(
+    caption =
+      expression(
+        bold(
+          "Fuente: "
+          ) * "Elaborado a partir de datos del BCCR."
+        )
+    ) + scale_color_manual(
+    values = 
+      c(
+        "#2F4F4F",
+        "cadetblue3",
+        "#A2CD5A"
+      )
+    )
 
 PIB <- read_excel("PIB Trimestral.xlsx")
 PIB$Trimestre <- as.yearqtr(PIB$Trimestre)
@@ -104,6 +159,17 @@ rep(PIB$`Producto Interno Bruto a precios de mercado`,each= 3)
 rep(1:8,3)
 ```
 
+
+Gracias a este observar se puede que en lo que respecta a gastos primarios Costa Rica se ha mantenido en la mayoría del tiempo por debajo de los ingresos totales lo cual según @hacienda2022
+
+
+
+<!-- @misc{Deficit1, -->
+<!--   title = {CP 10- Boletín Cifras fiscales a diciembre 2022}, -->
+<!--   author = {{Ministerio de Hacienda de Costa Rica}}, -->
+<!--   year = {2022}, -->
+<!--   howpublished = {\url{https://www.hacienda.go.cr/docs/CP102023.pdf}} -->
+<!-- } -->
 ```{r}
 # Deficit_Fiscal %>%
 #   mutate(`A Ingreso mensual` = 
