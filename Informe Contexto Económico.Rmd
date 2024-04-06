@@ -235,6 +235,9 @@ No obstante, es evidente que los salarios reales llegaron a caer en el 2022 incl
 
 # Índices de Precios al Consumidor
 # Déficit fiscal
+
+
+
 # Tipo de cambio
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}

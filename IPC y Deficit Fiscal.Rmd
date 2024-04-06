@@ -52,6 +52,24 @@ Gasto Total: El gasto total sin intereses a diciembre fue de ¢6.413.783 millone
 En el 2023, el déficit fiscal aumentó nuevamente a 3,3% del PIB, atribuido a un mayor pago de intereses sobre la deuda. Sin embargo, en junio del 2023, se registró un déficit financiero de 0,9% del PIB, el mejor resultado de los últimos 13 años.
 
 
+
+
+
+<!-- @misc{Deficit2, -->
+<!--   title = {Informe sobre el Superávit Primario en Costa Rica}, -->
+<!--   author = {{Ministerio de Hacienda de Costa Rica}}, -->
+<!--   year = {2024}, -->
+<!--   url = {https://www.hacienda.go.cr/docs/CP122024.pdf}, -->
+<!--   note = {Documento oficial del Ministerio de Hacienda de Costa Rica} -->
+<!-- } -->
+
+<!-- @misc{Deficit1, -->
+<!--   title = {CP 10- Boletín Cifras fiscales a diciembre 2022}, -->
+<!--   author = {{Ministerio de Hacienda de Costa Rica}}, -->
+<!--   year = {2022}, -->
+<!--   howpublished = {\url{https://www.hacienda.go.cr/docs/CP102023.pdf}} -->
+<!-- } -->
+
 Como se ha analizado en el presente informe Costa Rica en los años 2022 y 2023 esta mostrando una mejora a en la economía en el caso del déficit fiscal no es la excepción. En siguiente gráfico esta representado el comportamiento del ingreso y gastos públicos. 
 
 ```{r}
@@ -109,7 +127,7 @@ Balance_Fiscal_L %>%
     y = 
       "Balance Fiscal",
     title = 
-      "Evolución del Balance Fiscal mensual en Costa Rica",
+      "Evolución del Balance Fiscal mensual en Costa Rica en millones",
     subtitle =
       "2022-2023") +
   theme_minimal() +
@@ -150,7 +168,11 @@ Balance_Fiscal_L %>%
         "cadetblue3",
         "#A2CD5A"
       )
-    )
+    ) +
+  scale_y_continuous(
+    labels = 
+      comma
+  )
 
 PIB <- read_excel("PIB Trimestral.xlsx")
 PIB$Trimestre <- as.yearqtr(PIB$Trimestre)
@@ -160,50 +182,8 @@ rep(1:8,3)
 ```
 
 
-Gracias a este observar se puede que en lo que respecta a gastos primarios Costa Rica se ha mantenido en la mayoría del tiempo por debajo de los ingresos totales lo cual según @hacienda2022
+Gracias a este observar se puede que en lo que respecta a gastos primarios Costa Rica se ha mantenido en la mayoría del tiempo por debajo de los ingresos totales lo cual con llevo a un Superávit Primario para el periodo 2022-2023, que según el boletín CP-10 del 2022 representa una mejoría debido que este panorama no se presentaba desde el 2006. Asimismo cumpliendo con una de las metas pactas con el Fondo Monetario Internacional (FMI) junto con esto también se ha mejorado la calificación crediticia del país como resalta el informe de hacienda del 2024 Así consolidado un creciente económico por encima de las expectativas.
 
+Si bien estas son buenas expectativas, cuando se toma en cuenta en el análisis el Gasto total, es decir, incluyendo el pago de intereses de deuda. Se puede observar que Costa Rica un sigue presentando un déficit fiscal para el periodo analizado. Aun así el pago el de intereses de deuda son los mayores, proporcionalmente con respecto al PIB, en los últimos 16 años.
 
-
-<!-- @misc{Deficit1, -->
-<!--   title = {CP 10- Boletín Cifras fiscales a diciembre 2022}, -->
-<!--   author = {{Ministerio de Hacienda de Costa Rica}}, -->
-<!--   year = {2022}, -->
-<!--   howpublished = {\url{https://www.hacienda.go.cr/docs/CP102023.pdf}} -->
-<!-- } -->
-```{r}
-# Deficit_Fiscal %>%
-#   mutate(`A Ingreso mensual` = 
-#            c(`A- Ingresos totales`[1],
-#              diff(`A- Ingresos totales`[1:12]),
-#              `A- Ingresos totales`[13],
-#              diff(`A- Ingresos totales`[13:24]))) %>%
-#   mutate(`B Gasto mensual` = 
-#            c(`B- Gastos totales`[1],
-#              diff(`B- Gastos totales`[1:12]),
-#              `B- Gastos totales`[13],
-#              diff(`B- Gastos totales`[13:24]))) %>% 
-#   # ggplot(aes(x=Mes,y = `A Ingreso mensual`)) +
-#   # geom_bar(stat="identity")+
-#   # geom_line(aes(x=Mes,y = `B Gasto mensual`))
-#   mutate(`C Balance Fiscal`= `A Ingreso mensual` -
-#            `B Gasto mensual`) %>% 
-#   mutate(PIB = rep(PIB$`Producto Interno Bruto a precios de mercado`,each= 3)) %>% 
-#   mutate(`Balance Porcentual` = `C Balance Fiscal`/PIB*100) %>% 
-#   ggplot(aes(x=Mes,y=`Balance Porcentual`,fill=`Balance Porcentual`))+
-#     geom_bar(stat = "identity")+
-#   labs(title = 
-#          "Balance Fiscal",
-#        subtitle = 
-#          "Como porcentaje del PIB"
-#        )+
-#   scale_fill_gradient(low="#2F4F4F", high="cadetblue3")+
-#   theme_minimal() +
-#   theme(legend.position = 
-#           "none")
-# 
-# 
-# 
-# Deficit_Fiscal$`A- Ingresos totales`
-```
-Similar a las otras variables analizadas el balance fiscal ha mostrado una mejora en el periodo posterior al 2021. Siendo que consecutivamente los años 2022 y 2023 generaron un superávit primario lo cual no sucedía desde el 2006. 
-
+Costa Rica ha logrado avances positivos en la gestión fiscal, pero es fundamental seguir monitoreando y abordando los desafíos relacionados con el gasto y la deuda para mantener una economía sostenible y estable. El país debe continuar implementando políticas financieras responsables y buscar un equilibrio adecuado entre ingresos y gastos para garantizar su crecimiento económico a largo plazo.
