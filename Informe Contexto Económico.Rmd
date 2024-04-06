@@ -234,9 +234,8 @@ El informe indica que la tendencia a la baja del salario real en el 2022 se debe
 
 No obstante, es evidente que los salarios reales llegaron a caer en el 2022 incluso más que la inflación para el 2023 por lo que realmente los trabajadores, en especial los del sector público, no perciben mejores condiciones. Para el sector privado, según el presidente del BCCR, se tuvo una mejora del 8.7% con respecto a febrero del 2020 en los salarios promovido especialmente por los trabajadores de calificación baja y media.  
 
-# Índices de Precios al Consumidor
 # Déficit fiscal
-Como se ha analizado en el presente informe, Costa Rica en los años 2022 y 2023 esta mostrando una mejora a en la economía, y el caso del déficit fiscal no es la excepción. El siguiente gráfico esta representado el comportamiento del ingreso y gastos públicos de manera mensual durante el periodo analizado. 
+Como se ha analizado en el presente informe, Costa Rica en los años 2022 y 2023 está mostrando una mejora en la economía, y el caso del déficit fiscal no es la excepción. El siguiente gráfico representa el comportamiento del ingreso y los gastos públicos de manera mensual durante el periodo analizado. 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
 
@@ -342,9 +341,9 @@ Balance_Fiscal_L %>%
 ```
 
 
-Gracias a este observar se puede que en lo que respecta a gastos primarios, Costa Rica se ha mantenido en la mayoría del tiempo por debajo de los ingresos totales lo cual ha llevo a un Superávit Primario para el periodo 2022-2023, que según el boletín CP-10 del 2023 esta es una gran mejoría debido que este panorama no se presentaba desde el 2006. Asimismo, cumpliendo con una de las metas pactas con el Fondo Monetario Internacional (FMI) junto con esto también se ha mejorado la calificación crediticia del país como resalta el informe CP–12 de hacienda del 2024. Así consolidado un crecimiento económico por encima de las expectativas y una mejora en la salud financiera del país.
+Gracias a este, se puede observar que en lo que respecta a gastos primarios, Costa Rica se ha mantenido en la mayoría del tiempo por debajo de los ingresos totales, lo cual, llevó a un Superávit Primario para el periodo 2022-2023, que según el boletín CP-10 del 2023, esta es una gran mejoría debido a que este panorama no se presentaba desde el 2006. Asimismo, cumpliendo con una de las metas pactas con el Fondo Monetario Internacional (FMI). Junto con esto, también se ha mejorado la calificación crediticia del país como resalta el informe CP–12 de hacienda del 2024. Así, consolidando un crecimiento económico por encima de las expectativas y una mejora en la salud financiera del país.
 
-Si bien estas son buenas expectativas, cuando se considera en el análisis el Gasto total, incluye el pago de intereses de deuda. Se puede observar que Costa Rica un sigue presentando un déficit fiscal para el periodo analizado. Aun así el pago el de intereses de deuda son los mayores, proporcionalmente con respecto al PIB, que en los realizados en los últimos 16 años.
+Si bien estas son buenas expectativas, cuando se considera en el análisis el Gasto total, incluye el pago de intereses de deuda. Se puede observar que Costa Rica sigue presentando un déficit fiscal para el periodo analizado. Aun así, el pago de los intereses de deuda son los mayores, proporcionalmente con respecto al PIB, que en los realizados en los últimos 16 años.
 
 Con este análisis se puede concluir, que Costa Rica ha logrado avances positivos en la gestión fiscal, pero es fundamental seguir monitoreando y abordando los desafíos relacionados con el gasto y la deuda para mantener una economía sostenible y estable. El país debe continuar implementando políticas financieras responsables y buscar un equilibrio adecuado entre ingresos y gastos para garantizar su crecimiento económico a largo plazo.
 
