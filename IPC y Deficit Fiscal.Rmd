@@ -70,7 +70,7 @@ En el 2023, el déficit fiscal aumentó nuevamente a 3,3% del PIB, atribuido a u
 <!--   howpublished = {\url{https://www.hacienda.go.cr/docs/CP102023.pdf}} -->
 <!-- } -->
 
-Como se ha analizado en el presente informe Costa Rica en los años 2022 y 2023 esta mostrando una mejora a en la economía en el caso del déficit fiscal no es la excepción. En siguiente gráfico esta representado el comportamiento del ingreso y gastos públicos. 
+Como se ha analizado en el presente informe Costa Rica en los años 2022 y 2023 esta mostrando una mejora a en la economía, y el caso del déficit fiscal no es la excepción. El siguiente gráfico esta representado el comportamiento del ingreso y gastos públicos de manera mensual durante el periodo analizado. 
 
 ```{r}
 
@@ -182,8 +182,8 @@ rep(1:8,3)
 ```
 
 
-Gracias a este observar se puede que en lo que respecta a gastos primarios Costa Rica se ha mantenido en la mayoría del tiempo por debajo de los ingresos totales lo cual con llevo a un Superávit Primario para el periodo 2022-2023, que según el boletín CP-10 del 2022 representa una mejoría debido que este panorama no se presentaba desde el 2006. Asimismo cumpliendo con una de las metas pactas con el Fondo Monetario Internacional (FMI) junto con esto también se ha mejorado la calificación crediticia del país como resalta el informe de hacienda del 2024 Así consolidado un creciente económico por encima de las expectativas.
+Gracias a este observar se puede que en lo que respecta a gastos primarios, Costa Rica se ha mantenido en la mayoría del tiempo por debajo de los ingresos totales lo cual ha llevo a un Superávit Primario para el periodo 2022-2023, que según el boletín CP-10 del 2022 esta es una gran mejoría debido que este panorama no se presentaba desde el 2006. Asimismo, cumpliendo con una de las metas pactas con el Fondo Monetario Internacional (FMI) junto con esto también se ha mejorado la calificación crediticia del país como resalta el informe CP–12 de hacienda del 2024. Así consolidado un crecimiento económico por encima de las expectativas y una mejora en la salud financiera del país.
 
-Si bien estas son buenas expectativas, cuando se toma en cuenta en el análisis el Gasto total, es decir, incluyendo el pago de intereses de deuda. Se puede observar que Costa Rica un sigue presentando un déficit fiscal para el periodo analizado. Aun así el pago el de intereses de deuda son los mayores, proporcionalmente con respecto al PIB, en los últimos 16 años.
+Si bien estas son buenas expectativas, cuando se considera en el análisis el Gasto total, incluye el pago de intereses de deuda. Se puede observar que Costa Rica un sigue presentando un déficit fiscal para el periodo analizado. Aun así el pago el de intereses de deuda son los mayores, proporcionalmente con respecto al PIB, que en los realizados en los últimos 16 años.
 
-Costa Rica ha logrado avances positivos en la gestión fiscal, pero es fundamental seguir monitoreando y abordando los desafíos relacionados con el gasto y la deuda para mantener una economía sostenible y estable. El país debe continuar implementando políticas financieras responsables y buscar un equilibrio adecuado entre ingresos y gastos para garantizar su crecimiento económico a largo plazo.
+Con este análisis se puede concluir, que Costa Rica ha logrado avances positivos en la gestión fiscal, pero es fundamental seguir monitoreando y abordando los desafíos relacionados con el gasto y la deuda para mantener una economía sostenible y estable. El país debe continuar implementando políticas financieras responsables y buscar un equilibrio adecuado entre ingresos y gastos para garantizar su crecimiento económico a largo plazo.
