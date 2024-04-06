@@ -216,7 +216,7 @@ ggplot(variaciones_largas, aes(x = Fecha, y = Variación, fill = Tipo)) +
   scale_fill_manual(values = c(`Variación interanual (%) nominal` = "#2F4F4F", `Variación interanual (%) real` = "cadetblue3"),
                     name = "Tipo de Variación",  # Define el nombre en la leyenda
                     labels = c("Variación Nominal", "Variación Real")) +  # Define las etiquetas
-  labs(title = "Variaciones Interanuales del Índice de Salario Mínimo Nominal vs Real en Costa Rica",subtitle = "2022-2023", x = "Fecha", y = "Variación (%)") +
+  labs(title = "Variaciones Interanuales del Índice de Salario Mínimo Nominal vs Real en \n Costa Rica",subtitle = "2022-2023", x = "Fecha", y = "Variación (%)") +
   theme_minimal() +
   theme(legend.position = "bottom",
         plot.title = element_text(hjust = 0.5),
@@ -254,6 +254,7 @@ ggplot(TipoCambio1, aes(x = Fecha)) +
        subtitle = "Ene 2022 a Dic 2023",
        color = "Tipo de Cambio",
        caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del BCCR."))+
+  theme_minimal()+
   scale_y_continuous(limits = c(500, 700),  # Establece los límites del eje y
                      breaks = seq(500, 700, by = 20))+
    scale_x_date(date_labels = "%b-%Y", date_breaks = "2 month")+
