@@ -1,0 +1,100 @@
+---
+output:
+  rmdformats::robobook:
+        code_folding: show
+  html_document:
+    toc: TRUE
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, warning=FALSE,message=FALSE}
+library(readxl)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+```
+
+# Matrimonios 
+
+```{r}
+#Costa Rica. Total de matrimonios por composición de la pareja
+
+matrimonios_parejas <- read_excel("Matrimonios 2023.xlsx", sheet = 2, skip = 3)
+matrimonios_parejas <- matrimonios_parejas[matrimonios_parejas$Año %in% c(2022, 2023), ]
+matrimonios_parejas <- matrimonios_parejas %>% mutate(across(-1, as.numeric))
+```
+
+```{r}
+#Costa Rica. Total de matrimonios por sexo, según grupos de edades de las personas contrayentes
+
+matrimonios_edad_22 <- read_excel("Matrimonios 2022.xlsx", sheet = 6, skip = 3)
+matrimonios_edad_22 <- matrimonios_edad_22[1:11,]
+matrimonios_edad_22 <- matrimonios_edad_22 %>% mutate(across(-1, as.numeric))
+
+matrimonios_edad_23 <-  read_excel("Matrimonios 2023.xlsx", sheet = 6, skip = 3)
+matrimonios_edad_23 <- matrimonios_edad_23[1:10,]
+matrimonios_edad_23 <- matrimonios_edad_23 %>% mutate(across(-1, as.numeric))
+```
+
+```{r}
+#Costa Rica. Total de matrimonios de personas de diferente sexo por condición de actividad y ocupación del contrayente, según condición de actividad y ocupación de la contrayente
+
+matrimonios_ocupacion_22 <- read_excel("Matrimonios 2022.xlsx", sheet = 10, skip = 3)
+matrimonios_ocupacion_22 <- matrimonios_ocupacion_22[1:15,]
+matrimonios_ocupacion_22 <- matrimonios_ocupacion_22 %>% mutate(across(-1, as.numeric))
+
+matrimonios_ocupacion_23 <- read_excel("Matrimonios 2023.xlsx", sheet = 10, skip = 3)
+matrimonios_ocupacion_23 <- matrimonios_ocupacion_23[1:15,]
+matrimonios_ocupacion_23 <- matrimonios_ocupacion_23 %>% mutate(across(-1, as.numeric))
+```
+
+```{r}
+#Costa Rica. Total de matrimonios por nacionalidad de las personas contrayentes, según composición de la pareja.
+
+matrimonios_nacionalidad_22 <- read_excel("Matrimonios 2022.xlsx", sheet = 12, skip = 3)
+matrimonios_nacionalidad_22 <- matrimonios_nacionalidad_22[1:4,]
+matrimonios_nacionalidad_22 <- matrimonios_nacionalidad_22 %>% mutate(across(-1, as.numeric))
+
+matrimonios_nacionalidad_23 <- read_excel("Matrimonios 2023.xlsx", sheet = 12, skip = 3)
+matrimonios_nacionalidad_23 <- matrimonios_nacionalidad_23[1:4,]
+matrimonios_nacionalidad_23 <- matrimonios_nacionalidad_23 %>% mutate(across(-1, as.numeric))
+```
+
+```{r}
+matrimonios_parejas_graf <- pivot_longer(matrimonios_parejas, cols = c(Total,`Hombre - Mujer`,`Hombre - Hombre`,`Mujer - Mujer`), names_to = "Composición", values_to = "Cantidad")
+```
+
+```{r}
+ggplot(matrimonios_parejas_graf, aes(x = factor(Año), y = Cantidad, fill = Composición)) +
+  geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
+  geom_text(aes(label = Cantidad), position = position_dodge(width = 0.9), vjust = -0.5) +
+  scale_fill_manual(values = c(Total = "#2F4F4F", `Hombre - Mujer` = "cadetblue3", `Hombre - Hombre` = "#BCEE68",`Mujer - Mujer` = "#6E8B3D" ), name = "Tipo de Composición") +  
+  labs(title = "Costa Rica. Total de matrimonios por composición de la pareja.", subtitle = "2022-2023", x = "Año") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+```
+
+```{r}
+matrimonios_edad_22_graf <- pivot_longer(matrimonios_edad_22, cols = c(`Hombres total`,`Hombres con mujeres`,`Hombres con hombres`,`Mujeres total`, `Mujeres con hombres`, `Mujeres con mujeres`), names_to = "Composición", values_to = "Cantidad")
+```
+
+```{r}
+ggplot(matrimonios_edad_22_graf, aes(x = `Grupos de edades`, y = Cantidad, fill = Composición)) + 
+  geom_line() + 
+  geom_point() + 
+  scale_fill_manual(values = c(`Hombres total` = "#2F4F4F", `Hombres con mujeres` = "cadetblue3", `Hombres con hombres` = "#BCEE68",`Mujeres total` = "#6E8B3D", `Mujeres con hombres` = "#AEEEEE", `Mujeres con mujeres` = "#B4EEB4"), name = "Tipo de Composición") +
+  labs(title = "Costa Rica. Total de matrimonios por composición de la pareja.", subtitle = "2022-2023") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+```
+
