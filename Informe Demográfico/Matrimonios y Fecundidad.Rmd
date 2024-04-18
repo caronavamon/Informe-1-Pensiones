@@ -16,6 +16,7 @@ library(readxl)
 library(ggplot2)
 library(tidyr)
 library(dplyr)
+library(cowplot)
 ```
 
 # Matrimonios 
@@ -81,20 +82,33 @@ ggplot(matrimonios_parejas_graf, aes(x = factor(Año), y = Cantidad, fill = Comp
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 ```
 
+
 ```{r}
-matrimonios_edad_22_graf <- pivot_longer(matrimonios_edad_22, cols = c(`Hombres total`,`Hombres con mujeres`,`Hombres con hombres`,`Mujeres total`, `Mujeres con hombres`, `Mujeres con mujeres`), names_to = "Composición", values_to = "Cantidad")
+matrimonios_edad_23 <- matrimonios_edad_23 %>%
+  filter(!(`Grupos de edades` %in% c("Costa Rica", "Ignorada")))
+matrimonios_edad_23 <- mutate(matrimonios_edad_23, Año = 2023)
+matrimonios_edad_22 <- matrimonios_edad_22 %>%
+  filter(!(`Grupos de edades` %in% c("Costa Rica", "Ignorada")))
+matrimonios_edad_22 <- mutate(matrimonios_edad_22, Año = 2022)
+matrimonios_edad <- rbind(matrimonios_edad_22, matrimonios_edad_23)
+matrimonios_edad_graf <- matrimonios_edad %>%
+  pivot_longer( cols = -c(`Grupos de edades`, Año), names_to = "Categoria", values_to = "Cantidad")
 ```
 
 ```{r}
-ggplot(matrimonios_edad_22_graf, aes(x = `Grupos de edades`, y = Cantidad, fill = Composición)) + 
-  geom_line() + 
-  geom_point() + 
-  scale_fill_manual(values = c(`Hombres total` = "#2F4F4F", `Hombres con mujeres` = "cadetblue3", `Hombres con hombres` = "#BCEE68",`Mujeres total` = "#6E8B3D", `Mujeres con hombres` = "#AEEEEE", `Mujeres con mujeres` = "#B4EEB4"), name = "Tipo de Composición") +
-  labs(title = "Costa Rica. Total de matrimonios por composición de la pareja.", subtitle = "2022-2023") +
-  theme_minimal() +
-  theme(plot.title = element_text(hjust = 0.5),
-        plot.subtitle = element_text(hjust = 0.5),
-        plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
+ggplot(matrimonios_edad_graf, aes(x = `Grupos de edades`, y = Cantidad, fill = Categoria)) +
+  geom_bar(stat = "identity", position = "stack") +  # Gráfico de barras apiladas
+  scale_fill_manual(values = c(`Hombres total` = "#2F4F4F", 
+                                `Hombres con mujeres` = "cadetblue3", 
+                                `Hombres con hombres` = "#BCEE68",
+                                `Mujeres total` = "#6E8B3D", 
+                                `Mujeres con hombres` = "#AEEEEE", 
+                                `Mujeres con mujeres` = "#B4EEB4"),
+                     name = "Tipo de Composición") +
+  facet_wrap(~ Año) +
+  theme_minimal() + 
+  labs(x = "Grupos de Edades", y = "Cantidad", title = "Costa Rica. Total de matrimonios por sexo, según grupos de edades de las personas \n contrayentes.", subtitle = "2022 - 2023") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), plot.subtitle = element_text(hjust = 0.5), plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 ```
 
