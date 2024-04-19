@@ -107,8 +107,34 @@ ggplot(matrimonios_edad_graf, aes(x = `Grupos de edades`, y = Cantidad, fill = C
                      name = "Tipo de Composición") +
   facet_wrap(~ Año) +
   theme_minimal() + 
-  labs(x = "Grupos de Edades", y = "Cantidad", title = "Costa Rica. Total de matrimonios por sexo, según grupos de edades de las personas \n contrayentes.", subtitle = "2022 - 2023") +
+  labs(x = "Grupos de Edades", y = "Cantidad", title = "Costa Rica. Total de matrimonios por grupos de edades de las personas contrayentes, según sexo.", subtitle = "2022 - 2023") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1), plot.subtitle = element_text(hjust = 0.5), plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 ```
+
+```{r}
+matrimonios_nacionalidad_23 <- matrimonios_nacionalidad_23 %>%
+  select(-Total)
+matrimonios_nacionalidad_23 <- mutate(matrimonios_nacionalidad_23, Año = 2023)
+matrimonios_nacionalidad_22 <- matrimonios_nacionalidad_22 %>%
+  select(-Total)
+matrimonios_nacionalidad_22 <- mutate(matrimonios_nacionalidad_22, Año = 2022)
+matrimonios_nacionalidad <- rbind(matrimonios_nacionalidad_22, matrimonios_nacionalidad_23)
+matrimonios_nacionalidad_graf <- matrimonios_nacionalidad %>%
+  pivot_longer( cols = -c(`Composición de la pareja`, Año), names_to = "Categoria", values_to = "Cantidad")
+```
+
+```{r}
+ggplot(matrimonios_nacionalidad_graf, aes(x = factor(`Composición de la pareja`), y = Cantidad, fill = Categoria)) +
+  geom_bar(stat = "identity", position = "dodge") + 
+  scale_fill_manual(values = c(`Ambas personas costarricenses` = "#2F4F4F", `Costarricense y persona extranjera` = "cadetblue3", `Ambas personas extranjeras` = "#BCEE68"), name = "Nacionalidad") +
+  facet_wrap(~ Año) +
+  theme_minimal() + 
+  labs(x = "Composición de la pareja", y = "Cantidad", title = "Costa Rica. Total de matrimonios por composición de la pareja, según nacionalidad de las personas contrayentes.", subtitle = "2022 - 2023") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), plot.subtitle = element_text(hjust = 0.5), plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+```
+
+
+
 
