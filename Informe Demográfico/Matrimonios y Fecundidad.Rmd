@@ -11,7 +11,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r, warning=FALSE,message=FALSE}
+```{r, warning=FALSE,message=FALSE, include=FALSE}
 library(readxl)
 library(ggplot2)
 library(tidyr)
@@ -21,7 +21,7 @@ library(cowplot)
 
 # Matrimonios 
 
-```{r}
+```{r include=FALSE}
 #Costa Rica. Total de matrimonios por composición de la pareja
 
 matrimonios_parejas <- read_excel("Matrimonios 2023.xlsx", sheet = 2, skip = 3)
@@ -29,7 +29,7 @@ matrimonios_parejas <- matrimonios_parejas[matrimonios_parejas$Año %in% c(2022,
 matrimonios_parejas <- matrimonios_parejas %>% mutate(across(-1, as.numeric))
 ```
 
-```{r}
+```{r include=FALSE}
 #Costa Rica. Total de matrimonios por sexo, según grupos de edades de las personas contrayentes
 
 matrimonios_edad_22 <- read_excel("Matrimonios 2022.xlsx", sheet = 6, skip = 3)
@@ -41,19 +41,7 @@ matrimonios_edad_23 <- matrimonios_edad_23[1:10,]
 matrimonios_edad_23 <- matrimonios_edad_23 %>% mutate(across(-1, as.numeric))
 ```
 
-```{r}
-#Costa Rica. Total de matrimonios de personas de diferente sexo por condición de actividad y ocupación del contrayente, según condición de actividad y ocupación de la contrayente
-
-matrimonios_ocupacion_22 <- read_excel("Matrimonios 2022.xlsx", sheet = 10, skip = 3)
-matrimonios_ocupacion_22 <- matrimonios_ocupacion_22[1:15,]
-matrimonios_ocupacion_22 <- matrimonios_ocupacion_22 %>% mutate(across(-1, as.numeric))
-
-matrimonios_ocupacion_23 <- read_excel("Matrimonios 2023.xlsx", sheet = 10, skip = 3)
-matrimonios_ocupacion_23 <- matrimonios_ocupacion_23[1:15,]
-matrimonios_ocupacion_23 <- matrimonios_ocupacion_23 %>% mutate(across(-1, as.numeric))
-```
-
-```{r}
+```{r include=FALSE}
 #Costa Rica. Total de matrimonios por nacionalidad de las personas contrayentes, según composición de la pareja.
 
 matrimonios_nacionalidad_22 <- read_excel("Matrimonios 2022.xlsx", sheet = 12, skip = 3)
@@ -65,11 +53,32 @@ matrimonios_nacionalidad_23 <- matrimonios_nacionalidad_23[1:4,]
 matrimonios_nacionalidad_23 <- matrimonios_nacionalidad_23 %>% mutate(across(-1, as.numeric))
 ```
 
-```{r}
+```{r include=FALSE}
+tasa_nupcialidad <- read_excel("Indicadores de población.xlsx", sheet = 3)
+```
+
+```{r include=FALSE}
+tasa_nupcialidad_graf <- tasa_nupcialidad %>%
+  pivot_longer( cols = -Nupcialidad, names_to = "Año", values_to = "Tasa")
+```
+
+```{r echo=FALSE}
+ggplot(tasa_nupcialidad_graf, aes(x = factor(Año), y = Tasa, fill = Nupcialidad)) +
+  geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
+  scale_fill_manual(values = c(`Tasa de nupcialidad (por mil habitantes)` = "#2F4F4F", Católicos = "cadetblue3", Civiles = "#BCEE68"), name = "Nupcialidad") +  
+  labs(title = "Costa Rica. Tasa de nupcialidad.", subtitle = "2022-2023", x = "Año") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+```
+
+```{r include=FALSE}
 matrimonios_parejas_graf <- pivot_longer(matrimonios_parejas, cols = c(Total,`Hombre - Mujer`,`Hombre - Hombre`,`Mujer - Mujer`), names_to = "Composición", values_to = "Cantidad")
 ```
 
-```{r}
+```{r echo=FALSE}
 ggplot(matrimonios_parejas_graf, aes(x = factor(Año), y = Cantidad, fill = Composición)) +
   geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
   geom_text(aes(label = Cantidad), position = position_dodge(width = 0.9), vjust = -0.5) +
@@ -83,7 +92,7 @@ ggplot(matrimonios_parejas_graf, aes(x = factor(Año), y = Cantidad, fill = Comp
 ```
 
 
-```{r}
+```{r include=FALSE}
 matrimonios_edad_23 <- matrimonios_edad_23 %>%
   filter(!(`Grupos de edades` %in% c("Costa Rica", "Ignorada")))
 matrimonios_edad_23 <- mutate(matrimonios_edad_23, Año = 2023)
@@ -95,7 +104,7 @@ matrimonios_edad_graf <- matrimonios_edad %>%
   pivot_longer( cols = -c(`Grupos de edades`, Año), names_to = "Categoria", values_to = "Cantidad")
 ```
 
-```{r}
+```{r echo=FALSE}
 ggplot(matrimonios_edad_graf, aes(x = `Grupos de edades`, y = Cantidad, fill = Categoria)) +
   geom_bar(stat = "identity", position = "stack") +  # Gráfico de barras apiladas
   scale_fill_manual(values = c(`Hombres total` = "#2F4F4F", 
@@ -107,12 +116,12 @@ ggplot(matrimonios_edad_graf, aes(x = `Grupos de edades`, y = Cantidad, fill = C
                      name = "Tipo de Composición") +
   facet_wrap(~ Año) +
   theme_minimal() + 
-  labs(x = "Grupos de Edades", y = "Cantidad", title = "Costa Rica. Total de matrimonios por grupos de edades de las personas contrayentes, según sexo.", subtitle = "2022 - 2023") +
+  labs(x = "Grupos de Edades", y = "Cantidad", title = "Costa Rica. Total de matrimonios por grupos de edades de las personas contrayentes,  \n según sexo.", subtitle = "2022 - 2023") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1), plot.subtitle = element_text(hjust = 0.5), plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 ```
 
-```{r}
+```{r include=FALSE}
 matrimonios_nacionalidad_23 <- matrimonios_nacionalidad_23 %>%
   select(-Total)
 matrimonios_nacionalidad_23 <- mutate(matrimonios_nacionalidad_23, Año = 2023)
@@ -124,17 +133,54 @@ matrimonios_nacionalidad_graf <- matrimonios_nacionalidad %>%
   pivot_longer( cols = -c(`Composición de la pareja`, Año), names_to = "Categoria", values_to = "Cantidad")
 ```
 
-```{r}
+```{r echo=FALSE}
 ggplot(matrimonios_nacionalidad_graf, aes(x = factor(`Composición de la pareja`), y = Cantidad, fill = Categoria)) +
   geom_bar(stat = "identity", position = "dodge") + 
   scale_fill_manual(values = c(`Ambas personas costarricenses` = "#2F4F4F", `Costarricense y persona extranjera` = "cadetblue3", `Ambas personas extranjeras` = "#BCEE68"), name = "Nacionalidad") +
   facet_wrap(~ Año) +
   theme_minimal() + 
-  labs(x = "Composición de la pareja", y = "Cantidad", title = "Costa Rica. Total de matrimonios por composición de la pareja, según nacionalidad de las personas contrayentes.", subtitle = "2022 - 2023") +
+  labs(x = "Composición de la pareja", y = "Cantidad", title = "Costa Rica. Total de matrimonios por composición de la pareja, según nacionalidad de \n las personas contrayentes.", subtitle = "2022 - 2023") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1), plot.subtitle = element_text(hjust = 0.5), plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 ```
 
+# Fecundidad y Esperanza de vida 
 
+```{r include=FALSE}
+fecundidad <- read_excel("Indicadores de población.xlsx", sheet = 1)
+esperanza_vida <- read_excel("Indicadores de población.xlsx", sheet = 2)
+```
 
+```{r include=FALSE}
+fecundidad_graf <- fecundidad %>%
+  pivot_longer( cols = -`Natalidad y fecundidad`, names_to = "Año", values_to = "Tasa")
+
+esperanza_vida_graf <- esperanza_vida %>% 
+  pivot_longer(cols = -`Esperanza de vida al nacimiento`, names_to = "Año", values_to = "EPV")
+```
+
+```{r echo=FALSE}
+ggplot(fecundidad_graf, aes(x = factor(Año), y = Tasa, fill = `Natalidad y fecundidad`)) +
+  geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
+  scale_fill_manual(values = c(`Tasa bruta de natalidad (por mil habitantes)` = "#2F4F4F", `Tasa global de fecundidad (por mujer)` = "cadetblue3", `Tasa bruta de reproducción (por mujer)` = "#BCEE68", `Tasa neta de reproducción (por mujer)` = "#6E8B3D"), name = "Tipo de tasa") +  
+  labs(title = "Costa Rica. Tasas de natalidad y fecundidad.", subtitle = "2022-2023", x = "Año") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+```
+
+```{r echo=FALSE}
+ggplot(esperanza_vida_graf, aes(x = factor(Año), y = EPV, fill = `Esperanza de vida al nacimiento`)) +
+  geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
+  geom_text(aes(label = round(EPV,1)), position = position_dodge(width = 0.9), vjust = -0.5) +
+  scale_fill_manual(values = c(Total = "#2F4F4F", Mujeres = "cadetblue3", Hombres = "#BCEE68")) +  
+  labs(title = "Costa Rica. Esperanza de vida al nacimiento.", subtitle = "2022-2023", x = "Año", y = "Esperanza de vida", fill = NULL) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+```
 
