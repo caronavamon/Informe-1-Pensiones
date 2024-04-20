@@ -85,3 +85,7 @@ ggplot(ocupaDesempleo, aes(x = Trimestre)) +
 
 Con respecto a otros indicadores adicionales del mercado laboral proporcionados por el INEC, a finales del 2023, se tiene que la tasa de ocupación, que representa el porcentaje de personas empleadas en relación con la población de 15 años o más, se situó en un 50%, mientras que la tasa neta de participación laboral, que abarca tanto a las personas empleadas como a las desempleadas en relación con la misma población, fue del 54,3%. Ambos indicadores experimentaron caídas significativas interanuales de 3,3 y 6,2 puntos porcentuales, respectivamente.
 Según el INEC, esta reducción se vio impulsada por una disminución en la participación de personas en el mercado laboral, especialmente en el sector informal. Es crucial destacar que la disminución en la tasa de desempleo no necesariamente indica una mejora en las oportunidades laborales, sino más bien una menor cantidad de personas buscando activamente empleo.
+
+
+
+

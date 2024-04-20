@@ -30,7 +30,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 \newpage
 
-<<<<<<< HEAD
+
 
 ```{r, warning=FALSE,message=FALSE, include=FALSE}
 library(readxl)
@@ -239,18 +239,16 @@ Es claro que tener una esperanza de vida al nacer alta es un buen indicador para
 # Desempleo
 
 ```{r,echo = FALSE}
-library(ggplot2)
-library(readxl)
 Desempleo <- read_excel("Desempleo.xlsx")
 Desempleo$Trimestre <- factor(Desempleo$Trimestre, levels = unique(Desempleo$Trimestre))
 ```
 
 ```{r,echo = FALSE,warning = FALSE}
 ggplot(Desempleo, aes(x = Trimestre, y = `Tasa desempleo`)) +
-  geom_bar(stat = "identity", fill = "darkslategray3", width = 0.7) +
-  geom_text(aes(label = paste0(`Tasa desempleo`, "%")), vjust = -0.5, color = "#458B74") +
-  labs(title = "Tasa de desempleo abierta y población desempleada en Costa Rica", 
-       subtitle = "Ene 2022 a Dic 2023",
+  geom_bar(stat = "identity", fill = "cadetblue3", width = 0.7,alpha = 0.7) +
+  geom_text(aes(label = paste0(`Tasa desempleo`, "%")), vjust = -0.5, color = "#2F4F4F") +
+  labs(title = "Costa Rica. Tasa de desempleo abierta y población desempleada", 
+       subtitle = "2022-2023",
        caption = expression(bold("Fuente: ") * "Elaboración propia a partir de datos del INEC y BCCR."),
        x = "Trimestre",
        y = "Tasa de Desempleo (%)") +
@@ -295,9 +293,9 @@ ggplot(ocupaDesempleo, aes(x = Trimestre)) +
   geom_line(aes(y = Tasa_desempleo, color = "Tasa de Desempleo", group = 1), size = 1) +
   geom_line(aes(y = Tasa_participacion, color = "Tasa de Participación", group = 1), size = 1) +
   geom_line(aes(y = Tasa_ocupacion, color = "Tasa de Ocupación", group = 1), size = 1) +
-  scale_color_manual(values = c("Tasa de Desempleo" = "#528B8B", "Tasa de Participación" = "#2F4F4F", "Tasa de Ocupación" = "#79CDCD")) +
-  labs(x = "Trimestres móviles", y = "Porcentaje", color = "Indicador",title = "Principales indicadores del mercado laboral en Costa Rica", 
-       subtitle = "Ene 2022 a Dic 2023",
+  scale_color_manual(values = c("Tasa de Desempleo" = "#BCEE68", "Tasa de Participación" = "#2F4F4F", "Tasa de Ocupación" = "cadetblue3")) +
+  labs(x = "Trimestres móviles", y = "Porcentaje", color = "Indicador",title = "Costa Rica. Principales indicadores del mercado laboral", 
+       subtitle = "2022-2023",
        caption = expression(bold("Fuente: ") * "Elaboración propia a partir de datos del INEC.")) +
   theme_minimal() +
   theme(legend.position ="bottom",
