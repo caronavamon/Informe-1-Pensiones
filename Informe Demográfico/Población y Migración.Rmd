@@ -25,7 +25,8 @@ columnas_hombres <- read_excel("Poblacion.xlsx", range = "N33:Q55")
 Hombres_pob <- cbind(columna_edades, columnas_hombres)
 Hombres_pob <- Hombres_pob[-1,]
 colnames(Hombres_pob) <- c("Edades", "2022", "2023", "2024", "2025")
-Hombres_pob_long <- Hombres_pob  %>% gather(Ano, Poblacion,"2022":"2025")
+Hombres_pob_long <- Hombres_pob  %>% gather(Ano, Poblacion,"2023")
+Hombres_pob_long <- Hombres_pob_long[,-c(2:4)]
 Hombres_pob_long$Sexo <-rep("Hombre", length(Hombres_pob_long))
 
 #Datos mujeres 
@@ -33,57 +34,59 @@ columnas_mujeres <- read_excel("Poblacion.xlsx", range = "N57:Q79")
 Mujeres_pob <- cbind(columna_edades, columnas_mujeres)
 Mujeres_pob <- Mujeres_pob[-1,]
 colnames(Mujeres_pob) <- c("Edades", "2022", "2023", "2024", "2025")
-Mujeres_pob_long <- Mujeres_pob  %>% gather(Ano, Poblacion,"2022":"2025")
+Mujeres_pob_long <- Mujeres_pob  %>% gather(Ano, Poblacion,"2023")
+Mujeres_pob_long <- Mujeres_pob_long[,-c(2:4)]
 Mujeres_pob_long$Sexo <-rep("Mujer", length(Mujeres_pob_long) )
 
 #datos con porcentajes por tres grupos de edad sin importar sexo
 Pob_3rangos <- data.frame("Edades" = c("0-14", "15-64", "65 y mas"), 
                               `2022` = c(NA), `2023`= c(NA), `2024`= c(NA), 
                               `2025`= c(NA),  check.names = FALSE)
+
+Pob_3rangos_porc<- data.frame("Edades" = c("0-14", "15-64", "65 y mas"), 
+                              `2022` = c(NA), `2023`= c(NA), `2024`= c(NA), 
+                              `2025`= c(NA),  check.names = FALSE)
 for(i in 2:5){
   pob_rango1 <- sum(Hombres_pob[1:3,i] + Mujeres_pob[1:3,i]) 
   pob_rango2 <- sum(Hombres_pob[4:13,i] + Mujeres_pob[4:13,i])
   pob_rango3 <- sum(Hombres_pob[14:21,i] + Mujeres_pob[14:21,i])
+  
+  Pob_3rangos[1,i] <-  pob_rango1
+  Pob_3rangos[2,i] <-  pob_rango2
+  Pob_3rangos[3,i] <-  pob_rango3
+  
   pob_total <- pob_rango1 + pob_rango2 + pob_rango3
 
-  Pob_3rangos[1,i] <-(pob_rango1/pob_total)*100
-  Pob_3rangos[2,i] <-(pob_rango2/pob_total)*100
-  Pob_3rangos[3,i] <-(pob_rango3/pob_total)*100
+  Pob_3rangos_porc[1,i] <-(pob_rango1/pob_total)*100
+  Pob_3rangos_porc[2,i] <-(pob_rango2/pob_total)*100
+  Pob_3rangos_porc[3,i] <-(pob_rango3/pob_total)*100
 }
-
-Pob_3rangos_long <- Pob_3rangos  %>% gather(Ano, Porcentaje,"2022":"2025")
 ```
 
 # Variación de la población
 
 A continuación, se presenta un análisis de la variación de la población durante 
 el periodo 2022-2023, así como, de la proyección de la población para el 2024 y 2025. 
-Para tal objetivo, se toma coma base datos la poblacion por años calendario, 
+Para tal objetivo, se consideran datos de la poblacion por años calendario, 
 según sexo y grupos quinquenales de edades proporcionado por el Instituto Nacional 
-de Estadística y Censos (INEC).
+de Estadística y Censos (INEC). Los cuales, son estimaciones calculadas
+sobre la población esperada en un lapso de 2011-2050.
 
-```{r,warning=FALSE, message=FALSE, echo=FALSE }
-#Gráfico de barras
+Primeramente, se identifica la distribución de la población costarricense del último
+año 2023 según la edad y el sexo. 
 
-ggplot(Pob_3rangos_long, aes(x = Porcentaje, y = factor(Ano), fill = Edades)) +
-   geom_bar(stat = "identity", alpha = 0.7, position = "stack", width = 0.4) +
-  geom_text(aes(label = paste0(round(Porcentaje, 2), "%")), position = position_stack(vjust = 0.5), size = 3) +
-  scale_fill_manual(values = c(`0-14` = "#2F4F4F", `15-64` = "cadetblue3",`65 y mas`= "#BCEE68"))+
-  labs(title = "Estructura porcentual de la población según edad, en Costa Rica",
-       subtitle = "2022-2025",
-       x = "Años", 
-       y = "Porcentaje (%)",fill = "Edad" ) +
-    theme_minimal()+
-  scale_y_discrete(limits = rev(levels(factor(Pob_3rangos_long$Ano)))) +  # Reordenar años en eje y
-  theme(legend.position = "bottom",
-        plot.title = element_text(hjust = 0.5),
-        plot.subtitle = element_text(hjust = 0.5),
-        plot.caption = element_text(hjust = 0, color = "black", size = 8),
-        legend.title = element_blank()) +
-  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
-```
+Mediante la pirámide poblacional se visualiza un comportamiento similar para
+ambos sexos.
+Se puede observar unos intervalos de edad
+dominantes, tanto para hombres como para mujeres corresponde a las personas entre 
+20 y 35 años. Esto puede sugerir un envejecimiento de la población, pues, la base
+de la pirámide al ser menos ancha que el centro, puede indicar un baja en la tasa 
+de natalidad y por ende un lento crecimiento de la población.
+Por otro lado, en ambos sexos, la proporción de personas adultas  mayores es pequeña
+en comparación con la base de la pirámide , pero, dado que el centro es más ancho esto
+puede indicar cierta estabilidad demográfica. 
+
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
-# Datos de ejemplo
 datos_piramide <-rbind(Hombres_pob_long, Mujeres_pob_long)
 
 # Convertir datos a formato largo y ajustar el valor de la población para los hombres
@@ -96,7 +99,7 @@ ggplot(datos_piramide, aes(x = Poblacion, y = Edades, fill = Sexo)) +
   geom_bar(stat = "identity", position = "identity") +
   scale_fill_manual(values = c("Hombre" = "#2F4F4F", "Mujer" = "cadetblue3")) +
   labs(title = "Pirámide Poblacional de Costa Rica",
-       subtitle = "2022-2025",
+       subtitle = "2023",
        x = "Población", 
        y = "Edad", fill = "Sexo" ) +
   theme_minimal()+
@@ -108,3 +111,169 @@ ggplot(datos_piramide, aes(x = Poblacion, y = Edades, fill = Sexo)) +
         legend.title = element_blank()) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 ```
+Con el fin de analizar la variación de la población costarricense, se consideran
+tres rangos de edad por motivos de simplicidad y mayor claridad en el entendimiento
+de la información. Estos rangos representan a tres sectores principales de la 
+población: personas infantes de 0 a 14 años, personas en edad de trabajar que
+corresponde al intervalo de 15 a 64 años y como tercer rango, las personas de 65
+años y más que conformarían a los pensionados por jubilación. 
+
+Para acompañar el análisis de la variación de la población, primero se estudia 
+la composición porcentual de la población por edades. Con el cual, se puede
+analizar la evolución que presenta cada población. 
+
+
+```{r,warning=FALSE, message=FALSE, echo=FALSE}
+#Gráfico de barras
+Pob_3rangos_porc_long <- Pob_3rangos_porc  %>% gather(Ano, Porcentaje,"2022":"2025")
+
+ggplot(Pob_3rangos_porc_long, aes(x = Porcentaje, y = factor(Ano), fill = Edades)) +
+   geom_bar(stat = "identity", alpha = 0.7, position = "stack", width = 0.4) +
+  geom_text(aes(label = paste0(round(Porcentaje, 2), "%")), position = position_stack(vjust = 0.5), size = 3) +
+  scale_fill_manual(values = c(`0-14` = "#2F4F4F", `15-64` = "cadetblue3",`65 y mas`= "#BCEE68"))+
+  labs(title = "Estructura porcentual de la población según edad, en Costa Rica",
+       subtitle = "2022-2025",
+       x = "Porcentaje (%)", 
+       y = "Años",fill = "Edad" ) +
+    theme_minimal()+
+  scale_y_discrete(limits = rev(levels(factor(Pob_3rangos_porc_long$Ano)))) +  # Reordenar años en eje y
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+```
+
+Mediante el gráfico, es posible identificar un crecimiento del porcentaje de 
+la población adulta mayor. Donde, para el 2022 aproximadamente 7 de cada 100
+costarricenses tenían entre 65 años y más, incrementándose para los años posteriores
+y estimándose que para el 2025 la proporción de esta población sea de aproximadamente 10
+cada 100 costarrinceses. 
+
+A pesar de que el porcentaje que representa la población entre 15 y 64 años disminuyó del 2022 al 2023,
+pues, pasó de 69.07% a un 68.96% de la población total y para el 2024 y el 2025 también 
+se proyecta que decrezca su porcentaje de composición, sigue siendo el grupo que mayor proporción muestra.
+ 
+Finalmente, para las personas entre los 0 y 4 años, en el 2023 se presentó una disminución 
+del porcentaje que compone en la población total comparado con el año previo. Y 
+en cuanto a las proyecciones, se puede observar también que decrece y ronda en el 20%. Consecuentemente,
+esto trae consigo una disminución de la población entre los 15 y 64 en años posteriores. Lo cual, explica el 
+el decremento de la composición porcentual de este grupo.  
+
+
+Seguidamente, en el siguiente gráfico se muestra la variación porcentual en años consecutivos
+de la población por los rangos de edad mencionados anteriormente.
+
+
+```{r, message=FALSE, echo=FALSE}
+
+Variacion_pob <- data.frame("Edades" = c("0-14", "15-64", "65 y mas"), 
+                              `2022-2023` = c(NA), `2023-2024`= c(NA), `2024-2025`= c(NA), 
+                              check.names = FALSE)
+for(i in 2:4){
+    var_rango1 <- ((Pob_3rangos[1, i+1] - Pob_3rangos[1, i])/Pob_3rangos[1, i])*100
+    var_rango2 <- ((Pob_3rangos[2, i+1] - Pob_3rangos[2, i])/Pob_3rangos[2, i])*100
+    var_rango3 <- ((Pob_3rangos[3, i+1] - Pob_3rangos[3, i])/Pob_3rangos[3, i])*100
+    
+    Variacion_pob[1,i] <- var_rango1
+    Variacion_pob[2,i] <- var_rango2
+    Variacion_pob[3,i] <- var_rango3
+}
+
+Variacion_pob_long <- Variacion_pob  %>% gather(Periodo, Porcentaje,"2022-2023":"2024-2025")
+```
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+# Gráfico de línea de tiempo
+ggplot(Variacion_pob_long, aes(x = Periodo, y = Porcentaje, fill = Edades)) +
+  geom_bar(stat = "identity", position = "dodge", width = 0.5) +
+  geom_text(aes(label = paste0(round(Porcentaje, 2), "%")), position = position_stack(vjust = 0.5), size = 3) +
+  scale_fill_manual(values = c(`0-14` = "#2F4F4F", `15-64` = "cadetblue3",`65 y mas`= "#BCEE68"))+
+  labs(title = "Variación porcentual de la población según edad, en Costa Rica",
+       subtitle = "2022-2025",
+       x = "Período", 
+       y = "Porcentaje (%)",fill = "Edad" ) +
+    theme_minimal()+
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+```
+
+Para el caso de las personas entre los 0 y 14 años se tiene que en el 2023, esta
+población ha disminuido un 0.37% con respecto al 2022. Además, se proyecta que 
+para el 2024 baje un 0.55% respecto al 2023 y para el 2025 también decrezca
+pero un 0.47% en comparación con la población del 2024. Esta tendencia a la disminución es coincidente
+con la vista en el gráfico anterior y  se debe a la baja tasa de natalidad que se ha presentado en los últimos años, tal y como se explica en el apartado de fecundidad más adelante. 
+
+En cuanto a las personas entre los 15 y 64 años, la variación muestra una 
+tendencia a la baja pero en pequeña medida. Lo cual, evidencia la disminución
+de su porcentaje en la población total en Costa Rica visto previamente. 
+
+Además, los mayores porcentajes de variación los presenta el grupo conformado por 
+las personas adultas mayores. Presentando un aumento de 4.98% en el 2023 y estimándose
+un incremento de 5.06% para el 2025 en comparación con el 2024. 
+
+Dado que se experimentó y se proyectan variaciones negativas para la población de infantes
+y crecimientos en las poblaciones de edades mayores, esto confirma el envejecimiento de la población que
+se planeteó en el análisis de la pirámide poblacional. Lo cual, es una problemática para el financiamiento
+del sistema de pensiones, pues, se preveé que la población económicamente activa disminuya y la cantidad
+de pensionados aumente, dificultando entonces su solvencia. 
+
+
+# Migración
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+#Se añade la base de datos de flujos de migración
+migracion_datos <- read_excel("Migracion.xlsx")
+
+```
+
+Como parte del contexto demográfico,se analizan los flujos de migración en Costa
+Rica en los último dos años. Por lo tanto, mediante datos proporcionados por
+la Dirección General de Migración y Extranjería (DGME), se estudia el comportamiento 
+de los ingresos y egresos mensuales de personas de diferentes nacionalidades.
+
+En el siguiente gráfico, se visualiza dicho compartamiento durante el periodo
+en estudio.
+
+
+```{r,warning=FALSE, message=FALSE, echo=FALSE}
+migracion_plot <- ggplot() + 
+  geom_line(aes(x = 1:24, y = migracion_datos$Ingresos, color = "Ingresos"), lwd = 1) +      
+  geom_line(aes(x = 1:24, y = migracion_datos$Egresos, color = "Egresos"), lwd = 1) +
+  labs(title = "Flujos migratorios en Costa Rica",
+       subtitle = "2022-2023",
+       x = "Años", 
+       y = "",
+       color = "") +
+  theme_minimal()+
+  scale_color_manual(values = c("Ingresos" =  "#2F4F4F", "Egresos" = "cadetblue3")) +
+  scale_x_continuous(breaks = c(1, 12, 24), labels = c("Enero 2022", "Diciembre 2022", "Diciembre 2023")) +
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  labs(caption = "Fuente: Elaborado con datos del DGME.")
+
+migracion_plot
+```
+
+Es posible identificar un comportamiento variado para los ingresos y egresos al
+país. Durante el periodo se presentan notables subidas y bajadas en el flujo de 
+migración. 
+
+Para el 2022, en septiembre se presentó una disminución considerable de las personas
+que entraron al país, sin embargo, a finales del año tuvo un gran crecimiento pasando de 242322 ingresos
+a 493908 en enero del 2023. Posteriormente, mostró una tendencia a la baja pero 
+volvió a incrementar a mediados del 2023, en julio específicamente. Y para finales de
+año incrementó todavía más. El comportamiento general de los ingresos fue de 
+mayores entradas para el 2023 en comporación con el 2022.
+
+Para el caso de los egresos, sus fluctuaciones son bastantes similares a las del 
+ingresos. Cabe mencionar que durante la mayoría de los meses del periodo en estudio, los egresos 
+se mostraron inferiores a los ingresos. Esto se debe a que en los últimos dos años 

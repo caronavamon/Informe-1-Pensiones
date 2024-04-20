@@ -38,6 +38,7 @@ library(ggplot2)
 library(tidyr)
 library(dplyr)
 library(cowplot)
+library(gridExtra)
 ```
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
@@ -102,6 +103,7 @@ año 2023 según la edad y el sexo.
 
 Mediante la pirámide poblacional se visualiza un comportamiento similar para
 ambos sexos.
+
 Se puede observar unos intervalos de edad
 dominantes, tanto para hombres como para mujeres corresponde a las personas entre 
 20 y 35 años. Esto puede sugerir un envejecimiento de la población, pues, la base
@@ -111,7 +113,7 @@ Por otro lado, en ambos sexos, la proporción de personas adultas  mayores es pe
 en comparación con la base de la pirámide , pero, dado que el centro es más ancho esto
 puede indicar cierta estabilidad demográfica. 
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE, out.width = 12}
+```{r, warning=FALSE, message=FALSE, echo=FALSE, out.width="50%", fig.align='center'}
 datos_piramide <-rbind(Hombres_pob_long, Mujeres_pob_long)
 
 # Convertir datos a formato largo y ajustar el valor de la población para los hombres
@@ -149,11 +151,11 @@ la composición porcentual de la población por edades. Con el cual, se puede
 analizar la evolución que presenta cada población. 
 
 
-```{r,warning=FALSE, message=FALSE, echo=FALSE, out.width = "50%", fig.align='right'}
+```{r,warning=FALSE, message=FALSE, echo=FALSE,  out.width="50%", fig.align='center'}
 #Gráfico de barras
 Pob_3rangos_porc_long <- Pob_3rangos_porc  %>% gather(Ano, Porcentaje,"2022":"2025")
 
-ggplot(Pob_3rangos_porc_long, aes(x = Porcentaje, y = factor(Ano), fill = Edades)) +
+pob_porc_plot <- ggplot(Pob_3rangos_porc_long, aes(x = Porcentaje, y = factor(Ano), fill = Edades)) +
    geom_bar(stat = "identity", alpha = 0.7, position = "stack", width = 0.4) +
   geom_text(aes(label = paste0(round(Porcentaje, 2), "%")), position = position_stack(vjust = 0.5), size = 3) +
   scale_fill_manual(values = c(`0-14` = "#2F4F4F", `15-64` = "cadetblue3",`65 y mas`= "#BCEE68"))+
@@ -169,6 +171,8 @@ ggplot(Pob_3rangos_porc_long, aes(x = Porcentaje, y = factor(Ano), fill = Edades
         plot.caption = element_text(hjust = 0, color = "black", size = 8),
         legend.title = element_blank()) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+
+pob_porc_plot
 ```
 
 Mediante el gráfico, es posible identificar un crecimiento del porcentaje de 
@@ -187,10 +191,8 @@ en cuanto a las proyecciones, se puede observar también que decrece y ronda en 
 esto trae consigo una disminución de la población entre los 15 y 64 en años posteriores. Lo cual, explica el 
 el decremento de la composición porcentual de este grupo.  
 
-
 Seguidamente, en el siguiente gráfico se muestra la variación porcentual en años consecutivos
 de la población por los rangos de edad mencionados anteriormente.
-
 
 ```{r, message=FALSE, echo=FALSE}
 
@@ -210,9 +212,8 @@ for(i in 2:4){
 Variacion_pob_long <- Variacion_pob  %>% gather(Periodo, Porcentaje,"2022-2023":"2024-2025")
 ```
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE}
-# Gráfico de línea de tiempo
-ggplot(Variacion_pob_long, aes(x = Periodo, y = Porcentaje, fill = Edades)) +
+```{r, warning=FALSE, message=FALSE, echo=FALSE,  out.width="50%", fig.align='center'}
+var_pob_plot <- ggplot(Variacion_pob_long, aes(x = Periodo, y = Porcentaje, fill = Edades)) +
   geom_bar(stat = "identity", position = "dodge", width = 0.5) +
   geom_text(aes(label = paste0(round(Porcentaje, 2), "%")), position = position_stack(vjust = 0.5), size = 3) +
   scale_fill_manual(values = c(`0-14` = "#2F4F4F", `15-64` = "cadetblue3",`65 y mas`= "#BCEE68"))+
@@ -227,6 +228,8 @@ ggplot(Variacion_pob_long, aes(x = Periodo, y = Porcentaje, fill = Edades)) +
         plot.caption = element_text(hjust = 0, color = "black", size = 8),
         legend.title = element_blank()) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+
+var_pob_plot
 ```
 
 Para el caso de las personas entre los 0 y 14 años se tiene que en el 2023, esta
@@ -267,7 +270,7 @@ En el siguiente gráfico, se visualiza dicho compartamiento durante el periodo
 en estudio.
 
 
-```{r,warning=FALSE, message=FALSE, echo=FALSE}
+```{r,warning=FALSE, message=FALSE, echo=FALSE, out.width="50%", fig.align='center'}
 migracion_plot <- ggplot() + 
   geom_line(aes(x = 1:24, y = migracion_datos$Ingresos, color = "Ingresos"), lwd = 1) +      
   geom_line(aes(x = 1:24, y = migracion_datos$Egresos, color = "Egresos"), lwd = 1) +
@@ -347,7 +350,7 @@ tasa_nupcialidad_graf <- tasa_nupcialidad %>%
   pivot_longer( cols = -Nupcialidad, names_to = "Año", values_to = "Tasa")
 ```
 
-```{r echo=FALSE}
+```{r echo=FALSE, out.width="50%", fig.align='center'}
 ggplot(tasa_nupcialidad_graf, aes(x = factor(Año), y = Tasa, fill = Nupcialidad)) +
   geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
   scale_fill_manual(values = c(`Tasa de nupcialidad (por mil habitantes)` = "#2F4F4F", Católicos = "cadetblue3", Civiles = "#BCEE68"), name = "Nupcialidad") +  
@@ -365,7 +368,7 @@ De acuerdo con el INEC la tasa de nupcialidad es el número de matrimonios, seg�
 matrimonios_parejas_graf <- pivot_longer(matrimonios_parejas, cols = c(Total,`Hombre - Mujer`,`Hombre - Hombre`,`Mujer - Mujer`), names_to = "Composición", values_to = "Cantidad")
 ```
 
-```{r echo=FALSE}
+```{r echo=FALSE,out.width="50%", fig.align='center'}
 ggplot(matrimonios_parejas_graf, aes(x = factor(Año), y = Cantidad, fill = Composición)) +
   geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
   geom_text(aes(label = Cantidad), position = position_dodge(width = 0.9), vjust = -0.5) +
@@ -394,7 +397,7 @@ matrimonios_edad_graf <- matrimonios_edad %>%
   pivot_longer( cols = -c(`Grupos de edades`, Año), names_to = "Categoria", values_to = "Cantidad")
 ```
 
-```{r echo=FALSE}
+```{r echo=FALSE, out.width="50%", fig.align='center'}
 ggplot(matrimonios_edad_graf, aes(x = `Grupos de edades`, y = Cantidad, fill = Categoria)) +
   geom_bar(stat = "identity", position = "stack") +  # Gráfico de barras apiladas
   scale_fill_manual(values = c(`Hombres total` = "#2F4F4F", 
@@ -448,7 +451,7 @@ En este apartado se muestran las tasas de fecundidad y natalidad así como, la e
 
 Como último indicador de medición de la fecundidad se presenta la tasa de reproducción, la cual representa el número de hijas que en promedio tendría cada mujer al final del periodo fértil, si durante su vida tiene sus hijos e hijas de acuerdo a las tasas de fecundidad por edad observadas en el país y año de interés. La diferencia entre la tasa de reproducción bruta y neta es que la primera no considera la mortalidad sobre estas mujeres y la segunda sí. A continuación se muestra un gráfico con los indicadores mencionados para Costa Rica en el 2022 y 2023. 
 
-```{r echo=FALSE}
+```{r echo=FALSE, out.width="50%", fig.align='center'}
 ggplot(fecundidad_graf, aes(x = factor(Año), y = Tasa, fill = `Natalidad y fecundidad`)) +
   geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
   scale_fill_manual(values = c(`Tasa bruta de natalidad (por mil habitantes)` = "#2F4F4F", `Tasa global de fecundidad (por mujer)` = "cadetblue3", `Tasa bruta de reproducción (por mujer)` = "#BCEE68", `Tasa neta de reproducción (por mujer)` = "#6E8B3D"), name = "Tipo de tasa") +  
@@ -468,7 +471,7 @@ Se puede notar el ciclo en el que se ve involucrado el país debido a la baja na
 
 Muy relacionado a los nacimientos se tiene la esperanza de vida al nacer la cual se define como el número de años que en promedio viviría una persona si las condiciones de mortalidad por edad, vigentes al momento de su nacimiento, no cambian a lo largo de su vida. En el siguente gráfico se puede apreciar este indicador para Costa Rica separado por sexo. 
 
-```{r echo=FALSE}
+```{r echo=FALSE, out.width="50%", fig.align='center'}
 ggplot(esperanza_vida_graf, aes(x = factor(Año), y = EPV, fill = `Esperanza de vida al nacimiento`)) +
   geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
   geom_text(aes(label = round(EPV,1)), position = position_dodge(width = 0.9), vjust = -0.5) +
@@ -492,7 +495,7 @@ Desempleo <- read_excel("Desempleo.xlsx")
 Desempleo$Trimestre <- factor(Desempleo$Trimestre, levels = unique(Desempleo$Trimestre))
 ```
 
-```{r,echo = FALSE,warning = FALSE}
+```{r,echo = FALSE,warning = FALSE, out.width="50%", fig.align='center'}
 ggplot(Desempleo, aes(x = Trimestre, y = `Tasa desempleo`)) +
   geom_bar(stat = "identity", fill = "cadetblue3", width = 0.7,alpha = 0.7) +
   geom_text(aes(label = paste0(`Tasa desempleo`, "%")), vjust = -0.5, color = "#2F4F4F") +
@@ -537,7 +540,7 @@ ocupaDesempleo$Trimestre <- factor(ocupaDesempleo$Trimestre, levels = ocupaDesem
 ```
 
 
-```{r,echo = FALSE,warning = FALSE}
+```{r,echo = FALSE,warning = FALSE, out.width="50%", fig.align='center'}
 ggplot(ocupaDesempleo, aes(x = Trimestre)) +
   geom_line(aes(y = Tasa_desempleo, color = "Tasa de Desempleo", group = 1), size = 1) +
   geom_line(aes(y = Tasa_participacion, color = "Tasa de Participación", group = 1), size = 1) +
