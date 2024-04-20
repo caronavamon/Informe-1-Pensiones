@@ -1,0 +1,240 @@
+---
+title: "Untitled"
+output: html_document
+date: "2024-04-17"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readxl)
+library(tidyverse)
+```
+
+```{r Datos PEA,echo = FALSE,warning = FALSE}
+PEA <- read_excel(
+  "PEA2.xlsx",
+  sheet =
+    "5 years",
+  skip = 
+    6
+)
+```
+
+
+```{r PEA 2022,echo = FALSE,warning = FALSE}
+PEA22M <- PEA %>% 
+  filter(
+    Year ==
+      2022
+  ) %>% 
+  mutate(
+      `Obs (K)` = 
+        `Obs (K)`/`Obs (K)`[1]*100
+  ) %>% 
+  filter(
+    Sex ==
+      "Male" &
+    Min !=
+      "Total"
+  )
+
+PEA22F <- PEA %>% 
+  filter(
+    Year ==
+      2022
+  ) %>% 
+  mutate(
+      `Obs (K)` = 
+        -`Obs (K)`/`Obs (K)`[1]*100
+  ) %>% 
+  filter(
+    Sex ==
+      "Female" &
+    Min !=
+      "Total"
+  )
+
+PEA22 <- rbind(PEA22F,PEA22M)
+```
+
+
+```{r PEA 2023,echo = FALSE,warning = FALSE}
+PEA23M <- PEA %>% 
+  filter(
+    Year ==
+      2023
+  ) %>% 
+  mutate(
+      `Obs (K)` = 
+        `Obs (K)`/`Obs (K)`[1]*100
+  ) %>% 
+  filter(
+    Sex ==
+      "Male" &
+    Min !=
+      "Total"
+  )
+
+PEA23F <- PEA %>% 
+  filter(
+    Year ==
+      2023
+  ) %>% 
+  mutate(
+      `Obs (K)` = 
+        -`Obs (K)`/`Obs (K)`[1]*100
+  ) %>% 
+  filter(
+    Sex ==
+      "Female" &
+    Min !=
+      "Total"
+  )
+
+PEA23 <- rbind(PEA23F,PEA23M) %>% 
+  mutate(
+    Min = as.numeric(Min) + 2.5
+  )
+```
+
+La Población Económicamente Activa (PEA) es parte importante al analizar la demografía para un estudio actuarial. Para tener un entendimiento del comportamiento de esta variable se realiza un gráfico según la edad y genero.
+
+```{r,echo = FALSE,warning = FALSE, out.width="50%", fig.align='center'}
+PEAComp <- rbind(PEA22,PEA23)
+
+PEAComp %>% 
+  mutate(
+    Categoria = 
+      paste0(
+        Sex, Year
+      ),
+    
+  ) %>% 
+  ggplot(
+    aes(
+      x =
+        Min,
+      y =
+        `Obs (K)`,
+      fill =
+        Categoria,
+      alpha =
+        0.999
+    )
+  ) +
+  guides(alpha = FALSE) + # Remueve la leyenda para alpha
+  geom_bar(
+    stat = 
+      "identity"
+  ) +
+  coord_flip() +
+  scale_fill_manual(
+    name =
+      "Genero \n Año",
+    labels = c(
+      "Femenino\n2022" ,
+      "\n 2023",
+      "Masculino \n 2022",
+      "\n 2023"),
+    values = 
+      c(
+        "#2F4F4F",
+        "cadetblue3",
+        "#4B7F52",
+        "#A2CD5A"
+      )
+  ) +
+  labs(
+    title = 
+      "Pirámide Económica",
+    subtitle =
+    "por Edad segun el Genero",
+    y =
+      "Porcentage",
+    x =
+      "Edad",
+    caption = 
+      expression(bold("Fuente: ") * "Elaborado a partir de datos de la Organización Internacional del Trabajo (2024).")
+  ) +
+  scale_x_discrete(
+    breaks = 
+      seq(20,70,by=5)
+  ) +
+  scale_y_continuous(
+    breaks = 
+      seq(-7,9,by=2)
+  ) +
+  theme_minimal() +
+    theme(
+      legend.position =
+        "bottom",
+      plot.title = 
+        element_text(
+          hjust = 
+            0.5
+        ),
+      plot.subtitle =
+        element_text(
+          hjust = 
+            0.5
+        ),
+      plot.caption =
+        element_text(
+          hjust =
+            0,
+          color =
+            "black",
+          size =
+            8
+          )
+      )
+```
+
+Este gráfico permite observar que el PEA tiene un comportamiento muy similar al de la población general. Ademas, muestra que la población con mas representación en el PEA es la que se encuentra entre los 25 y 40 años para ambos sexos, sobresaliendo los 25 en caso de la población masculina y los 30 en la femenina. Con base a los datos presentados por la Organización para la Cooperación y el Desarrollo Económicos (OECD) en "Employment rate by age group" (2023), este comportamiento si bien es normal debido que es similar a los países pertenecientes a esta. Cabe resaltar, que el mismo informe, Costa Rica es el cuarto país con un con el indice mas bajo de población trabajadora entre los 55 y 64 años, estando por debajo de países como Luxemburgo. 
+
+Es importante resaltar que si puede notar una disminución del PEA entre los años estudiados del 6,38%, de forma general. Esto puede llegar a ser preocupante dado que junto la baja natalidad puede tratarse de temas que puedan llegar a generar insolvencia. Ademas, es importante resaltar, como otro punto negativo, la gran diferencia entre ambos géneros, debido que en ninguna edad la población femenina supera la masculina. Siendo que en algunos casos el la diferencia lleva a superar los 65 000 personas o aproximadamente un 2,5% del PEA. Este puede deberse a muchos factores, pero siendo que la población con mayor indice la de escolaridad es la femenina según datos de Fondo Internacional de Emergencia de las Naciones Unidas en el "Country Office Annual Report" (2023), es un muy buen punto para llegar a mejorar el desarrollo del país.
+
+
+
+```{r}
+PEA22B <- PEA %>% 
+  filter(
+    Year ==
+      2022
+  ) %>% 
+  mutate(
+      `Obs (K)` = 
+        `Obs (K)`/`Obs (K)`[1]*100
+  ) %>% 
+  filter(
+    Sex ==
+      "Both" &
+    Min !=
+      "Total"
+  )
+
+PEA23B <- PEA %>% 
+  filter(
+    Year ==
+      2023
+  ) %>% 
+  mutate(
+      `Obs (K)` = 
+        `Obs (K)`/`Obs (K)`[1]*100
+  ) %>% 
+  filter(
+    Sex ==
+      "Both" &
+    Min !=
+      "Total"
+  )
+
+TempLM <- lm.fit(
+  x = 
+    as.matrix(PEA23B$`Obs (K)`),
+  y = 
+    as.matrix(PEA22B$`Obs (K)`)
+)
+PEA23B$`Obs (K)`[4]*TempLM$coefficients-PEA22B$`Obs (K)`
+```
+
