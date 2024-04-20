@@ -240,7 +240,6 @@ de los ingresos y egresos mensuales de personas de diferentes nacionalidades.
 En el siguiente gráfico, se visualiza dicho compartamiento durante el periodo
 en estudio.
 
-
 ```{r,warning=FALSE, message=FALSE, echo=FALSE}
 migracion_plot <- ggplot() + 
   geom_line(aes(x = 1:24, y = migracion_datos$Ingresos, color = "Ingresos"), lwd = 1) +      
@@ -272,8 +271,9 @@ que entraron al país, sin embargo, a finales del año tuvo un gran crecimiento 
 a 493908 en enero del 2023. Posteriormente, mostró una tendencia a la baja pero 
 volvió a incrementar a mediados del 2023, en julio específicamente. Y para finales de
 año incrementó todavía más. El comportamiento general de los ingresos fue de 
-mayores entradas para el 2023 en comporación con el 2022.
+mayores entradas para el 2023 en comporación con el 2022. Para el caso de los egresos, sus fluctuaciones son bastantes similares a las del  ingresos. Cabe mencionar que durante la mayoría de los meses del periodo en estudio, los egresos  se mostraron inferiores a los ingresos. 
 
-Para el caso de los egresos, sus fluctuaciones son bastantes similares a las del 
-ingresos. Cabe mencionar que durante la mayoría de los meses del periodo en estudio, los egresos 
-se mostraron inferiores a los ingresos. Esto se debe a que en los últimos dos años 
+El aumento en las personas que ingresan el país se debe, según El Plan Nacional de Integración para Costa Rica (PNICR) 2023-2027 al incremento de refugiados de países que enfrentan crisis
+socioeconómicas y políticas como Nicaragua, Venezuela, Cuba y Colombia. Así también, se indica
+en el mismo documento que de acuerdo con el Instituto Costarricense de
+Turismo, Costa Rica recibió en el 2022 nómadas digitales de 45 países y se espera que aumente en los próximos años. 

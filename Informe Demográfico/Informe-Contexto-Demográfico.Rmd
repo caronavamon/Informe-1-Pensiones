@@ -15,6 +15,7 @@ output:
 header-includes:
   - \usepackage[spanish, provide=*]{babel}
   - \usepackage{titling}
+  - \usepackage{wrapfig}
   - \usepackage{fontspec}
   - \setmainfont{Arial}
   - \usepackage{xcolor}
@@ -102,9 +103,7 @@ Primeramente, se identifica la distribución de la población costarricense del 
 año 2023 según la edad y el sexo. 
 
 Mediante la pirámide poblacional se visualiza un comportamiento similar para
-ambos sexos.
-
-Se puede observar unos intervalos de edad
+ambos sexos.Se puede observar unos intervalos de edad
 dominantes, tanto para hombres como para mujeres corresponde a las personas entre 
 20 y 35 años. Esto puede sugerir un envejecimiento de la población, pues, la base
 de la pirámide al ser menos ancha que el centro, puede indicar un baja en la tasa 
@@ -113,7 +112,8 @@ Por otro lado, en ambos sexos, la proporción de personas adultas  mayores es pe
 en comparación con la base de la pirámide , pero, dado que el centro es más ancho esto
 puede indicar cierta estabilidad demográfica. 
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE, out.width="50%", fig.align='center'}
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE,  out.width="50%", fig.keep='all'}
 datos_piramide <-rbind(Hombres_pob_long, Mujeres_pob_long)
 
 # Convertir datos a formato largo y ajustar el valor de la población para los hombres
@@ -122,10 +122,10 @@ datos_piramide <- datos_piramide  %>%
   mutate(Edades = factor(Edades, levels = unique(Edades)))
 
 # Crear gráfico de barras con barras reflejadas
-ggplot(datos_piramide, aes(x = Poblacion, y = Edades, fill = Sexo)) +
+piramide_plot <- ggplot(datos_piramide, aes(x = Poblacion, y = Edades, fill = Sexo)) +
   geom_bar(stat = "identity", position = "identity") +
   scale_fill_manual(values = c("Hombre" = "#2F4F4F", "Mujer" = "cadetblue3")) +
-  labs(title = "Pirámide Poblacional de Costa Rica",
+  labs(title = "Gráfico 1: Pirámide Poblacional de Costa Rica",
        subtitle = "2023",
        x = "Población", 
        y = "Edad", fill = "Sexo" ) +
@@ -139,6 +139,17 @@ ggplot(datos_piramide, aes(x = Poblacion, y = Edades, fill = Sexo)) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 ```
 
+
+\begin{wrapfigure}[15]{r}{0.5\textwidth}
+
+ \centering
+ 
+```{r , fig.align='right', echo=FALSE}
+ piramide_plot
+```
+\end{wrapfigure}
+
+
 Con el fin de analizar la variación de la población costarricense, se consideran
 tres rangos de edad por motivos de simplicidad y mayor claridad en el entendimiento
 de la información. Estos rangos representan a tres sectores principales de la 
@@ -150,7 +161,6 @@ Para acompañar el análisis de la variación de la población, primero se estud
 la composición porcentual de la población por edades. Con el cual, se puede
 analizar la evolución que presenta cada población. 
 
-
 ```{r,warning=FALSE, message=FALSE, echo=FALSE,  out.width="50%", fig.align='center'}
 #Gráfico de barras
 Pob_3rangos_porc_long <- Pob_3rangos_porc  %>% gather(Ano, Porcentaje,"2022":"2025")
@@ -159,7 +169,7 @@ pob_porc_plot <- ggplot(Pob_3rangos_porc_long, aes(x = Porcentaje, y = factor(An
    geom_bar(stat = "identity", alpha = 0.7, position = "stack", width = 0.4) +
   geom_text(aes(label = paste0(round(Porcentaje, 2), "%")), position = position_stack(vjust = 0.5), size = 3) +
   scale_fill_manual(values = c(`0-14` = "#2F4F4F", `15-64` = "cadetblue3",`65 y mas`= "#BCEE68"))+
-  labs(title = "Estructura porcentual de la población según edad, en Costa Rica",
+  labs(title = "Gráfico 2: Estructura porcentual de la población según edad, en Costa Rica",
        subtitle = "2022-2025",
        x = "Porcentaje (%)", 
        y = "Años",fill = "Edad" ) +
@@ -172,10 +182,23 @@ pob_porc_plot <- ggplot(Pob_3rangos_porc_long, aes(x = Porcentaje, y = factor(An
         legend.title = element_blank()) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 
-pob_porc_plot
+
+
 ```
 
-Mediante el gráfico, es posible identificar un crecimiento del porcentaje de 
+\begin{wrapfigure}[15]{l}{0.5\textwidth}
+
+ \vspace{-\baselineskip}
+
+ \centering
+ 
+```{r , fig.align='right', echo=FALSE}
+ pob_porc_plot
+```
+
+\end{wrapfigure}
+
+Mediante el gráfico 2, es posible identificar un crecimiento del porcentaje de 
 la población adulta mayor. Donde, para el 2022 aproximadamente 7 de cada 100
 costarricenses tenían entre 65 años y más, incrementándose para los años posteriores
 y estimándose que para el 2025 la proporción de esta población sea de aproximadamente 10
@@ -191,7 +214,7 @@ en cuanto a las proyecciones, se puede observar también que decrece y ronda en 
 esto trae consigo una disminución de la población entre los 15 y 64 en años posteriores. Lo cual, explica el 
 el decremento de la composición porcentual de este grupo.  
 
-Seguidamente, en el siguiente gráfico se muestra la variación porcentual en años consecutivos
+Seguidamente, en el  gráfico  3 se muestra la variación porcentual en años consecutivos
 de la población por los rangos de edad mencionados anteriormente.
 
 ```{r, message=FALSE, echo=FALSE}
@@ -213,11 +236,11 @@ Variacion_pob_long <- Variacion_pob  %>% gather(Periodo, Porcentaje,"2022-2023":
 ```
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE,  out.width="50%", fig.align='center'}
-var_pob_plot <- ggplot(Variacion_pob_long, aes(x = Periodo, y = Porcentaje, fill = Edades)) +
+plot1 <- ggplot(Variacion_pob_long, aes(x = Periodo, y = Porcentaje, fill = Edades)) +
   geom_bar(stat = "identity", position = "dodge", width = 0.5) +
   geom_text(aes(label = paste0(round(Porcentaje, 2), "%")), position = position_stack(vjust = 0.5), size = 3) +
   scale_fill_manual(values = c(`0-14` = "#2F4F4F", `15-64` = "cadetblue3",`65 y mas`= "#BCEE68"))+
-  labs(title = "Variación porcentual de la población según edad, en Costa Rica",
+  labs(title = "Gráfico 3: Variación porcentual de la población según edad, en Costa Rica",
        subtitle = "2022-2025",
        x = "Período", 
        y = "Porcentaje (%)",fill = "Edad" ) +
@@ -228,15 +251,26 @@ var_pob_plot <- ggplot(Variacion_pob_long, aes(x = Periodo, y = Porcentaje, fill
         plot.caption = element_text(hjust = 0, color = "black", size = 8),
         legend.title = element_blank()) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
-
-var_pob_plot
 ```
+
+\begin{wrapfigure}[15]{r}{0.5\textwidth}
+
+ \vspace{-\baselineskip}
+
+ \centering
+ 
+```{r , fig.align='right', echo=FALSE}
+ plot1
+```
+
+\end{wrapfigure}
+
 
 Para el caso de las personas entre los 0 y 14 años se tiene que en el 2023, esta
 población ha disminuido un 0.37% con respecto al 2022. Además, se proyecta que 
 para el 2024 baje un 0.55% respecto al 2023 y para el 2025 también decrezca
 pero un 0.47% en comparación con la población del 2024. Esta tendencia a la disminución es coincidente
-con la vista en el gráfico anterior y  se debe a la baja tasa de natalidad que se ha presentado en los últimos años, tal y como se explica en el apartado de fecundidad más adelante. 
+con la vista en el gráfico 3 y  se debe a la baja tasa de natalidad que se ha presentado en los últimos años, tal y como se explica en el apartado de fecundidad más adelante. 
 
 En cuanto a las personas entre los 15 y 64 años, la variación muestra una 
 tendencia a la baja pero en pequeña medida. Lo cual, evidencia la disminución
@@ -266,15 +300,15 @@ Rica en los último dos años. Por lo tanto, mediante datos proporcionados por
 la Dirección General de Migración y Extranjería (DGME), se estudia el comportamiento 
 de los ingresos y egresos mensuales de personas de diferentes nacionalidades.
 
-En el siguiente gráfico, se visualiza dicho compartamiento durante el periodo
+En el gráfico 4, se visualiza dicho compartamiento durante el periodo
 en estudio.
 
 
 ```{r,warning=FALSE, message=FALSE, echo=FALSE, out.width="50%", fig.align='center'}
-migracion_plot <- ggplot() + 
+plot2 <- ggplot() + 
   geom_line(aes(x = 1:24, y = migracion_datos$Ingresos, color = "Ingresos"), lwd = 1) +      
   geom_line(aes(x = 1:24, y = migracion_datos$Egresos, color = "Egresos"), lwd = 1) +
-  labs(title = "Flujos migratorios en Costa Rica",
+  labs(title = " Gráfico 4: Flujos migratorios en Costa Rica",
        subtitle = "2022-2023",
        x = "Años", 
        y = "",
@@ -288,9 +322,19 @@ migracion_plot <- ggplot() +
         plot.caption = element_text(hjust = 0, color = "black", size = 8),
         legend.title = element_blank()) +
   labs(caption = "Fuente: Elaborado con datos del DGME.")
-
-migracion_plot
 ```
+
+\begin{wrapfigure}[12]{l}{0.5\textwidth}
+
+ \vspace{-\baselineskip}
+
+ \centering
+ 
+```{r , fig.align='right', echo=FALSE}
+ plot2
+```
+
+\end{wrapfigure}
 
 Es posible identificar un comportamiento variado para los ingresos y egresos al
 país. Durante el periodo se presentan notables subidas y bajadas en el flujo de 
@@ -301,11 +345,11 @@ que entraron al país, sin embargo, a finales del año tuvo un gran crecimiento 
 a 493908 en enero del 2023. Posteriormente, mostró una tendencia a la baja pero 
 volvió a incrementar a mediados del 2023, en julio específicamente. Y para finales de
 año incrementó todavía más. El comportamiento general de los ingresos fue de 
-mayores entradas para el 2023 en comporación con el 2022.
+mayores entradas para el 2023 en comporación con el 2022. Para el caso de los egresos, sus fluctuaciones son bastantes similares a las del  ingresos. Cabe mencionar que durante la mayoría de los meses del periodo en estudio, los egresos  se mostraron inferiores a los ingresos. 
 
-Para el caso de los egresos, sus fluctuaciones son bastantes similares a las del 
-ingresos. Cabe mencionar que durante la mayoría de los meses del periodo en estudio, los egresos 
-se mostraron inferiores a los ingresos. Esto se debe a que en los últimos dos años 
+El aumento en las personas que ingresan el país se debe, según El Plan Nacional de Integración para Costa Rica (PNICR) 2023-2027 al incremento de refugiados de países que enfrentan crisis
+socioeconómicas y políticas como Nicaragua, Venezuela, Cuba y Colombia. Así también, se indica en el mismo documento que de acuerdo con el Instituto Costarricense de
+Turismo, Costa Rica recibió en el 2022 nómadas digitales de 45 países y se espera que aumente en los próximos años 
 
 # Matrimonios
 
@@ -351,10 +395,10 @@ tasa_nupcialidad_graf <- tasa_nupcialidad %>%
 ```
 
 ```{r echo=FALSE, out.width="50%", fig.align='center'}
-ggplot(tasa_nupcialidad_graf, aes(x = factor(Año), y = Tasa, fill = Nupcialidad)) +
+plot3 <- ggplot(tasa_nupcialidad_graf, aes(x = factor(Año), y = Tasa, fill = Nupcialidad)) +
   geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
   scale_fill_manual(values = c(`Tasa de nupcialidad (por mil habitantes)` = "#2F4F4F", Católicos = "cadetblue3", Civiles = "#BCEE68"), name = "Nupcialidad") +  
-  labs(title = "Costa Rica. Tasa de nupcialidad.", subtitle = "2022-2023", x = "Año") +
+  labs(title = "Gráfico 5: Costa Rica. Tasa de nupcialidad.", subtitle = "2022-2023", x = "Año") +
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
@@ -362,18 +406,30 @@ ggplot(tasa_nupcialidad_graf, aes(x = factor(Año), y = Tasa, fill = Nupcialidad
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 ```
 
-De acuerdo con el INEC la tasa de nupcialidad es el número de matrimonios, según sea el caso, católicos o civiles, por cada mil habitantes durante un mismo periodo. De esta manera, observado el gráfico anterior se puede notar que entre el 2022 y 2023 la tasa de nupcialidad se redujo levemente pasando de 4.4 a 4.2. También, se puede afirmar que las personas costarricenses que se casan prefieren hacerlo de manera civil ya que, la tasa de nupcialidad de los matrimonios civiles supera en aproximadamente 5 a los matrimonios católicos.   
+\begin{wrapfigure}[15]{r}{0.5\textwidth}
+
+ \vspace{-\baselineskip}
+
+ \centering
+ 
+```{r , fig.align='right', echo=FALSE}
+ plot3
+```
+
+\end{wrapfigure}
+
+De acuerdo con el INEC (2022) la tasa de nupcialidad es el número de matrimonios, según sea el caso, católicos o civiles, por cada mil habitantes durante un mismo periodo. De esta manera, observado el gráfico 4  se puede notar que entre el 2022 y 2023 la tasa de nupcialidad se redujo levemente pasando de 4.4 a 4.2. También, se puede afirmar que las personas costarricenses que se casan prefieren hacerlo de manera civil ya que, la tasa de nupcialidad de los matrimonios civiles supera en aproximadamente 5 a los matrimonios católicos.   
 
 ```{r include=FALSE}
 matrimonios_parejas_graf <- pivot_longer(matrimonios_parejas, cols = c(Total,`Hombre - Mujer`,`Hombre - Hombre`,`Mujer - Mujer`), names_to = "Composición", values_to = "Cantidad")
 ```
 
 ```{r echo=FALSE,out.width="50%", fig.align='center'}
-ggplot(matrimonios_parejas_graf, aes(x = factor(Año), y = Cantidad, fill = Composición)) +
+plot4 <-ggplot(matrimonios_parejas_graf, aes(x = factor(Año), y = Cantidad, fill = Composición)) +
   geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
   geom_text(aes(label = Cantidad), position = position_dodge(width = 0.9), vjust = -0.5) +
   scale_fill_manual(values = c(Total = "#2F4F4F", `Hombre - Mujer` = "cadetblue3", `Hombre - Hombre` = "#BCEE68",`Mujer - Mujer` = "#6E8B3D" ), name = "Tipo de Composición") +  
-  labs(title = "Costa Rica. Total de matrimonios por composición de la pareja.", subtitle = "2022-2023", x = "Año") +
+  labs(title = "Gráfico 6: Costa Rica. Total de matrimonios por composición de la pareja.", subtitle = "2022-2023", x = "Año") +
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
@@ -381,7 +437,18 @@ ggplot(matrimonios_parejas_graf, aes(x = factor(Año), y = Cantidad, fill = Comp
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 ```
 
-En el gráfico anterior se puede observar en cantidades los matrimonios del 2022 y 2023 según la composición de la pareja, del cual es bastante notorio que las personas costarricenses en su mayoría se casan con personas del sexo opuesto, luego una cantidad mucho más baja son matrimonios entre hombres y por último entre mujeres, tendencia que se mantiene durante los dos años del análisis. 
+\begin{wrapfigure}[15]{l}{0.5\textwidth}
+ \vspace{-\baselineskip}
+
+ \centering
+ 
+```{r , fig.align='right', echo=FALSE}
+ plot4
+```
+
+\end{wrapfigure}
+
+En el gráfico 6 se puede observar en cantidades los matrimonios del 2022 y 2023 según la composición de la pareja, del cual es bastante notorio que las personas costarricenses en su mayoría se casan con personas del sexo opuesto, luego una cantidad mucho más baja son matrimonios entre hombres y por último entre mujeres, tendencia que se mantiene durante los dos años del análisis. 
 
 Como se mencionó la tasa de nupcialidad disminuyó, esto se debe a que la cantidad de matrimonios totales tuvo una caída de 618 matrimonios en el 2023 con respecto al 2022. Si bien solo se están considerando dos años para el presente informe, al indagar en las bases de datos del INEC se tiene una tendencia conforme pasan los años a la disminución de los matrimonios, es decir, esta reducción entre el 2022 y 2023 no es un caso aislado para el país sino que, es un patrón que se viene viendo desde hace un tiempo atrás y que se debe tener presente a la hora de hacer modelos y estudios actuariales pensando principalmente en la afectación que esto tiene en la fecundidad  que se encuentra estrechamente relacionada con el sistema de pensiones. 
 
@@ -398,7 +465,7 @@ matrimonios_edad_graf <- matrimonios_edad %>%
 ```
 
 ```{r echo=FALSE, out.width="50%", fig.align='center'}
-ggplot(matrimonios_edad_graf, aes(x = `Grupos de edades`, y = Cantidad, fill = Categoria)) +
+plot5 <- ggplot(matrimonios_edad_graf, aes(x = `Grupos de edades`, y = Cantidad, fill = Categoria)) +
   geom_bar(stat = "identity", position = "stack") +  # Gráfico de barras apiladas
   scale_fill_manual(values = c(`Hombres total` = "#2F4F4F", 
                                 `Hombres con mujeres` = "cadetblue3", 
@@ -409,12 +476,26 @@ ggplot(matrimonios_edad_graf, aes(x = `Grupos de edades`, y = Cantidad, fill = C
                      name = "Tipo de Composición") +
   facet_wrap(~ Año) +
   theme_minimal() + 
-  labs(x = "Grupos de Edades", y = "Cantidad", title = "Costa Rica. Total de matrimonios por grupos de edades de las personas contrayentes,  \n según sexo.", subtitle = "2022 - 2023") +
+  labs(x = "Grupos de Edades", y = "Cantidad", title = "Gráfico 7: Costa Rica. Total de matrimonios por grupos de edades de las personas contrayentes,  \n según sexo.", subtitle = "2022 - 2023") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1), plot.subtitle = element_text(hjust = 0.5), plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 ```
 
-Es relevante ver los rangos de las edades en las que las personas contraen matrimonio en Costa Rica, en el gráfico se observa para ambos años que la mayoría de matrimonios fueron de personas entre los 30 y 34 años de edad y le siguen entre 25 y 29 años. Esto se explica  según estudios del INEC a que las personas con el pasar de los años han ido postergando la edad para casarse. 
+\newpage
+
+\begin{wrapfigure}[15]{r}{0.5\textwidth}
+
+ \vspace{-\baselineskip}
+
+ \centering
+ 
+```{r , fig.align='right', echo=FALSE}
+ plot5
+```
+
+\end{wrapfigure}
+
+Es relevante ver los rangos de las edades en las que las personas contraen matrimonio en Costa Rica, en el gráfico 7 se observa para ambos años que la mayoría de matrimonios fueron de personas entre los 30 y 34 años de edad y le siguen entre 25 y 29 años. Esto se explica  según estudios del INEC (2015) a que las personas con el pasar de los años han ido postergando la edad para casarse. 
 
 Note que, se tiene un rango de menos de 18 años debido a que el INEC mantiene este grupo para evidenciar que aunque existe la Ley 9406 (Ley de Relaciones Impropias), la cual prohíbe la inscripción de matrimonios que incluyan a personas menores de edad ante el Registro Civil, existen individuos que lo hacen. No es muy notorio en el gráfico pero, en el 2022 una mujer menor de 18 años contrajo matrimonio con un hombre. Para el 2023 no existe ningún registro dentro de este rango. 
 
@@ -447,15 +528,15 @@ esperanza_vida_graf <- esperanza_vida %>%
   pivot_longer(cols = -`Esperanza de vida al nacimiento`, names_to = "Año", values_to = "EPV")
 ```
 
-En este apartado se muestran las tasas de fecundidad y natalidad así como, la esperanza de vida al nacimiento. Para iniciar con el análisis de estas variables demográficas se debe tener claro que según el INEC en sus estudios de indicadores demográficos definen la tasa bruta de natalidad como el número de nacimientos por cada mil habitantes, la tasa global de fecundidad es el número de hijos e hijas que en promedio tendría cada mujer al final del periodo fértil, si durante su vida tiene sus hijos e hijas de acuerdo a las tasas de fecundidad por edad observadas en el país y año de interés además, para este cálculo se toma como hipótesis que las mujeres no están afectadas por la mortalidad desde el nacimiento hasta el final de periodo fértil. 
+En este apartado se muestran las tasas de fecundidad y natalidad así como, la esperanza de vida al nacimiento. Para iniciar con el análisis de estas variables demográficas se debe tener claro que según el INEC (2022) en sus estudios de indicadores demográficos definen la tasa bruta de natalidad como el número de nacimientos por cada mil habitantes, la tasa global de fecundidad es el número de hijos e hijas que en promedio tendría cada mujer al final del periodo fértil, si durante su vida tiene sus hijos e hijas de acuerdo a las tasas de fecundidad por edad observadas en el país y año de interés además, para este cálculo se toma como hipótesis que las mujeres no están afectadas por la mortalidad desde el nacimiento hasta el final de periodo fértil. 
 
 Como último indicador de medición de la fecundidad se presenta la tasa de reproducción, la cual representa el número de hijas que en promedio tendría cada mujer al final del periodo fértil, si durante su vida tiene sus hijos e hijas de acuerdo a las tasas de fecundidad por edad observadas en el país y año de interés. La diferencia entre la tasa de reproducción bruta y neta es que la primera no considera la mortalidad sobre estas mujeres y la segunda sí. A continuación se muestra un gráfico con los indicadores mencionados para Costa Rica en el 2022 y 2023. 
 
 ```{r echo=FALSE, out.width="50%", fig.align='center'}
-ggplot(fecundidad_graf, aes(x = factor(Año), y = Tasa, fill = `Natalidad y fecundidad`)) +
+plot6 <-ggplot(fecundidad_graf, aes(x = factor(Año), y = Tasa, fill = `Natalidad y fecundidad`)) +
   geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
   scale_fill_manual(values = c(`Tasa bruta de natalidad (por mil habitantes)` = "#2F4F4F", `Tasa global de fecundidad (por mujer)` = "cadetblue3", `Tasa bruta de reproducción (por mujer)` = "#BCEE68", `Tasa neta de reproducción (por mujer)` = "#6E8B3D"), name = "Tipo de tasa") +  
-  labs(title = "Costa Rica. Tasas de natalidad y fecundidad.", subtitle = "2022-2023", x = "Año") +
+  labs(title = "Gráfico 8: Costa Rica. Tasas de natalidad y fecundidad.", subtitle = "2022-2023", x = "Año") +
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
@@ -463,26 +544,50 @@ ggplot(fecundidad_graf, aes(x = factor(Año), y = Tasa, fill = `Natalidad y fecu
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 ```
 
-En el gráfico anterior se puede observar que todas las tasas entre el 2022 y 2023 disminuyeron y al igual que, para el caso de la nupcialidad este no es un caso particular sino que, hace varios años las tasa de natalidad, fecundidad y reproducción vienen en caída. Esto es preocupante puesto que, según el INEC cuando la Tasa Global de Fecundidad (TGF) de un país es de 2,1 hijos por mujer, se dice que la fecundidad está a nivel de reemplazo, es decir, que las parejas están teniendo únicamente el número de hijos e hijas necesarios para reemplazarse a sí mismas, no obstante, si analizamos el gráfico la TGF de Costa Rica se encuentra por debajo de 2 siendo de 1.3 para el 2022 y de 1.2 para el 2023. Costa Rica se encuentra actualmente con niveles de fecundidad ultra-bajos, es decir, por debajo de 1,5 hijos e hijas por mujer. 
+\begin{wrapfigure}[13]{r}{0.5\textwidth}
 
-Si se ve en términos generales y no solo de parejas lo alarmante es que la población no está teniendo una generación de reemplazo que pueda hacer sostenible el sistema de seguridad social pues, según el Dr. Luis Rosero Bixby, docente emérito de la UCR y fundador del Centro Centroamericano de Población, la ultrabaja natalidad provoca una disminución en la población infantil y juvenil que trae consigo una caída progresiva de la población adulta, la cual es responsable de la producción y los ingresos del país además de ser los que generan los aportes a la seguridad social. Consecutivamente se genera un aumento de la población mayor quienes son los receptores de las pensiones y la mayoría de estos son los que utilizan el sistema de salud de la CCSS. 
+ \vspace{-\baselineskip}
+
+ \centering
+ 
+```{r , fig.align='right', echo=FALSE}
+ plot6
+```
+
+\end{wrapfigure}
+
+En el gráfico 8  se puede observar que todas las tasas entre el 2022 y 2023 disminuyeron y al igual que, para el caso de la nupcialidad este no es un caso particular sino que, hace varios años las tasa de natalidad, fecundidad y reproducción vienen en caída. Esto es preocupante puesto que, según el INEC (2022) cuando la Tasa Global de Fecundidad (TGF) de un país es de 2,1 hijos por mujer, se dice que la fecundidad está a nivel de reemplazo, es decir, que las parejas están teniendo únicamente el número de hijos e hijas necesarios para reemplazarse a sí mismas, no obstante, si analizamos el gráfico la TGF de Costa Rica se encuentra por debajo de 2 siendo de 1.3 para el 2022 y de 1.2 para el 2023. Costa Rica se encuentra actualmente con niveles de fecundidad ultra-bajos, es decir, por debajo de 1,5 hijos e hijas por mujer. 
+
+Si se ve en términos generales y no solo de parejas lo alarmante es que la población no está teniendo una generación de reemplazo que pueda hacer sostenible el sistema de seguridad social pues, según el Dr. Luis Rosero Bixby (2023), docente emérito de la UCR y fundador del Centro Centroamericano de Población, la ultrabaja natalidad provoca una disminución en la población infantil y juvenil que trae consigo una caída progresiva de la población adulta, la cual es responsable de la producción y los ingresos del país además de ser los que generan los aportes a la seguridad social. Consecutivamente se genera un aumento de la población mayor quienes son los receptores de las pensiones y la mayoría de estos son los que utilizan el sistema de salud de la CCSS. 
 
 Se puede notar el ciclo en el que se ve involucrado el país debido a la baja natalidad y del cual las repercusiones no son fáciles de revertir. Costa Rica ya está sufriendo de estas consecuencias puesto que, como se evidencia en el apartado de variación de la población, el mayor porcentaje de la población corresponde a la población econonómicamente activa. Este grupo con el pasar de los años se va desplazando hacia la población en vejez y al tener una baja natalidad las nuevas generaciones no son suficientes para cubrir la inversión futura que se debe realizar.  
 
-Muy relacionado a los nacimientos se tiene la esperanza de vida al nacer la cual se define como el número de años que en promedio viviría una persona si las condiciones de mortalidad por edad, vigentes al momento de su nacimiento, no cambian a lo largo de su vida. En el siguente gráfico se puede apreciar este indicador para Costa Rica separado por sexo. 
+Muy relacionado a los nacimientos se tiene la esperanza de vida al nacer la cual se define como el número de años que en promedio viviría una persona si las condiciones de mortalidad por edad, vigentes al momento de su nacimiento, no cambian a lo largo de su vida. En el gráfico 9 se puede apreciar este indicador para Costa Rica separado por sexo. 
 
 ```{r echo=FALSE, out.width="50%", fig.align='center'}
-ggplot(esperanza_vida_graf, aes(x = factor(Año), y = EPV, fill = `Esperanza de vida al nacimiento`)) +
+plot7 <- ggplot(esperanza_vida_graf, aes(x = factor(Año), y = EPV, fill = `Esperanza de vida al nacimiento`)) +
   geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
   geom_text(aes(label = round(EPV,1)), position = position_dodge(width = 0.9), vjust = -0.5) +
   scale_fill_manual(values = c(Total = "#2F4F4F", Mujeres = "cadetblue3", Hombres = "#BCEE68")) +  
-  labs(title = "Costa Rica. Esperanza de vida al nacimiento.", subtitle = "2022-2023", x = "Año", y = "Esperanza de vida", fill = NULL) +
+  labs(title = "Gráfico 9: Costa Rica. Esperanza de vida al nacimiento.", subtitle = "2022-2023", x = "Año", y = "Esperanza de vida", fill = NULL) +
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
         plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 ```
+
+\begin{wrapfigure}[15]{l}{0.5\textwidth}
+
+ \vspace{-\baselineskip}
+
+ \centering
+ 
+```{r , fig.align='right', echo=FALSE}
+ plot7
+```
+
+\end{wrapfigure}
 
 Con la evolución científica y tecnológica que ha venido surgiendo cada vez con mayor velocidad en el mundo se tiene un aumento de la esperanza de vida al nacer debido a que muchas de las innovaciones han sido en pro de la salud de los seres humanos y la obtención de mayores comodidades en el estilo de vida de los mismos. De un año a otro realmente no varía mucho, no obstante, se puede notar el crecimiento aún así en un periodo de tiempo corto y si se analiza para periodos largos la tendencia al crecimiento es evidente. Como es usual las mujeres poseen una esperanza de vida al nacer mayor que la de los hombres. 
 
@@ -496,10 +601,10 @@ Desempleo$Trimestre <- factor(Desempleo$Trimestre, levels = unique(Desempleo$Tri
 ```
 
 ```{r,echo = FALSE,warning = FALSE, out.width="50%", fig.align='center'}
-ggplot(Desempleo, aes(x = Trimestre, y = `Tasa desempleo`)) +
+plot8 <-ggplot(Desempleo, aes(x = Trimestre, y = `Tasa desempleo`)) +
   geom_bar(stat = "identity", fill = "cadetblue3", width = 0.7,alpha = 0.7) +
   geom_text(aes(label = paste0(`Tasa desempleo`, "%")), vjust = -0.5, color = "#2F4F4F") +
-  labs(title = "Costa Rica. Tasa de desempleo abierta y población desempleada", 
+  labs(title = "Gráfico 10: Costa Rica. Tasa de desempleo abierta y población desempleada", 
        subtitle = "2022-2023",
        caption = expression(bold("Fuente: ") * "Elaboración propia a partir de datos del INEC y BCCR."),
        x = "Trimestre",
@@ -519,9 +624,19 @@ ggplot(Desempleo, aes(x = Trimestre, y = `Tasa desempleo`)) +
   scale_color_manual(values = c("Población desempleada" = "#2F4F4F")) + 
   guides(color = guide_legend(title = " ")) 
 ```
+\begin{wrapfigure}[10]{l}{0.5\textwidth}
+
+ \vspace{-\baselineskip}
+
+ \centering
+ 
+```{r , fig.align='right', echo=FALSE}
+ plot8
+```
+
+\end{wrapfigure}
 
 Durante el transcurso del año 2022 en Costa Rica, se observó una tendencia descendente en los índices de desempleo a excepción del III Trimestre, acompañada de una disminución en la participación activa en el mercado laboral. De acuerdo con datos proporcionados por el Instituto Nacional de Estadística y Censos (INEC), este período inició con una tasa de desempleo del 13,58%, que descendió gradualmente hasta alcanzar un 11,67% al cierre del año. Aunque el Gobierno ha atribuido esta disminución en la fuerza laboral principalmente a la jubilación, es fundamental considerar otros posibles factores que pudieron influir en esta tendencia.
-
 
 El desempleo en Costa Rica cerró el año 2023 con una tasa del 7,3%, lo que representó una notable disminución de 4,4 puntos porcentuales en comparación con el año anterior, donde se registraba en un 11,67%. Siendo esta la menor tasa de desempleo en 13 años.
 En términos absolutos, el 7,3% de desempleo equivale a aproximadamente 164.000 personas. La disminución en la participación laboral se refleja en una notable caída de 5,9 puntos porcentuales en la tasa de participación.
@@ -541,12 +656,12 @@ ocupaDesempleo$Trimestre <- factor(ocupaDesempleo$Trimestre, levels = ocupaDesem
 
 
 ```{r,echo = FALSE,warning = FALSE, out.width="50%", fig.align='center'}
-ggplot(ocupaDesempleo, aes(x = Trimestre)) +
+plot9 <- ggplot(ocupaDesempleo, aes(x = Trimestre)) +
   geom_line(aes(y = Tasa_desempleo, color = "Tasa de Desempleo", group = 1), size = 1) +
   geom_line(aes(y = Tasa_participacion, color = "Tasa de Participación", group = 1), size = 1) +
   geom_line(aes(y = Tasa_ocupacion, color = "Tasa de Ocupación", group = 1), size = 1) +
   scale_color_manual(values = c("Tasa de Desempleo" = "#BCEE68", "Tasa de Participación" = "#2F4F4F", "Tasa de Ocupación" = "cadetblue3")) +
-  labs(x = "Trimestres móviles", y = "Porcentaje", color = "Indicador",title = "Costa Rica. Principales indicadores del mercado laboral", 
+  labs(x = "Trimestres móviles", y = "Porcentaje", color = "Indicador",title = "Gráfico 11: Costa Rica. Principales indicadores del mercado laboral", 
        subtitle = "2022-2023",
        caption = expression(bold("Fuente: ") * "Elaboración propia a partir de datos del INEC.")) +
   theme_minimal() +
@@ -558,7 +673,21 @@ ggplot(ocupaDesempleo, aes(x = Trimestre)) +
                                "ENE(23)-MAR(23)", "ABR(23)-JUN(23)", "JUL(23)-SEP(23)", "OCT(23)-DEC(23)"))
 ```
 
-Con respecto a otros indicadores adicionales del mercado laboral proporcionados por el INEC, a finales del 2023, se tiene que la tasa de ocupación, que representa el porcentaje de personas empleadas en relación con la población de 15 años o más, se situó en un 50%, mientras que la tasa neta de participación laboral, que abarca tanto a las personas empleadas como a las desempleadas en relación con la misma población, fue del 54,3%. Ambos indicadores experimentaron caídas significativas interanuales de 3,3 y 6,2 puntos porcentuales, respectivamente.
+\begin{wrapfigure}[15]{r}{0.5\textwidth}
+
+ \vspace{-\baselineskip}
+
+ \centering
+ 
+```{r , fig.align='right', echo=FALSE}
+ plot9
+```
+
+\end{wrapfigure}
+
+Con respecto a otros indicadores adicionales del mercado laboral proporcionados por el INEC,como se puede observar en el gráfico 11 que a finales del 2023, se tiene que la tasa de ocupación, que representa el porcentaje de personas empleadas en relación con la población de 15 años o más, se situó en un 50%, mientras que la tasa neta de participación laboral, que abarca tanto a las personas empleadas como a las desempleadas en relación con la misma población, fue del 54,3%. Ambos indicadores experimentaron caídas significativas interanuales de 3,3 y 6,2 puntos porcentuales, respectivamente.
 Según el INEC, esta reducción se vio impulsada por una disminución en la participación de personas en el mercado laboral, especialmente en el sector informal. Es crucial destacar que la disminución en la tasa de desempleo no necesariamente indica una mejora en las oportunidades laborales, sino más bien una menor cantidad de personas buscando activamente empleo.
 
 # Población económicamente activa
+
+
