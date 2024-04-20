@@ -31,17 +31,13 @@ knitr::opts_chunk$set(echo = TRUE)
 \newpage
 
 <<<<<<< HEAD
-```{r,echo = FALSE,warning = FALSE}
-library(ggplot2)
-library(readxl)
-=======
+
 ```{r, warning=FALSE,message=FALSE, include=FALSE}
 library(readxl)
 library(ggplot2)
 library(tidyr)
 library(dplyr)
 library(cowplot)
->>>>>>> 2271afaae760b07e928b71a16569880a2727435f
 ```
 
 # Variación de la población
