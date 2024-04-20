@@ -30,9 +30,209 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 \newpage
 
+```{r, warning=FALSE,message=FALSE, include=FALSE}
+library(readxl)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(cowplot)
+```
+
 # Variación de la población
 # Migración
-# Fecundidad
 # Matrimonios
+
+```{r include=FALSE}
+#Costa Rica. Total de matrimonios por composición de la pareja
+
+matrimonios_parejas <- read_excel("Matrimonios 2023.xlsx", sheet = 2, skip = 3)
+matrimonios_parejas <- matrimonios_parejas[matrimonios_parejas$Año %in% c(2022, 2023), ]
+matrimonios_parejas <- matrimonios_parejas %>% mutate(across(-1, as.numeric))
+```
+
+```{r include=FALSE}
+#Costa Rica. Total de matrimonios por sexo, según grupos de edades de las personas contrayentes
+
+matrimonios_edad_22 <- read_excel("Matrimonios 2022.xlsx", sheet = 6, skip = 3)
+matrimonios_edad_22 <- matrimonios_edad_22[1:11,]
+matrimonios_edad_22 <- matrimonios_edad_22 %>% mutate(across(-1, as.numeric))
+
+matrimonios_edad_23 <-  read_excel("Matrimonios 2023.xlsx", sheet = 6, skip = 3)
+matrimonios_edad_23 <- matrimonios_edad_23[1:10,]
+matrimonios_edad_23 <- matrimonios_edad_23 %>% mutate(across(-1, as.numeric))
+```
+
+```{r include=FALSE}
+#Costa Rica. Total de matrimonios por nacionalidad de las personas contrayentes, según composición de la pareja.
+
+matrimonios_nacionalidad_22 <- read_excel("Matrimonios 2022.xlsx", sheet = 12, skip = 3)
+matrimonios_nacionalidad_22 <- matrimonios_nacionalidad_22[1:4,]
+matrimonios_nacionalidad_22 <- matrimonios_nacionalidad_22 %>% mutate(across(-1, as.numeric))
+
+matrimonios_nacionalidad_23 <- read_excel("Matrimonios 2023.xlsx", sheet = 12, skip = 3)
+matrimonios_nacionalidad_23 <- matrimonios_nacionalidad_23[1:4,]
+matrimonios_nacionalidad_23 <- matrimonios_nacionalidad_23 %>% mutate(across(-1, as.numeric))
+```
+
+```{r include=FALSE}
+tasa_nupcialidad <- read_excel("Indicadores de población.xlsx", sheet = 3)
+```
+
+```{r include=FALSE}
+tasa_nupcialidad_graf <- tasa_nupcialidad %>%
+  pivot_longer( cols = -Nupcialidad, names_to = "Año", values_to = "Tasa")
+```
+
+```{r echo=FALSE}
+ggplot(tasa_nupcialidad_graf, aes(x = factor(Año), y = Tasa, fill = Nupcialidad)) +
+  geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
+  scale_fill_manual(values = c(`Tasa de nupcialidad (por mil habitantes)` = "#2F4F4F", Católicos = "cadetblue3", Civiles = "#BCEE68"), name = "Nupcialidad") +  
+  labs(title = "Costa Rica. Tasa de nupcialidad.", subtitle = "2022-2023", x = "Año") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+```
+
+De acuerdo con el INEC la tasa de nupcialidad es el número de matrimonios, según sea el caso, católicos o civiles, por cada mil habitantes durante un mismo periodo. De esta manera, observado el gráfico anterior se puede notar que entre el 2022 y 2023 la tasa de nupcialidad se redujo levemente pasando de 4.4 a 4.2. También, se puede afirmar que las personas costarricenses que se casan prefieren hacerlo de manera civil ya que, la tasa de nupcialidad de los matrimonios civiles supera en aproximadamente 5 a los matrimonios católicos.   
+
+```{r include=FALSE}
+matrimonios_parejas_graf <- pivot_longer(matrimonios_parejas, cols = c(Total,`Hombre - Mujer`,`Hombre - Hombre`,`Mujer - Mujer`), names_to = "Composición", values_to = "Cantidad")
+```
+
+```{r echo=FALSE}
+ggplot(matrimonios_parejas_graf, aes(x = factor(Año), y = Cantidad, fill = Composición)) +
+  geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
+  geom_text(aes(label = Cantidad), position = position_dodge(width = 0.9), vjust = -0.5) +
+  scale_fill_manual(values = c(Total = "#2F4F4F", `Hombre - Mujer` = "cadetblue3", `Hombre - Hombre` = "#BCEE68",`Mujer - Mujer` = "#6E8B3D" ), name = "Tipo de Composición") +  
+  labs(title = "Costa Rica. Total de matrimonios por composición de la pareja.", subtitle = "2022-2023", x = "Año") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+```
+
+En el gráfico anterior se puede observar en cantidades los matrimonios del 2022 y 2023 según la composición de la pareja, del cual es bastante notorio que las personas costarricenses en su mayoría se casan con personas del sexo opuesto, luego una cantidad mucho más baja son matrimonios entre hombres y por último entre mujeres, tendencia que se mantiene durante los dos años del análisis. 
+
+Como se mencionó la tasa de nupcialidad disminuyó, esto se debe a que la cantidad de matrimonios totales tuvo una caída de 618 matrimonios en el 2023 con respecto al 2022. Si bien solo se están considerando dos años para el presente informe, al indagar en las bases de datos del INEC se tiene una tendencia conforme pasan los años a la disminución de los matrimonios, es decir, esta reducción entre el 2022 y 2023 no es un caso aislado para el país sino que, es un patrón que se viene viendo desde hace un tiempo atrás y que se debe tener presente a la hora de hacer modelos y estudios actuariales pensando principalmente en la afectación que esto tiene en la fecundidad  que se encuentra estrechamente relacionada con el sistema de pensiones. 
+
+```{r include=FALSE}
+matrimonios_edad_23 <- matrimonios_edad_23 %>%
+  filter(!(`Grupos de edades` %in% c("Costa Rica", "Ignorada")))
+matrimonios_edad_23 <- mutate(matrimonios_edad_23, Año = 2023)
+matrimonios_edad_22 <- matrimonios_edad_22 %>%
+  filter(!(`Grupos de edades` %in% c("Costa Rica", "Ignorada")))
+matrimonios_edad_22 <- mutate(matrimonios_edad_22, Año = 2022)
+matrimonios_edad <- rbind(matrimonios_edad_22, matrimonios_edad_23)
+matrimonios_edad_graf <- matrimonios_edad %>%
+  pivot_longer( cols = -c(`Grupos de edades`, Año), names_to = "Categoria", values_to = "Cantidad")
+```
+
+```{r echo=FALSE}
+ggplot(matrimonios_edad_graf, aes(x = `Grupos de edades`, y = Cantidad, fill = Categoria)) +
+  geom_bar(stat = "identity", position = "stack") +  # Gráfico de barras apiladas
+  scale_fill_manual(values = c(`Hombres total` = "#2F4F4F", 
+                                `Hombres con mujeres` = "cadetblue3", 
+                                `Hombres con hombres` = "#BCEE68",
+                                `Mujeres total` = "#6E8B3D", 
+                                `Mujeres con hombres` = "#AEEEEE", 
+                                `Mujeres con mujeres` = "#B4EEB4"),
+                     name = "Tipo de Composición") +
+  facet_wrap(~ Año) +
+  theme_minimal() + 
+  labs(x = "Grupos de Edades", y = "Cantidad", title = "Costa Rica. Total de matrimonios por grupos de edades de las personas contrayentes,  \n según sexo.", subtitle = "2022 - 2023") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), plot.subtitle = element_text(hjust = 0.5), plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+```
+
+Es relevante ver los rangos de las edades en las que las personas contraen matrimonio en Costa Rica, en el gráfico se observa para ambos años que la mayoría de matrimonios fueron de personas entre los 30 y 34 años de edad y le siguen entre 25 y 29 años. Esto se explica  según estudios del INEC a que las personas con el pasar de los años han ido postergando la edad para casarse. 
+
+Note que, se tiene un rango de menos de 18 años debido a que el INEC mantiene este grupo para evidenciar que aunque existe la Ley 9406 (Ley de Relaciones Impropias), la cual prohíbe la inscripción de matrimonios que incluyan a personas menores de edad ante el Registro Civil, existen individuos que lo hacen. No es muy notorio en el gráfico pero, en el 2022 una mujer menor de 18 años contrajo matrimonio con un hombre. Para el 2023 no existe ningún registro dentro de este rango. 
+
+Haciendo excepción a lo mencionado anteriormente, los rangos de edades donde menos perosnas se casan son entre los 18-19 y 45-49 para ambos años. Además, es curioso que existe una proporción alta de personas de 50 años o más que deciden casarse. 
+
+```{r include=FALSE}
+matrimonios_nacionalidad_23 <- matrimonios_nacionalidad_23 %>%
+  select(-Total)
+matrimonios_nacionalidad_23 <- mutate(matrimonios_nacionalidad_23, Año = 2023)
+matrimonios_nacionalidad_22 <- matrimonios_nacionalidad_22 %>%
+  select(-Total)
+matrimonios_nacionalidad_22 <- mutate(matrimonios_nacionalidad_22, Año = 2022)
+matrimonios_nacionalidad <- rbind(matrimonios_nacionalidad_22, matrimonios_nacionalidad_23)
+matrimonios_nacionalidad_graf <- matrimonios_nacionalidad %>%
+  pivot_longer( cols = -c(`Composición de la pareja`, Año), names_to = "Categoria", values_to = "Cantidad")
+```
+
+```{r echo=FALSE}
+ggplot(matrimonios_nacionalidad_graf, aes(x = factor(`Composición de la pareja`), y = Cantidad, fill = Categoria)) +
+  geom_bar(stat = "identity", position = "dodge") + 
+  scale_fill_manual(values = c(`Ambas personas costarricenses` = "#2F4F4F", `Costarricense y persona extranjera` = "cadetblue3", `Ambas personas extranjeras` = "#BCEE68"), name = "Nacionalidad") +
+  facet_wrap(~ Año) +
+  theme_minimal() + 
+  labs(x = "Composición de la pareja", y = "Cantidad", title = "Costa Rica. Total de matrimonios por composición de la pareja, \n según nacionalidad de las personas contrayentes.", subtitle = "2022 - 2023") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), plot.subtitle = element_text(hjust = 0.5), plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+```
+
+Por último, se muestra que en Costa Rica para el 2022 y 2023 existe una proporción de casamientos entre una persona costarricense con un extrajero y parejas extrajeras. Sin embargo, estas son cantidades relativamente bajas en comparación con los matrimonios entre costarricenses que fueron de 16 967 en el 2022 y 16 626 en el 2023.
+
+# Fecundidad
+
+```{r include=FALSE}
+fecundidad <- read_excel("Indicadores de población.xlsx", sheet = 1)
+esperanza_vida <- read_excel("Indicadores de población.xlsx", sheet = 2)
+```
+
+```{r include=FALSE}
+fecundidad_graf <- fecundidad %>%
+  pivot_longer( cols = -`Natalidad y fecundidad`, names_to = "Año", values_to = "Tasa")
+
+esperanza_vida_graf <- esperanza_vida %>% 
+  pivot_longer(cols = -`Esperanza de vida al nacimiento`, names_to = "Año", values_to = "EPV")
+```
+
+En este apartado se muestran las tasas de fecundidad y natalidad así como, la esperanza de vida al nacimiento. Para iniciar con el análisis de estas variables demográficas se debe tener claro que según el INEC en sus estudios de indicadores demográficos definen la tasa bruta de natalidad como el número de nacimientos por cada mil habitantes, la tasa global de fecundidad es el número de hijos e hijas que en promedio tendría cada mujer al final del periodo fértil, si durante su vida tiene sus hijos e hijas de acuerdo a las tasas de fecundidad por edad observadas en el país y año de interés además, para este cálculo se toma como hipótesis que las mujeres no están afectadas por la mortalidad desde el nacimiento hasta el final de periodo fértil. 
+
+Como último indicador de medición de la fecundidad se presenta la tasa de reproducción, la cual representa el número de hijas que en promedio tendría cada mujer al final del periodo fértil, si durante su vida tiene sus hijos e hijas de acuerdo a las tasas de fecundidad por edad observadas en el país y año de interés. La diferencia entre la tasa de reproducción bruta y neta es que la primera no considera la mortalidad sobre estas mujeres y la segunda sí. A continuación se muestra un gráfico con los indicadores mencionados para Costa Rica en el 2022 y 2023. 
+
+```{r echo=FALSE}
+ggplot(fecundidad_graf, aes(x = factor(Año), y = Tasa, fill = `Natalidad y fecundidad`)) +
+  geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
+  scale_fill_manual(values = c(`Tasa bruta de natalidad (por mil habitantes)` = "#2F4F4F", `Tasa global de fecundidad (por mujer)` = "cadetblue3", `Tasa bruta de reproducción (por mujer)` = "#BCEE68", `Tasa neta de reproducción (por mujer)` = "#6E8B3D"), name = "Tipo de tasa") +  
+  labs(title = "Costa Rica. Tasas de natalidad y fecundidad.", subtitle = "2022-2023", x = "Año") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+```
+
+En el gráfico anterior se puede observar que todas las tasas entre el 2022 y 2023 disminuyeron y al igual que, para el caso de la nupcialidad este no es un caso particular sino que, hace varios años las tasa de natalidad, fecundidad y reproducción vienen en caída. Esto es preocupante puesto que, según el INEC cuando la Tasa Global de Fecundidad (TGF) de un país es de 2,1 hijos por mujer, se dice que la fecundidad está a nivel de reemplazo, es decir, que las parejas están teniendo únicamente el número de hijos e hijas necesarios para reemplazarse a sí mismas, no obstante, si analizamos el gráfico la TGF de Costa Rica se encuentra por debajo de 2 siendo de 1.3 para el 2022 y de 1.2 para el 2023. Costa Rica se encuentra actualmente con niveles de fecundidad ultra-bajos, es decir, por debajo de 1,5 hijos e hijas por mujer. 
+
+Si se ve en términos generales y no solo de parejas lo alarmante es que la población no está teniendo una generación de reemplazo que pueda hacer sostenible el sistema de seguridad social pues, según el Dr. Luis Rosero Bixby, docente emérito de la UCR y fundador del Centro Centroamericano de Población, la ultrabaja natalidad provoca una disminución en la población infantil y juvenil que trae consigo una caída progresiva de la población adulta, la cual es responsable de la producción y los ingresos del país además de ser los que generan los aportes a la seguridad social. Consecutivamente se genera un aumento de la población mayor quienes son los receptores de las pensiones y la mayoría de estos son los que utilizan el sistema de salud de la CCSS. 
+
+Se puede notar el ciclo en el que se ve involucrado el país debido a la baja natalidad y del cual las repercusiones no son fáciles de revertir. Costa Rica ya está sufriendo de estas consecuencias puesto que, como se evidencia en el apartado de variación de la población, el mayor porcentaje de la población corresponde a la población econonómicamente activa. Este grupo con el pasar de los años se va desplazando hacia la población en vejez y al tener una baja natalidad las nuevas generaciones no son suficientes para cubrir la inversión futura que se debe realizar.  
+
+Muy relacionado a los nacimientos se tiene la esperanza de vida al nacer la cual se define como el número de años que en promedio viviría una persona si las condiciones de mortalidad por edad, vigentes al momento de su nacimiento, no cambian a lo largo de su vida. En el siguente gráfico se puede apreciar este indicador para Costa Rica separado por sexo. 
+
+```{r echo=FALSE}
+ggplot(esperanza_vida_graf, aes(x = factor(Año), y = EPV, fill = `Esperanza de vida al nacimiento`)) +
+  geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
+  geom_text(aes(label = round(EPV,1)), position = position_dodge(width = 0.9), vjust = -0.5) +
+  scale_fill_manual(values = c(Total = "#2F4F4F", Mujeres = "cadetblue3", Hombres = "#BCEE68")) +  
+  labs(title = "Costa Rica. Esperanza de vida al nacimiento.", subtitle = "2022-2023", x = "Año", y = "Esperanza de vida", fill = NULL) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+```
+
+Con la evolución científica y tecnológica que ha venido surgiendo cada vez con mayor velocidad en el mundo se tiene un aumento de la esperanza de vida al nacer debido a que muchas de las innovaciones han sido en pro de la salud de los seres humanos y la obtención de mayores comodidades en el estilo de vida de los mismos. De un año a otro realmente no varía mucho, no obstante, se puede notar el crecimiento aún así en un periodo de tiempo corto y si se analiza para periodos largos la tendencia al crecimiento es evidente. Como es usual las mujeres poseen una esperanza de vida al nacer mayor que la de los hombres. 
+
+Es claro que tener una esperanza de vida al nacer alta es un buen indicador para Costa Rica, sin embargo, es algo que se debe tener presente y se debe analizar junto a otro indicadores como en este caso la fecundidad ya que, implica tener los recursos para poder atender a las generaciones por un mayor tiempo.  
+
 # Desempleo
 # Población económicamente activa

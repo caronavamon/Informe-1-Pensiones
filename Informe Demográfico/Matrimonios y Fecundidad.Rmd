@@ -124,7 +124,7 @@ ggplot(matrimonios_edad_graf, aes(x = `Grupos de edades`, y = Cantidad, fill = C
   theme(axis.text.x = element_text(angle = 45, hjust = 1), plot.subtitle = element_text(hjust = 0.5), plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 ```
-Es relevante también, ver los rangos de las edades en las que las personas contraen matrimonio en Costa Rica, en el gráfico se observa para ambos años que la mayoría de matrimonios fueron de personas entre los 30 y 34 años de edad y le siguen entre 25 y 29 años. Esto se explica  según estudios del INEC a que las personas con el pasar de los años han ido postergando la edad para casarse. 
+Es relevante ver los rangos de las edades en las que las personas contraen matrimonio en Costa Rica, en el gráfico se observa para ambos años que la mayoría de matrimonios fueron de personas entre los 30 y 34 años de edad y le siguen entre 25 y 29 años. Esto se explica  según estudios del INEC a que las personas con el pasar de los años han ido postergando la edad para casarse. 
 
 Note que se tiene un rango de menos de 18 años debido a que el INEC mantiene este grupo para evidenciar que aunque existe la Ley 9406 (Ley de Relaciones Impropias), la cual prohíbe la inscripción de matrimonios que incluyan a personas menores de edad ante el Registro Civil, existen individuos que lo hacen. No es muy notorio en el gráfico pero, en el 2022 una mujer menor de 18 años contrajo matrimonio con un hombre. Para el 2023 no existe ningún registro dentro de este rango. 
 
