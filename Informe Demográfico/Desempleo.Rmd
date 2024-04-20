@@ -18,7 +18,6 @@ library(ggplot2)
 library(readxl)
 Desempleo <- read_excel("Desempleo.xlsx")
 Desempleo$Trimestre <- factor(Desempleo$Trimestre, levels = unique(Desempleo$Trimestre))
-str(Desempleo)
 ```
 
 ```{r,echo = FALSE,warning = FALSE}
@@ -55,7 +54,7 @@ En términos absolutos, el 7,3% de desempleo equivale a aproximadamente 164.000 
 El informe del INEC también destaca cambios significativos en la distribución de la ocupación por sectores económicos. Se observó una reducción en la construcción, actividades profesionales y administrativas de apoyo, así como en hogares como empleadores. Por otro lado, se registraron aumentos en sectores como la enseñanza, la salud y la administración pública. Estos cambios en la estructura ocupacional pueden tener implicaciones importantes para la economía y el mercado laboral en general.
 
 
-```{r,echo = FALSE}
+```{r,echo = FALSE,warning = FALSE}
 ocupaDesempleo <- read.csv2("ocupaDesempleo.csv", header=FALSE, comment.char="#", dec=",")
 ocupaDesempleo <- ocupaDesempleo[-1, ]
 names(ocupaDesempleo) <- c("Trimestre", "Tasa_desempleo", "Tasa_participacion", "Tasa_ocupacion")
@@ -63,11 +62,10 @@ ocupaDesempleo$Tasa_desempleo <- as.numeric(gsub(",", ".", ocupaDesempleo$Tasa_d
 ocupaDesempleo$Tasa_participacion <- as.numeric(gsub(",", ".", ocupaDesempleo$Tasa_participacion))
 ocupaDesempleo$Tasa_ocupacion <- as.numeric(gsub(",", ".", ocupaDesempleo$Tasa_ocupacion))
 ocupaDesempleo$Trimestre <- factor(ocupaDesempleo$Trimestre, levels = ocupaDesempleo$Trimestre)
-str(ocupaDesempleo)
 ```
 
 
-```{r,echo = FALSE}
+```{r,echo = FALSE,warning = FALSE}
 ggplot(ocupaDesempleo, aes(x = Trimestre)) +
   geom_line(aes(y = Tasa_desempleo, color = "Tasa de Desempleo", group = 1), size = 1) +
   geom_line(aes(y = Tasa_participacion, color = "Tasa de Participación", group = 1), size = 1) +

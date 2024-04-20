@@ -30,9 +30,88 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 \newpage
 
+```{r,echo = FALSE,warning = FALSE}
+library(ggplot2)
+library(readxl)
+```
+
 # Variación de la población
 # Migración
 # Fecundidad
 # Matrimonios
 # Desempleo
+
+```{r,echo = FALSE}
+library(ggplot2)
+library(readxl)
+Desempleo <- read_excel("Desempleo.xlsx")
+Desempleo$Trimestre <- factor(Desempleo$Trimestre, levels = unique(Desempleo$Trimestre))
+```
+
+```{r,echo = FALSE,warning = FALSE}
+ggplot(Desempleo, aes(x = Trimestre, y = `Tasa desempleo`)) +
+  geom_bar(stat = "identity", fill = "darkslategray3", width = 0.7) +
+  geom_text(aes(label = paste0(`Tasa desempleo`, "%")), vjust = -0.5, color = "#458B74") +
+  labs(title = "Tasa de desempleo abierta y población desempleada en Costa Rica", 
+       subtitle = "Ene 2022 a Dic 2023",
+       caption = expression(bold("Fuente: ") * "Elaboración propia a partir de datos del INEC y BCCR."),
+       x = "Trimestre",
+       y = "Tasa de Desempleo (%)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0)) +
+  coord_cartesian(ylim = c(0, 14)) +
+  
+  
+  geom_point(aes(x = Trimestre, y = `Población desempleada`/30000, color = "Población desempleada"), size = 2) +
+  geom_text(data = Desempleo, aes(x = Trimestre, y = `Población desempleada`/30000, label = `Población desempleada`), vjust = -0.5, color = "#528B8B", size = 3) +
+  
+  scale_color_manual(values = c("Población desempleada" = "#2F4F4F")) + 
+  guides(color = guide_legend(title = " ")) 
+```
+
+Durante el transcurso del año 2022 en Costa Rica, se observó una tendencia descendente en los índices de desempleo a excepción del III Trimestre, acompañada de una disminución en la participación activa en el mercado laboral. De acuerdo con datos proporcionados por el Instituto Nacional de Estadística y Censos (INEC), este período inició con una tasa de desempleo del 13,58%, que descendió gradualmente hasta alcanzar un 11,67% al cierre del año. Aunque el Gobierno ha atribuido esta disminución en la fuerza laboral principalmente a la jubilación, es fundamental considerar otros posibles factores que pudieron influir en esta tendencia.
+
+
+El desempleo en Costa Rica cerró el año 2023 con una tasa del 7,3%, lo que representó una notable disminución de 4,4 puntos porcentuales en comparación con el año anterior, donde se registraba en un 11,67%. Siendo esta la menor tasa de desempleo en 13 años.
+En términos absolutos, el 7,3% de desempleo equivale a aproximadamente 164.000 personas. La disminución en la participación laboral se refleja en una notable caída de 5,9 puntos porcentuales en la tasa de participación.
+
+El informe del INEC también destaca cambios significativos en la distribución de la ocupación por sectores económicos. Se observó una reducción en la construcción, actividades profesionales y administrativas de apoyo, así como en hogares como empleadores. Por otro lado, se registraron aumentos en sectores como la enseñanza, la salud y la administración pública. Estos cambios en la estructura ocupacional pueden tener implicaciones importantes para la economía y el mercado laboral en general.
+
+
+```{r,echo = FALSE,warning = FALSE}
+ocupaDesempleo <- read.csv2("ocupaDesempleo.csv", header=FALSE, comment.char="#", dec=",")
+ocupaDesempleo <- ocupaDesempleo[-1, ]
+names(ocupaDesempleo) <- c("Trimestre", "Tasa_desempleo", "Tasa_participacion", "Tasa_ocupacion")
+ocupaDesempleo$Tasa_desempleo <- as.numeric(gsub(",", ".", ocupaDesempleo$Tasa_desempleo))
+ocupaDesempleo$Tasa_participacion <- as.numeric(gsub(",", ".", ocupaDesempleo$Tasa_participacion))
+ocupaDesempleo$Tasa_ocupacion <- as.numeric(gsub(",", ".", ocupaDesempleo$Tasa_ocupacion))
+ocupaDesempleo$Trimestre <- factor(ocupaDesempleo$Trimestre, levels = ocupaDesempleo$Trimestre)
+```
+
+
+```{r,echo = FALSE,warning = FALSE}
+ggplot(ocupaDesempleo, aes(x = Trimestre)) +
+  geom_line(aes(y = Tasa_desempleo, color = "Tasa de Desempleo", group = 1), size = 1) +
+  geom_line(aes(y = Tasa_participacion, color = "Tasa de Participación", group = 1), size = 1) +
+  geom_line(aes(y = Tasa_ocupacion, color = "Tasa de Ocupación", group = 1), size = 1) +
+  scale_color_manual(values = c("Tasa de Desempleo" = "#528B8B", "Tasa de Participación" = "#2F4F4F", "Tasa de Ocupación" = "#79CDCD")) +
+  labs(x = "Trimestres móviles", y = "Porcentaje", color = "Indicador",title = "Principales indicadores del mercado laboral en Costa Rica", 
+       subtitle = "Ene 2022 a Dic 2023",
+       caption = expression(bold("Fuente: ") * "Elaboración propia a partir de datos del INEC.")) +
+  theme_minimal() +
+  theme(legend.position ="bottom",
+        axis.text.x = element_text(angle = 45, hjust = 1),plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0))+
+  scale_x_discrete(breaks = c("ENE(22)-MAR(22)", "ABR(22)-JUN(22)", "JUL(22)-SEP(22)", "OCT(22)-DEC(22)",
+                               "ENE(23)-MAR(23)", "ABR(23)-JUN(23)", "JUL(23)-SEP(23)", "OCT(23)-DEC(23)"))
+```
+
+Con respecto a otros indicadores adicionales del mercado laboral proporcionados por el INEC, a finales del 2023, se tiene que la tasa de ocupación, que representa el porcentaje de personas empleadas en relación con la población de 15 años o más, se situó en un 50%, mientras que la tasa neta de participación laboral, que abarca tanto a las personas empleadas como a las desempleadas en relación con la misma población, fue del 54,3%. Ambos indicadores experimentaron caídas significativas interanuales de 3,3 y 6,2 puntos porcentuales, respectivamente.
+Según el INEC, esta reducción se vio impulsada por una disminución en la participación de personas en el mercado laboral, especialmente en el sector informal. Es crucial destacar que la disminución en la tasa de desempleo no necesariamente indica una mejora en las oportunidades laborales, sino más bien una menor cantidad de personas buscando activamente empleo.
+
 # Población económicamente activa
