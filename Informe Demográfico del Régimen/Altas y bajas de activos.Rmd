@@ -1,0 +1,53 @@
+---
+title: "Altas y bajas de activos"
+output: html_document
+encoding: UTF-8
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, warning=FALSE,message=FALSE, echo=FALSE}
+library(readxl)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(zoo)
+```
+
+```{r, warning=FALSE,message=FALSE, echo=FALSE}
+activos <- read_excel("Fondo C.xlsx", sheet = "Activos", col_names = TRUE)
+activos <- activos[, -c(364, 365)]
+activos <- activos[, -c(1, 2, 3)]
+```
+```{r, warning=FALSE,message=FALSE, echo=FALSE}
+# Contar la cantidad de TRUE por columna
+altas <- colSums(activos != 0)
+
+# Contar la cantidad de FALSE por columna
+bajas <- colSums(activos == 0)
+```
+
+```{r, warning=FALSE,message=FALSE, echo=FALSE}
+altas_bajas <- data.frame(Fecha = colnames(activos), Altas = altas, Bajas = bajas)
+fechas <- seq(as.Date("1994-01-01"), as.Date("2023-12-01"), by = "month")
+altas_bajas$Fecha <- fechas
+```
+
+```{r, warning=FALSE,message=FALSE, echo=FALSE}
+ggplot(altas_bajas, aes(x = Fecha)) +
+  geom_line(aes(y = Altas, color = "Altas")) +
+  geom_line(aes(y = Bajas, color = "Bajas")) +
+  scale_color_manual(values = c("Altas" = "#2F4F4F", "Bajas" = "cadetblue3")) +
+  labs(title = "Fondo C. Comportamiento de altas y bajas de los activos.", subtitle = "1994-2023", x = "Fecha", color = "Tipo") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+```
+
+
+
+
