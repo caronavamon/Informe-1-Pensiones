@@ -17,16 +17,47 @@ library(ggplot2)
 
 ```{r, message = FALSE, echo=FALSE}
 # se cargan los datos de interés
-fondo <- read_excel("Fondo C.xlsx", sheet = "Pensionados")
+pensionados <- read_excel("Fondo C.xlsx", sheet = "Pensionados")
 # se eliminan las columnas no necesarias
-fondo <- fondo[,-c(1, 3:7, 9:11)]
-# se eliminan los pensionados sin fecha 
-fondo <- na.omit(fondo)
+pensionados <- pensionados[,c(2,4,5,8)]
+
+# Se rellenan datos faltantes para pensionados por vejez
+
+# calcula edad de pension
+pensionados <- pensionados %>%
+  mutate(Edad_Pension = as.numeric(difftime(`Rige de la Pensión`, FEC_NAC, units = "days")) / 365.25) 
+
+#calcula el promedio de edad de pension por tipo y sexo
+promedio_edad_pension_tipo<- pensionados %>%
+  group_by(COD_TIPO_PENSION, SEXO) %>%
+  summarize(promedio_edad_pension = mean(Edad_Pension, na.rm = TRUE)) 
+
+#aquí trabaja solo con los que tiene NA's
+pensionados_na <- pensionados %>%
+  filter(is.na(`Rige de la Pensión`)) 
+
+# se le agrega la edad de pensión promedio a los que tienen NA's
+pensionados_na_con_promedio <- left_join(pensionados_na, promedio_edad_pension_tipo, by = c("SEXO", "COD_TIPO_PENSION"))
+
+# Actualiza la columna 'Edad_Pension' con el promedio de edad de pensión correspondiente
+pensionados_na_con_promedio <- pensionados_na_con_promedio %>%
+  mutate(Edad_Pension = ifelse(is.na(Edad_Pension), promedio_edad_pension, Edad_Pension))
+
+# Eliminar la columna 'promedio_edad_pension'
+pensionados_na_con_promedio <- pensionados_na_con_promedio[, -6]
+
+# pone la fecha en que se pensionarían
+pensionados_na_con_promedio <- pensionados_na_con_promedio %>%
+  mutate(`Rige de la Pensión` = FEC_NAC + as.numeric(Edad_Pension) * 365.25 * 24 * 60 * 60)  
+
+# se une todo
+pensionados <- bind_rows(pensionados_na_con_promedio, pensionados %>% filter(!is.na(`Rige de la Pensión`))) 
 
 # se extrae  el año de la fecha
-fondo$año <- format(fondo$`Rige de la Pensión`, "%Y")
+pensionados$año <- format(pensionados$`Rige de la Pensión`, "%Y")
+
 # se cuenta la cantidad de pensionados que ingresan por mes, año y tipo de pensión
-conteo <- fondo %>%
+conteo <- pensionados %>%
   group_by(año, COD_TIPO_PENSION) %>%
   summarise(cantidad_personas = n())
 conteo$año <- as.numeric(conteo$año)
@@ -72,12 +103,11 @@ pensionados en el 2021. No obstante, al igual que la pensión anterior, se prese
 decrecimiento en las entradas ingresando solo una persona en el 2023.
 
 Con respecto a los pensionados por vejez, no se presentó ningún registro de
-entrada hasta el 2011. En el periodo del 2011 al 2017, se tuvo un comportamiento
-creciente en los ingresos pero, bajó en el 2018 pasando de 11 nuevos pensionados
-a 8. En los años siguientes aumentó la cantidad de nuevos pensionados por vejez,
-alcanzando un valor máximo de 46 personas en el 2022. Al igual que los otros dos
-tipos de pensiones, para el 2023 se sufrió una reducción en los ingresos recibiendo 
-a 21 personas.
+entrada hasta el 2010. En el periodo del 2010 al 2015, la cantidad de nuevos 
+pensionados por vejez estuvo entre 1 y 7 personas. En los años siguientes aumentó
+la cantidad de entradas, alcanzando un valor máximo de 46 personas en el 2022. 
+Al igual que los otros dos tipos de pensiones, para el 2023 se sufrió una reducción
+en los ingresos recibiendo a 21 personas.
 
 En síntesis, se identifica que en el periodo de estudio, el mayor crecimiento de entradas de 
 pensionados son percibidos por las pensiones por vejez, seguido de las pensiones
