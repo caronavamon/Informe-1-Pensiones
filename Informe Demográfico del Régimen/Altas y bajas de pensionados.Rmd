@@ -1,5 +1,5 @@
 ---
-title: "Altas y bajas de pensionados"
+title: "Altas de pensionados"
 output: html_document
 encoding: UTF-8
 ---
@@ -33,13 +33,13 @@ conteo$año <- as.numeric(conteo$año)
 
 ```
 
-A continuación, se analizan las altas y bajas de los pensionados del Régimen 
-en estudio, específicamente, en la cantidad de ingresos de pensionados 
+A continuación, se analizan las altas de los pensionados del Régimen 
+en estudio, específicamente, la cantidad de entradas de pensionados 
 por año y por tipo de pensión (Invalidez, Vejez y Sucesión), durante un 
 periodo que abarca desde el 2001 al 2023. Algunos pensionados no cuentan con la fecha
 de inicio del pago de la pensión, por lo que, no se toman en cuenta para el análisis.
 
-En el gráfico 1, se muestra el comportamiento de la entrada de pensionados.
+En el gráfico 1, se muestra el comportamiento de las entradas de pensionados.
 
 ```{r, warning=FALSE, echo=FALSE}
   ggplot(conteo, aes(x = as.numeric(año), y = cantidad_personas, color = COD_TIPO_PENSION)) +
