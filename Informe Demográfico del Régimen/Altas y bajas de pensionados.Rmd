@@ -1,0 +1,88 @@
+---
+title: "Altas y bajas de pensionados"
+output: html_document
+encoding: UTF-8
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, warning=FALSE,message=FALSE, echo=FALSE}
+library(readxl)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+```
+
+```{r, message = FALSE, echo=FALSE}
+# se cargan los datos de interés
+fondo <- read_excel("Fondo C.xlsx", sheet = "Pensionados")
+# se eliminan las columnas no necesarias
+fondo <- fondo[,-c(1, 3:7, 9:11)]
+# se eliminan los pensionados sin fecha 
+fondo <- na.omit(fondo)
+
+# se extrae  el año de la fecha
+fondo$año <- format(fondo$`Rige de la Pensión`, "%Y")
+# se cuenta la cantidad de pensionados que ingresan por mes, año y tipo de pensión
+conteo <- fondo %>%
+  group_by(año, COD_TIPO_PENSION) %>%
+  summarise(cantidad_personas = n())
+conteo$año <- as.numeric(conteo$año)
+
+```
+
+A continuación, se analizan las altas y bajas de los pensionados del Régimen 
+en estudio, específicamente, en la cantidad de ingresos de pensionados 
+por año y por tipo de pensión (Invalidez, Vejez y Sucesión), durante un 
+periodo que abarca desde el 2001 al 2023. Algunos pensionados no cuentan con la fecha
+de inicio del pago de la pensión, por lo que, no se toman en cuenta para el análisis.
+
+En el gráfico 1, se muestra el comportamiento de la entrada de pensionados.
+
+```{r, warning=FALSE, echo=FALSE}
+  ggplot(conteo, aes(x = as.numeric(año), y = cantidad_personas, color = COD_TIPO_PENSION)) +
+  geom_line() +
+  labs(title = " Gráfico 1: Entradas de pensionados por año, del Régimen",
+       subtitle = "2001-2023",x = " Año de inicio de pago de la pensión",
+       y = "Cantidad de personas pensionadas", color = "Tipo de pensión")+
+  scale_color_manual(values = c("#2F4F4F", "cadetblue3", "#BCEE68"))+
+  theme_minimal()+
+   theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos de."))
+
+```
+
+Es posible observar que para el caso de los pensionados por invalidez,
+las entradas entre el 2001 y el 2014 son similares, están rondando entre 1 y 3 
+personas. Posteriormente, se presenta un incremento a partir del 2015, alcanzando
+un pico de 10 nuevos pensionados por invalidez en el 2019. Sin embargo, en los
+último años, se experimentó una baja en la cantidad de ingresos siendo en el 2023
+de una sola persona.
+
+En cuanto a los nuevos pensionados por sucesión, se presentan registros a partir
+del 2004. Se puede identificar una tendencia a la alta con el mayor ingreso
+de pensionados por este tipo entre el 2018 y el 2022, experimentando un pico de 20 
+pensionados en el 2021. No obstante, al igual que la pensión anterior, se presentó un 
+decrecimiento en las entradas ingresando solo una persona en el 2023.
+
+Con respecto a los pensionados por vejez, no se presentó ningún registro de
+entrada hasta el 2011. En el periodo del 2011 al 2017, se tuvo un comportamiento
+creciente en los ingresos pero, bajó en el 2018 pasando de 11 nuevos pensionados
+a 8. En los años siguientes aumentó la cantidad de nuevos pensionados por vejez,
+alcanzando un valor máximo de 46 personas en el 2022. Al igual que los otros dos
+tipos de pensiones, para el 2023 se sufrió una reducción en los ingresos recibiendo 
+a 21 personas.
+
+En síntesis, se identifica que en el periodo de estudio, el mayor crecimiento de entradas de 
+pensionados son percibidos por las pensiones por vejez, seguido de las pensiones
+por sucesión y por último, las de invalidez. Las tres mostraron una tendencia a
+la alta pero bajaron en el 2023.
+
+
+
