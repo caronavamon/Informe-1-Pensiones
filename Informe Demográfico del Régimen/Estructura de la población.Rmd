@@ -1,0 +1,284 @@
+---
+title: "Estructura de la población"
+output: html_document
+date: "2024-05-03"
+---
+
+
+```{r librerias}
+library(tidyverse)
+library(readxl)
+```
+
+```{r}
+FC_Activos <- read_excel("Fondo C.xlsx", sheet = "Activos")
+FC_Activos <- FC_Activos %>% 
+  mutate(
+    Fec.Nac =
+      as.Date(Fec.Nac),
+    Edad = 
+      floor(
+        interval(
+          Fec.Nac,ymd(
+            "2023-12-31"
+          )
+        )/
+          years(1)
+      ),
+    Edad5 = 
+      floor(
+        Edad/5
+      )*5,
+    Activo23 =
+      rowSums(
+        FC_Activos[,352:363]
+      )>0,
+    Contribuciones23=
+      rowSums(
+        FC_Activos[,352:363]>0
+      ),
+    Activo22 =
+      rowSums(
+        FC_Activos[,(352:363)-12]
+      )>0,
+    Contribuciones22=
+      rowSums(
+        FC_Activos[,(352:363)-12]>0
+      ),
+    N = (
+      FC_Activos$Sexo == 
+        "M"
+    )*2 - 1
+  )
+```
+
+
+```{r}
+
+g1 <- FC_Activos %>% 
+  select(
+    Edad,
+    N,
+    Sexo
+  ) %>% 
+  ggplot(
+    aes(
+      x = 
+        Edad,
+      fill = 
+        Sexo,
+      weight = 
+        N
+    )
+  )+
+  geom_histogram(
+    binwidth = 
+      2,
+    color =
+      "black"
+  ) +
+  labs(
+    x = 
+      "Edad",
+    y =
+      "Conteo",
+    title =
+      "Distribución de Edades"
+  ) +
+  theme_minimal()+
+  coord_flip() +
+  scale_fill_manual(
+    # name =
+    #   "Genero \n Año",
+    # labels = c(
+    #   "Femenino\n2022" ,
+    #   "\n 2023",
+    #   "Masculino \n 2022",
+    #   "\n 2023"),
+    values = 
+      c(
+        "#2F4F4F",
+        "cadetblue3",
+        "#4B7F52",
+        "#A2CD5A"
+      )
+  ) +
+  theme(
+    legend.position = 
+      "bottom",
+    plot.title = 
+      element_text(
+        hjust =
+          0.5
+      ),
+    plot.subtitle = 
+      element_text(
+        hjust =
+          0.5
+      ),
+    plot.caption =
+      element_text(
+        hjust = 
+          0,
+        color =
+          "black",
+        size = 
+          8),
+    legend.title = 
+      element_blank()
+  ) +
+  labs(
+    title = 
+      "Pirámide Económica",
+    subtitle =
+      "por Edad segun el Genero",
+    y =
+      "Cantidad",
+    x =
+      "Edad",
+    caption = 
+      expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C.")
+  ) 
+```
+
+
+```{r}
+G2 <- FC_Activos %>% 
+  filter(
+    Sexo ==
+      "M"
+  ) %>% 
+  select(
+    Edad,
+    N
+  ) %>% 
+  ggplot(
+    aes(
+      x = 
+        Edad,
+      weight = 
+        N
+    )
+  )+
+  geom_histogram(
+    binwidth = 
+      1,
+    fill =
+      "blue",
+    color =
+      "black"
+  ) +
+  labs(
+    x = 
+      "Edad",
+    y =
+      "Conteo",
+    title =
+      "Distribución de Edades"
+  ) +
+  theme_minimal()
+pivot_wider(
+  names_from =
+    Edad,
+  values_from =
+    N
+)
+
+G2 + G1
+head
+mean(FC_Activos$Activo23)
+mean(FC_Activos$Contribuciones23)
+mean(FC_Activos$Activo22)
+mean(FC_Activos$Contribuciones22)
+
+
+colnames(FC_Activos)[352:363]
+FC_Activos %>% 
+  mutate(
+    Categoria = 
+      paste0(
+        Sexo, Edad
+      )
+  ) %>% 
+  ggplot(
+    aes(
+      x =
+        Min,
+      y =
+        `Obs (K)`,
+      fill =
+        Categoria,
+      alpha =
+        0.999
+    )
+  ) +
+  guides(alpha = FALSE) + # Remueve la leyenda para alpha
+  geom_bar(
+    stat = 
+      "identity"
+  ) +
+  coord_flip() +
+  scale_fill_manual(
+    name =
+      "Genero \n Año",
+    labels = c(
+      "Femenino\n2022" ,
+      "\n 2023",
+      "Masculino \n 2022",
+      "\n 2023"),
+    values = 
+      c(
+        "#2F4F4F",
+        "cadetblue3",
+        "#4B7F52",
+        "#A2CD5A"
+      )
+  ) +
+  labs(
+    title = 
+      "Pirámide Económica",
+    subtitle =
+      "por Edad segun el Genero",
+    y =
+      "Porcentage",
+    x =
+      "Edad",
+    caption = 
+      expression(bold("Fuente: ") * "Elaborado a partir de datos de la Organización Internacional del Trabajo (2024).")
+  ) +
+  scale_x_discrete(
+    breaks = 
+      seq(20,70,by=5)
+  ) +
+  scale_y_continuous(
+    breaks = 
+      seq(-7,9,by=2)
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position =
+      "bottom",
+    plot.title = 
+      element_text(
+        hjust = 
+          0.5
+      ),
+    plot.subtitle =
+      element_text(
+        hjust = 
+          0.5
+      ),
+    plot.caption =
+      element_text(
+        hjust =
+          0,
+        color =
+          "black",
+        size =
+          8
+      )
+  )
+```
+
+
+

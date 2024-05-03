@@ -1,0 +1,66 @@
+---
+title: "Altas y bajas de activos"
+output: html_document
+encoding: UTF-8
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, warning=FALSE,message=FALSE, echo=FALSE}
+library(readxl)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(zoo)
+```
+
+```{r, warning=FALSE,message=FALSE, echo=FALSE}
+activos <- read_excel("Fondo C.xlsx", sheet = "Activos", col_names = TRUE)
+activos <- activos[, -c(364, 365)]
+activos <- activos[, -c(2, 3)]
+```
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+altas_bajas <- as.matrix(activos[,2:ncol(activos)] != 0, nrow = nrow(activos), ncol = (ncol(activos)-1))
+altas_bajas <- cbind(ID = activos$ID, altas_bajas)
+altas_bajas <- as.data.frame(altas_bajas)
+```
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+nombres_columnas <- names(altas_bajas)[-1]  # Excluir la columna de ID
+años <- sub(".*\\/", "", nombres_columnas)  # Extraer solo el año
+
+# Asignar los años extraídos a las columnas correspondientes
+names(altas_bajas)[-1] <- años
+
+# Transformar de wide a long format
+altas_bajas_long <- pivot_longer(altas_bajas, cols = -ID, names_to = "Año", values_to = "Valor")
+
+# Agrupar por ID y Año, luego resumir para ver si hay algún TRUE en cada año
+altas_bajas_agrupado <- altas_bajas_long %>%
+  group_by(ID, Año) %>%
+  summarize(Valor = any(Valor == TRUE), .groups = 'drop')
+
+conteo_anual <- altas_bajas_agrupado %>%
+  group_by(Año) %>%
+  summarize(
+    altas = sum(Valor == TRUE),
+    bajas = sum(Valor == FALSE)
+  )
+
+conteo_anual$Año <- as.numeric(conteo_anual$Año)
+```
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+ggplot(conteo_anual, aes(x = Año)) +
+  geom_line(aes(y = altas, color = "altas")) +
+  geom_line(aes(y = bajas, color = "bajas")) +
+  scale_color_manual(values = c("altas" = "#2F4F4F", "bajas" = "cadetblue3")) +
+  labs(title = "Fondo C. Comportamiento de altas y bajas de los activos.", subtitle = "1994-2023", x = "Fecha", color = "Tipo", y = "Cantidad") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+```
