@@ -22,7 +22,7 @@ activos <- activos[, -c(364, 365)]
 activos <- activos[, -c(2, 3)]
 ```
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
-altas_bajas <- as.matrix(activos[,2:ncol(activos)] != 0, nrow = nrow(activos), ncol = (ncol(activos)-1))
+altas_bajas <- as.matrix(activos[,2:ncol(activos)] >= 10000, nrow = nrow(activos), ncol = (ncol(activos)-1))
 altas_bajas <- cbind(ID = activos$ID, altas_bajas)
 altas_bajas <- as.data.frame(altas_bajas)
 ```
@@ -65,7 +65,7 @@ ggplot(conteo_anual, aes(x = Año)) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C."))
 ```
 
-Al analizar las altas y bajas del regimen es importante tener en cuenta que se está trabajando con población cerrada, es decir, no entran nuevas generaciones. Por lo tanto, como se puede observar en el gráfico las altas y bajas de los activos son inversamente proporcionales, cuando aumentan las bajas se tiene una disminición en las altas en la misma proporción y viceversa. 
+Al analizar las altas y bajas del regimen es importante recalcar que solo se consideran como cotizaciones los salarios mayores o iguales a los diez mil colones además,se debe tener en cuenta que se está trabajando con población cerrada, es decir, no entran nuevas generaciones. Por lo tanto, como se puede observar en el gráfico las altas y bajas de los activos son inversamente proporcionales, cuando aumentan las bajas se tiene una disminición en las altas en la misma proporción y viceversa. 
 
 En 1994, como apenas se inicia el regimen, la mayoría de personas no se encontraban aportando para el regimen, esto se puede ver en el gráfico donde las bajas son superiores a las altas. Sin embargo, conforme van pasando los años las bajas van disminuyendo puesto que, muchos individuos comienzan a hacer aportaciones, aumentando así las altas del regimen. 
 
