@@ -13,6 +13,7 @@ library(readxl)
 library(tidyr)
 library(dplyr)
 library(ggplot2)
+library(lubridate)
 ```
 
 ```{r, message = FALSE, echo=FALSE}
@@ -48,7 +49,17 @@ pensionados_na_con_promedio <- pensionados_na_con_promedio[, -6]
 
 # pone la fecha en que se pensionarían
 pensionados_na_con_promedio <- pensionados_na_con_promedio %>%
-  mutate(`Rige de la Pensión` = FEC_NAC + as.numeric(Edad_Pension) * 365.25 * 24 * 60 * 60)  
+  mutate(`Rige de la Pensión` = 
+    fecha_pension <- FEC_NAC + as.numeric(Edad_Pension) * 365.25 * 24 * 60 * 60)
+
+# se corrigen años de rige de la pensión mayores a 2023
+fecha_inicio_pension <- pensionados_na_con_promedio$`Rige de la Pensión`
+for(i in 1 : length(fecha_inicio_pension)) {
+  if(year(fecha_inicio_pension[i]) > 2023){
+    year(fecha_inicio_pension[i]) <- 2023
+  }
+}
+pensionados_na_con_promedio$`Rige de la Pensión` <- fecha_inicio_pension
 
 # se une todo
 pensionados <- bind_rows(pensionados_na_con_promedio, pensionados %>% filter(!is.na(`Rige de la Pensión`))) 
@@ -105,7 +116,7 @@ decrecimiento en las entradas ingresando solo una persona en el 2023.
 Con respecto a los pensionados por vejez, no se presentó ningún registro de
 entrada hasta el 2010. En el periodo del 2010 al 2015, la cantidad de nuevos 
 pensionados por vejez estuvo entre 1 y 7 personas. En los años siguientes aumentó
-la cantidad de entradas, alcanzando un valor máximo de 46 personas en el 2022. 
+la cantidad de entradas, alcanzando un valor máximo de 48 personas en el 2022. 
 Al igual que los otros dos tipos de pensiones, para el 2023 se sufrió una reducción
 en los ingresos recibiendo a 21 personas.
 
