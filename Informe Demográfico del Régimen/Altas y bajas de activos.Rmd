@@ -62,5 +62,11 @@ ggplot(conteo_anual, aes(x = Año)) +
   theme(plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
         plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
-  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C."))
 ```
+
+Al analizar las altas y bajas del regimen es importante tener en cuenta que se está trabajando con población cerrada, es decir, no entran nuevas generaciones. Por lo tanto, como se puede observar en el gráfico las altas y bajas de los activos son inversamente proporcionales, cuando aumentan las bajas se tiene una disminición en las altas en la misma proporción y viceversa. 
+
+En 1994, como apenas se inicia el regimen, la mayoría de personas no se encontraban aportando para el regimen, esto se puede ver en el gráfico donde las bajas son superiores a las altas. Sin embargo, conforme van pasando los años las bajas van disminuyendo puesto que, muchos individuos comienzan a hacer aportaciones, aumentando así las altas del regimen. 
+
+En general, desde 1994 hasta 2022 se mantiene una tendencia al aumento de las personas que realizan aportaciones (altas) y la disminución de las que no aportan (bajas). No obstante, en el último año se da una importante reducción en la cantidad de personas que aportan al regimen, lo cual se refleja en un aumento en las bajas. 
