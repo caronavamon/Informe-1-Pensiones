@@ -46,6 +46,7 @@ library(lubridate)
 
 El estudio actuarial se llevará a cabo utilizando como base el Fondo C. Su sostenibilidad y eficiencia dependen en gran medida de la composición de la población que contribuye a él. Por ello, es fundamental analizar la composición de dicho fondo a nivel poblacional. En esta sección, nos enfocaremos en estudiar la estructura demográfica de la población que forma parte este régimen. A continuación, se presentará un análisis detallado de la estructura poblacional del fondo. Para llevar a cabo este análisis, se utilizarán datos demográficos relevantes, como la edad, el género y actividad.
 
+
 ```{r Estructura de la Poblacion, warning=FALSE,message=FALSE, include=FALSE}
 FC_Activos <- read_excel(
   "Fondo C.xlsx",
@@ -221,6 +222,14 @@ Graf1 <- rbind(
   )
 ```
 
+
+
+
+
+
+
+
+
 \begin{wrapfigure}[15]{r}{0.5\textwidth}
 
  \centering
@@ -231,28 +240,22 @@ Graf1
 
 \end{wrapfigure}
 
-```{r}
-temp1 <- length(FC_Activos[1]) + length(FC_Pensinados[1])
+```{r temp1, warning=FALSE,message=FALSE, include=FALSE}
+temp1 <- length(FC_Activos$Sexo) + length(FC_Pensinados$Sexo)
 temp2 <- sum(FC_Activos$Activo23)
-temp3 <- sum(FC_Activos$Activo23)/(length(FC_Activos[1]) + length(FC_Pensinados[1]))
-temp4 <- length(FC_Pensinados[1])
-temp5 <- length(FC_Pensinados[1])/(length(FC_Activos[1]) + length(FC_Pensinados[1]))
+temp3 <- round(sum(FC_Activos$Activo23)/(length(FC_Activos$Sexo) + length(FC_Pensinados$Sexo)),2)*100
+temp4 <- length(FC_Pensinados$Sexo)
+temp5 <- round(length(FC_Pensinados$Sexo)/(length(FC_Activos$Sexo) + length(FC_Pensinados$Sexo)),2)*100
+temp6 <- temp1 - temp2 -temp4
+temp7 <- round(temp6/temp1,2)*100
 ```
 
 
-Gracias a al Gráfico 1 es posible observar que para la fecha corte de este análisis el Fondo esta compuesto por un total de `r temp1` de las cuales `r temp2` (`r temp3`%) son personas activas es decir que realizaron una contribución al régimen en los últimos 12 meses, ademas los pensionados son un total de `r temp4` ((`r temp5`%))
+Para la fecha de corte de este análisis, se revela que el Fondo presenta una estructura poblacional robusta y activa, con una participación equitativa de género que refleja la diversidad y equilibrio de la sociedad actual. El regimen está compuesto por un total de `r temp1` personas. De ellas, `r temp2` (`r temp3`%) son personas activas, lo que significa que realizaron una contribución al régimen en los últimos 12 meses. Además, hay `r temp4` pensionados (`r temp5`%) y los restantes `r temp6` (`r temp7`%) están inactivos. En el caso del genero se encuentra muy equilibrado siendo que el 51% es femenino y el 49% masculino  y sin mucha variabilidad si se segrega de forma similar a lo anterior. Todo esto permite observar un régimen sostenible que puede apoyar a sus pensionados de manera efectiva. Este equilibrio entre personas activas y pensionados es crucial para la viabilidad a largo plazo del fondo.
 
 
-```{r}
+Gracias al gráfico es posible observar la concentración de la población en el rango de edad productiva entre los 20 y 50 años lo cual es también un indicador positivo, ya que sugiere que el fondo puede contar con una base sólida de contribuyentes durante los próximos años. Estos datos son consistentes con los hallazgos del Informe Demográfico Nacional, lo que sugiere que las tendencias observadas en el fondo de pensiones son un reflejo de la dinámica poblacional más amplia del país. En conjunto, estos elementos proporcionan una perspectiva alentadora para la sostenibilidad y el crecimiento continuo del fondo, asegurando que las necesidades de los pensionados actuales y futuros puedan ser atendidas con confianza.
 
-mean(FC_Activos$Activo23)
-
-
-mean(FC_Activos$Contribuciones23)
-mean(FC_Activos$Activo22)
-mean(FC_Activos$Contribuciones22)
-
-```
 
 
 
