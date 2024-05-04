@@ -222,14 +222,6 @@ Graf1 <- rbind(
   )
 ```
 
-
-
-
-
-
-
-
-
 \begin{wrapfigure}[15]{r}{0.5\textwidth}
 
  \centering
@@ -255,7 +247,5 @@ Para la fecha de corte de este análisis, se revela que el Fondo presenta una es
 
 
 Gracias al gráfico es posible observar la concentración de la población en el rango de edad productiva entre los 20 y 50 años lo cual es también un indicador positivo, ya que sugiere que el fondo puede contar con una base sólida de contribuyentes durante los próximos años. Estos datos son consistentes con los hallazgos del Informe Demográfico Nacional, lo que sugiere que las tendencias observadas en el fondo de pensiones son un reflejo de la dinámica poblacional más amplia del país. En conjunto, estos elementos proporcionan una perspectiva alentadora para la sostenibilidad y el crecimiento continuo del fondo, asegurando que las necesidades de los pensionados actuales y futuros puedan ser atendidas con confianza.
-
-
 
 

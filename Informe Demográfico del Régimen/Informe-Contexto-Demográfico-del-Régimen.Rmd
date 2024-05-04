@@ -1,0 +1,594 @@
+---
+title: "Informe Contexto Demográfico del Régimen"
+subtitle: "Grupo 3"
+author:
+  - "Maria Carolina Navarro Monge C05513"
+  - "Tábata Picado Carmona C05961"
+  - "Jimena Marchena Mendoza B74425"
+  - "Valentin Chavarría Ubeda B82098"
+
+output:
+  pdf_document:
+    latex_engine: xelatex
+    toc: true
+ 
+header-includes:
+  - \usepackage[spanish, provide=*]{babel}
+  - \usepackage{titling}
+  - \usepackage{fontspec}
+  - \setmainfont{Arial}
+  - \usepackage{xcolor}
+  - \definecolor{azul}{RGB}{49, 126, 153 }
+  - \definecolor{gris}{RGB}{12, 76, 99}
+  - \usepackage{sectsty}
+  - \sectionfont{\color{azul}}
+  - \subsectionfont{\color{gris}}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+\newpage
+
+```{r, warning=FALSE,message=FALSE, echo=FALSE}
+library(readxl)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+```
+
+#  Análisis general de la Estructura Poblacional del Régimen
+
+El estudio actuarial se llevará a cabo utilizando como base el Fondo C. Su sostenibilidad y eficiencia dependen en gran medida de la composición de la población que contribuye a él. Por ello, es fundamental analizar la composición de dicho fondo a nivel poblacional. En esta sección, nos enfocaremos en estudiar la estructura demográfica de la población que forma parte este régimen. A continuación, se presentará un análisis detallado de la estructura poblacional del fondo. Para llevar a cabo este análisis, se utilizarán datos demográficos relevantes, como la edad, el género y actividad.
+
+
+```{r Estructura de la Poblacion, warning=FALSE,message=FALSE, include=FALSE}
+FC_Activos <- read_excel(
+  "Fondo C.xlsx",
+  sheet = 
+    "Activos"
+)
+FC_Activos <- FC_Activos %>% 
+  mutate(
+    Fec.Nac =
+      as.Date(Fec.Nac),
+    Edad = 
+      floor(
+        interval(
+          Fec.Nac,ymd(
+            "2023-12-31"
+          )
+        )/
+          years(1)
+      ),
+    Edad5 = 
+      floor(
+        Edad/5
+      )*5,
+    Activo23 =
+      rowSums(
+        FC_Activos[,352:363]
+      )>0,
+    Contribuciones23=
+      rowSums(
+        FC_Activos[,352:363]>10000
+      ),
+    Activo22 =
+      rowSums(
+        FC_Activos[,(352:363)-12]
+      )>0,
+    Contribuciones22=
+      rowSums(
+        FC_Activos[,(352:363)-12]>10000
+      ),
+    N = (
+      Sexo == 
+        "M"
+    )*2 - 1
+  )
+
+FC_Pensinados <- read_excel(
+  "Fondo C.xlsx",
+  sheet =
+    "Pensionados"
+) 
+FC_Pensinados <- FC_Pensinados %>% 
+  mutate(
+    FEC_NAC =
+      as.Date(FEC_NAC),
+    Edad = 
+      floor(
+        interval(
+          FEC_NAC,ymd(
+            "2023-12-31"
+          )
+        )/
+          years(1)
+      ),
+    Edad5 = 
+      floor(
+        Edad/5
+      )*5,
+    N = (
+       SEXO== 
+        "M"
+    )*2 - 1
+  ) %>% 
+  rename(
+    Sexo =
+      SEXO
+  )
+
+```
+
+
+
+```{r P, warning=FALSE, message=FALSE, echo=FALSE,  out.width="50%", fig.keep='all'}
+
+Graf1 <- rbind(
+  FC_Activos %>%
+  select(
+    Edad,
+    N,
+    Sexo
+  ) ,
+  FC_Pensinados %>% 
+    select(
+      Edad,
+      N,
+      Sexo
+    )
+  )%>%
+  ggplot(
+    aes(
+      x =
+        Edad,
+      fill =
+        Sexo,
+      weight =
+        N
+    )
+  )+
+  geom_histogram(
+    binwidth =
+      2,
+    color =
+      "black"
+  ) +
+  labs(
+    x =
+      "Edad",
+    y =
+      "Conteo",
+    title =
+      "Distribución de Edades"
+  ) +
+  theme_minimal()+
+  coord_flip() +
+  scale_fill_manual(
+    name =
+      "Genero",
+    labels = c(
+      "Femenino" ,
+      "Masculino"),
+    values =
+      c(
+        "#2F4F4F",
+        "cadetblue3",
+        "#4B7F52",
+        "#A2CD5A"
+      )
+  ) +
+  theme(
+    legend.position =
+      "bottom",
+    plot.title =
+      element_text(
+        hjust =
+          0.5
+      ),
+    plot.subtitle =
+      element_text(
+        hjust =
+          0.5
+      ),
+    plot.caption =
+      element_text(
+        hjust =
+          0,
+        color =
+          "black",
+        size =
+          8),
+    legend.title =
+      element_blank()
+  ) +
+  labs(
+    title =
+      "Pirámide Poblacional del Regimen",
+    subtitle =
+      "por Edad según el Genero",
+    y =
+      "Cantidad",
+    x =
+      "Edad",
+    caption =
+      expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C.")
+  )
+```
+
+
+\begin{wrapfigure}[15]{r}{0.5\textwidth}
+
+ \centering
+```{r , fig.align='right', echo=FALSE}
+Graf1
+```
+ 
+
+\end{wrapfigure}
+
+```{r temp1, warning=FALSE,message=FALSE, include=FALSE}
+temp1 <- length(FC_Activos$Sexo) + length(FC_Pensinados$Sexo)
+temp2 <- sum(FC_Activos$Activo23)
+temp3 <- round(sum(FC_Activos$Activo23)/(length(FC_Activos$Sexo) + length(FC_Pensinados$Sexo)),2)*100
+temp4 <- length(FC_Pensinados$Sexo)
+temp5 <- round(length(FC_Pensinados$Sexo)/(length(FC_Activos$Sexo) + length(FC_Pensinados$Sexo)),2)*100
+temp6 <- temp1 - temp2 -temp4
+temp7 <- round(temp6/temp1,2)*100
+```
+
+
+Para la fecha de corte de este análisis, se revela que el Fondo presenta una estructura poblacional robusta y activa, con una participación equitativa de género que refleja la diversidad y equilibrio de la sociedad actual. El regimen está compuesto por un total de `r temp1` personas. De ellas, `r temp2` (`r temp3`%) son personas activas, lo que significa que realizaron una contribución al régimen en los últimos 12 meses. Además, hay `r temp4` pensionados (`r temp5`%) y los restantes `r temp6` (`r temp7`%) están inactivos. En el caso del genero se encuentra muy equilibrado siendo que el 51% es femenino y el 49% masculino  y sin mucha variabilidad si se segrega de forma similar a lo anterior. Todo esto permite observar un régimen sostenible que puede apoyar a sus pensionados de manera efectiva. Este equilibrio entre personas activas y pensionados es crucial para la viabilidad a largo plazo del fondo.
+
+
+Gracias al gráfico es posible observar la concentración de la población en el rango de edad productiva entre los 20 y 50 años lo cual es también un indicador positivo, ya que sugiere que el fondo puede contar con una base sólida de contribuyentes durante los próximos años. Estos datos son consistentes con los hallazgos del Informe Demográfico Nacional, lo que sugiere que las tendencias observadas en el fondo de pensiones son un reflejo de la dinámica poblacional más amplia del país. En conjunto, estos elementos proporcionan una perspectiva alentadora para la sostenibilidad y el crecimiento continuo del fondo, asegurando que las necesidades de los pensionados actuales y futuros puedan ser atendidas con confianza.
+
+
+# Población activa y pensionada
+
+## Activos
+
+```{r, echo=FALSE, message=FALSE}
+# Leer la hoja 'Activos'
+activos <- read_excel("Fondo C.xlsx", sheet = "Activos")
+activos <- activos[, -c(1, (ncol(activos)-1):ncol(activos))]
+```
+
+Al 31 de diciembre de 2023 hay un total de 3.758 de cotizantes activos del fondo de pensiones, cuya distribución por sexo es la siguiente: 1.907 mujeres (50,75%) y 1.851 hombres (49,25%). 
+
+```{r, message = FALSE, echo=FALSE}
+activos_filtrados <- activos %>%
+  filter(rowSums(select(., -c(1:350))) != 0)
+```
+
+
+```{r, message = FALSE, echo=FALSE}
+
+activos_filtrados$Fec.Nac <- as.Date(activos_filtrados$Fec.Nac) # Asegurar que FEC_NAC es de tipo Date
+activos_filtrados$Edad <- as.numeric(format(as.Date("2023-12-31"), "%Y")) - as.numeric(format(activos_filtrados$Fec.Nac, "%Y"))
+
+```
+
+```{r, message = FALSE, echo=FALSE}
+activos_filtrados$Edad_intervalo <- cut(activos_filtrados$Edad, breaks = seq(0, 80, by = 5), include.lowest = TRUE)
+
+# Contar la cantidad de hombres y mujeres en cada intervalo de edad
+piramide2 <- activos_filtrados %>%
+  group_by(Edad_intervalo, Sexo) %>%
+  summarise(Count = n(), .groups = "drop") %>%
+  ungroup()
+
+# Graficar la pirámide poblacional
+ggplot(piramide2, aes(x = Edad_intervalo, y = ifelse(Sexo == "M", -Count, Count), fill = Sexo)) +
+  geom_bar(stat = "identity") +
+  scale_y_continuous(labels = abs) +
+  labs(title = "Pirámide Poblacional de Activos",
+       subtitle = "2023",
+       x = "Edad",
+       y = "Activos",
+       fill = "Sexo") +
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  coord_flip()+
+  scale_fill_manual(values = c( "cadetblue3","#2F4F4F"),
+                    labels = c( "Mujeres","Hombres"))+
+  labs(caption = expression(bold("Fuente: ") * "Elaboración propia a partir de datos del fondo de pensiones."))
+```
+
+De acuerdo con los datos proporcionados, los cotizantes abarcan un rango de edades entre los 20 y los 78 años, con una edad promedio de 43.07 años. El gráfico muestra la distribución por edad y sexo de los cotizantes activos, destacándose una notable concentración entre los 40 y 50 años en ambos géneros.
+
+
+```{r, message = FALSE, echo=FALSE}
+
+cotizaciones <- activos_filtrados[, -c(1:2, 363, 364)]
+
+activos_filtrados$Antiguedad <- apply(cotizaciones[, 1:360] != 0, 1, function(x) {
+  # Encuentra el índice del primer mes no cero
+  primer_mes <- min(which(x))
+  # Calcula la antigüedad (número de meses con cotizaciones)
+  antiguedad <- 361 - primer_mes
+  return(antiguedad)
+})
+
+activos_filtrados$Antiguedad <- activos_filtrados$Antiguedad / 12
+```
+
+
+```{r, message = FALSE, echo=FALSE}
+activos_filtrados$Antiguedad_Interva <- cut(activos_filtrados$Antiguedad, 
+                                        breaks = c(0, 1, 5, 10, 20, Inf),
+                                        labels = c("<1", "1-5", "5-10", "10-20", "20<"),
+                                        right = FALSE)
+```
+
+```{r, message = FALSE, echo=FALSE}
+activos_combined <- activos_filtrados %>%
+  group_by(Antiguedad_Interva, Sexo) %>%
+  summarise(Count = n(), .groups = "drop") %>%
+  pivot_wider(names_from = Sexo, values_from = Count) %>%
+  mutate(M = ifelse(is.na(M), 0, M), F = ifelse(is.na(F), 0, F))
+
+datos_long <- tidyr::pivot_longer(activos_combined, cols = c(F, M), names_to = "Sexo", values_to = "Cantidad")
+
+# Crear el gráfico
+ggplot(datos_long, aes(x = Antiguedad_Interva, y = Cantidad, fill = Sexo)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Distribución de la Antigüedad de Activos",
+       subtitle = "2023",
+       x = "Antigüedad (años)",
+       y = "Cantidad",
+       fill = "Género") +
+  scale_fill_manual(values = c("cadetblue3", "#2F4F4F"), labels = c("Mujeres", "Hombres")) +
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank())+
+  labs(caption = expression(bold("Fuente: ") * "Elaboración propia a partir de datos del fondo de pensiones."))
+```
+
+En cuanto a la antigüedad, la media se sitúa en 12.54 años. En el gráfico se representa la distribución por rango de edad y sexo, evidenciando un grupo notablemente longevo de cotizantes en ambos géneros. La mayoría de ellos tienen entre 10 y 20 años de antigüedad, seguidos por aquellos con 5 a 10 años, y los que superan los 20 años de antigüedad.
+
+```{r, message = FALSE, echo=FALSE}
+# se cargan los datos de interés
+pensionados <- read_excel("Fondo C.xlsx", sheet = "Pensionados")
+# se eliminan las columnas no necesarias
+pensionados <- pensionados[,c(2,4,5,8)]
+```
+
+
+```{r, message = FALSE, echo=FALSE}
+# Calcular la edad al 31 de diciembre de 2023
+pensionados$FEC_NAC <- as.Date(pensionados$FEC_NAC) # Asegurar que FEC_NAC es de tipo Date
+pensionados$Edad <- as.numeric(format(as.Date("2023-12-31"), "%Y")) - as.numeric(format(pensionados$FEC_NAC, "%Y"))
+```
+
+```{r, message = FALSE, echo=FALSE}
+pensionados$Edad_intervalo <- cut(pensionados$Edad, breaks = seq(0, 85, by = 5), include.lowest = TRUE)
+
+# Contar la cantidad de hombres y mujeres en cada intervalo de edad
+piramide <- pensionados %>%
+  group_by(Edad_intervalo, SEXO, COD_TIPO_PENSION) %>%
+  summarise(Count = n(), .groups = "drop") %>%
+  ungroup()
+
+# Graficar la pirámide poblacional
+ggplot(piramide, aes(x = Edad_intervalo, y = ifelse(SEXO == "M", -Count, Count), fill = SEXO)) +
+  geom_bar(stat = "identity") +
+  scale_y_continuous(labels = abs) +
+  labs(title = "Pirámide Poblacional de Pensionados",
+       subtitle = "2023",
+       x = "Edad",
+       y = "Pensionados",
+       fill = "Sexo") +
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  coord_flip()+
+  scale_fill_manual(values = c( "cadetblue3","#2F4F4F"),
+                    labels = c( "Mujeres","Hombres"))+
+  labs(caption = expression(bold("Fuente: ") * "Elaboración propia a partir de datos del fondo de pensiones."))
+```
+
+
+```{r, message = FALSE, echo=FALSE}
+pensionados_por_tipo <- pensionados %>%
+  group_by(COD_TIPO_PENSION, SEXO) %>%
+  summarise(Count = n()) %>%
+  pivot_wider(names_from = SEXO, values_from = Count, values_fill = 0)
+
+datos_long2 <- tidyr::pivot_longer(pensionados_por_tipo, cols = c(F, M), names_to = "Sexo", values_to = "Cantidad")
+
+ggplot(datos_long2, aes(x = COD_TIPO_PENSION, y = Cantidad, fill = Sexo)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Distribución de los Tipos de Pension",
+       subtitle = "2023",
+       x = "Tipos de Pensión",
+       y = "Cantidad",
+       fill = "Género") +
+  scale_fill_manual(values = c("cadetblue3", "#2F4F4F"), labels = c("Mujeres", "Hombres")) +
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank())+
+  labs(caption = expression(bold("Fuente: ") * "Elaboración propia a partir de datos del fondo de pensiones."))
+```
+
+```{r, message = FALSE, echo=FALSE}
+# Se rellenan datos faltantes para pensionados por vejez
+
+# calcula edad de pension
+pensionados <- pensionados %>%
+  mutate(Edad_Pension = as.numeric(difftime(`Rige de la Pensión`, FEC_NAC, units = "days")) / 365.25) 
+```
+
+
+```{r, message = FALSE, echo=FALSE}
+# se cargan los datos de interés
+pensionados2 <- read_excel("Fondo C.xlsx", sheet = "Pensionados")
+# se eliminan las columnas no necesarias
+pensionados2 <- pensionados2[,c(2,4,5,8)]
+
+# Se rellenan datos faltantes para pensionados por vejez
+
+# calcula edad de pension
+pensionados2 <- pensionados2 %>%
+  mutate(Edad_Pension = as.numeric(difftime(`Rige de la Pensión`, FEC_NAC, units = "days")) / 365.25) 
+
+#calcula el promedio de edad de pension por tipo y sexo
+promedio_edad_pension_tipo<- pensionados2 %>%
+  group_by(COD_TIPO_PENSION, SEXO) %>%
+  summarize(promedio_edad_pension = mean(Edad_Pension, na.rm = TRUE)) 
+
+#aquí trabaja solo con los que tiene NA's
+pensionados_na <- pensionados2 %>%
+  filter(is.na(`Rige de la Pensión`)) 
+
+# se le agrega la edad de pensión promedio a los que tienen NA's
+pensionados_na_con_promedio <- left_join(pensionados_na, promedio_edad_pension_tipo, by = c("SEXO", "COD_TIPO_PENSION"))
+
+# Actualiza la columna 'Edad_Pension' con el promedio de edad de pensión correspondiente
+pensionados_na_con_promedio <- pensionados_na_con_promedio %>%
+  mutate(Edad_Pension = ifelse(is.na(Edad_Pension), promedio_edad_pension, Edad_Pension))
+
+# Eliminar la columna 'promedio_edad_pension'
+pensionados_na_con_promedio <- pensionados_na_con_promedio[, -6]
+
+# pone la fecha en que se pensionarían
+pensionados_na_con_promedio <- pensionados_na_con_promedio %>%
+  mutate(`Rige de la Pensión` = 
+    fecha_pension <- FEC_NAC + as.numeric(Edad_Pension) * 365.25 * 24 * 60 * 60)
+
+# se corrigen años de rige de la pensión mayores a 2023
+fecha_inicio_pension <- pensionados_na_con_promedio$`Rige de la Pensión`
+for(i in 1 : length(fecha_inicio_pension)) {
+  if(year(fecha_inicio_pension[i]) > 2023){
+    year(fecha_inicio_pension[i]) <- 2023
+  }
+}
+pensionados_na_con_promedio$`Rige de la Pensión` <- fecha_inicio_pension
+
+# se une todo
+pensionados2 <- bind_rows(pensionados_na_con_promedio, pensionados2 %>% filter(!is.na(`Rige de la Pensión`))) 
+
+# calcula la antiguedad
+antiguedad_pension <- pensionados2 %>%
+  mutate(Antiguedad_Pension = as.numeric(difftime(Sys.Date(), `Rige de la Pensión`, units = "days")) / 365.25) 
+
+```
+
+```{r, message = FALSE, echo=FALSE}
+pensionados$Antiguedad_intervalo <- cut(antiguedad_pension$Antiguedad_Pension, 
+                                        breaks = c(0, 1, 5, 10, 20, Inf),
+                                        labels = c("<1", "1-5", "5-10", "10-20", "20<"),
+                                        right = FALSE)
+```
+
+```{r, message = FALSE, echo=FALSE}
+pensionados_combined <- pensionados %>%
+  group_by(Antiguedad_intervalo, SEXO) %>%
+  summarise(Count = n(), .groups = "drop") %>%
+  pivot_wider(names_from = SEXO, values_from = Count) %>%
+  mutate(M = ifelse(is.na(M), 0, M), F = ifelse(is.na(F), 0, F))
+
+datos_long <- tidyr::pivot_longer(pensionados_combined, cols = c(F, M), names_to = "Sexo", values_to = "Cantidad")
+
+# Crear el gráfico
+ggplot(datos_long, aes(x = Antiguedad_intervalo, y = Cantidad, fill = Sexo)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Distribución de la Antigüedad de Pensionados",
+       subtitle = "2023",
+       x = "Antigüedad (años)",
+       y = "Cantidad",
+       fill = "Género") +
+  scale_fill_manual(values = c("cadetblue3", "#2F4F4F"), labels = c("Mujeres", "Hombres")) +
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank())+
+  labs(caption = expression(bold("Fuente: ") * "Elaboración propia a partir de datos del fondo de pensiones."))
+```
+
+# Comportamiento de altas y bajas de activos y pensionados
+
+## Activos
+
+## Pensionados 
+```{r, echo=FALSE, message=FALSE}
+# se extrae  el año de la fecha de inicio de pensión
+pensionados2$año <- format(pensionados2$`Rige de la Pensión`, "%Y")
+
+# se cuenta la cantidad de pensionados que ingresan por mes, año y tipo de pensión
+conteo <- pensionados2 %>%
+  group_by(año, COD_TIPO_PENSION) %>%
+  summarise(cantidad_personas = n())
+conteo$año <- as.numeric(conteo$año)
+```
+
+A continuación, se analizan las altas de los pensionados del Régimen 
+en estudio, específicamente, la cantidad de entradas de pensionados 
+por año y por tipo de pensión (Invalidez, Vejez y Sucesión), durante un 
+periodo que abarca desde el 2001 al 2023.
+
+Además, dado que el fondo no cuenta con la fecha de salida de los pensionados, no se 
+analizarán las bajas.
+
+En el gráfico #, se muestra el comportamiento de las entradas de pensionados.
+
+```{r, warning=FALSE, echo=FALSE}
+  ggplot(conteo, aes(x = as.numeric(año), y = cantidad_personas, color = COD_TIPO_PENSION)) +
+  geom_line() +
+  labs(title = " Gráfico #: Entradas de pensionados por año del Régimen",
+       subtitle = "2001-2023",x = " Año de inicio de pago de la pensión",
+       y = "Cantidad de personas pensionadas", color = "Tipo de pensión")+
+  scale_color_manual(values = c("#2F4F4F", "cadetblue3", "#BCEE68"))+
+  theme_minimal()+
+   theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C"))
+
+```
+
+Es posible observar que para el caso de los pensionados por invalidez,
+las entradas entre el 2001 y el 2014 son similares, están rondando entre 1 y 3 
+personas. Posteriormente, se presenta un incremento a partir del 2015, alcanzando
+un pico de 10 nuevos pensionados por invalidez en el 2019. Sin embargo, en los
+último años, se experimentó una baja en la cantidad de ingresos siendo en el 2023
+de una sola persona.
+
+En cuanto a los nuevos pensionados por sucesión, se presentan registros a partir
+del 2004. Se puede identificar una tendencia a la alta con el mayor ingreso
+de pensionados por este tipo entre el 2018 y el 2022, experimentando un pico de 20 
+pensionados en el 2021. No obstante, al igual que la pensión anterior, se presentó un 
+decrecimiento en las entradas ingresando solo una persona en el 2023.
+
+Con respecto a los pensionados por vejez, no se presentó ningún registro de
+entrada hasta el 2010. En el periodo del 2010 al 2015, la cantidad de nuevos 
+pensionados por vejez estuvo entre 1 y 7 personas. En los años siguientes aumentó
+la cantidad de entradas, alcanzando un valor máximo de 48 personas en el 2022. 
+Al igual que los otros dos tipos de pensiones, para el 2023 se sufrió una reducción
+en los ingresos recibiendo a 30 personas.
+
+En síntesis, se identifica que en el periodo de estudio, el mayor crecimiento de entradas de 
+pensionados son percibidos por las pensiones por vejez, seguido de las pensiones
+por sucesión y por último, las de invalidez. Las tres mostraron una tendencia a
+la alta pero bajaron en el 2023.
+
+

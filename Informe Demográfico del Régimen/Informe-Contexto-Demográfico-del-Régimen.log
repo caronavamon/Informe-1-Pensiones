@@ -1,24 +1,24 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.3.22)  19 APR 2024 23:58
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.5.4)  4 MAY 2024 00:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Informe-Contexto-Demográfico.tex
-(./Informe-Contexto-Demográfico.tex
+**Informe-Contexto-Demográfico-del-Régimen.tex
+(./Informe-Contexto-Demográfico-del-Régimen.tex
 LaTeX2e <2023-11-01> patch level 1
-L3 programming layer <2024-03-14>
+L3 programming layer <2024-04-11>
 (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count184
-\c@section=\count185
-\c@subsection=\count186
-\c@subsubsection=\count187
-\c@paragraph=\count188
-\c@subparagraph=\count189
-\c@figure=\count190
-\c@table=\count191
+\c@part=\count185
+\c@section=\count186
+\c@subsection=\count187
+\c@subsubsection=\count188
+\c@paragraph=\count189
+\c@subparagraph=\count190
+\c@figure=\count191
+\c@table=\count192
 \abovecaptionskip=\skip48
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
@@ -38,14 +38,14 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 ) (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count192
+\inf@bad=\count193
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count193
-\leftroot@=\count194
+\uproot@=\count194
+\leftroot@=\count195
 LaTeX Info: Redefining \overline on input line 399.
 LaTeX Info: Redefining \colon on input line 410.
-\classnum@=\count195
-\DOTSCASE@=\count196
+\classnum@=\count196
+\DOTSCASE@=\count197
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
@@ -58,20 +58,20 @@ LaTeX Info: Redefining \Bigg on input line 725.
 \big@size=\dimen143
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count197
+\macc@depth=\count198
 LaTeX Info: Redefining \bmod on input line 905.
 LaTeX Info: Redefining \pmod on input line 910.
 LaTeX Info: Redefining \smash on input line 940.
 LaTeX Info: Redefining \relbar on input line 970.
 LaTeX Info: Redefining \Relbar on input line 971.
-\c@MaxMatrixCols=\count198
+\c@MaxMatrixCols=\count199
 \dotsspace@=\muskip16
-\c@parentequation=\count199
-\dspbrk@lvl=\count266
+\c@parentequation=\count266
+\dspbrk@lvl=\count267
 \tag@help=\toks18
-\row@=\count267
-\column@=\count268
-\maxfields@=\count269
+\row@=\count268
+\column@=\count269
+\maxfields@=\count270
 \andhelp@=\toks19
 \eqnshift@=\dimen144
 \alignsep@=\dimen145
@@ -97,12 +97,11 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 )) (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ) (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math.sty (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2024-03-14 L3 programming layer (loader) 
+Package: expl3 2024-04-11 L3 programming layer (loader) 
 (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
-File: l3backend-xetex.def 2024-03-14 L3 backend support: XeTeX
-\g__graphics_track_int=\count270
+File: l3backend-xetex.def 2024-04-11 L3 backend support: XeTeX
+\g__graphics_track_int=\count271
 \l__pdf_internal_box=\box53
-\g__pdf_backend_object_int=\count271
 \g__pdf_backend_annotation_int=\count272
 \g__pdf_backend_link_int=\count273
 ))
@@ -114,9 +113,9 @@ Package: xparse 2024-03-14 L3 Experimental document command parser
 ) (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
 Package: l3keys2e 2024-03-14 LaTeX2e option processing using LaTeX3 keys
 ) (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.sty
-Package: fontspec 2024/02/13 v2.9a Font selection for XeLaTeX and LuaLaTeX
+Package: fontspec 2024/04/27 v2.9b Font selection for XeLaTeX and LuaLaTeX
 (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
-Package: fontspec-xetex 2024/02/13 v2.9a Font selection for XeLaTeX and LuaLaTeX
+Package: fontspec-xetex 2024/04/27 v2.9b Font selection for XeLaTeX and LuaLaTeX
 \l__fontspec_script_int=\count274
 \l__fontspec_language_int=\count275
 \l__fontspec_strnum_int=\count276
@@ -228,7 +227,7 @@ Package graphics Info: Driver file: xetex.def on input line 107.
 \Gin@req@height=\dimen161
 \Gin@req@width=\dimen162
 ) (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2024/03/29 v24.3 The Babel package
+Package: babel 2024/04/20 v24.4 The Babel package
 \babel@savecnt=\count291
 \U@D=\dimen163
 \l@unhyphenated=\language5
@@ -237,78 +236,90 @@ Package: babel 2024/03/29 v24.3 The Babel package
 \bbl@dirlevel=\count292
 (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/babel/locale/es/babel-spanish.tex)
 Package babel Info: Importing data for spanish
-(babel)             from babel-es.ini. Reported on input line 4246.
+(babel)             from babel-es.ini. Reported on input line 4248.
 Package babel Info: Hyphen rules for 'spanish' set to \l@english
-(babel)             (\language0). Reported on input line 4246.
+(babel)             (\language0). Reported on input line 4248.
 ) (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/titling/titling.sty
 Package: titling 2009/09/04 v2.1d maketitle typesetting
 \thanksmarkwidth=\skip53
 \thanksmargin=\skip54
 \droptitle=\skip55
-) (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen164
-\WF@size=\dimen165
-\c@WF@wrappedlines=\count293
-\WF@box=\box54
-\WF@everypar=\toks24
-Package: wrapfig 2003/01/31  v 3.6
 )
 
-Package fontspec Info: Arial scale = 0.8311533923217035.
+Package fontspec Info: 
+(fontspec)             Arial scale = 0.8311533923217035.
 
 
-Package fontspec Info: Arial scale = 1.
+Package fontspec Info: 
+(fontspec)             Arial scale = 1.
 
 
-Package fontspec Info: Arial scale = 0.8311533923217035.
+Package fontspec Info: 
+(fontspec)             Arial scale = 0.8311533923217035.
 
 
-Package fontspec Info: Arial scale = 1.
+Package fontspec Info: 
+(fontspec)             Arial scale = 1.
 
 
-Package fontspec Info: Arial scale = 0.8311533923217035.
+Package fontspec Info: 
+(fontspec)             Arial scale = 0.8311533923217035.
 
 
-Package fontspec Info: Arial scale = 1.
+Package fontspec Info: 
+(fontspec)             Arial scale = 1.
 
 
-Package fontspec Info: Arial/B scale = 0.8311533923217035.
+Package fontspec Info: 
+(fontspec)             Arial/B scale = 0.8311533923217035.
 
 
-Package fontspec Info: Arial/B scale = 1.
+Package fontspec Info: 
+(fontspec)             Arial/B scale = 1.
 
 
-Package fontspec Info: Arial/B scale = 0.8311533923217035.
+Package fontspec Info: 
+(fontspec)             Arial/B scale = 0.8311533923217035.
 
 
-Package fontspec Info: Arial/B scale = 1.
+Package fontspec Info: 
+(fontspec)             Arial/B scale = 1.
 
 
-Package fontspec Info: Arial/I scale = 0.8311533923217035.
+Package fontspec Info: 
+(fontspec)             Arial/I scale = 0.8311533923217035.
 
 
-Package fontspec Info: Arial/I scale = 1.
+Package fontspec Info: 
+(fontspec)             Arial/I scale = 1.
 
 
-Package fontspec Info: Arial/I scale = 0.8311533923217035.
+Package fontspec Info: 
+(fontspec)             Arial/I scale = 0.8311533923217035.
 
 
-Package fontspec Info: Arial/I scale = 1.
+Package fontspec Info: 
+(fontspec)             Arial/I scale = 1.
 
 
-Package fontspec Info: Arial/BI scale = 0.8311533923217035.
+Package fontspec Info: 
+(fontspec)             Arial/BI scale = 0.8311533923217035.
 
 
-Package fontspec Info: Arial/BI scale = 1.
+Package fontspec Info: 
+(fontspec)             Arial/BI scale = 1.
 
 
-Package fontspec Info: Arial/BI scale = 0.8311533923217035.
+Package fontspec Info: 
+(fontspec)             Arial/BI scale = 0.8311533923217035.
 
 
-Package fontspec Info: Arial/BI scale = 1.
+Package fontspec Info: 
+(fontspec)             Arial/BI scale = 1.
 
 
-Package fontspec Info: Font family 'Arial(0)' created for font 'Arial' with
+Package fontspec Info: 
+(fontspec)             Font family 'Arial(0)' created for font 'Arial' with
 (fontspec)             options [Scale=MatchLowercase,Ligatures=TeX,Scale=1].
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
@@ -332,36 +343,46 @@ Package fontspec Info: Font family 'Arial(0)' created for font 'Arial' with
 (fontspec)             <->s*[1]"Arial/BI/OT:script=latn;language=dflt;+smcp;mapping=tex-text;"
 
 LaTeX Font Info:    Font shape `TU/Arial(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 62.
+(Font)              scaled to size 10.0pt on input line 61.
 
-Package fontspec Info: Arial scale = 0.9999970574474535.
-
-
-Package fontspec Info: Arial scale = 0.9999970574474535.
+Package fontspec Info: 
+(fontspec)             Arial scale = 0.9999970574474535.
 
 
-Package fontspec Info: Arial scale = 0.9999970574474535.
+Package fontspec Info: 
+(fontspec)             Arial scale = 0.9999970574474535.
 
 
-Package fontspec Info: Arial/B scale = 0.9999970574474535.
+Package fontspec Info: 
+(fontspec)             Arial scale = 0.9999970574474535.
 
 
-Package fontspec Info: Arial/B scale = 0.9999970574474535.
+Package fontspec Info: 
+(fontspec)             Arial/B scale = 0.9999970574474535.
 
 
-Package fontspec Info: Arial/I scale = 0.9999970574474535.
+Package fontspec Info: 
+(fontspec)             Arial/B scale = 0.9999970574474535.
 
 
-Package fontspec Info: Arial/I scale = 0.9999970574474535.
+Package fontspec Info: 
+(fontspec)             Arial/I scale = 0.9999970574474535.
 
 
-Package fontspec Info: Arial/BI scale = 0.9999970574474535.
+Package fontspec Info: 
+(fontspec)             Arial/I scale = 0.9999970574474535.
 
 
-Package fontspec Info: Arial/BI scale = 0.9999970574474535.
+Package fontspec Info: 
+(fontspec)             Arial/BI scale = 0.9999970574474535.
 
 
-Package fontspec Info: Font family 'Arial(1)' created for font 'Arial' with
+Package fontspec Info: 
+(fontspec)             Arial/BI scale = 0.9999970574474535.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'Arial(1)' created for font 'Arial' with
 (fontspec)             options [Scale=MatchLowercase].
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
@@ -385,11 +406,11 @@ Package fontspec Info: Font family 'Arial(1)' created for font 'Arial' with
 (fontspec)             <->s*[0.9999970574474535]"Arial/BI/OT:script=latn;language=dflt;+smcp;"
 
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/lmr/m/n --> TU/Arial(1)/m/n on input line 62.
+(Font)                  OT1/lmr/m/n --> TU/Arial(1)/m/n on input line 61.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/lmr/m/it --> TU/Arial(1)/m/it on input line 62.
+(Font)                  OT1/lmr/m/it --> TU/Arial(1)/m/it on input line 61.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/lmr/bx/n --> TU/Arial(1)/b/n on input line 62.
+(Font)                  OT1/lmr/bx/n --> TU/Arial(1)/b/n on input line 61.
 (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/sectsty/sectsty.sty
 Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading styles
 
@@ -433,20 +454,20 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count294
+\c@section@level=\count293
 ) (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count295
+\etb@tempcnta=\count294
 )
-\@linkdim=\dimen166
-\Hy@linkcounter=\count296
-\Hy@pagecounter=\count297
+\@linkdim=\dimen164
+\Hy@linkcounter=\count295
+\Hy@pagecounter=\count296
 (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2024-01-20 v7.01h Hyperref: PDFDocEncoding definition (HO)
 ) (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count298
+\Hy@SavedSpaceFactor=\count297
 (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
 )
@@ -458,21 +479,21 @@ Package hyperref Info: Plain pages OFF on input line 4194.
 Package hyperref Info: Backreferencing OFF on input line 4199.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4446.
-\c@Hy@tempcnt=\count299
+\c@Hy@tempcnt=\count298
 (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4784.
-\XeTeXLinkMargin=\dimen167
+\XeTeXLinkMargin=\dimen165
 (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count300
-\Field@Width=\dimen168
-\Fld@charsize=\dimen169
+\Fld@menulength=\count299
+\Field@Width=\dimen166
+\Fld@charsize=\dimen167
 Package hyperref Info: Hyper figures OFF on input line 6063.
 Package hyperref Info: Link nesting OFF on input line 6068.
 Package hyperref Info: Hyper index ON on input line 6071.
@@ -484,9 +505,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6093.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count301
-\c@Item=\count302
-\c@Hfootnote=\count303
+\Hy@abspage=\count300
+\c@Item=\count301
+\c@Hfootnote=\count302
 )
 Package hyperref Info: Driver (autodetected): hxetex.
 (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hxetex.def
@@ -494,11 +515,11 @@ File: hxetex.def 2024-01-20 v7.01h Hyperref driver for XeTeX
 (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
-\pdfm@box=\box55
-\c@Hy@AnnotLevel=\count304
-\HyField@AnnotCount=\count305
-\Fld@listcount=\count306
-\c@bookmark@seq@number=\count307
+\pdfm@box=\box54
+\c@Hy@AnnotLevel=\count303
+\HyField@AnnotCount=\count304
+\Fld@listcount=\count305
+\c@bookmark@seq@number=\count306
 (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
 (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty
@@ -512,49 +533,53 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 \Hy@SectionHShift=\skip56
 ) (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/bookmark/bkm-dvipdfm.def
 File: bkm-dvipdfm.def 2023-12-10 v1.31 bookmark driver for dvipdfm (HO)
-\BKM@id=\count308
-)) (./Informe-Contexto-Demográfico.aux)
-\openout1 = `Informe-Contexto-Demográfico.aux'.
+\BKM@id=\count307
+)) (./Informe-Contexto-Demográfico-del-Régimen.aux)
+\openout1 = `Informe-Contexto-Demográfico-del-Régimen.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 93.
+(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 92.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/bx/n --> TU/lmss/b/n on input line 93.
+(Font)                  OT1/lmss/bx/n --> TU/lmss/b/n on input line 92.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 93.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 92.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/b/n on input line 93.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/b/n on input line 92.
 
-Package fontspec Info: latinmodern-math scale = 1.203139548468638.
-
-
-Package fontspec Info: latinmodern-math scale = 1.203139548468638.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203139548468638.
 
 
-Package fontspec Info: latinmodern-math scale = 1.203139548468638.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203139548468638.
 
 
-Package fontspec Info: Font family 'latinmodern-math.otf(0)' created for font
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203139548468638.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'latinmodern-math.otf(0)' created for font
 (fontspec)             'latinmodern-math.otf' with options
 (fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script=Math,BoldFont={latinmodern-math.otf}].
 (fontspec)              
@@ -569,24 +594,30 @@ Package fontspec Info: Font family 'latinmodern-math.otf(0)' created for font
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(0)/m/n' will be
-(Font)              scaled to size 12.0314pt on input line 93.
+(Font)              scaled to size 12.0314pt on input line 92.
 
-Package fontspec Info: latinmodern-math scale = 1.203139548468638.
-
-
-Package fontspec Info: latinmodern-math scale = 1.203139548468638.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203139548468638.
 
 
-Package fontspec Info: latinmodern-math scale = 1.203139548468638.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203139548468638.
 
 
-Package fontspec Info: latinmodern-math scale = 1.203139548468638.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203139548468638.
 
 
-Package fontspec Info: latinmodern-math scale = 1.203139548468638.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203139548468638.
 
 
-Package fontspec Info: Font family 'latinmodern-math.otf(1)' created for font
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203139548468638.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'latinmodern-math.otf(1)' created for font
 (fontspec)             'latinmodern-math.otf' with options
 (fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=8.5-},{Size=6-8.5,Font=latinmodern-math.otf,Style=MathScript},{Size=-6,Font=latinmodern-math.otf,Style=MathScriptScript}},BoldFont={latinmodern-math.otf}].
 (fontspec)              
@@ -601,47 +632,58 @@ Package fontspec Info: Font family 'latinmodern-math.otf(1)' created for font
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 12.0314pt on input line 93.
+(Font)              scaled to size 12.0314pt on input line 92.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 93.
+(Font)              `operators' in the math version `normal' on input line 92.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input line 93.
+(Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input line 92.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 93.
+(Font)              `operators' in the math version `bold' on input line 92.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on input line 93.
+(Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on input line 92.
 
-Package fontspec Info: latinmodern-math scale = 1.203139548468638.
-
-
-Package fontspec Info: latinmodern-math scale = 1.203259862423485.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203139548468638.
 
 
-Package fontspec Info: latinmodern-math scale = 1.203139548468638.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203259862423485.
 
 
-Package fontspec Info: latinmodern-math scale = 1.203259862423485.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203139548468638.
 
 
-Package fontspec Info: latinmodern-math scale = 1.203139548468638.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203259862423485.
 
 
-Package fontspec Info: latinmodern-math scale = 1.203259862423485.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203139548468638.
 
 
-Package fontspec Info: latinmodern-math scale = 1.203139548468638.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203259862423485.
 
 
-Package fontspec Info: latinmodern-math scale = 1.203259862423485.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203139548468638.
 
 
-Package fontspec Info: latinmodern-math scale = 1.203139548468638.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203259862423485.
 
 
-Package fontspec Info: latinmodern-math scale = 1.203259862423485.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203139548468638.
 
 
-Package fontspec Info: Font family 'latinmodern-math.otf(2)' created for font
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203259862423485.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'latinmodern-math.otf(2)' created for font
 (fontspec)             'latinmodern-math.otf' with options
 (fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=8.5-},{Size=6-8.5,Font=latinmodern-math.otf,Style=MathScript},{Size=-6,Font=latinmodern-math.otf,Style=MathScriptScript}},BoldFont={latinmodern-math.otf},ScaleAgain=1.0001,FontAdjustment={\fontdimen
 (fontspec)             8\font =8.14526pt\relax \fontdimen 9\font
@@ -688,45 +730,56 @@ Package fontspec Info: Font family 'latinmodern-math.otf(2)' created for font
 (fontspec)             =0pt\relax \fontdimen 21\font =0pt\relax 
 
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `normal' on input line 93.
+(Font)              `symbols' in the math version `normal' on input line 92.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
-(Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on input line 93.
+(Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on input line 92.
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `bold' on input line 93.
+(Font)              `symbols' in the math version `bold' on input line 92.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
-(Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on input line 93.
+(Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on input line 92.
 
-Package fontspec Info: latinmodern-math scale = 1.203139548468638.
-
-
-Package fontspec Info: latinmodern-math scale = 1.203019234513791.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203139548468638.
 
 
-Package fontspec Info: latinmodern-math scale = 1.203139548468638.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203019234513791.
 
 
-Package fontspec Info: latinmodern-math scale = 1.203019234513791.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203139548468638.
 
 
-Package fontspec Info: latinmodern-math scale = 1.203139548468638.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203019234513791.
 
 
-Package fontspec Info: latinmodern-math scale = 1.203019234513791.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203139548468638.
 
 
-Package fontspec Info: latinmodern-math scale = 1.203139548468638.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203019234513791.
 
 
-Package fontspec Info: latinmodern-math scale = 1.203019234513791.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203139548468638.
 
 
-Package fontspec Info: latinmodern-math scale = 1.203139548468638.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203019234513791.
 
 
-Package fontspec Info: latinmodern-math scale = 1.203019234513791.
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203139548468638.
 
 
-Package fontspec Info: Font family 'latinmodern-math.otf(3)' created for font
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.203019234513791.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'latinmodern-math.otf(3)' created for font
 (fontspec)             'latinmodern-math.otf' with options
 (fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=8.5-},{Size=6-8.5,Font=latinmodern-math.otf,Style=MathScript},{Size=-6,Font=latinmodern-math.otf,Style=MathScriptScript}},BoldFont={latinmodern-math.otf},ScaleAgain=0.9999,FontAdjustment={\fontdimen
 (fontspec)             8\font =0.48126pt\relax \fontdimen 9\font
@@ -755,13 +808,13 @@ Package fontspec Info: Font family 'latinmodern-math.otf(3)' created for font
 (fontspec)             =7.21884pt\relax \fontdimen 13\font =0pt\relax 
 
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `normal' on input line 93.
+(Font)              `largesymbols' in the math version `normal' on input line 92.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on input line 93.
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on input line 92.
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 93.
+(Font)              `largesymbols' in the math version `bold' on input line 92.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on input line 93.
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on input line 92.
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -796,103 +849,68 @@ LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 93.
+Package hyperref Info: Link coloring OFF on input line 92.
 LaTeX Font Info:    Font shape `TU/Arial(0)/m/n' will be
-(Font)              scaled to size 17.28pt on input line 95.
+(Font)              scaled to size 17.28pt on input line 94.
 LaTeX Font Info:    Font shape `TU/Arial(0)/m/n' will be
-(Font)              scaled to size 12.0pt on input line 95.
+(Font)              scaled to size 12.0pt on input line 94.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 14.43768pt on input line 95.
+(Font)              scaled to size 14.43768pt on input line 94.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 9.62512pt on input line 95.
+(Font)              scaled to size 9.62512pt on input line 94.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.21884pt on input line 95.
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 95.
+(Font)              scaled to size 7.21884pt on input line 94.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 94.
 (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 14.43915pt on input line 95.
+(Font)              scaled to size 14.43915pt on input line 94.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 9.6261pt on input line 95.
+(Font)              scaled to size 9.6261pt on input line 94.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.21957pt on input line 95.
+(Font)              scaled to size 7.21957pt on input line 94.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 14.43622pt on input line 95.
+(Font)              scaled to size 14.43622pt on input line 94.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.62415pt on input line 95.
+(Font)              scaled to size 9.62415pt on input line 94.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.21811pt on input line 95.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 95.
+(Font)              scaled to size 7.21811pt on input line 94.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 94.
 (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 95.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 94.
 (c:/Users/Caro/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `TU/Arial(0)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 98.
+(Font)              scaled to size 14.4pt on input line 97.
 LaTeX Font Info:    Font shape `TU/Arial(0)/b/n' will be
-(Font)              scaled to size 14.4pt on input line 98.
-(./Informe-Contexto-Demográfico.toc
-LaTeX Font Info:    Font shape `TU/Arial(0)/b/n' will be
-(Font)              scaled to size 10.0pt on input line 2.
-)
+(Font)              scaled to size 14.4pt on input line 97.
+(./Informe-Contexto-Demográfico-del-Régimen.toc)
 \tf@toc=\write3
-\openout3 = `Informe-Contexto-Demográfico.toc'.
+\openout3 = `Informe-Contexto-Demográfico-del-Régimen.toc'.
 
 [1
 
 ]
-File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
-<use Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-4-1.pdf>
-File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
-<use Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-6-1.pdf>
-[2]
-File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
-<use Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-9-1.pdf>
-File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type pdf)
-<use Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-12-1.pdf>
-[3]
-File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-19-1.pdf Graphic file (type pdf)
-<use Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-19-1.pdf>
 
-Package wrapfig Warning: Collision between wrapping environments on input line 292.
+! LaTeX Error: Environment wrapfigure undefined.
 
-File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (type pdf)
-<use Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-22-1.pdf>
-
-Package wrapfig Warning: Stationary wrapfigure forced to float on input line 302.
-
-[4]
-File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-25-1.pdf Graphic file (type pdf)
-<use Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-25-1.pdf>
-File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-30-1.pdf Graphic file (type pdf)
-<use Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-30-1.pdf>
-[5]
-File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-32-1.pdf Graphic file (type pdf)
-<use Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-32-1.pdf>
-File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-35-1.pdf Graphic file (type pdf)
-<use Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-35-1.pdf>
-[6]
-File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-38-1.pdf Graphic file (type pdf)
-<use Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-38-1.pdf>
-File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-40-1.pdf Graphic file (type pdf)
-<use Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-40-1.pdf>
-[7] [8] (./Informe-Contexto-Demográfico.aux)
- ***********
-LaTeX2e <2023-11-01> patch level 1
-L3 programming layer <2024-03-14>
- ***********
- ) 
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.115 \begin{wrapfigure}
+                        [15]{r}{0.5\textwidth} 
 Here is how much of TeX's memory you used:
- 18323 strings out of 476759
- 345960 string characters out of 5800263
- 1936148 words of memory out of 5000000
- 40128 multiletter control sequences out of 15000+600000
- 561723 words of font info for 77 fonts, out of 8000000 for 9000
+ 18081 strings out of 476705
+ 334566 string characters out of 5799659
+ 1922406 words of memory out of 5000000
+ 39963 multiletter control sequences out of 15000+600000
+ 561715 words of font info for 76 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 90i,6n,123p,371b,355s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,6n,123p,383b,338s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Informe-Contexto-Demográfico.pdf (8 pages).
+Output written on Informe-Contexto-Demográfico-del-Régimen.pdf (1 page).
