@@ -232,15 +232,17 @@ Graf1
 \end{wrapfigure}
 
 ```{r}
-temp1 <- length(FC_Activos[1]) + length(FC_Pensinados[1])
+temp1 <- length(FC_Activos$Sexo) + length(FC_Pensinados$Sexo)
 temp2 <- sum(FC_Activos$Activo23)
-temp3 <- sum(FC_Activos$Activo23)/(length(FC_Activos[1]) + length(FC_Pensinados[1]))
-temp4 <- length(FC_Pensinados[1])
-temp5 <- length(FC_Pensinados[1])/(length(FC_Activos[1]) + length(FC_Pensinados[1]))
+temp3 <- round(sum(FC_Activos$Activo23)/(length(FC_Activos$Sexo) + length(FC_Pensinados$Sexo)),2)*100
+temp4 <- length(FC_Pensinados$Sexo)
+temp5 <- round(length(FC_Pensinados$Sexo)/(length(FC_Activos$Sexo) + length(FC_Pensinados$Sexo)),2)*100
+temp6 <- temp1 - temp2 -temp4
+temp7 <- round(temp6/temp1,2)*100
 ```
 
 
-Gracias a al Gráfico 1 es posible observar que para la fecha corte de este análisis el Fondo esta compuesto por un total de `r temp1` de las cuales `r temp2` (`r temp3`%) son personas activas es decir que realizaron una contribución al régimen en los últimos 12 meses, ademas los pensionados son un total de `r temp4` ((`r temp5`%))
+Gracias a al Gráfico 1 es posible observar que para la fecha corte de este análisis el Fondo esta compuesto por un total de `r temp1` de las cuales `r temp2` (`r temp3`%) son personas activas es decir que realizaron una contribución al régimen en los últimos 12 meses, ademas los pensionados son un total de `r temp4` ((`r temp5`%)) y el restantes `r temp6` (`r temp7`%) es la parte inactiva del régimen. Con esta distribución podemos e
 
 
 ```{r}
