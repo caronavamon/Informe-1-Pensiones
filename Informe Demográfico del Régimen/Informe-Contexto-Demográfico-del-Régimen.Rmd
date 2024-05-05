@@ -41,7 +41,7 @@ library(gridExtra)
 
 #  Análisis general de la Estructura Poblacional del Régimen
 
-El estudio actuarial se llevará a cabo utilizando como base el Fondo C, la cual contiene datos desde enero de 1994 hasta la fecha de corte situada el 31 de diciembre del 2023. Su sostenibilidad y eficiencia dependen en gran medida de la composición de la población que contribuye a él. Por ello, es fundamental analizar la composición de dicho fondo a nivel poblacional. En esta sección, nos enfocaremos en estudiar la estructura demográfica de la población que forma parte este régimen. A continuación, se presentará un análisis detallado de la estructura poblacional del fondo. Para llevar a cabo este análisis, se utilizarán datos demográficos relevantes, como la edad, el género y actividad.
+El estudio actuarial se llevará a cabo utilizando como base el Fondo C, la cual, contiene datos desde enero de 1994 hasta la fecha de corte situada el 31 de diciembre del 2023. Su sostenibilidad y eficiencia dependen en gran medida de la composición de la población que contribuye a él. Por ello, es fundamental analizar la composición de dicho fondo a nivel poblacional. En esta sección, nos enfocaremos en estudiar la estructura demográfica de la población que forma parte de este régimen. A continuación, se presentará un análisis detallado de la estructura poblacional del fondo. Para llevar a cabo este análisis, se utilizarán datos demográficos relevantes, como la edad, el género y actividad.
 
 
 ```{r Estructura de la Poblacion, warning=FALSE,message=FALSE, include=FALSE}
@@ -209,7 +209,7 @@ Graf1 <- rbind(
     title =
       "Gráfico 1: Pirámide Poblacional del Regimen",
     subtitle =
-      "por Edad según el Genero",
+      "por Edad según el Género",
     y =
       "Cantidad",
     x =
@@ -241,10 +241,10 @@ temp7 <- round(temp6/temp1,2)*100
 ```
 
 
-Para la fecha de corte de este análisis, se revela que el Fondo presenta una estructura poblacional robusta y activa, con una participación equitativa de género que refleja la diversidad y equilibrio de la sociedad actual. El regimen está compuesto por un total de `r temp1` personas. De ellas, `r temp2` (`r temp3`%) son personas activas, lo que significa que realizaron una contribución al régimen en los últimos 12 meses. Además, hay `r temp4` pensionados (`r temp5`%) y los restantes `r temp6` (`r temp7`%) están inactivos. En el caso del genero se encuentra muy equilibrado siendo que el 51% es femenino y el 49% masculino  y sin mucha variabilidad si se segrega de forma similar a lo anterior. Todo esto permite observar un régimen sostenible que puede apoyar a sus pensionados de manera efectiva. Este equilibrio entre personas activas y pensionados es crucial para la viabilidad a largo plazo del fondo.
+Para la fecha de corte de este análisis, se revela que el fondo presenta una estructura poblacional robusta y activa, con una participación equitativa de género que refleja la diversidad y equilibrio de la sociedad actual. El régimen está compuesto por un total de `r temp1` personas. De ellas, `r temp2` (`r temp3`%) son personas activas, lo que significa que realizaron una contribución al régimen en los últimos 12 meses. Además, hay `r temp4` pensionados (`r temp5`%) y los restantes `r temp6` (`r temp7`%) están inactivos. En el caso del género, se encuentra muy equilibrado siendo que el 51% es femenino y el 49% masculino  y sin mucha variabilidad si se segrega de forma similar a lo anterior. Todo esto permite observar un régimen sostenible que puede apoyar a sus pensionados de manera efectiva. Este equilibrio entre personas activas y pensionados es crucial para la viabilidad a largo plazo del fondo.
 
 
-Gracias al gráfico 1 es posible observar la concentración de la población en el rango de edad productiva entre los 20 y 50 años lo cual es también un indicador positivo, ya que sugiere que el fondo puede contar con una base sólida de contribuyentes durante los próximos años. Estos datos son consistentes con los hallazgos del Informe Demográfico Nacional, lo que sugiere que las tendencias observadas en el fondo de pensiones son un reflejo de la dinámica poblacional más amplia del país. En conjunto, estos elementos proporcionan una perspectiva alentadora para la sostenibilidad y el crecimiento continuo del fondo, asegurando que las necesidades de los pensionados actuales y futuros puedan ser atendidas con confianza.
+Gracias al gráfico 1 es posible observar la concentración de la población en el rango de edad productiva entre los 20 y 50 años, lo cual, es también un indicador positivo, ya que, sugiere que el fondo puede contar con una base sólida de contribuyentes durante los próximos años. Estos datos son consistentes con los hallazgos del Informe Demográfico Nacional, lo que sugiere que las tendencias observadas en el fondo de pensiones son un reflejo de la dinámica poblacional más amplia del país. En conjunto, estos elementos proporcionan una perspectiva alentadora para la sostenibilidad y el crecimiento continuo del fondo, asegurando que las necesidades de los pensionados actuales y futuros puedan ser atendidas con confianza.
 
 
 # Población activa y pensionada
@@ -364,11 +364,11 @@ En cuanto a la antigüedad, la media se sitúa en 12.54 años. En el gráfico 3 
 
 ## Pensionados
 
-La segunda población de interés es la población de pensionados (beneficiarios) en curso de pago al 31 de diciembre de 2023 de la cual interesa su distribución por edad, sexo, tipo de pensión y antigüedad.
+La segunda población de interés es la población de pensionados (beneficiarios) en curso de pago al 31 de diciembre de 2023 de la cual, interesa su distribución por edad, sexo, tipo de pensión y antigüedad.
 
 Es importante aclarar que algunos pensionados por vejez no cuentan con fecha de 
 inicio del pago de la pensión. Por lo cual, se asignó a estos la edad promedio
-de adquisión de la pensión por sexo y el tipo del pensión (vejez), donde para 
+de adquisión de la pensión por sexo y el tipo de pensión (vejez), donde para 
 mujeres es de 64.12467 y para hombres es de 64.27295. Además, como fecha de
 inicio en que rige la pensión, se toma la diferencia entre el nacimiento del individuo 
 y la edad a la que se pensiona en formato año/mes/día.
@@ -623,11 +623,11 @@ Graf7 <- ggplot(conteo_anual, aes(x = Año)) +
 ```
 \end{wrapfigure}
 
-Al analizar las altas y bajas del regimen es importante recalcar que solo se consideran como cotizaciones los salarios mayores o iguales a los diez mil colones además,se debe tener en cuenta que se está trabajando con población cerrada, es decir, no entran nuevas generaciones. Por lo tanto, como se puede observar en el gráfico 7 las altas y bajas de los activos son inversamente proporcionales, cuando aumentan las bajas se tiene una disminición en las altas en la misma proporción y viceversa. 
+Al analizar las altas y bajas del régimen es importante recalcar que solo se consideran como cotizaciones los salarios mayores o iguales a los diez mil colones. Además,se debe tener en cuenta que se está trabajando con población cerrada, es decir, no entran nuevas generaciones. Por lo tanto, como se puede observar en el gráfico 7, las altas y bajas de los activos son inversamente proporcionales, cuando aumentan las bajas se tiene una disminición en las altas en la misma proporción y viceversa. 
 
-En 1994, como apenas se inicia el regimen, la mayoría de personas no se encontraban aportando para el regimen, esto se puede ver en el gráfico 7 donde las bajas son superiores a las altas. Sin embargo, conforme van pasando los años las bajas van disminuyendo puesto que, muchos individuos comienzan a hacer aportaciones, aumentando así las altas del regimen. 
+En 1994, como apenas se inicia el régimen, la mayoría de personas no se encontraban aportando para este, lo cual, se puede ver en el gráfico 7 donde las bajas son superiores a las altas. Sin embargo, conforme van pasando los años las bajas van disminuyendo puesto que, muchos individuos comienzan a hacer aportaciones, aumentando así las altas del régimen. 
 
-En general, desde 1994 hasta 2022 se mantiene una tendencia al aumento de las personas que realizan aportaciones (altas) y la disminución de las que no aportan (bajas). No obstante, en el último año se da una importante reducción en la cantidad de personas que aportan al regimen, lo cual se refleja en un aumento en las bajas. 
+En general, desde 1994 hasta 2022 se mantiene una tendencia al aumento de las personas que realizan aportaciones (altas) y la disminución de las que no aportan (bajas). No obstante, en el último año se da una importante reducción en la cantidad de personas que aportan al régimen, lo cual se refleja en un aumento en las bajas. 
 
 ## Pensionados 
 ```{r, echo=FALSE, message=FALSE}
@@ -641,7 +641,7 @@ conteo <- pensionados2 %>%
 conteo$año <- as.numeric(conteo$año)
 ```
 
-A continuación, se analizan las altas de los pensionados del Régimen 
+A continuación, se analizan las altas de los pensionados del régimen 
 en estudio, específicamente, la cantidad de entradas de pensionados 
 por año y por tipo de pensión (Invalidez, Vejez y Sucesión), durante un 
 periodo que abarca desde el 2001 al 2023.
@@ -654,7 +654,7 @@ En el gráfico 8, se muestra el comportamiento de las entradas de pensionados.
 ```{r, warning=FALSE, echo=FALSE}
 Graf8 <-  ggplot(conteo, aes(x = as.numeric(año), y = cantidad_personas, color = COD_TIPO_PENSION)) +
   geom_line() +
-  labs(title = " Gráfico 8: Entradas de pensionados por año del Régimen",
+  labs(title = " Gráfico 8: Entradas de pensionados por año del régimen",
        subtitle = "2001-2023",x = " Año de inicio de pago de la pensión",
        y = "Cantidad de personas pensionadas", color = "Tipo de pensión")+
   scale_color_manual(values = c("#2F4F4F", "cadetblue3", "#BCEE68"))+
@@ -695,9 +695,10 @@ entrada hasta el 2010. En el periodo del 2010 al 2015, la cantidad de nuevos
 pensionados por vejez estuvo entre 1 y 7 personas. En los años siguientes aumentó
 la cantidad de entradas, alcanzando un valor máximo de 48 personas en el 2022. 
 Al igual que los otros dos tipos de pensiones, para el 2023 se sufrió una reducción
-en los ingresos recibiendo a 30 personas.
+en los ingresos recibiendo a 30 personas, aún así, siendo superior a las entradas
+de pensionados por invalidez y sucesión.
 
 En síntesis, se identifica que en el periodo de estudio, el mayor crecimiento de entradas de 
-pensionados son percibidos por las pensiones por vejez, seguido de las pensiones
-por sucesión y por último, las de invalidez. Las tres mostraron una tendencia a
-la alta pero bajaron en el 2023.
+pensionados son percibidas por las pensiones por vejez, seguido de las pensiones
+por sucesión y por último, las de invalidez. En general, las tres mostraron una tendencia a
+la alta entre el 2018 y el 2022, pero bajaron en el 2023.
