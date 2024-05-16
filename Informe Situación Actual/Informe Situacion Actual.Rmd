@@ -1,0 +1,32 @@
+---
+title: "Informe Contexto Demográfico del Régimen"
+subtitle: "Grupo 3"
+author:
+  - "Maria Carolina Navarro Monge C05513"
+  - "Tábata Picado Carmona C05961"
+  - "Jimena Marchena Mendoza B74425"
+  - "Valentin Chavarría Ubeda B82098"
+
+output:
+  pdf_document:
+    latex_engine: xelatex
+    toc: true
+ 
+header-includes:
+  - \usepackage[spanish, provide=*]{babel}
+  - \usepackage{titling}
+  - \usepackage{fontspec}
+  - \usepackage{wrapfig}
+  - \setmainfont{Arial}
+  - \usepackage{xcolor}
+  - \definecolor{azul}{RGB}{49, 126, 153 }
+  - \definecolor{gris}{RGB}{12, 76, 99}
+  - \usepackage{sectsty}
+  - \sectionfont{\color{azul}}
+  - \subsectionfont{\color{gris}}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+\newpage
