@@ -2,6 +2,7 @@
 # Pensionados
 
 ```{r}
+library(tidyverse)
 library(readxl)
 
 # Leer la hoja 'Pensionados'
