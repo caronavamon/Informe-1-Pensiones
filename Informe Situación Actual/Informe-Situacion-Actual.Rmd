@@ -34,6 +34,7 @@ header-includes:
   - \definecolor{turquoise}{RGB}{0, 139, 139}
   - \usepackage{graphicx} 
   - \usepackage{caption}
+  - \captionsetup{singlelinecheck=off}
 ---
 
 ```{r setup, include=FALSE}
@@ -43,12 +44,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Marco Legal
 
-A continuación se muestra en el cuadro 1 los artículos del 5 al 19, del 23 al 25 y el artículo 27 del Reglamento del Régimen de Invalidez, Vejez y Muerte de la Caja Costarricense del Seguro Social (CCSS). Es importante recalcar que por medio de este reglamento se rigen las personas pertenecientes al régimen. 
-
 \begingroup
 \small
 \begin{longtable}{|m{4cm}|m{10cm}|m{1.3cm}|}
-\caption{} \\
+\caption{Reglamento del Régimen de Invalidez, Vejez y Muerte de la Caja Costarricense del Seguro Social} \\
 \hline
 \rowcolor{turquoise}
 \multicolumn{1}{|c|}{\textbf{Rubro}} & \multicolumn{1}{c|}{\textbf{Resumen}} & \multicolumn{1}{c|}{\textbf{Artículo}} \\
@@ -140,3 +139,8 @@ Si la suma de las pensiones de viudez y orfandad es menor al 100\%, el remanente
 \hline
 \end{longtable}
 \endgroup
+\captionsetup{font=footnotesize} 
+\begin{center}
+\captionsetup{type=table} 
+\caption*{\footnotesize Fuente: Sistema Costarricense de Información Jurídica.}
+\end{center}
