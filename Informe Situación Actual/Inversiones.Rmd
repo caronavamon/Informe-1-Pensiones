@@ -1,0 +1,138 @@
+---
+title: "Inversiones"
+
+output:
+  pdf_document:
+    latex_engine: xelatex
+    toc: true
+  
+header-includes:
+  - \usepackage{float}
+  - \usepackage{wrapfig}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo = FALSE, warning=FALSE}
+library(kableExtra)
+library(ggplot2)
+library(gridExtra)
+```
+
+
+# Comportamiento de las inversiones, los gastos de administración y otras variables financieras
+
+El régimen del fondo C solo cuenta con información sobre las inversiones. No posee
+gastos administrativos, pues, son asumidos por la empresa administradora. 
+Asímismo, tampoco presenta otras variables financieras que influyan en el régimen.
+De modo que, se procede a analizar únicamente el comportamiento de las 
+inversiones.
+
+A continuación, se presenta la composición de la cartera, a valor de mercado, de
+las inversiones al 31 de diciembre del 2023 según tres criterios: Sector,
+plazo de vencimiento y moneda.
+
+```{r, warning=FALSE, echo=FALSE, results='asis'}
+inversiones_sector <- data.frame("Sector (a valor de mercado)" = 
+                                   c("BCCR-MH","Público", "Privado-Deuda", 
+                                     "Privado- Fondos Inmobiliarios y Financieros",
+                                     "Privado Fideicomisos", "Privado-Acciones", "Mercado Internacional", 
+                                     "Cartera de crédito"), 
+                                 "Régimen de Capitalización Colectiva -RCC %" = 
+                                   c(76.1, 4.6, 5.6,4.6,0.1,0.0,2.1,6.8))
+# Cambiar nombres de columnas
+colnames(inversiones_sector) <- c("Sector (a valor de mercado)", "Régimen de Capitalización Colectiva - RCC %")
+
+tabla_sector <- inversiones_sector %>%
+  kable("latex", booktabs = TRUE) %>%
+  kable_styling(latex_options = c("striped", "hold_position"), 
+                full_width = FALSE, position = "center") %>%
+  row_spec(0, bold = TRUE, color = "white", background = "#2F4F4F") %>%
+  column_spec(1, bold = TRUE, border_right = TRUE) %>%
+  add_header_above(c("Composición de Inversiones por Sector al 31 de Diciembre
+                     del 2023" = 2), align = "c", bold = TRUE,
+                   background = "#2F4F4F", color = "white")
+
+tabla_sector
+```
+
+La mayor parte de las inversiones se encuentran en el sector BCCR-MH, con un 76.1%.
+
+Después del sector BCCR-MH, las mayores inversiones se encuentran en el sector Privado-Deuda y en el Mercado Internacional. Otros sectores, como Público y Privado-Acciones, tienen una participación menor en la cartera de inversiones. Es importante notar que el sector de Cartera de crédito también tiene una participación significativa.
+
+
+```{r, warning=FALSE, echo=FALSE}
+inversiones_plazo <- data.frame("Plazo"= c("Menos de 1 año","Un año", "2 años", 
+                                     "3 años", "4 años", "5 años","5 a 10 años",
+                                     "10 a 15 años", "Más de 15 años"), 
+                                 "RCC" = 
+                                   c(4.8, 7.8, 6.2,8.7,10.7,9.8,19.1,4.4, 21.6))
+
+# Convertir la variable Plazo en un factor ordenado
+inversiones_plazo$Plazo <- factor(inversiones_plazo$Plazo, levels = c(
+  "Menos de 1 año", "Un año", "2 años", 
+  "3 años", "4 años", "5 años", "5 a 10 años",
+  "10 a 15 años", "Más de 15 años"
+))
+
+# Crear el gráfico de barras para inversiones_plazo
+graf_plazo <- ggplot(inversiones_plazo, aes(x = Plazo, y = RCC)) +
+  geom_bar(stat = "identity", fill = "cadetblue3") +
+  geom_text(aes(label = RCC), vjust = -0.5, color = "black", size = 3.5) +
+  labs(title = " Gráfico #: Composición de Inversiones por Plazo de Vencimiento 
+      al 31 de Diciembre del 2023",
+       x = "Plazo de vencimiento (a valor de mercado)",
+       y = "RCC %") +
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C"))
+```
+
+\begin{wrapfigure}[15]{r}{0.5\textwidth}
+
+ \centering
+ 
+```{r , fig.align='right', echo=FALSE}
+ graf_plazo
+```
+\end{wrapfigure}
+
+
+
+```{r, warning=FALSE, echo=FALSE}
+inversiones_moneda <- data.frame("Moneda"= c("Colones","Dólares", 
+                                             "Unidades de Desarrollo"), 
+                                 "RCC" = c(57.1,17.2, 18.9))
+
+# Gráfico de barras monedas
+graf_moneda <- ggplot(inversiones_moneda, aes(x = Moneda, y = RCC)) +
+  geom_bar(stat = "identity", fill = "#2F4F4F",  width = 0.5) +
+  geom_text(aes(label = RCC), vjust = -0.5, color = "black", size = 3.5) +
+  labs(title = " Gráfico #: Composición de Inversiones por Moneda al 31 de
+       Diciembre del 2023",
+       x = "Moneda (a valor de mercado)",
+       y = "RCC %") +
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C"))
+
+```
+\begin{wrapfigure}[15]{r}{0.5\textwidth}
+
+ \centering
+ 
+```{r , fig.align='right', echo=FALSE}
+ graf_moneda
+```
+\end{wrapfigure}
+
