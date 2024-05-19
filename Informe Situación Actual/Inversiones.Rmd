@@ -22,11 +22,12 @@ library(gridExtra)
 ```
 
 
-# Comportamiento de las inversiones, los gastos de administración y otras variables financieras
+# Comportamiento de las inversiones, los gastos de administración y otras variables financieras.
 
-El régimen del fondo C solo cuenta con información sobre las inversiones. No posee
-gastos administrativos, pues, son asumidos por la empresa administradora. 
-Asímismo, tampoco presenta otras variables financieras que influyan en el régimen.
+El Régimen de Capitalización Colectiva (RCC) del fondo C cuenta con información
+del portafolio de inversiones. No posee gastos administrativos, pues, son 
+asumidos por la empresa administradora. Asímismo, tampoco presenta otras variables
+financieras que influyan en el régimen.
 De modo que, se procede a analizar únicamente el comportamiento de las 
 inversiones.
 
@@ -34,57 +35,66 @@ A continuación, se presenta la composición de la cartera, a valor de mercado, 
 las inversiones al 31 de diciembre del 2023 según tres criterios: Sector,
 plazo de vencimiento y moneda.
 
+El gráfico # muestra que el portafolio de inversiones está compuesto en un 6.8%
+por la  Cartera de Crédito y el restante 93.2% corresponde a la Cartera de Valores. De esta,
+la mayor parte de las inversiones del régimen se encuentran en el BCCR-MH,
+con un 76.1%. Se puede observar que, un 4.6% de las inversiones se encuentran en el sector 
+Público y un 10,3% en el sector Privado. Las inversiones en el Mercado
+Internacional es de un 2.1%.
+
 ```{r, warning=FALSE, echo=FALSE, results='asis'}
-inversiones_sector <- data.frame("Sector (a valor de mercado)" = 
+inversiones_sector <- data.frame("Sector" = 
                                    c("BCCR-MH","Público", "Privado-Deuda", 
                                      "Privado- Fondos Inmobiliarios y Financieros",
                                      "Privado Fideicomisos", "Privado-Acciones", "Mercado Internacional", 
                                      "Cartera de crédito"), 
-                                 "Régimen de Capitalización Colectiva -RCC %" = 
-                                   c(76.1, 4.6, 5.6,4.6,0.1,0.0,2.1,6.8))
-# Cambiar nombres de columnas
-colnames(inversiones_sector) <- c("Sector (a valor de mercado)", "Régimen de Capitalización Colectiva - RCC %")
+                                 "RCC" =  c(76.1, 4.6, 5.6,4.6,0.1,0.0,2.1,6.8))
 
-tabla_sector <- inversiones_sector %>%
-  kable("latex", booktabs = TRUE) %>%
-  kable_styling(latex_options = c("striped", "hold_position"), 
-                full_width = FALSE, position = "center") %>%
-  row_spec(0, bold = TRUE, color = "white", background = "#2F4F4F") %>%
-  column_spec(1, bold = TRUE, border_right = TRUE) %>%
-  add_header_above(c("Composición de Inversiones por Sector al 31 de Diciembre
-                     del 2023" = 2), align = "c", bold = TRUE,
-                   background = "#2F4F4F", color = "white")
+graf_sector <- ggplot(inversiones_sector, aes(x = RCC, y = Sector)) +
+   geom_bar(stat = "identity", alpha = 0.7, position = "stack", width = 0.4, 
+            fill = "#2F4F4F") +
+  geom_text(aes(label = paste0(RCC,"%")), position = position_stack(vjust = 0.5), size = 3) +
+  labs(title = " Gráfico #: Composición de Inversiones por Sector", 
+       subtitle = "al 31 de Diciembre del 2023 (a valor de mercado)",
+       x = "RCC (%)",
+       y = "Sector") +
+    theme_minimal()+
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  labs(caption = expression(bold("Fuente: ") *"Elaborado a partir de datos del Fondo C"))
 
-tabla_sector
+graf_sector
 ```
 
-La mayor parte de las inversiones se encuentran en el sector BCCR-MH, con un 76.1%.
-
-Después del sector BCCR-MH, las mayores inversiones se encuentran en el sector Privado-Deuda y en el Mercado Internacional. Otros sectores, como Público y Privado-Acciones, tienen una participación menor en la cartera de inversiones. Es importante notar que el sector de Cartera de crédito también tiene una participación significativa.
-
+Además,la Cartera de Crédito del portafolio de inversiones tiene un 
+plazo de vencimiento promedio de 10 años. Según el gráfico #, la mayoría de las 
+emisiones de las inversiones de la Cartera de Valores se concentran en el plazo 
+de más de 15 años. Seguido del plazo de 4 a 5 años y 5 a 10 años. La minoría de 
+las inversiones se emiten en el plazo de 10 a 15 años. 
 
 ```{r, warning=FALSE, echo=FALSE}
-inversiones_plazo <- data.frame("Plazo"= c("Menos de 1 año","Un año", "2 años", 
-                                     "3 años", "4 años", "5 años","5 a 10 años",
+inversiones_plazo <- data.frame("Plazo"= c("Hasta un año","De 2 a 3 años",
+                                     "De 4 a 5 años", "5 a 10 años",
                                      "10 a 15 años", "Más de 15 años"), 
                                  "RCC" = 
-                                   c(4.8, 7.8, 6.2,8.7,10.7,9.8,19.1,4.4, 21.6))
+                                   c(12.6, 14.9,20.5,19.1,4.4,21.6))
 
 # Convertir la variable Plazo en un factor ordenado
 inversiones_plazo$Plazo <- factor(inversiones_plazo$Plazo, levels = c(
-  "Menos de 1 año", "Un año", "2 años", 
-  "3 años", "4 años", "5 años", "5 a 10 años",
-  "10 a 15 años", "Más de 15 años"
-))
+  "Hasta un año","De 2 a 3 años","De 4 a 5 años", "5 a 10 años",
+  "10 a 15 años", "Más de 15 años"))
 
 # Crear el gráfico de barras para inversiones_plazo
 graf_plazo <- ggplot(inversiones_plazo, aes(x = Plazo, y = RCC)) +
-  geom_bar(stat = "identity", fill = "cadetblue3") +
-  geom_text(aes(label = RCC), vjust = -0.5, color = "black", size = 3.5) +
-  labs(title = " Gráfico #: Composición de Inversiones por Plazo de Vencimiento 
-      al 31 de Diciembre del 2023",
-       x = "Plazo de vencimiento (a valor de mercado)",
-       y = "RCC %") +
+  geom_bar(stat = "identity", fill = "cadetblue3", width = 0.5) +
+  geom_text(aes(label = paste0(RCC,"%")), position = position_stack(vjust = 0.5), size = 3) +
+  labs(title = " Gráfico #: Composición de Inversiones por Plazo de Vencimiento", 
+      subtitle = "al 31 de Diciembre del 2023 (a valor de mercado)",
+       x = "Plazo de vencimiento",
+       y = "RCC (%)") +
   theme_minimal() +
   theme(legend.position = "bottom",
         plot.title = element_text(hjust = 0.5),
@@ -104,6 +114,10 @@ graf_plazo <- ggplot(inversiones_plazo, aes(x = Plazo, y = RCC)) +
 \end{wrapfigure}
 
 
+Por otro lado, el total de la Cartera de Crédito está en colones. En cuanto a
+la Cartera de Valores, se muestra en el gráfico # que la mayoría de los 
+instrumentos financieros están invertidos en colones (57.1%), un 18.9% en 
+Unidades de Desarrollo (moneda virtual) y el restante se invierte en dólares (17.2%).
 
 ```{r, warning=FALSE, echo=FALSE}
 inversiones_moneda <- data.frame("Moneda"= c("Colones","Dólares", 
@@ -112,12 +126,12 @@ inversiones_moneda <- data.frame("Moneda"= c("Colones","Dólares",
 
 # Gráfico de barras monedas
 graf_moneda <- ggplot(inversiones_moneda, aes(x = Moneda, y = RCC)) +
-  geom_bar(stat = "identity", fill = "#2F4F4F",  width = 0.5) +
-  geom_text(aes(label = RCC), vjust = -0.5, color = "black", size = 3.5) +
-  labs(title = " Gráfico #: Composición de Inversiones por Moneda al 31 de
-       Diciembre del 2023",
-       x = "Moneda (a valor de mercado)",
-       y = "RCC %") +
+  geom_bar(stat = "identity", fill = "#BCEE68",  width = 0.5) +
+  geom_text(aes(label = paste0(RCC,"%")), position = position_stack(vjust = 0.5), size = 3) +
+  labs(title = "Gráfico #: Composición de Inversiones por Moneda",
+       subtitle = "al 31 de Diciembre del 2023 (a valor de mercado)",
+       x = "Moneda",
+       y = "RCC (%)") +
   theme_minimal() +
   theme(legend.position = "bottom",
         plot.title = element_text(hjust = 0.5),
@@ -135,4 +149,3 @@ graf_moneda <- ggplot(inversiones_moneda, aes(x = Moneda, y = RCC)) +
  graf_moneda
 ```
 \end{wrapfigure}
-

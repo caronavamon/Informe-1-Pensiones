@@ -40,6 +40,12 @@ header-includes:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+```{r, echo = FALSE, warning=FALSE}
+library(ggplot2)
+library(gridExtra)
+```
+
 \newpage
 
 # Marco Legal
@@ -144,3 +150,138 @@ Si la suma de las pensiones de viudez y orfandad es menor al 100\%, el remanente
 \captionsetup{type=table} 
 \caption*{\footnotesize Fuente: Sistema Costarricense de Información Jurídica.}
 \end{center}
+
+# Comportamiento de las inversiones, los gastos de administración y otras variables financieras.
+
+El Régimen de Capitalización Colectiva (RCC) del fondo C cuenta con información
+del portafolio de inversiones. No posee gastos administrativos, pues, son 
+asumidos por la empresa administradora. Asímismo, tampoco presenta otras variables
+financieras que influyan en el régimen.
+De modo que, se procede a analizar únicamente el comportamiento de las 
+inversiones.
+
+A continuación, se presenta la composición de la cartera, a valor de mercado, de
+las inversiones al 31 de diciembre del 2023 según tres criterios: Sector,
+plazo de vencimiento y moneda.
+
+El gráfico # muestra que el portafolio de inversiones está compuesto en un 6.8%
+por la  cartera de crédito y el restante 93.2% corresponde a la cartera de valores. De esta,
+la mayor parte de las inversiones del régimen se encuentran en el BCCR-MH,
+con un 76.1%. Se puede observar que, un 4.6% de las inversiones se encuentran en el sector 
+Público y un 10.3% en el sector Privado. Las inversiones en el Mercado
+Internacional es de un 2.1%.
+
+```{r, warning=FALSE, echo=FALSE}
+inversiones_sector <- data.frame("Sector" = 
+                                   c("BCCR-MH","Público", "Privado-Deuda", 
+                                     "Privado- Fondos Inmobiliarios y Financieros",
+                                     "Privado Fideicomisos", "Privado-Acciones", "Mercado Internacional", 
+                                     "Cartera de crédito"), 
+                                 "RCC" =  c(76.1, 4.6, 5.6,4.6,0.1,0.0,2.1,6.8))
+
+graf_sector <- ggplot(inversiones_sector, aes(x = RCC, y = Sector)) +
+   geom_bar(stat = "identity", alpha = 0.7, position = "stack", width = 0.4, 
+            fill = "#2F4F4F") +
+  geom_text(aes(label = paste0(RCC,"%")), position = position_stack(vjust = 0.5), size = 3) +
+  labs(title = " Gráfico #: Composición de la Cartera de \n Valores", 
+       subtitle = "por Sector",
+       x = "RCC (%)",
+       y = "Sector") +
+    theme_minimal()+
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  labs(caption = expression(bold("Fuente: ") *"Elaborado a partir de datos del Fondo C"))
+```
+
+\begin{wrapfigure}[15]{r}{0.5\textwidth}
+
+ \centering
+ 
+```{r , fig.align='right', echo=FALSE}
+ graf_sector
+```
+\end{wrapfigure}
+
+Además,la cartera de crédito del portafolio de inversiones tiene un 
+plazo de vencimiento promedio de 10 años. Según el gráfico #, la mayoría de las 
+emisiones de las inversiones de la cartera de valores se concentran en el plazo 
+de más de 15 años. Seguido del plazo de 4 a 5 años y 5 a 10 años. La minoría de 
+las inversiones se emiten en el plazo de 10 a 15 años. 
+
+```{r, warning=FALSE, echo=FALSE}
+inversiones_plazo <- data.frame("Plazo"= c("Hasta un año","De 2 a 3 años",
+                                     "De 4 a 5 años", "5 a 10 años",
+                                     "10 a 15 años", "Más de 15 años"), 
+                                 "RCC" = 
+                                   c(12.6, 14.9,20.5,19.1,4.4,21.6))
+
+# Convertir la variable Plazo en un factor ordenado
+inversiones_plazo$Plazo <- factor(inversiones_plazo$Plazo, levels = c(
+  "Hasta un año","De 2 a 3 años","De 4 a 5 años", "5 a 10 años",
+  "10 a 15 años", "Más de 15 años"))
+
+# Crear el gráfico de barras para inversiones_plazo
+graf_plazo <- ggplot(inversiones_plazo, aes(x = Plazo, y = RCC)) +
+  geom_bar(stat = "identity", fill = "cadetblue3", width = 0.5) +
+  geom_text(aes(label = paste0(RCC,"%")), position = position_stack(vjust = 0.5), size = 3) +
+  labs(title = " Gráfico #: Composición de la Cartera de Valores", 
+      subtitle = "por Plazo de Vencimiento",
+       x = "Plazo de vencimiento",
+       y = "RCC (%)") +
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C"))
+```
+
+\begin{wrapfigure}[15]{l}{0.5\textwidth}
+
+ \centering
+ 
+```{r , fig.align='left', echo=FALSE}
+ graf_plazo
+```
+\end{wrapfigure}
+
+```{r, warning=FALSE, echo=FALSE}
+inversiones_moneda <- data.frame("Moneda"= c("Colones","Dólares", 
+                                             "Unidades de Desarrollo"), 
+                                 "RCC" = c(57.1,17.2, 18.9))
+
+# Gráfico de barras monedas
+graf_moneda <- ggplot(inversiones_moneda, aes(x = Moneda, y = RCC)) +
+  geom_bar(stat = "identity", fill = "#BCEE68",  width = 0.5) +
+  geom_text(aes(label = paste0(RCC,"%")), position = position_stack(vjust = 0.5), size = 3) +
+  labs(title = "Gráfico #: Composición de la Cartera de Valores",
+       subtitle = "por Moneda",
+       x = "Moneda",
+       y = "RCC (%)") +
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C"))
+
+```
+
+\begin{wrapfigure}[15]{l}{0.5\textwidth}
+
+ \centering
+ 
+```{r , fig.align='left', echo=FALSE}
+ graf_moneda
+```
+\end{wrapfigure}
+
+Por otro lado, el total de la cartera de crédito está en colones. En cuanto a
+la cartera de valores, se muestra en el gráfico # que la mayoría de los 
+instrumentos financieros están invertidos en colones (57.1%), un 18.9% en 
+Unidades de Desarrollo (moneda virtual) y el restante se invierte en dólares (17.2%).
