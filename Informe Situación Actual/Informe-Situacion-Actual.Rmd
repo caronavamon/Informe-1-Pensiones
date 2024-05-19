@@ -60,16 +60,16 @@ library(gridExtra)
 \hline
 \endhead 
 Alternativas de pensión por vejez & \begin{itemize}
-    \item \textbf{Pensión por vejez ordinaria:} El asegurado que alcance los 65 años de edad, siempre que haya contribuido a este Seguro con al menos 300 cuotas.
+    \item \textbf{Pensión por vejez ordinaria:} El asegurado que alcance los 65 años de edad, siempre que haya contribuido a este seguro con al menos 300 cuotas.
     \item \textbf{Pensión por vejez proporcional:} Aquellos asegurados que habiendo alcanzado 65 años de edad, no hayan aportado 300 cuotas, pero acumularon al menos 180, tienen derecho a una pensión proporcional.
     \item \textbf{Pensión por vejez anticipada para mujeres:} Según edad y cuotas a partir de los 63 años.
     \item \textbf{Pensión por vejez anticipada según el artículo 26 de la Ley de Protección al Trabajador:} El asegurado podrá anticipar su retiro, utilizando los recursos acumulados en el Régimen Voluntario de Pensiones Complementarias, una vez aprobado por la Junta Directiva.
     \item \textbf{Pensión por vejez para personas con Síndrome de Down:} Dada su condición genética que conlleva a un envejecimiento prematuro, se establece como edad mínima de retiro por vejez, 40 años con 180 cotizaciones.
 \end{itemize} & Art. 5 \\
 \hline
-Pensión por invalidez & Tiene derecho a la pensión por invalidez, el asegurado que sea declarado inválido por la Comisión Calificadora y siempre que haya aportado al menos 180 cotizaciones mensuales a la fecha de la declaratoria de invalidez o al menos doce cuotas durante los últimos 24 meses antes de la declaratoria si ocurre antes de los 48 años de edad o un mínimo de 24 cuotas durante los últimos 48 meses, si ocurre a los 48 ó más años de edad. En ambos casos se requiere, que cumpla el número de cotizaciones de acuerdo con la edad. & Art. 6 \\
+Pensión por invalidez & Tiene derecho a la pensión por invalidez, el asegurado que sea declarado inválido por la Comisión Calificadora y siempre que haya aportado al menos 180 cotizaciones mensuales a la fecha de la declaratoria de invalidez o al menos doce cuotas durante los últimos 24 meses antes de la declaratoria si ocurre antes de los 48 años de edad o un mínimo de 24 cuotas durante los últimos 48 meses, si ocurre a los 48 o más años de edad. En ambos casos se requiere, que cumpla el número de cotizaciones de acuerdo con la edad. & Art. 6 \\
 \hline
-Declaratoria de invalidez & Se crea la Comisión Calificadora del Estado de Invalidez encargada de valorar al asegurado que solicite una pensión por invalidez y de declarar si se encuentra o no inválido. & Art. 7 \\
+Declaratoria de invalidez & Se crea la Comisión Calificadora del Estado de Invalidez, encargada de valorar al asegurado que solicite una pensión por invalidez y de declarar si se encuentra o no inválido. & Art. 7 \\
 \hline
 Requisitos para pensionarse por invalidez & Se considerará inválido el asegurado que, por alteración o debilitamiento de su estado físico o mental, perdiera dos terceras partes o más de su capacidad de desempeño. También las personas que sean declaradas en estado de incurables o con pronóstico fatal. & Art. 8 \\
 \hline
@@ -117,7 +117,7 @@ De la vigencia de los derechos & Los derechos rigen conforme a las siguientes re
 
 \end{enumerate} & Art. 19 \\
 \hline
-Fórmula de cálculo del salario promedio, periodicidad del pago de la pensión y aguinaldo. & El cálculo de la pensión por vejez o invalidez se basa en el promedio de los mejores 300 salarios mensuales ajustados por inflación, tomando como base de actualización el índice de precios al consumidor calculado mensualmente por el Instituto Nacional de Estadística y Censos de Costa Rica. Si no se han aportado 300 cuotas, se consideran todos los salarios reportados. Las pensiones se pagan mensualmente, con un aguinaldo adicional en diciembre.El primer pago comprenderá el período o fracción del mes desde la fecha de vigencia de la pensión. El aguinaldo se pagará en la primera semana de diciembre. & Art. 23 \\
+Fórmula de cálculo del salario promedio, periodicidad del pago de la pensión y aguinaldo. & El cálculo de la pensión por vejez o invalidez se basa en el promedio de los mejores 300 salarios mensuales ajustados por inflación, tomando como base de actualización el índice de precios al consumidor, calculado mensualmente por el Instituto Nacional de Estadística y Censos de Costa Rica. Si no se han aportado 300 cuotas, se consideran todos los salarios reportados. Las pensiones se pagan mensualmente, con un aguinaldo adicional en diciembre.El primer pago comprenderá el período o fracción del mes desde la fecha de vigencia de la pensión. El aguinaldo se pagará en la primera semana de diciembre. & Art. 23 \\
 \hline
 Monto de las pensiones por vejez, invalidez o muerte & El monto comprende una cuantía básica como porcentaje del salario o ingreso promedio de referencia. Esta cuantía básica se otorga por los primeros 25 años cotizados (300 cuotas) o los que se tuvieren en caso de invalidez o muerte. Tanto para vejez como invalidez, se incluye una cuantía adicional del 0.0833\% sobre el salario promedio por cada mes cotizado en exceso de los primeros 300 meses. Para la pensión por vejez proporcional se calcula multiplicando la pensión completa por el número de cuotas aportadas y dividiendo por 300. En caso de invalidez, trabajadores con al menos 60 cuotas y sin cumplir los requisitos del artículo 6 tienen derecho a una pensión proporcional calculada como la proporción entre cuotas aportadas y requeridas, multiplicada por la pensión completa. La pensión complementaria de vejez para la persona inválida que trabaje es del 3\% del salario promedio por cada año cotizado.& Art. 24 \\
 \hline
