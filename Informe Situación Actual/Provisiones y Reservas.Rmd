@@ -1,0 +1,189 @@
+---
+title: "Provisiones y Reservas"
+
+output:
+  pdf_document:
+    latex_engine: xelatex
+    toc: true
+  
+header-includes:
+  - \usepackage{float}
+  - \usepackage{wrapfig}
+---
+```{r}
+library(readxl)
+library(lubridate)
+library(tidyverse)
+library(GGally)
+library(gridExtra)
+```
+
+
+En el presente informe se mostrara la situación actual del Fondo C en para ello se desarrollaran las áreas económicas y legislativas.
+
+
+Una vez explicada la el área legislativa nos enfocaremos en el aspecto económico que presenta el régimen
+
+```{r}
+Financiero <- read_excel(
+  "Fondo C.xlsx",
+  sheet = 
+    "Financiero"
+) %>% 
+  mutate(
+    Período = 
+      as_date(Período)
+  )
+```
+
+
+```{r}
+Activo <- Financiero %>% 
+  filter(
+    Período >=
+      as_date("2022-1-1")
+  ) %>%
+  ggplot(
+    aes(
+      x = 
+        Período,
+      y =
+        Activo/1000000, 
+      col = ""
+    )
+  ) +
+  geom_line(linewidth = 1.3) + 
+  labs(title = "Activos",
+       x = "",
+       y = "Millones de colones") +
+  theme_minimal() +
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  scale_x_continuous(breaks = as_date("2022-1-1") %m+% months(3*(0:8)),
+                     labels = c("Ene", "Abr", "Jul", "Oct",
+                                "Ene", "Abr", "Jul", "Oct", "Ene")) +
+  scale_color_manual(
+    values =
+      c(
+        "#A2CD5A"
+      )
+  )
+################################################################################
+Plusvalía <- Financiero %>% 
+  filter(
+    Período >=
+      as_date("2022-1-1")
+  ) %>%
+  ggplot(
+    aes(
+      x = 
+        Período,
+      y =
+        `Plusvalía/Minusvalias`/1000000,
+      col = ""
+    )
+  ) +
+  geom_line(linewidth = 1.3) + 
+  labs(title = "Plusvalía",
+       x = "Mes",
+       y = "") +
+  theme_minimal() +
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  labs(caption = "") +
+  scale_x_continuous(breaks = as_date("2022-1-1") %m+% months(3*(0:8)),
+                     labels = c("Ene", "Abr", "Jul", "Oct",
+                                "Ene", "Abr", "Jul", "Oct", "Ene")) +
+  scale_color_manual(
+    values =
+      c(
+        "#4B7F52"
+      )
+  )
+################################################################################
+Cotizaciones <- Financiero %>% 
+  filter(
+    Período >=
+      as_date("2022-1-1")
+  ) %>%
+  ggplot(
+    aes(
+      x = 
+        Período,
+      y =
+        `Cotizaciones Netas`/1000000,
+      col = ""
+    )
+  ) +
+  geom_line(linewidth = 1.3)+ 
+  labs(title = "Cotizaciones Netas",
+       x = "Mes",
+       y = "Millones de colones") +
+  theme_minimal() +
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  labs(caption = expression(bold("Fuente: ") * "Elaborados a partir de datos del Fondo C")) +
+  scale_x_continuous(breaks = as_date("2022-1-1") %m+% months(3*(0:8)),
+                     labels = c("Ene", "Abr", "Jul", "Oct",
+                                "Ene", "Abr", "Jul", "Oct", "Ene")) +
+  scale_color_manual(
+    values =
+      c(
+        "cadetblue3"
+      )
+  )
+################################################################################
+Pensiones <- Financiero %>% 
+  filter(
+    Período >=
+      as_date("2022-1-1")
+  ) %>%
+  ggplot(
+    aes(
+      x = 
+        Período,
+      y =
+        `Pago de Pensiones`/1000000,
+      col = "1"
+    )
+  ) +
+  geom_line(linewidth = 1.3) + 
+  labs(title = "Pago de pensiones",
+       x = "",
+       y = "") +
+  theme_minimal() +
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  scale_x_continuous(breaks = as_date("2022-1-1") %m+% months(3*(0:8)),
+                     labels = c("Ene", "Abr", "Jul", "Oct",
+                                "Ene", "Abr", "Jul", "Oct", "Ene")) +
+  scale_color_manual(
+    values =
+      c(
+        "#2F4F4F"
+      )
+  )
+```
+
+
+```{r}
+grid.arrange(Activo, Pensiones, Cotizaciones, Plusvalía, nrow = 2, ncol = 2, top = "NA")
+```
+
+```{r}
+temp <- lm(Financiero$`Pago de Pensiones` ~ lag(Financiero$`Pago de Pensiones`))
+temp$coefficients
+```
+
