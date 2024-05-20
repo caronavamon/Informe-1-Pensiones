@@ -10,7 +10,7 @@ header-includes:
   - \usepackage{float}
   - \usepackage{wrapfig}
 ---
-```{r}
+```{r setup, include=FALSE, echo = FALSE, warning=FALSE}
 library(readxl)
 library(lubridate)
 library(tidyverse)
@@ -22,9 +22,11 @@ library(gridExtra)
 En el presente informe se mostrara la situación actual del Fondo C en para ello se desarrollaran las áreas económicas y legislativas.
 
 
-Una vez explicada la el área legislativa nos enfocaremos en el aspecto económico que presenta el régimen
+Una vez explicada la el área legislativa se analizara el aspecto económico que presenta el régimen. El componente económico es fundamental para comprender la situación actual del régimen. Para ello iniciaremos utilizando el Gráfico #.
+Gracias a este gráfico podemos observar un crecimiento en las variables Activos y Pago de Pensiones. En el caso de los activos se ha producido un incremento casi constante durante le periodo de análisis; salvo el segundo semestre de 2023, donde presenta un aumento en la volatilidad. Este crecimiento es positivo, ya que indica una acumulación de recursos en el fondo.
+En cambio el Pago de Pensiones, presenta una alta volatilidad a lo largo de todo el período estudiado, no solo en los últimos meses, aunque si es necesario resaltar que también presenta un aumento en la volatilidad para el final del período de estudio.
 
-```{r}
+```{r, warning=FALSE, echo=FALSE}
 Financiero <- read_excel(
   "Fondo C.xlsx",
   sheet = 
@@ -33,11 +35,15 @@ Financiero <- read_excel(
   mutate(
     Período = 
       as_date(Período)
+  ) %>% 
+  filter(
+    Período >=
+      as_date("2022-1-1")
   )
 ```
 
 
-```{r}
+```{r, warning=FALSE, echo=FALSE}
 Activo <- Financiero %>% 
   filter(
     Período >=
@@ -52,7 +58,20 @@ Activo <- Financiero %>%
       col = ""
     )
   ) +
-  geom_line(linewidth = 1.3) + 
+  geom_smooth(method = "lm", color = "#A2CD5A",linetype = 3) +
+  geom_text(
+    aes(
+      x = 
+        as_date("2022-5-1"),
+      y =
+        4.2e5,
+      label =
+        paste0("Incremento \n Mensual ", 2.96,"%")
+    ),
+    size =
+      3
+  ) +
+  geom_line(linewidth = 1) + 
   labs(title = "Activos",
        x = "",
        y = "Millones de colones") +
@@ -86,7 +105,7 @@ Plusvalía <- Financiero %>%
       col = ""
     )
   ) +
-  geom_line(linewidth = 1.3) + 
+  geom_line(linewidth = 1.1) + 
   labs(title = "Plusvalía",
        x = "Mes",
        y = "") +
@@ -131,7 +150,9 @@ Cotizaciones <- Financiero %>%
         plot.subtitle = element_text(hjust = 0.5),
         plot.caption = element_text(hjust = 0, color = "black", size = 8),
         legend.title = element_blank()) +
-  labs(caption = expression(bold("Fuente: ") * "Elaborados a partir de datos del Fondo C")) +
+  labs(
+    caption = 
+      expression(bold("Fuente: ") * "Elaborados a partir de datos del Fondo C")) +
   scale_x_continuous(breaks = as_date("2022-1-1") %m+% months(3*(0:8)),
                      labels = c("Ene", "Abr", "Jul", "Oct",
                                 "Ene", "Abr", "Jul", "Oct", "Ene")) +
@@ -156,6 +177,7 @@ Pensiones <- Financiero %>%
       col = "1"
     )
   ) +
+  geom_smooth(method = "lm", color = "#2F4F4F",linetype = 3) +
   geom_line(linewidth = 1.3) + 
   labs(title = "Pago de pensiones",
        x = "",
@@ -176,14 +198,17 @@ Pensiones <- Financiero %>%
       )
   )
 ```
+\begin{wrapfigure}[15]{r}{0.5\textwidth}
 
-
-```{r}
-grid.arrange(Activo, Pensiones, Cotizaciones, Plusvalía, nrow = 2, ncol = 2, top = "NA")
+ \centering
+ 
+```{r , fig.align='right', echo=FALSE, warning=FALSE,message=FALSE}
+grid.arrange(Activo, Pensiones, Cotizaciones, Plusvalía, nrow = 2, ncol = 2, top = "Grafico #: Comportamiento finaciero del Regimen \n 2022-2023")
 ```
+\end{wrapfigure}
 
-```{r}
-temp <- lm(Financiero$`Pago de Pensiones` ~ lag(Financiero$`Pago de Pensiones`))
-temp$coefficients
-```
+Aunque en el periodo estudiado existe incremento en las pago de pensiones, esto no sucede de igual manera con las Cotizaciones Netas. Lo cual si  bien es cierto que promedian el doble de que los Pagos al momento del análisis, 31/12/2023, estos están incrementando a gran medida. Siendo que de continuar de esta forma el Fondo C podría llegar un punto donde las Cotizaciones no sean suficientes para cubrir los Pagos. Teniendo así que depender de las plusvalías para poder cubrir con las obligaciones del fondo. 
+
+Las plusvalías en el año 2022 presento sentaron una disminución considerable y aunque para el siguiente hizo un existió una mejoría esta vino acompañada de una gran volatilidad hasta al punto que el fondo alcanzo montos negativos (Minusvalías) en octubre de ese año.  Por ello una de las partes mas inportante para profundizar el tema de como se distribuyen las inversiones del Fondo C.
+
 

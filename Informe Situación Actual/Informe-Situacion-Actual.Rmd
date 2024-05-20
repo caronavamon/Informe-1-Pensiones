@@ -41,9 +41,12 @@ header-includes:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r, echo = FALSE, warning=FALSE}
+```{r, echo = FALSE, warning=FALSE, message=FALSE}
 library(ggplot2)
 library(gridExtra)
+library(lubridate)
+library(tidyverse)
+library(readxl)
 ```
 
 \newpage
@@ -151,6 +154,198 @@ Si la suma de las pensiones de viudez y orfandad es menor al 100\%, el remanente
 \caption*{\footnotesize Fuente: Sistema Costarricense de Información Jurídica.}
 \end{center}
 
+
+# Provisiones y reservas del régimen y su comportamiento.
+
+Una vez explicada la el área legislativa se analizara el aspecto económico que presenta el régimen. El componente económico es fundamental para comprender la situación actual del régimen. Para ello iniciaremos utilizando el Gráfico 1.
+Gracias a este gráfico podemos observar un crecimiento en las variables Activos y Pago de Pensiones. En el caso de los activos se ha producido un incremento casi constante durante le periodo de análisis; salvo el segundo semestre de 2023, donde presenta un aumento en la volatilidad. Este crecimiento es positivo, ya que indica una acumulación de recursos en el fondo.
+En cambio el Pago de Pensiones, presenta una alta volatilidad a lo largo de todo el período estudiado, no solo en los últimos meses, aunque si es necesario resaltar que también presenta un aumento en la volatilidad para el final del período de estudio.
+
+```{r, warning=FALSE, echo=FALSE}
+Financiero <- read_excel(
+  "Fondo C.xlsx",
+  sheet = 
+    "Financiero"
+) %>% 
+  mutate(
+    Período = 
+      as_date(Período)
+  ) %>% 
+  filter(
+    Período >=
+      as_date("2022-1-1")
+  )
+```
+
+
+```{r, warning=FALSE, echo=FALSE}
+Activo <- Financiero %>% 
+  filter(
+    Período >=
+      as_date("2022-1-1")
+  ) %>%
+  ggplot(
+    aes(
+      x = 
+        Período,
+      y =
+        Activo/1000000, 
+      col = ""
+    )
+  ) +
+  geom_smooth(method = "lm", color = "#A2CD5A",linetype = 3) +
+  geom_text(
+    aes(
+      x = 
+        as_date("2022-5-1"),
+      y =
+        4.2e5,
+      label =
+        paste0("Incremento \n Mensual ", 2.96,"%")
+    ),
+    size =
+      3
+  ) +
+  geom_line(linewidth = 1) + 
+  labs(title = "Activos",
+       x = "",
+       y = "Millones de colones") +
+  theme_minimal() +
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  scale_x_continuous(breaks = as_date("2022-1-1") %m+% months(3*(0:8)),
+                     labels = c("Ene", "Abr", "Jul", "Oct",
+                                "Ene", "Abr", "Jul", "Oct", "Ene")) +
+  scale_color_manual(
+    values =
+      c(
+        "#A2CD5A"
+      )
+  )
+################################################################################
+Plusvalía <- Financiero %>% 
+  filter(
+    Período >=
+      as_date("2022-1-1")
+  ) %>%
+  ggplot(
+    aes(
+      x = 
+        Período,
+      y =
+        `Plusvalía/Minusvalias`/1000000,
+      col = ""
+    )
+  ) +
+  geom_line(linewidth = 1.1) + 
+  labs(title = "Plusvalía",
+       x = "Mes",
+       y = "") +
+  theme_minimal() +
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  labs(caption = "") +
+  scale_x_continuous(breaks = as_date("2022-1-1") %m+% months(3*(0:8)),
+                     labels = c("Ene", "Abr", "Jul", "Oct",
+                                "Ene", "Abr", "Jul", "Oct", "Ene")) +
+  scale_color_manual(
+    values =
+      c(
+        "#4B7F52"
+      )
+  )
+################################################################################
+Cotizaciones <- Financiero %>% 
+  filter(
+    Período >=
+      as_date("2022-1-1")
+  ) %>%
+  ggplot(
+    aes(
+      x = 
+        Período,
+      y =
+        `Cotizaciones Netas`/1000000,
+      col = ""
+    )
+  ) +
+  geom_line(linewidth = 1.3)+ 
+  labs(title = "Cotizaciones Netas",
+       x = "Mes",
+       y = "Millones de colones") +
+  theme_minimal() +
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  labs(
+    caption = 
+      expression(bold("Fuente: ") * "Elaborados a partir de datos del Fondo C")) +
+  scale_x_continuous(breaks = as_date("2022-1-1") %m+% months(3*(0:8)),
+                     labels = c("Ene", "Abr", "Jul", "Oct",
+                                "Ene", "Abr", "Jul", "Oct", "Ene")) +
+  scale_color_manual(
+    values =
+      c(
+        "cadetblue3"
+      )
+  )
+################################################################################
+Pensiones <- Financiero %>% 
+  filter(
+    Período >=
+      as_date("2022-1-1")
+  ) %>%
+  ggplot(
+    aes(
+      x = 
+        Período,
+      y =
+        `Pago de Pensiones`/1000000,
+      col = "1"
+    )
+  ) +
+  geom_smooth(method = "lm", color = "#2F4F4F",linetype = 3) +
+  geom_line(linewidth = 1.3) + 
+  labs(title = "Pago de pensiones",
+       x = "",
+       y = "") +
+  theme_minimal() +
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        plot.caption = element_text(hjust = 0, color = "black", size = 8),
+        legend.title = element_blank()) +
+  scale_x_continuous(breaks = as_date("2022-1-1") %m+% months(3*(0:8)),
+                     labels = c("Ene", "Abr", "Jul", "Oct",
+                                "Ene", "Abr", "Jul", "Oct", "Ene")) +
+  scale_color_manual(
+    values =
+      c(
+        "#2F4F4F"
+      )
+  )
+```
+\begin{wrapfigure}[15]{r}{0.5\textwidth}
+
+ \centering
+ 
+```{r , fig.align='right', echo=FALSE, warning=FALSE,message=FALSE}
+grid.arrange(Activo, Pensiones, Cotizaciones, Plusvalía, nrow = 2, ncol = 2, top = "Grafico 1: Comportamiento finaciero del Regimen \n 2022-2023")
+```
+\end{wrapfigure}
+
+Aunque en el periodo estudiado existe incremento en las pago de pensiones, esto no sucede de igual manera con las Cotizaciones Netas. Lo cual si  bien es cierto que promedian el doble de que los Pagos al momento del análisis, 31/12/2023, estos están incrementando a gran medida. Siendo que de continuar de esta forma el Fondo C podría llegar un punto donde las Cotizaciones no sean suficientes para cubrir los Pagos. Teniendo así que depender de las plusvalías para poder cubrir con las obligaciones del fondo. 
+
+Las plusvalías en el año 2022 presento sentaron una disminución considerable y aunque para el siguiente hizo un existió una mejoría esta vino acompañada de una gran volatilidad hasta al punto que el fondo alcanzo montos negativos (Minusvalías) en octubre de ese año.  Por ello una de las partes mas inportante para profundizar el tema de como se distribuyen las inversiones del Fondo C.
+
 # Comportamiento de las inversiones, los gastos de administración y otras variables financieras.
 
 El Régimen de Capitalización Colectiva (RCC) del fondo C cuenta con información
@@ -164,12 +359,7 @@ A continuación, se presenta la composición de la cartera, a valor de mercado, 
 las inversiones al 31 de diciembre del 2023 según tres criterios: Sector,
 plazo de vencimiento y moneda.
 
-El gráfico # muestra que el portafolio de inversiones está compuesto en un 6.8%
-por la  cartera de crédito y el restante 93.2% corresponde a la cartera de valores. De esta,
-la mayor parte de las inversiones del régimen se encuentran en el BCCR-MH,
-con un 76.1%. Se puede observar que, un 4.6% de las inversiones se encuentran en el sector 
-Público y un 10.3% en el sector Privado. Las inversiones en el Mercado
-Internacional es de un 2.1%.
+
 
 ```{r, warning=FALSE, echo=FALSE}
 inversiones_sector <- data.frame("Sector" = 
@@ -204,6 +394,13 @@ graf_sector <- ggplot(inversiones_sector, aes(x = RCC, y = Sector)) +
  graf_sector
 ```
 \end{wrapfigure}
+
+El gráfico # muestra que el portafolio de inversiones está compuesto en un 6.8%
+por la  cartera de crédito y el restante 93.2% corresponde a la cartera de valores. De esta,
+la mayor parte de las inversiones del régimen se encuentran en el BCCR-MH,
+con un 76.1%. Se puede observar que, un 4.6% de las inversiones se encuentran en el sector 
+Público y un 10.3% en el sector Privado. Las inversiones en el Mercado
+Internacional es de un 2.1%.
 
 Además,la cartera de crédito del portafolio de inversiones tiene un 
 plazo de vencimiento promedio de 10 años. Según el gráfico #, la mayoría de las 
