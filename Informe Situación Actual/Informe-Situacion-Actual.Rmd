@@ -51,10 +51,19 @@ library(readxl)
 
 \newpage
 
+A continuación, se presenta un análisis de la situación actual del régimen. Se
+estudiarán las provisiones y reservas, el marco legal y las inversiones del 
+Fondo C.
+
 # Provisiones y reservas del régimen y su comportamiento.
 
-Se analizará el aspecto financiero que presenta el régimen, el cual, es fundamental para comprender la situación actual del mismo. En este sentido, se procede a estudiar el comportamiento de las reservas y provisiones, para este caso, en términos contables son lo mismo dada la información
-proporcionada por el Fondo C. Esta se puede ver reflejada por medio de los activos con fecha de inicio del 31 de diciembre del 2013 y fecha corte al 31 de diciembre del 2023. 
+Se analizará el aspecto financiero que presenta el régimen, el cual, es fundamental para comprender la situación actual del mismo. En este sentido, se procede a describir las provisiones y a estudiar el comportamiento de las reservas según la información proporcionada por el Fondo C.
+
+Al 31 de diciembre del 2023, las provisiones que posee el régimen consisten en ₡42 380 643,13 que se componen de ₡21 709 633,56 por concepto de cotización de seguros de enfermedad y maternidad (SEM) y 
+₡20 671 009,58 como provisión para obligaciones patronales (aguinaldo). Además, se cuenta con una provisión para pensiones en curso de pago de un monto de 
+₡40 930 473 298,35.
+
+Con respecto a las reservas, estas se ven reflejadas por medio de los activos con fecha de inicio del 31 de diciembre del 2013 y fecha corte al 31 de diciembre del 2023. 
 
 Según el gráfico 1, se puede observar un crecimiento de las reservas con un incremento mensual casi constante de 2.96% durante el periodo de análisis. Se identifica una subida al inicio
 del 2014 y luego se mantiene con un crecimiento casi constante hasta inicios del 2020, donde se 

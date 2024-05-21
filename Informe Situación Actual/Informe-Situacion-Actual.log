@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.5.4)  20 MAY 2024 11:05
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.5.4)  20 MAY 2024 19:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -937,92 +937,92 @@ File: Informe-Situacion-Actual_files/figure-latex/unnamed-chunk-3-1.pdf Graphic 
 <use Informe-Situacion-Actual_files/figure-latex/unnamed-chunk-3-1.pdf>
 [2]
 LaTeX Font Info:    Font shape `TU/Arial(0)/m/n' will be
-(Font)              scaled to size 9.0pt on input line 142.
+(Font)              scaled to size 9.0pt on input line 155.
 LaTeX Font Info:    Font shape `TU/Arial(0)/b/n' will be
-(Font)              scaled to size 9.0pt on input line 147.
+(Font)              scaled to size 9.0pt on input line 160.
 
-Overfull \hbox (19.95932pt too wide) in alignment at lines 143--149
+Overfull \hbox (19.95932pt too wide) in alignment at lines 156--162
  [] [] [] 
  []
 
 
-Underfull \hbox (badness 3735) in paragraph at lines 164--164
+Underfull \hbox (badness 3735) in paragraph at lines 177--177
 \TU/Arial(0)/m/n/9 la pensión en calidad de
  []
 
 
-Underfull \hbox (badness 1648) in paragraph at lines 173--173
+Underfull \hbox (badness 1648) in paragraph at lines 186--186
 \TU/Arial(0)/m/n/9 un derecho en calidad de
  []
 
 
-Underfull \hbox (badness 5050) in paragraph at lines 197--197
+Underfull \hbox (badness 5050) in paragraph at lines 210--210
 []|\TU/Arial(0)/m/n/9 Requisitos generales para
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 208--208
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
 []|\TU/Arial(0)/m/n/9 Fórmula de cálculo del
  []
 
 
-Underfull \hbox (badness 1221) in paragraph at lines 208--208
+Underfull \hbox (badness 1221) in paragraph at lines 221--221
 \TU/Arial(0)/m/n/9 salario promedio, periodici-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
+Underfull \hbox (badness 10000) in paragraph at lines 225--225
 []|\TU/Arial(0)/m/n/9 Pensión adicional por
  []
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.82826pt on input line 212.
+(Font)              scaled to size 10.82826pt on input line 225.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 6.0157pt on input line 212.
+(Font)              scaled to size 6.0157pt on input line 225.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.82936pt on input line 212.
+(Font)              scaled to size 10.82936pt on input line 225.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 6.01631pt on input line 212.
+(Font)              scaled to size 6.01631pt on input line 225.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 10.82716pt on input line 212.
+(Font)              scaled to size 10.82716pt on input line 225.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.01509pt on input line 212.
+(Font)              scaled to size 6.01509pt on input line 225.
 
-Overfull \hbox (19.95932pt too wide) in alignment at lines 149--234
+Overfull \hbox (19.95932pt too wide) in alignment at lines 162--247
  [] [] [] 
  []
 
 [3] [4]
 LaTeX Font Info:    Font shape `TU/Arial(0)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 239.
+(Font)              scaled to size 8.0pt on input line 252.
 [5]
 File: Informe-Situacion-Actual_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type pdf)
 <use Informe-Situacion-Actual_files/figure-latex/unnamed-chunk-5-1.pdf>
 File: Informe-Situacion-Actual_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type pdf)
 <use Informe-Situacion-Actual_files/figure-latex/unnamed-chunk-7-1.pdf>
 
-Package wrapfig Warning: Collision between wrapping environments on input line 289.
+Package wrapfig Warning: Collision between wrapping environments on input line 302.
 
 File: Informe-Situacion-Actual_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
 <use Informe-Situacion-Actual_files/figure-latex/unnamed-chunk-9-1.pdf>
 [6]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 8.42198pt on input line 314.
+(Font)              scaled to size 8.42198pt on input line 327.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 12.03262pt on input line 314.
+(Font)              scaled to size 12.03262pt on input line 327.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 8.42284pt on input line 314.
+(Font)              scaled to size 8.42284pt on input line 327.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 12.03018pt on input line 314.
+(Font)              scaled to size 12.03018pt on input line 327.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 8.42113pt on input line 314.
+(Font)              scaled to size 8.42113pt on input line 327.
 
-Underfull \hbox (badness 2005) in paragraph at lines 311--315
+Underfull \hbox (badness 2005) in paragraph at lines 324--328
 \TU/Arial(0)/m/n/10 Vejez y Muerte de la Caja Costarricense de Seguro Social. []$[][][][] [] [] [] [][][] [] [][][][][][] [] [][] [] [][] [] [][][][] []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 311--315
+Underfull \hbox (badness 10000) in paragraph at lines 324--328
 [][][][][][][][] [] [][][][][][][][][] [] [][][][][][] [] [][][] [] [][][][][] [] [][][][][][][][] [] [][][][] [] [][][][][][] [] [][][][][][][][][][][][] [] [][][][][][][][][] []
  []
 
