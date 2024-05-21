@@ -234,7 +234,7 @@ Si la suma de las pensiones de viudez y orfandad es menor al 100\%, el remanente
 
 El Régimen de Capitalización Colectiva (RCC) del Fondo C cuenta con información
 del portafolio de inversiones. No posee gastos administrativos, pues, son 
-asumidos por la empresa administradora. Asímismo, tampoco presenta otras variables
+asumidos por la empresa administradora. Asimismo, tampoco presenta otras variables
 financieras que influyan en el régimen.
 De modo que, se procede a analizar únicamente el comportamiento de las 
 inversiones.
