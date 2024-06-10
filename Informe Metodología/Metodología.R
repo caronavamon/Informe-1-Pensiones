@@ -10,6 +10,8 @@ mortalidad$qx <- as.double(mortalidad$qx)
 mortalidad <- mortalidad[order(mortalidad$edad),]
 mortalidad_mujeres <- subset(mortalidad, sex == 2 & year == 2024,
                              select = c(edad,qx))
+mortalidad_hombres <- subset(mortalidad, sex == 1 & year == 2024,
+                             select = c(edad,qx))
 
 #Se obtienen las probabilidades de sobrevivencia
 px_M <- 1- mortalidad_mujeres$qx
@@ -17,10 +19,7 @@ px_H <- 1- mortalidad_hombres$qx
 
 #Se añaden las probabilidades de sobrevivencia a la base datos
 mortalidad_mujeres$px <- px_M
-mortalidad_mujeres$px <- px_H
-
-mortalidad_hombres <- subset(mortalidad, sex == 1 & year == 2024,
-                             select = c(edad,qx))
+mortalidad_hombres$px <- px_H
 
 # Tabla invalidez
 invalidez <- read_excel("Informe Metodología/Invalidez.xlsx", 
@@ -29,8 +28,6 @@ invalidez <- read_excel("Informe Metodología/Invalidez.xlsx",
 #Se obtienen las probabilidades de no ser inválido
 p_no_invalidez_M <- 1- invalidez$Mujeres
 p_no_invalidez_H <- 1- invalidez$Hombres
-
-
 
 #----------- Activos--------|
 
