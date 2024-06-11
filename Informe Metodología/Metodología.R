@@ -8,9 +8,9 @@ library(tidyverse)
 mortalidad <- read_excel("Informe Metodología/tavid2000-2150.xls")
 mortalidad$qx <- as.double(mortalidad$qx)
 mortalidad <- mortalidad[order(mortalidad$edad),]
-mortalidad_mujeres <- subset(mortalidad, sex == 2 & year == 2024,
+mortalidad_mujeres <- subset(mortalidad, sex == 2 & year == 2023,
                              select = c(edad,qx))
-mortalidad_hombres <- subset(mortalidad, sex == 1 & year == 2024,
+mortalidad_hombres <- subset(mortalidad, sex == 1 & year == 2023,
                              select = c(edad,qx))
 
 #Se obtienen las probabilidades de sobrevivencia
@@ -29,6 +29,12 @@ invalidez <- read_excel("Informe Metodología/Invalidez.xlsx",
 p_no_invalidez_M <- 1- invalidez$Mujeres
 p_no_invalidez_H <- 1- invalidez$Hombres
 
+invalidez <- cbind(invalidez, p_no_invalidez_H, p_no_invalidez_M)
+
+#extender la base hasta la edad de 115
+invalidez <- rbind(invalidez, invalidez[rep(71, 26),])
+invalidez$Edad[71:nrow(invalidez)] <- 89:115
+
 #----------- Activos--------|
 
 # Leer la hoja 'Activos'
@@ -45,8 +51,11 @@ activos_ordenado <- activos[order(activos$Edad), ]
 activos_filtrados <- activos_ordenado %>%
   filter(rowSums(select(., -c(1:350, 363))) != 0)
 
-# Se eliminan las cotizaciones
-activos_sin_cotizacion <- activos_filtrados[, c("Sexo", "Edad")]
+# Se cuentan las cotizaciones
+num_cotizaciones <- rowSums(activos_filtrados[, -c(1,2,363)] > 0)
+activos_filtrados$"Cantidad Cotizaciones" <- num_cotizaciones
+
+activos_sin_cotizacion <- activos_filtrados[, c("Sexo", "Edad", "Cantidad Cotizaciones")]
 
 # Se le agrega el sexo  del cónyuge y la edad el hijo(a). La edad del afiliado
 # y cónyuge es la misma por ende no se crea otra columna. El hijo es 25 años
@@ -63,7 +72,6 @@ for(i in (1: length(sexo_afiliado))) {
   }else {
     conyugue[i] <- "M"
 }
-  
   if(edad_hijo[i] < 0) {
     edad_hijo[i] = 0
   }
@@ -77,39 +85,62 @@ activos_sin_cotizacion <- cbind(activos_sin_cotizacion, conyugue, edad_hijo)
 # vejez, salida del fondo (muere pero no se cumple los requisitos de sucesión,
 # se invalida pero no cumple los requisitos para recibir la pensión por invalidez)
 
-#Se simulan diversas trayectorias de vida de la persona
-set.seed(2901)
-iteraciones=10^4
-n=length(activos_sin_cotizacion)
+#Caso base mujer
 
+#Se simulan diversas trayectorias de una mujer de 20 años
+mujer_tablavida <- subset(mortalidad, sex == 2 & ynac == 2003 & edad >= 20,
+                          select = c(edad,qx, year))
+px_mujer <- 1-mujer_tablavida$qx
+
+set.seed(2901)
+iteraciones <- 100
+n <- length(px_mujer)
+activos_simulados <- list()
+pensionados_simulados <- list()
+
+promedio_cotizaciones <- 5
+#round(mean(rowSums(activos_filtrados[, -c(1:350,363)] > 0)))
 for (i in 1:iteraciones) {
   
-  prob_muerte_M <- list() # Se toman como probabilidades de muerte
-  prob_invalidez_M <- list() # Se toman como probabilidades de invalidez
-  
-  for( j in 1:100) {
-    prob_muerte_M[[i]] <- runif(n)
-    prob_invalidez_M[[i]] <- runif(n)
-  }
-  
+  prob_muerte_M <- runif(n) # Se toman como probabilidades de muerte
+  prob_invalidez_M <- runif(n) # Se toman como probabilidades de invalidez
+  prob_postergar <- runif(1)
+
   t <- 1
   cont <- 1
   estado <- 0
+  edad <- activos_sin_cotizacion$Edad[1]
+  cotizaciones <- activos_sin_cotizacion$`Cantidad Cotizaciones`[1] 
   
   while (t == 1) {
-    for(k in 1: n) {
-      if(activos_sin_cotizacion$Sexo == "F") {
-        if (prob_muerte_M[[cont]] < px_M[cont]) {
-          if(prob_invalidez_M[[cont]] < p_no_invalidez_M){
-            #if(revisar si cumple las condiciones para jubilarse){
-               #estado <- 1
-                #t <-0
-          }# poner el caso de pensión por invalidez 
-        }#poner el caso de sucesión
+        if (prob_muerte_M[cont] < px_mujer[cont]) {
+          if(prob_invalidez_M[cont] < invalidez$p_no_invalidez_M[invalidez$Edad == edad]){
+            if(edad >=  65 & cotizaciones >= 180 & prob_postergar < 0.9  ){
+               estado <- 1
+                t <-0
+            }else {
+               edad <- edad +1
+               cont <- cont +1
+               cotizaciones <- cotizaciones + promedio_cotizaciones
+             }
+          }else if(cotizaciones >= 180 )  {
+            estado <- 2
+            t <- 0
+          }else {
+            estado <- 4
+            t <-0
+          }
+       }else if(cotizaciones >= 180 ){
+        estado <- 3
+        t <- 0
+       }else {
+        estado <-4
+        t <- 0
       }
-    } 
   }
-    
-
+  # Almacenar los resultados de la simulación
+  activos_simulados[[i]] <- data.frame(iteracion = i, estado = estado, edad = edad, cotizaciones = cotizaciones)
 }
+# Convertir la lista de resultados en un data frame
+resultados_simulacion <- bind_rows(activos_simulados)
 
