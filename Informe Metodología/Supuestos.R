@@ -3,6 +3,7 @@ library(lubridate)
 library(tidyr)
 library(dplyr)
 library(ggplot2)
+library(cowplot)
 
 # Inflación
 
@@ -143,7 +144,7 @@ ggplot(promedios_edad, aes(x = edad, y = Variacion)) +
   labs(title = "Variación del Salario Promedio por Edad",
        x = "Edad",
        y = "Variación del Salario Promedio") +
-  theme_minimal() 
+  theme_cowplot() 
 
 ggplot(promedios_edad, aes(x = edad, y = promedios_edad)) +
   geom_bar(stat = "identity", fill = "#2F4F4F", color = "white", alpha = 0.7) +  
@@ -151,7 +152,7 @@ ggplot(promedios_edad, aes(x = edad, y = promedios_edad)) +
        x = "Edad",
        y = "Variación del Salario Promedio") +
   scale_y_continuous(labels = function(x) format(x, scientific = FALSE)) +
-  theme_minimal()
+  theme_cowplot()
 
 table(salarios_edad$edad)
 
@@ -193,7 +194,7 @@ ggplot(promedios_cotizaciones_edad, aes(x = edad, y = Cotizaciones)) +
   labs(title = "Cotizaciones Promedio por Edad",
        x = "Edad",
        y = "Cotizaciones promedio") +
-  theme_minimal()
+  theme_cowplot()
 
 # Rendimiento 
 
@@ -235,4 +236,4 @@ ggplot(financiero_rendimiento, aes(x = Año, y = Rendimientos)) +
   labs(title = "Rendimientos anuales del fondo",
        x = "Año",
        y = "Rendimiento") +
-  theme_minimal() 
+  theme_cowplot()
