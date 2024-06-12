@@ -73,13 +73,13 @@ En la figura \ref{fig:cadena1} se presenta el diagrama de esta cadena.
 \caption{Cadena de Markov Activos}
 \includegraphics[width=\textwidth]{cadena1.jpg}
 \label{fig:cadena1}
-\caption*{Fuente: Elabaración propia}
+\caption*{Fuente: Elaboración propia}
 \end{figure}
 
 Según el diagrama, en cada proceso estocástico primero se considera la probabilidad
 de muerte que se evalúa contra la de sobrevivencia. Si la persona en estado activo no
 muere, entonces se evalúa la probabilidad de invalidez contra la de no invalidez,
-en caso de invalidez y si se cumple con los requisitos, pasa al estado PS en caso
+en caso de invalidez y si se cumple con los requisitos, pasa al estado PI en caso
 contrario sale del fondo (SR). Si no está invalido, se verifica si cumple con los
 requisitos para pensionarse por jubilación (PJ). De no ser así, se le agrega un 
 año más a la edad y se vuelve a realizar el proceso, el cual, continua hasta que
@@ -97,7 +97,7 @@ presenta en la figura \ref{fig:cadena2} .
 \caption{Cadena de Markov Inactivos}
 \includegraphics[width=\textwidth]{cadena2.jpg}
 \label{fig:cadena2}
-\caption*{Fuente: Elabaración propia}
+\caption*{Fuente: Elaboración propia}
 \end{figure}
 
 Cuando los activos, inactivos o sus beneficiaros pasan a ser pensionados, se 
@@ -116,7 +116,7 @@ proceso hasta que salga por muerte.
 \caption{Cadena de Markov Pensionados}
 \includegraphics[width=0.5\textwidth]{cadena3.jpg}
 \label{fig:cadena3}
-\caption*{Fuente: Elabaración propia}
+\caption*{Fuente: Elaboración propia}
 \end{figure}
 
 Para realizar las proyecciones financieras de los ingresos y egresos, se parte de
