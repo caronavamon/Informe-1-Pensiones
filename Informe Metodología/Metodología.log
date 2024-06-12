@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.5.17)  12 JUN 2024 16:37
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.5.17)  12 JUN 2024 17:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -935,21 +935,21 @@ LaTeX Font Info:    Font shape `TU/Arial(0)/b/n' will be
 LaTeX Font Info:    Font shape `TU/Arial(0)/b/n' will be
 (Font)              scaled to size 10.0pt on input line 2.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 8.42198pt on input line 4.
+(Font)              scaled to size 8.42198pt on input line 5.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 6.0157pt on input line 4.
+(Font)              scaled to size 6.0157pt on input line 5.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 12.03262pt on input line 4.
+(Font)              scaled to size 12.03262pt on input line 5.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 8.42284pt on input line 4.
+(Font)              scaled to size 8.42284pt on input line 5.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 6.01631pt on input line 4.
+(Font)              scaled to size 6.01631pt on input line 5.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 12.03018pt on input line 4.
+(Font)              scaled to size 12.03018pt on input line 5.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 8.42113pt on input line 4.
+(Font)              scaled to size 8.42113pt on input line 5.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.01509pt on input line 4.
+(Font)              scaled to size 6.01509pt on input line 5.
 )
 \tf@toc=\write3
 \openout3 = `Metodología.toc'.
@@ -964,27 +964,30 @@ File: cadena2.jpg Graphic file (type bmp)
 [2]
 File: cadena3.jpg Graphic file (type bmp)
 <cadena3.jpg>
+[3]
 LaTeX Font Info:    Font shape `TU/Arial(0)/b/n' will be
-(Font)              scaled to size 12.0pt on input line 217.
-[3] [4]
+(Font)              scaled to size 12.0pt on input line 234.
+File: Rendimientos.png Graphic file (type bmp)
+<Rendimientos.png>
+[4] [5]
+File: Salario.png Graphic file (type bmp)
+<Salario.png>
+[6]
 LaTeX Font Info:    Font shape `TU/Arial(0)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 458.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[5] [6] (./Metodología.aux)
+(Font)              scaled to size 8.0pt on input line 499.
+[7] (./Metodología.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-04-11>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 20141 strings out of 476704
- 371821 string characters out of 5799637
- 1943406 words of memory out of 5000000
- 41968 multiletter control sequences out of 15000+600000
+ 20166 strings out of 476704
+ 372285 string characters out of 5799637
+ 1952406 words of memory out of 5000000
+ 41990 multiletter control sequences out of 15000+600000
  564576 words of font info for 96 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 90i,10n,121p,354b,422s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,10n,121p,354b,456s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Metodología.pdf (6 pages).
+Output written on Metodología.pdf (7 pages).

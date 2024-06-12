@@ -141,8 +141,7 @@ promedios_edad$Variacion <- c(NA, (promedios_edad$promedios_edad[-1] / promedios
 ggplot(promedios_edad, aes(x = edad, y = Variacion)) +
   geom_line(color = "#2F4F4F") +           
   geom_smooth(method = "loess", se = FALSE, color = "cadetblue3") +
-  labs(title = "Variación del Salario Promedio por Edad",
-       x = "Edad",
+  labs(x = "Edad",
        y = "Variación del Salario Promedio") +
   theme_cowplot() 
 
