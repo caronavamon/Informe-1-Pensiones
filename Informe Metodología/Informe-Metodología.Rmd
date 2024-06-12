@@ -1,0 +1,77 @@
+---
+title: "Informe Metodología"
+subtitle: "Grupo 3"
+author:
+  - "Maria Carolina Navarro Monge C05513"
+  - "Tábata Picado Carmona C05961"
+  - "Jimena Marchena Mendoza B74425"
+  - "Valentin Chavarría Ubeda B82098"
+
+output:
+  pdf_document:
+    latex_engine: xelatex
+    toc: true
+ 
+header-includes:
+  - \usepackage[spanish, provide=*]{babel}
+  - \usepackage{titling}
+  - \usepackage{fontspec}
+  - \usepackage{wrapfig}
+  - \setmainfont{Arial}
+  - \usepackage{xcolor}
+  - \definecolor{azul}{RGB}{49, 126, 153 }
+  - \definecolor{gris}{RGB}{12, 76, 99}
+  - \usepackage{sectsty}
+  - \sectionfont{\color{azul}}
+  - \subsectionfont{\color{gris}}
+  - \usepackage{longtable}
+  - \usepackage[table]{xcolor}
+  - \usepackage{geometry}
+  - \usepackage{array} 
+  - \usepackage{makecell} 
+  - \usepackage{multirow}
+  - \geometry{a4paper, margin=1in}
+  - \definecolor{turquoise}{RGB}{0, 139, 139}
+  - \usepackage{graphicx} 
+  - \usepackage{caption}
+  - \captionsetup{singlelinecheck=off}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<!-- # ```{r, echo = FALSE, warning=FALSE, message=FALSE} -->
+<!-- # library(ggplot2) -->
+<!-- # library(gridExtra) -->
+<!-- # library(lubridate) -->
+<!-- # library(tidyverse) -->
+<!-- # library(readxl) -->
+<!-- # ``` -->
+
+\newpage
+
+El propósito de esta valuación es analizar la vialidad del Fondo C. Para esto existen un varias métricas aprobadas por la Superintendencia de Pensiones (SUPEN). Dado que el fondo esta basado mediante una Prima media nivelada, la cual consiste en una porción uniforme del salario de los trabajados independientemente del extracto social en que se encuentren. Es decir, las cotizaciones recaudas por el fondo al momento $Z$ están dada por:
+$$
+C_z =  \pi_l\cdot S_z
+$$
+Donde $\pi_l$ es la prima legal y $S_z$ los salarios al momento $Z$.
+
+Con esto lo principal a analizar es la solvencia del Fondo C. Para ello se pretende utilizar la Prima Media Teórica, el  Valor Presente Actuarial de los Beneficios Futuros (VPABF); incluyendo los pensionados en curso de pago y pensionados futuros provenientes de la actual generación de trabajadores actuales, Valor Presente Actuarial de los Salarios de la generación actual (VPABS), los cuales se relacionan mediante la siguiente formula:
+
+$$
+\pi_t = \frac{VPABF-R}{VPAS}
+$$
+Para calcular los valores presentes actuariales de estos montos al momento del análisis, nos basaremos en la formula presentada por el Bowers y otros (1997), la cual se presenta a continuación:
+
+$$
+VPA = \displaystyle\sum_{k=0}^{n-1}M_kv^{k+1/2}
+$$
+
+
+ <!-- valor presente, -->
+ 
+ <!-- prima media -->
+ 
+ <!-- razón de solvencia  -->
+ <!-- otras que se necesiten -->

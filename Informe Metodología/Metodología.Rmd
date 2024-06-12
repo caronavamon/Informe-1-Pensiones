@@ -1,0 +1,129 @@
+---
+title: "Informe Metodología"
+subtitle: "Grupo 3"
+author:
+  - "Maria Carolina Navarro Monge C05513"
+  - "Tábata Picado Carmona C05961"
+  - "Jimena Marchena Mendoza B74425"
+  - "Valentin Chavarría Ubeda B82098"
+
+output:
+  pdf_document:
+    latex_engine: xelatex
+    toc: true
+ 
+header-includes:
+  - \usepackage[spanish, provide=*]{babel}
+  - \usepackage{titling}
+  - \usepackage{fontspec}
+  - \usepackage{wrapfig}
+  - \setmainfont{Arial}
+  - \usepackage{xcolor}
+  - \definecolor{azul}{RGB}{49, 126, 153 }
+  - \definecolor{gris}{RGB}{12, 76, 99}
+  - \usepackage{sectsty}
+  - \sectionfont{\color{azul}}
+  - \subsectionfont{\color{gris}}
+  - \usepackage{longtable}
+  - \usepackage[table]{xcolor}
+  - \usepackage{geometry}
+  - \usepackage{array} 
+  - \usepackage{makecell} 
+  - \usepackage{multirow}
+  - \geometry{a4paper, margin=1in}
+  - \definecolor{turquoise}{RGB}{0, 139, 139}
+  - \usepackage{graphicx} 
+  - \usepackage{caption}
+  - \usepackage{float}
+  - \captionsetup{singlelinecheck=off}
+---
+
+# Metodología
+Con el objetivo de estudiar la solvencia del Régimen de Capitalización Colectiva
+del Fondo C, la metodología empleada en la presente valuación actuarial es una
+basada en proyecciones a largo plazo. Se realizan proyecciones demográficas y
+financieras anuales en un lapso de 100 años de acuerdo con lo establecido por el
+Reglamento Actuarial de la Superintendencia de Pensiones (SUPEN), considerando
+ciertos supuestos demográficos y económicos concernientes a los afiliados del régimen.
+
+Con respecto a las proyecciones demográficas, se proyecta la población futura de
+activos y pensionados con modelos estocásticos mediante cadenas de Markov y
+simulación Montecarlo. La primera es, de acuerdo con del Valle (s.f.), un
+conjunto de eventos donde la probabilidad de que ocurra un evento depende
+únicamente del evento inmediato anterior, lo cual, permite conocer la probabilidad
+de que un individuo del régimen se encuentre en cierto estado en un momento dado.
+La simulación con Montecarlo, de acuerdo con Jiménez y Castro (2018), se trata de
+un instrumento estadístico que permite modelar los resultados según el comportamiento
+de los datos a lo largo de la historia de estos y la probabilidad de que ocurran.
+
+A partir de la población inicial de activos, inactivos y pensionados se simula el
+comportamiento a través del tiempo de cada uno de estos para obtener las proyecciones
+requeridas bajo el supuesto de que son grupos cerrados, es decir, no entran nuevos
+afiliados. De tal manera, se considera una cadena para cada grupo.
+
+Para los activos, se plantean 4 estados de decremento, es decir, salidas de este
+grupo: Pensionado por Jubilación (PJ), Pensionado por Invalidez (PI), Pensionado
+por Sucesión (PJ) y Salida del Régimen (SR). La transición a cada uno de esos
+estados se realiza considerando las probabilidades de muerte e invalidez, así
+como los requisitos necesarios para obtener una pensión establecidos en el Marco Legal.
+En la figura \ref{fig:cadena1} se presenta el diagrama de esta cadena.
+
+\begin{figure}[H]
+\centering
+\caption{Cadena de Markov Activos}
+\includegraphics[width=\textwidth]{cadena1.jpg}
+\label{fig:cadena1}
+\caption*{Fuente: Elabaración propia}
+\end{figure}
+
+Según el diagrama, en cada proceso estocástico primero se considera la probabilidad
+de muerte que se evalúa contra la de sobrevivencia. Si la persona en estado activo no
+muere, entonces se evalúa la probabilidad de invalidez contra la de no invalidez,
+en caso de invalidez y si se cumple con los requisitos, pasa al estado PS en caso
+contrario sale del fondo (SR). Si no está invalido, se verifica si cumple con los
+requisitos para pensionarse por jubilación (PJ). De no ser así, se le agrega un 
+año más a la edad y se vuelve a realizar el proceso, el cual, continua hasta que
+salga por algunos de los estados. Si el activo muere y cumple con los requisitos
+para otorgar la pensión por sucesión a los beneficiarios, entonces se pasa al estado
+PS de lo contrario sale del régimen (SR). 
+
+En cuanto a los inactivos, se tiene un cadena de Markov similar a la de los activos
+a diferencia de que si no se invalida y no cumple con los requisitos para pensionarse
+por jubilación entonces sale del fondo, es decir, pasa al estado SR. La cadena se
+presenta en la figura \ref{fig:cadena2} . 
+
+\begin{figure}[H]
+\centering
+\caption{Cadena de Markov Inactivos}
+\includegraphics[width=\textwidth]{cadena2.jpg}
+\label{fig:cadena2}
+\caption*{Fuente: Elabaración propia}
+\end{figure}
+
+Cuando los activos, inactivos o sus beneficiaros pasan a ser pensionados, se 
+realiza otro proceso estocástico que se explica a continuación. 
+
+Si es pensionado, de acuerdo con el diagrama en la figura \ref{fig:cadena3}, se 
+considera 1 estado de decremento: SR. En cada proceso estocástico se evalúa la 
+probabilidad de muerte contra la de sobrevivencia. Si muere y tiene pensión por 
+sucesión se sale del fondo (SR). Si muere y tiene pensión por vejez o invalidez 
+entonces pasa al estado PS y se repite este proceso para los beneficiarios hasta
+que salgan por muerte. Si no muere, se suma un año más a la edad y continua el 
+proceso hasta que salga por muerte.
+
+\begin{figure}[H]
+\centering
+\caption{Cadena de Markov Pensionados}
+\includegraphics[width=0.5\textwidth]{cadena3.jpg}
+\label{fig:cadena3}
+\caption*{Fuente: Elabaración propia}
+\end{figure}
+
+Para realizar las proyecciones financieras de los ingresos y egresos, se parte de
+los resultados que se obtienen de cada proceso estocástico de las proyecciones
+demográficas. Es decir, cuando el activo se mantenga en este estado se calcula el
+monto de la cotización que efectúa. En caso de pasar a un estado de pensionado,
+se calcula el monto de la pensión y se proyecta hasta que salga del fondo. Así,
+se calculan los beneficios a pagar e ingresos por cotizaciones que tiene el régimen.
+Posteriormente, estos montos se traen a valor presente actuarial a la fecha de corte.
+
