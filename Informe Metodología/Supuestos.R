@@ -195,4 +195,44 @@ ggplot(promedios_cotizaciones_edad, aes(x = edad, y = Cotizaciones)) +
        y = "Cotizaciones promedio") +
   theme_minimal()
 
+# Rendimiento 
 
+# Anual
+
+financiero <- read_excel("Fondo C.xlsx", sheet = "Financiero")
+
+rendimiento <- function(RI, RF, C, P){
+  rend <- (RF - RI + P - C)/(RI-((P+C)/2))
+  return(rend)
+}
+
+financiero <- financiero %>%
+  mutate(Año = year(Período))
+lista_año <- split(financiero, financiero$Año)
+rendimientos_anuales <- c()
+
+for (i in 1:(length(lista_año) - 1)) {
+  observaciones <- lista_año[i:(i + 1)]
+  RI <- observaciones[[1]][1,2]
+  RF <- observaciones[[2]][1,2]
+  C <- sum(observaciones[[1]][,4])
+  P <- sum(observaciones[[1]][,5])
+  rendimientos_anuales[i] <- rendimiento(RI, RF, C, P)
+}
+
+rendimientos_anuales <- unlist(rendimientos_anuales)
+
+financiero_rendimiento <- cbind(Año = c(2013:2022), 
+                                Rendimientos = rendimientos_anuales)
+financiero_rendimiento <- as.data.frame(financiero_rendimiento)
+promedio_rendimiento <- mean(financiero_rendimiento$Rendimientos)
+
+ggplot(financiero_rendimiento, aes(x = Año, y = Rendimientos)) +
+  geom_line(color = "#2F4F4F") + 
+  geom_point(color = "#2F4F4F") +
+  geom_hline(yintercept = promedio_rendimiento, linetype = "dashed", 
+             color = "cadetblue3") +
+  labs(title = "Rendimientos anuales del fondo",
+       x = "Año",
+       y = "Rendimiento") +
+  theme_minimal() 
