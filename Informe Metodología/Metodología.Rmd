@@ -127,3 +127,232 @@ se calcula el monto de la pensión y se proyecta hasta que salga del fondo. Así
 se calculan los beneficios a pagar e ingresos por cotizaciones que tiene el régimen.
 Posteriormente, estos montos se traen a valor presente actuarial a la fecha de corte.
 
+
+# Supuestos
+
+En esta sección se detallan los supuestos utilizados en la evaluación actuarial.
+
+## Parámetros financieros
+
+### Tasa de inflación
+
+Se asume una inflación del 4% ya que se tiene un promedio de inflación interanual del 4.44%, además, como se menciona en el Informe de política monetaria (2024), el BCCR tiene establecido como límite superior del rango de tolerancia de inflación el 4%.
+
+### Factor de revalorización de pensión
+
+Los montos de pensión se actualizan 1 vez al año, específicamente en el mes de enero, con un factor de revalorización de pensiones igual al porcentaje de inflación del periodo (4\%)
+
+### Tasa de rendimiento
+
+
+### Gastos administrativos
+
+Por la información brindada se asume que el fondo no posee gastos administrativos.
+
+## Densidad de cotización
+
+Se va a asumir que las personas pertenecientes al régimen siguen el cuadro \ref{tab:cotizaciones} de cotizaciones según la edad. 
+
+\begin{longtable}{|c|c|c|c|}
+    \caption{Cantidad de cotizaciones por edad} \label{tab:cotizaciones} \\
+    \hline
+  \rowcolor{turquoise}
+  \textbf{Edad} & \textbf{Cotizaciones} & \textbf{Edad} & \textbf{Cotizaciones} \\
+  \hline
+  \endfirsthead
+
+  \hline
+  \rowcolor{turquoise}
+  \textbf{Edad (x)} & \textbf{Variación $(j_x)$} & \textbf{Edad (x)} & \textbf{Variación $(j_x)$} \\
+  \hline
+  \endhead
+
+  \hline \multicolumn{4}{|r|}{{Continúa en la próxima página}} \\ \hline
+  \endfoot
+
+  \hline
+  \endlastfoot
+
+  % Aquí se incluyen las filas de datos
+  19 & 3 & 49 & 10 \\
+
+  20 & 5 & 50 & 10 \\
+
+  21 & 6 & 51 & 10 \\
+
+  22 & 7 & 52 & 10 \\
+
+  23 & 7 & 53 & 10 \\
+
+  24 & 8 & 54 & 10 \\
+
+  25 & 8 & 55 & 10 \\
+
+  26 & 9 & 56 & 10 \\
+
+  27 & 9 & 57 & 10 \\
+
+  28 & 9 & 58 & 10 \\
+
+  29 & 10 & 59 & 10 \\
+
+  30 & 10 & 60 & 10 \\
+
+  31 & 10 & 61 & 10 \\
+
+  32 & 10 & 62 & 11 \\
+
+  33 & 10 & 63 & 10 \\
+
+  34 & 10 & 64 & 10 \\
+
+  35 & 10 & 65 & 11 \\
+
+  36 & 10 & 66 & 10 \\
+
+  37 & 10 & 67 & 10 \\
+
+  38 & 10 & 68 & 11 \\
+
+  39 & 10 & 69 & 10 \\
+
+  40 & 10 & 70 & 11 \\
+
+  41 & 10 & 71 & 10 \\
+
+  42 & 10 & 72 & 11 \\
+
+  43 & 10 & 73 & 10 \\
+
+  44 & 10 & 74 & 11 \\
+
+  45 & 10 & 75 & 10 \\
+
+  46 & 10 & 76 & 10 \\
+
+  47 & 10 & 77 & 11 \\
+
+  48 & 11 & 78 & 10 \\
+  \hline
+  
+    \caption*{Fuente: Elaboración propia a partir de datos del Fondo C.} 
+\end{longtable}
+
+## Postergación
+
+Por la información brindada se asume que la probabilidad de que un trabajador postergue sin importar la edad es del 10\%, es decir que trabaje un año más después de alcanzado la edad y cuotas para pensionarse por vejez, no aplica para otros retiros.
+
+## Escala Salarial
+
+Se asume que las personas aumentan su salario una vez al año por medio de la escala salarial, la cual está compuesta por el factor inflacionario debido al ajuste al costo de vida y un factor de antiguedad definido por la edad del asegurado. Entonces el salario de una persona a la edad x va a estar dado por: 
+$$S_x = S_{x-1}(1+i)(1+j_x)$$
+
+donde $S_x$ representa el salario a la edad $x$, $i$ es el porcentaje de inflación y $j_x$ el porcentaje de variación del salario por antiguedad para la edad $x$. Este factor de antiguedad viene definido por edad en el cuadro \ref{tab:salario}. 
+
+\begin{longtable}{|c|c|c|c|}
+    \caption{Factor de antiguedad por edad} \label{tab:salario} \\
+    \hline
+  \rowcolor{turquoise}
+  \textbf{Edad (x)} & \textbf{Variación $(j_x)$} & \textbf{Edad (x)} & \textbf{Variación $(j_x)$} \\
+  \hline
+  \endfirsthead
+
+  \hline
+  \rowcolor{turquoise}
+  \textbf{Edad (x)} & \textbf{Variación $(j_x)$} & \textbf{Edad (x)} & \textbf{Variación $(j_x)$} \\
+  \hline
+  \endhead
+
+  \hline \multicolumn{4}{|r|}{{Continúa en la próxima página}} \\ \hline
+  \endfoot
+
+  \hline
+  \endlastfoot
+
+  % Aquí se incluyen las filas de datos
+  19 & 0 & 49 & 0.0119 \\
+
+  20 & 0.0107 & 50 & -0.0069 \\
+
+  21 & 0.2361 & 51 & -0.0027 \\
+
+  22 & 0.1706 & 52 & -0.0111 \\
+
+  23 & 0.1916 & 53 & -0.0186 \\
+
+  24 & 0.1867 & 54 & 0.0066 \\
+
+  25 & 0.1871 & 55 & -0.0042 \\
+
+  26 & 0.1580 & 56 & -0.0139 \\
+
+  27 & 0.1363 & 57 & -0.0020 \\
+
+  28 & 0.1246 & 58 & -0.0168 \\
+
+  29 & 0.1001 & 59 & -0.0097 \\
+
+  30 & 0.0828 & 60 & -0.0210 \\
+
+  31 & 0.0810 & 61 & 0.0316 \\
+
+  32 & 0.0652 & 62 & -0.0289 \\
+
+  33 & 0.0616 & 63 & -0.0702 \\
+
+  34 & 0.0488 & 64 & 0.0260 \\
+
+  35 & 0.0488 & 65 & -0.0587 \\
+
+  36 & 0.0427 & 66 & 0.0664 \\
+
+  37 & 0.0293 & 67 & -0.0700 \\
+
+  38 & 0.0349 & 68 & 0.1230 \\
+
+  39 & 0.0187 & 69 & 0.01363 \\
+
+  40 & 0.0234 & 70 & 0.2840 \\
+
+  41 & 0.0209 & 71 & 0.2174 \\
+
+  42 & 0.0199 & 72 & -0.0889 \\
+
+  43 & -0.0025 & 73 & 0.2306 \\
+
+  44 & -0.0021 & 74 & 0.8912 \\
+
+  45 & 0.0135 & 75 & 0.1452 \\
+
+  46 & 0.0033 & 76 & -0.2793 \\
+
+  47 & -0.0020 & 77 & 0.1238 \\
+
+  48 & 0.0070 & 78 & 0.0677 \\
+  \hline
+  
+    \caption*{Fuente: Elaboración propia a partir de datos del Fondo C.} 
+\end{longtable}
+
+## Porcentaje de cotización
+
+Por la información brindada se asume que la cotización aportada por los trabajadores, patrono y estado como tal suma 15\% del salario de base. En el cuadro () se muestra la distribución de la contribución. 
+
+\begin{table}[h]
+    \centering
+    \caption{Distribución de la contribución}
+    \label{tab:contribuciones}
+    \vspace{0.25cm}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \rowcolor{turquoise}
+        \multicolumn{4}{|c|}{\textbf{Aporte}} \\
+        \hline
+        \rowcolor{turquoise}
+        \textbf{Trabajador} & \textbf{Patrono} & \textbf{Estado} & \textbf{Total} \\
+        \hline
+        6\% & 7\% & 2\% & 15\% \\
+        \hline
+    \end{tabular}\\
+    \noindent\footnotesize{Fuente: Elaboración propia a partir de datos del Fondo C.}
+\end{table}

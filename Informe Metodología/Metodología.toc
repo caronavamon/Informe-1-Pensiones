@@ -1,2 +1,12 @@
 \babel@toc {spanish}{}\relax 
 \contentsline {section}{Metodología}{1}{section*.2}%
+\contentsline {section}{Supuestos}{3}{section*.6}%
+\contentsline {subsection}{Parámetros financieros}{3}{section*.7}%
+\contentsline {subsubsection}{Tasa de inflación}{3}{section*.8}%
+\contentsline {subsubsection}{Factor de revalorización de pensión}{3}{section*.9}%
+\contentsline {subsubsection}{Tasa de rendimiento}{4}{section*.10}%
+\contentsline {subsubsection}{Gastos administrativos}{4}{section*.11}%
+\contentsline {subsection}{Densidad de cotización}{4}{section*.12}%
+\contentsline {subsection}{Postergación}{4}{section*.13}%
+\contentsline {subsection}{Escala Salarial}{5}{section*.14}%
+\contentsline {subsection}{Porcentaje de cotización}{5}{section*.15}%
