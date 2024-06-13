@@ -38,6 +38,8 @@ header-includes:
   - \captionsetup{singlelinecheck=off}
 ---
 
+\newpage
+
 # Metodología
 Con el objetivo de estudiar la solvencia del Régimen de Capitalización Colectiva
 del Fondo C, la metodología empleada en la presente valuación actuarial es una
@@ -127,37 +129,79 @@ se calcula el monto de la pensión y se proyecta hasta que salga del fondo. Así
 se calculan los beneficios a pagar e ingresos por cotizaciones que tiene el régimen.
 Posteriormente, estos montos se traen a valor presente actuarial a la fecha de corte.
 
+Con el objetivo de medir la solvencia del régimen, existen varias métricas aprobadas por la SUPEN que requieren del uso de fórmulas actuariales detalladas en esta sección.
+
+El fondo está basado mediante una prima media nivelada, la cual, consiste en una porción uniforme del salario de los trabajadores independientemente del estrato social en que se encuentren. Es decir, las cotizaciones recaudadas por el fondo al momento $Z$ están dadas por:
+$$
+C_z =  \pi_l\cdot S_z
+$$
+Donde $\pi_l$ es la prima legal y $S_z$ los salarios al momento $Z$.
+
+Se pretende utilizar la prima media teórica, el Valor Presente Actuarial de los Beneficios Futuros (VPABF); incluyendo los pensionados en curso de pago y pensionados futuros provenientes de la actual generación de trabajadores, y el Valor Presente Actuarial de los Salarios de la generación actual (VPABS), los cuales, se relacionan mediante la siguiente formula:
+
+
+$$
+\pi_t = \frac{VPABF-R}{VPAS}
+$$
+Para calcular los valores presentes actuariales de estos montos de un individuo de edad $(x)$ al momento del análisis, se utilizará la formula presentada por Bowers y et al. (1997), que se muestra a continuación:
+
+$$
+VPAM_{(x)} = \displaystyle\sum_{k=0}^{\infty}{}_kM_{(x)}\cdot v^{k+1/2}\cdot{}_kp^\tau_{(x)}
+$$
+En este análisis, los beneficios (vejez, invalidez, muerte, etc.) o ingresos (masa salarial, cotizaciones, cobro del SEM, etc.) están representados por ${}_kM_{(x)}$. Para llevar todo a valor presente actuarial se utiliza tanto el factor de descuento $v$, que es calculado mediante la tasa de interés efectiva anual $i$ con la fórmula $v= \frac{1}{1+i}$, como con el término probabilista ${}_kp^\tau_{(x)}$, que indica la probabilidad de ocurrencia de dicho monto por la persona de edad $(x)$. Con esto, se puede calcular el monto general del fondo mediante:
+
+$$
+  VPAM = \displaystyle\sum_{x=1}^{\infty}VPA_{(x)}l_{(x)}
+$$
+Donde $l_{(x)}$ son la cantidad de personas de edad $(x)$ pertenecientes al fondo.
+
+Una vez definida $\pi_t$ (prima teórica), es posible realizar un análisis sobre esta comparándola con $\pi_l$ (prima legal), esto permite observar si el fondo es capaz de recaudar lo suficiente para continuar con sus obligaciones.
+
+Otro método para analizar la solvencia del fondo es conocido como la Razón de Solvencia ($RA$). Este método consiste en comparar el Activo Actuarial con el Pasivo Actuarial. Realizando la siguiente división:
+$$
+RS = \displaystyle\frac{\text{Activo Actuarial}}{\text{Pasivo Actuarial}}
+$$
+El Pasivo Actuarial representa la suma total de todas las obligaciones presentes y futuras del fondo, por otro lado, el Activo Actuarial incluye las cotizaciones, reservas y cualquier otro ingreso que el fondo pueda recibir, todos valorados en su respectivo valor presente actuarial. Estos cálculos toman en cuenta tanto a la generación en curso de pago como a la generación actual. 
+
+Para este estudio la SUPEN (2016) dicta, en el Reglamento Actuarial Articulo 12, tres formas de realizar el análisis de solvencia.
+
+\begin{itemize}
+    \item La provisión de pensiones en curso de pago del régimen no está constituida al 100%.
+    \item El régimen no alcanza el mínimo de solvencia tolerable declarado en su política de solvencia.
+    \item El régimen no alcanza el objetivo de solvencia declarado en su política de solvencia durante cinco años consecutivos.
+\end{itemize}
+
 # Base de datos
 
 La información fue suministrada mediante archivos con formato xls, según se detalla a continuación:
 
 \begin{itemize}
-    \item \textbf{Base de datos de los pensionados:} Pensionados al 31 de diciembre de 2023. Incluye ID del pensionado, fecha  de nacimiento, sexo, tipo de pensión, parentesco para pensión por sucesión, fecha de vigencia de la pensión y monto de la pensión mensual actual. 
-    \item \textbf{Base de datos de los activos:} Activos al 31 de diciembre de 2023. Incluye ID del activo, fecha de nacimiento, sexo, monto y fecha de cotización desde el 1 de enero de 1994.
-    \item \textbf{Base de datos de informacion financiera:} Situación financiera del régimen al 31 de diciembre de 2023. Incluye periodo (mensual desde diciembre 2013), montos del activo, plusvalía o minusvalía, monto de ingresos por cotizaciones netas, y monto de salidas por pago de pensiones.
-    \item \textbf{Estado financiero:} Anual, 2023. Provee una visión de la situación financiera actual y provee el monto de las reservas. 
+    \item \textbf{Base de datos de los pensionados:} Pensionados al 31 de diciembre del 2023. Incluye ID del pensionado, fecha de nacimiento, sexo, tipo de pensión, parentesco para pensión por sucesión, fecha de vigencia de la pensión y monto de la pensión mensual actual. 
+    \item \textbf{Base de datos de los activos:} Activos al 31 de diciembre del 2023. Incluye ID del activo, fecha de nacimiento, sexo, monto y fecha de cotización desde el 1 de enero de 1994.
+    \item \textbf{Base de datos de informacion financiera:} Situación financiera del régimen al 31 de diciembre del 2023. Incluye periodo (mensual desde diciembre 2013), montos del activo, plusvalía o minusvalía, monto de ingresos por cotizaciones netas y monto de salidas por pago de pensiones.
+    \item \textbf{Estado financiero:} Anual, 2023. Provee una visión de la situación financiera actual y del monto de las reservas. 
 
 \end{itemize}
 
-En general, las bases de datos utilizadas son de buena calidad y proporcionan la información necesaria para la evaluación actuarial. Los datos están completos y organizados, permitiendo análisis confiables.
+En general, las bases de datos utilizadas son de buena calidad y proporcionan la información necesaria para la valuación actuarial. Los datos están completos y organizados, permitiendo análisis confiables.
 
 # Supuestos Actuariales
 
-En esta sección se detallan los supuestos utilizados en la evaluación actuarial.
+En esta sección se detallan los supuestos utilizados en la valuación actuarial.
 
 ## Parámetros financieros
 
 ### Tasa de inflación
 
-Se asume una inflación del 4% ya que se tiene un promedio de inflación interanual del 4.44%, además, como se menciona en el Informe de política monetaria (2024), el BCCR tiene establecido como límite superior del rango de tolerancia de inflación el 4%.
+Se asume una inflación del 4%, ya que, se tiene un promedio de inflación interanual del 4.44%, además, como menciona el BCCR (2024) en el Informe de política monetaria,se establece como límite superior del rango de tolerancia de inflación el 4%.
 
 ### Factor de revalorización de pensión
 
-Los montos de pensión se actualizan 1 vez al año, específicamente en el mes de enero, con un factor de revalorización de pensiones igual al porcentaje de inflación del periodo (4\%)
+Los montos de pensión se actualizan 1 vez al año, específicamente en el mes de enero, con un factor de revalorización de pensiones igual al porcentaje de inflación del periodo (4\%). Esto debido al ajuste por el costo de vida.
 
 ### Tasa de rendimiento
 
-Se asume una tasa de rendimiento constante de 14.66% esta debido a que se obtuvieron los rendimientos anuales del fondo históricos como se muestra en la figura \ref{fig:rendimientos} y a partir de estos se obtuvo el promedio. Se toma como un buen parámetro el que sea constante debido a que las fluctuaicones del rendimiento oscilan entre este valor de un año a otro. 
+Se asume una tasa de rendimiento constante de 14.66%, debido a que, se obtuvieron los rendimientos anuales del fondo históricos como se muestra en la figura \ref{fig:rendimientos} y a partir de estos se obtuvo el promedio. Se toma como un buen parámetro el que sea constante debido a que las fluctuaciones del rendimiento oscilan entre este valor de un año a otro. 
 
 \begin{figure}[H]
 \centering
@@ -169,11 +213,11 @@ Se asume una tasa de rendimiento constante de 14.66% esta debido a que se obtuvi
 
 ### Gastos administrativos
 
-Por la información brindada se asume que el fondo no posee gastos administrativos.
+Por la información brindada, se asume que el fondo no posee gastos administrativos.
 
 ## Densidad de cotización
 
-Se va a asumir que las personas pertenecientes al régimen siguen el cuadro \ref{tab:cotizaciones} de cotizaciones según la edad. 
+Se asume que las personas pertenecientes al régimen siguen el cuadro \ref{tab:cotizaciones} de cotizaciones según la edad. 
 
 \begin{longtable}{|c|c|c|c|}
     \caption{Cantidad de cotizaciones por edad} \label{tab:cotizaciones} \\
@@ -261,14 +305,14 @@ Se va a asumir que las personas pertenecientes al régimen siguen el cuadro \ref
 
 ## Postergación
 
-Por la información brindada se asume que la probabilidad de que un trabajador postergue sin importar la edad es del 10\%, es decir que trabaje un año más después de alcanzado la edad y cuotas para pensionarse por vejez, no aplica para otros retiros.
+Por la información brindada, se asume que la probabilidad de que un trabajador postergue sin importar la edad es del 10\%, es decir, que trabaje un año más después de alcanzada la edad y cuotas para pensionarse por vejez, no aplica para otros retiros.
 
 ## Escala Salarial
 
-Se asume que las personas aumentan su salario una vez al año por medio de la escala salarial, la cual está compuesta por el factor inflacionario debido al ajuste al costo de vida y un factor de antiguedad definido por la edad del asegurado. Entonces el salario de una persona a la edad x va a estar dado por: 
+Se asume que las personas aumentan su salario una vez al año por medio de la escala salarial, la cual, está compuesta por el factor inflacionario debido al ajuste al costo de vida y un factor de antigüedad definido por la edad del asegurado. Entonces, el salario de una persona a la edad $x$ va a estar dado por: 
 $$S_x = S_{x-1}(1+i)(1+j_x)$$
 
-donde $S_x$ representa el salario a la edad $x$, $i$ es el porcentaje de inflación y $j_x$ el porcentaje de variación del salario por antiguedad para la edad $x$. Este factor de antiguedad viene definido por edad en el cuadro \ref{tab:salario} y se puede observar la tendencia del mismo en la figura \ref{fig:salario} donde coforme aumenta la edad este decrece, sin embargo, al final tiende a un aumento esto por la estructura de la población activa del régimen.
+donde $S_x$ representa el salario a la edad $x$, $i$ es el porcentaje de inflación y $j_x$ el porcentaje de variación del salario por antigüedad para la edad $x$. Este factor de antigüedad viene definido por edad en el cuadro \ref{tab:salario} y se puede observar la tendencia del mismo en la figura \ref{fig:salario}, donde coforme aumenta la edad este decrece, sin embargo, al final tiende a un aumento, esto por la estructura de la población activa del régimen.
 
 \begin{longtable}{|c|c|c|c|}
     \caption{Factor de antiguedad por edad} \label{tab:salario} \\
@@ -363,7 +407,7 @@ donde $S_x$ representa el salario a la edad $x$, $i$ es el porcentaje de inflaci
 
 ## Porcentaje de cotización
 
-Por la información brindada se asume que la cotización aportada por los trabajadores, patrono y estado como tal suma 15\% del salario de base. En el cuadro \ref{tab:contribuciones} se muestra la distribución de la contribución. 
+Por la información brindada, se asume que la cotización aportada por los trabajadores, patrono y estado como tal suma 15\% del salario de base. En el cuadro \ref{tab:contribuciones} se muestra la distribución de la contribución. 
 
 \begin{table}[h]
     \centering
@@ -383,3 +427,17 @@ Por la información brindada se asume que la cotización aportada por los trabaj
     \end{tabular}\\
     \noindent\footnotesize{Fuente: Elaboración propia a partir de datos del Fondo C.}
 \end{table}
+
+
+\newpage
+# Bibliografía
+
+Banco Central de Costa Rica. (2024). Informe de Política Monetaria-Abril de 2024. https://www.bccr.fi.cr/publicaciones/DocPolticaMonetariaInflacin/Documento-IPM-Abril-2024.pdf
+
+Bowers, N.L. et. al.(1997). Actuarial Mathematics. Society of Actuaries, 475 N. Martingale Road, Suite 600, Schaumburg, IL 60173-2226. 
+
+Del Valle, J.A.(s.f.). Introducción a las cadenas o procesos de Markov. https://www.ingenieria.unam.mx/javica1/ingsistemas2/Simulacion/Cadenas_de_Markov.htm
+
+Jiménez, E. J. S., & Castro, W. A. A. (2018). Aplicación de la simulación Monte Carlo en la proyección del estado de resultados. Un estudio de caso. Revista Espacios, 39 (51), 11.
+
+Superintendencia de Pensiones.(2016).Reglamento Actuarial. La Gaceta.
