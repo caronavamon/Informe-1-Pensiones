@@ -57,21 +57,43 @@ C_z =  \pi_l\cdot S_z
 $$
 Donde $\pi_l$ es la prima legal y $S_z$ los salarios al momento $Z$.
 
-Con esto lo principal a analizar es la solvencia del Fondo C. Para ello se pretende utilizar la Prima Media Teórica, el  Valor Presente Actuarial de los Beneficios Futuros (VPABF); incluyendo los pensionados en curso de pago y pensionados futuros provenientes de la actual generación de trabajadores actuales, Valor Presente Actuarial de los Salarios de la generación actual (VPABS), los cuales se relacionan mediante la siguiente formula:
+Con esto lo principal a analizar es la solvencia del Fondo C. Para ello se pretende utilizar la Prima Media Teórica, el  Valor Presente Actuarial de los Beneficios Futuros (VPABF); incluyendo los pensionados en curso de pago y pensionados futuros provenientes de la actual generación de trabajadores actuales, y el Valor Presente Actuarial de los Salarios de la generación actual (VPABS), los cuales se relacionan mediante la siguiente formula:
+
 
 $$
 \pi_t = \frac{VPABF-R}{VPAS}
 $$
-Para calcular los valores presentes actuariales de estos montos al momento del análisis, nos basaremos en la formula presentada por el Bowers y otros (1997), la cual se presenta a continuación:
+Para calcular los valores presentes actuarial de estos montos de un individuo de edad $(x)$ al momento del análisis, se utilizará la formula presentada por el Bowers y et al. (1997), que se muestra a continuación:íí
 
 $$
-VPA = \displaystyle\sum_{k=0}^{n-1}M_kv^{k+1/2}
+VPAM_{(x)} = \displaystyle\sum_{k=0}^{\infty}{}_kM_{(x)}\cdot v^{k+1/2}\cdot{}_kp^\tau_{(x)}
 $$
+En este análisis, los beneficios (vejez, invalidez, muerte, etc.) o ingresos (masa salarial, cotizaciones, cobro del SEM, etc.) están representados por ${}_kM_{(x)}$. Para llevar todo a valor presente actuarial se utiliza tanto el factor de descuento $v$, que es calculado mediante la tasa de interés efectiva anual $i$ con la formula $v= \frac{1}{1+i}$, como con el termino probabilista ${}_kp^\tau_{(x)}$, que indica la probabilidad de ocurrencia de dicho monto por  la persona de edad $(x)$. Con esto, podemos calcular el monto general del fondo mediante:
+
+$$
+  VPAM = \displaystyle\sum_{x=1}^{\infty}VPA_{(x)}l_{(x)}
+$$
+Donde $l_{(x)}$ son la cantidad de personas de edad $(x)$ pertenecientes al fondo.
+
+Una vez definida $\pi_t$ (La Prima Teórica) definida es posible realizar un análisis sobre el esta comparándola con $\pi_l$ (La Prima Legal), esto permite observar si el fondo es capaz de recaudar lo suficiente para continuar con sus obligaciones.
+
+Otro método para analizar la solvencia del fondo es conocido como la Razón de Solvencia ($RA$). Este método consiste en comparar el Activo Actuarial con el Pasivo Actuarial. Realizando la siguiente división:
+$$
+RS = \displaystyle\frac{\text{Activo Actuarial}}{\text{Pasivo Actuarial}}
+$$
+El Pasivo Actuarial representa la suma total de todas las obligaciones presentes y futuras del fondo. Por otro lado, el Activo Actuarial incluye las Cotizaciones, Reservas y cualquier otro ingreso que el fondo pueda recibir, todos valorados en su respectivo Valor Presente Actuarial. Estos cálculos toman en cuenta tanto a la generación actualmente en curso de pago como a la generación actual. 
+
+Para este estudio la SUPEN dicta, en el Reglamento Actuarial Articulo 12, tres formas de realizar el análisis de solvencia.
+
+\begin{itemize}
+    \item La provisión de pensiones en curso de pago del régimen no está constituida al 100%.
+    \item El régimen no alcanza el mínimo de solvencia tolerable declarado en su política de solvencia.
+    \item El régimen no alcanza el objetivo de solvencia declarado en su política de solvencia durante cinco años consecutivos.
+\end{itemize}
 
 
- <!-- valor presente, -->
- 
- <!-- prima media -->
- 
- <!-- razón de solvencia  -->
- <!-- otras que se necesiten -->
+Bowers, N.L. et. al., Actuarial Mathematics, (1997), Society of Actuaries, 475 N. Martingale Road, Suite 600, Schaumburg, IL
+60173-2226. 
+
+Superintendencia de Pensiones, Reglamento Actuarial, (2017).
+
