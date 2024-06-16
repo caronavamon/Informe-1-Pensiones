@@ -7,13 +7,13 @@ library(cowplot)
 
 # Inflación
 
-inflacion <- read.csv("Inflacion.csv", sep = ";", dec = ",")
+inflacion <- read.csv("Informe Metodología/Inflacion.csv", sep = ";", dec = ",")
 mean(inflacion$Variacion.interanual....)
 mean(inflacion$Variacion.mensual....)
 
 # Escala Salarial 
 
-activos <- read_excel("Fondo C.xlsx", sheet = "Activos")
+activos <- read_excel("Informe Metodología/Fondo C.xlsx", sheet = "Activos")
 activos <- activos[, -c(364, 365)]
 activos_salarios <- activos[, -c(1, 2, 3)]
 activos_salarios[activos_salarios <= 10000] <- 0
@@ -199,7 +199,7 @@ ggplot(promedios_cotizaciones_edad, aes(x = edad, y = Cotizaciones)) +
 
 # Anual
 
-financiero <- read_excel("Fondo C.xlsx", sheet = "Financiero")
+financiero <- read_excel("Informe Metodología/Fondo C.xlsx", sheet = "Financiero")
 
 rendimiento <- function(RI, RF, C, P){
   rend <- (RF - RI + P - C)/(RI-((P+C)/2))
