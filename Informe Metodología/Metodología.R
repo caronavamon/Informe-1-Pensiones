@@ -533,7 +533,24 @@ proyeccion_demo_pensionados <- function(edad, sexo, cont, prob_muerte, tipo) {
   }
 }  
 
-proyeccion_beneficiarios <- function(edad, prob_muerte, tipo){
+proyeccion_beneficiarios_h <- function(edad_h, sexo, prob_muerte, tipo){
+  
+  if(sexo == "F") {
+    tabla_vida <- tablas_vida_M[[edad+1]]
+    px <- tabla_vida$px[tabla_vida$Edad == edad] 
+  } else {
+    tabla_vida <- tablas_vida_H[[edad+1]]
+    px <- tabla_vida$px[tabla_vida$Edad == edad]
+  }
+  
+  if (prob_muerte[cont] < px & edad_h < 25) {
+    return(tipo) #se mantiene la pensión
+  } else{
+    return("SR")
+  }
+}
+
+proyeccion_beneficiarios_c <- function(edad_c, sexo, prob_muerte, tipo){
   
   if(sexo == "F") {
     tabla_vida <- tablas_vida_M[[edad+1]]
@@ -618,7 +635,7 @@ for (i in 1:iteraciones) {
       estado <- proyeccion_demo_pensionados(edad, sexo,cont,prob_muerte,tipo)
     }
     
-    
+        
     if(estado == "PS") {
       aux_c <- 1
       aux_h <- 1
@@ -635,69 +652,70 @@ for (i in 1:iteraciones) {
         sexo_c <- "M"
       }
       
-      if(edad_h < 0) {
-        edad_h <- NA
-      }else{
+      if(0 <= edad_h < 25) {
         n_h <- 115-edad_h
         prob_muerte_h <- runif(n_h)
-        estado_h <- proyeccion_beneficiarios(edad_h, sexo,aux_h, prob_muerte_h,tipo)
+        estado_h <- proyeccion_beneficiarios_h(edad_h, sexo, prob_muerte_h,tipo)
       }
       
-      estado_c <- proyeccion_beneficiarios(edad_c, sexo_c,aux_h, prob_muerte_c,tipo)
+      estado_c <- proyeccion_beneficiarios_c(edad_c, sexo_c, prob_muerte_c,tipo)
       
-      while(estado == tipo) {
+      # Hijos
+      while(estado_h == tipo) {
         
         # Obtener el índice de la columna 'Edad'
         col <- which(colnames(tabla_proyeccionesM_pensionados) == tipo)
         
         if(sexo == "F"){
-          tabla_proyeccionesM_pensionados[cont+1, col] <- tabla_proyeccionesM_pensionados[cont+1, col] + 1 
+          tabla_proyeccionesM_pensionados[aux_h+1, col] <- tabla_proyeccionesM_pensionados[aux_h+1, col] + 1 
         }else {
-          tabla_proyeccionesH_pensionados[cont+1, col] <- tabla_proyeccionesH_pensionados[cont+1, col] + 1
+          tabla_proyeccionesH_pensionados[aux_h+1, col] <- tabla_proyeccionesH_pensionados[aux_h+1, col] + 1
         }
         
-        cont <- cont + 1
-        edad <- edad + 1
-        estado <- proyeccion_demo_pensionados(edad, sexo,cont,prob_muerte,tipo)
+        aux_h <- aux_h + 1
+        edad_h <- edad_h + 1
+        estado_h <- proyeccion_beneficiarios_h(edad_h, sexo_h, prob_muerte, tipo)
       }
-
+        
+      if(estado_h == "SR") {
+        if(sexo == "F"){
+          tabla_proyeccionesM_pensionados[aux_h+1, 5] <- tabla_proyeccionesM_pensionados[aux_h+1, 5] + 1 
+        }else {
+          tabla_proyeccionesH_pensionados[aux_h+1, 5] <- tabla_proyeccionesH_pensionados[aux_h+1, 5] + 1
+        }
+      }
+        
+        
+      #Conyugues
+      while(estado_c == tipo) {
+        
+        # Obtener el índice de la columna 'Edad'
+        col <- which(colnames(tabla_proyeccionesM_pensionados) == tipo)
+        
+        if(sexo == "F"){
+          tabla_proyeccionesM_pensionados[aux_c+1, col] <- tabla_proyeccionesM_pensionados[aux_c+1, col] + 1 
+        }else {
+          tabla_proyeccionesH_pensionados[aux_c+1, col] <- tabla_proyeccionesH_pensionados[aux_c+1, col] + 1
+        }
+        
+        aux_c <- aux_c + 1
+        edad_c <- edad_c + 1
+        estado_c <- proyeccion_beneficiarios_c(edad_c, sexo_c, prob_muerte, tipo)
+      }
       
-     
-    
-      if(sexo == "F"){
-        tabla_proyeccionesM_inactivos[cont+1, 3] <- tabla_proyeccionesM_inactivos[cont+1, 3] + 1 
-      }else {
-        tabla_proyeccionesH_inactivos[cont+1, 3] <- tabla_proyeccionesH_inactivos[cont+1, 3] + 1
+      if(estado_c == "SR") {
+        if(sexo == "F"){
+          tabla_proyeccionesM_pensionados[aux_c+1, 5] <- tabla_proyeccionesM_pensionados[aux_c+1, 5] + 1 
+        }else {
+          tabla_proyeccionesH_pensionados[aux_c+1, 5] <- tabla_proyeccionesH_pensionados[aux_c+1, 5] + 1
+        }
       }
+        
     }
-    
-    
-    
-    if(estado == "SR") {
-      if(sexo == "F"){
-        tabla_proyeccionesM_inactivos[cont+1, 4] <- tabla_proyeccionesM_inactivos[cont+1, 4] + 1 
-      }else {
-        tabla_proyeccionesH_inactivos[cont+1, 4] <- tabla_proyeccionesH_inactivos[cont+1, 4] + 1
-      }
-    }
-    if(estado == 3) {
-      if(sexo == "F"){
-        tabla_proyeccionesM_inactivos[cont+1, 5] <- tabla_proyeccionesM_inactivos[cont+1, 5] + 1 
-      }else {
-        tabla_proyeccionesH_inactivos[cont+1, 5] <- tabla_proyeccionesH_inactivos[cont+1, 5] + 1
-      }
-    }
-    if(estado == 4) {
-      if(sexo == "F"){
-        tabla_proyeccionesM_inactivos[cont+1, 6] <- tabla_proyeccionesM_inactivos[cont+1, 6] + 1 
-      }else {
-        tabla_proyeccionesH_inactivos[cont+1, 6] <- tabla_proyeccionesH_inactivos[cont+1, 6] + 1
-      }
-    }
-    
-  }
-  lista_resultados_inactivos_df_M[[i]] <- tabla_proyeccionesM_inactivos
-  lista_resultados_inactivos_df_H[[i]] <- tabla_proyeccionesH_inactivos
+  } 
+  
+  lista_resultados_pensionados_df_M[[i]] <- tabla_proyeccionesM_pensionados
+  lista_resultados_pensionados_df_H[[i]] <- tabla_proyeccionesH_pensionados
   
 }
 
