@@ -15,8 +15,8 @@ tabla_vida_function <- function(tabla, tabla_sexo) {
   
   for(i in 0:115) {
     
-    col_inicial <- 23
-    col_final <- 138-i #23+115-i
+    col_inicial <- col
+    col_final <- 23+115-i
     
     fila_inicial <- i+1 
     fila_final <- 116
@@ -202,6 +202,10 @@ pensionados <- bind_rows(pensionados_na_con_promedio, pensionados %>% filter(!is
 # se extrae  el año de la fecha
 pensionados$año <- format(pensionados$`Rige de la Pensión`, "%Y")
 
+# se agrega el contador
+pensionados$cont <- rep(1, nrow(pensionados))
+
+pensionados_data <- pensionados
 
 #---------------Simulaciones-------------|
 
@@ -226,8 +230,8 @@ proyeccion_demo <- function(edad, sexo, cont, cotizaciones, prob_muerte, prob_in
   }
   prob_postergar <- runif(1)
   
-  if (prob_muerte[cont+1] < px) {
-    if(prob_invalidez[cont+1] < p_no_invalidez){
+  if (prob_muerte[cont] < px) {
+    if(prob_invalidez[cont] < p_no_invalidez){
       if(edad >=  65 & cotizaciones >= 300 & prob_postergar < 0.9  ){
         return(1) #pensión por vejez
       }else {
@@ -269,6 +273,7 @@ iteraciones <- 100
 
 lista_resultados_df_M <-list()
 lista_resultados_df_H <-list()
+lista_pensionados_activos <- list()
 
 t <- proc.time() # Inicia el cronómetro
 for (i in 1:iteraciones) {
@@ -295,6 +300,12 @@ for (i in 1:iteraciones) {
   )
   tabla_proyeccionesH_activos$Activo[1] <- sum(activos_total_cotizacion$Sexo== "M")
   
+  tabla_pensionados <- data.frame(
+    "Edad" = integer(),
+    "COD_TIPO_PENSION" = character(),
+    "SEXO" = character(),
+    "cont" = integer()
+  )
 
   for(j in 1: nrow(activos_total_cotizacion)) {
     
@@ -330,6 +341,8 @@ for (i in 1:iteraciones) {
       }else {
         tabla_proyeccionesH_activos[cont+1, 3] <- tabla_proyeccionesH_activos[cont+1, 3] + 1
       }
+      
+      tabla_pensionados <- rbind(tabla_pensionados, data.frame(Edad = edad, COD_TIPO_PENSION = "Vejez", SEXO = sexo, cont = cont))
     }
     if(estado == 2) {
       if(sexo == "F"){
@@ -337,12 +350,35 @@ for (i in 1:iteraciones) {
       }else {
         tabla_proyeccionesH_activos[cont+1, 4] <- tabla_proyeccionesH_activos[cont+1, 4] + 1
       }
+      
+      tabla_pensionados <- rbind(tabla_pensionados, data.frame(Edad = edad, COD_TIPO_PENSION = "Invalidez", SEXO = sexo, cont = cont))
     }
     if(estado == 3) {
       if(sexo == "F"){
         tabla_proyeccionesM_activos[cont+1, 5] <- tabla_proyeccionesM_activos[cont+1, 5] + 1 
       }else {
         tabla_proyeccionesH_activos[cont+1, 5] <- tabla_proyeccionesH_activos[cont+1, 5] + 1
+      }
+      
+      #conyugue
+      edad_c <- edad
+      if (sexo == "M"){
+        sexo_c <- "F"
+      }else {
+        sexo_c <- "M"
+      }
+      
+      tabla_pensionados<- rbind(tabla_pensionados, data.frame(Edad = edad_c, COD_TIPO_PENSION = "Sucesión",
+                                                     SEXO = sexo_c, cont = cont))
+  
+      #hijo
+      edad_h <- edad-25
+      
+      if(0 <= edad_h &  edad_h < 25) {
+        sexo_h <- sample(c("F", "M"), 1)
+        tabla_pensionados <- rbind(tabla_pensionados, 
+                                            data.frame(Edad = edad_h, COD_TIPO_PENSION = "Sucesión",
+                                                       SEXO = sexo_h, cont = cont))
       }
     }
     if(estado == 4) {
@@ -354,6 +390,7 @@ for (i in 1:iteraciones) {
     }
     
   }
+  lista_pensionados_activos[[i]] <- tabla_pensionados
   lista_resultados_df_M[[i]] <- tabla_proyeccionesM_activos
   lista_resultados_df_H[[i]] <- tabla_proyeccionesH_activos
   
@@ -403,8 +440,8 @@ proyeccion_demo_inactivos <- function(edad, sexo, cont, cotizaciones, prob_muert
     p_no_invalidez <- invalidez_H$p_no_invalidez[invalidez$Edad == edad]
   }
   
-  if (prob_muerte[cont+1] < px) {
-    if(prob_invalidez[cont+1] < p_no_invalidez){
+  if (prob_muerte[cont] < px) {
+    if(prob_invalidez[cont] < p_no_invalidez){
       if(edad >=  65 & cotizaciones >= 300){
         return(1) #pensión por vejez
       }else {
@@ -450,6 +487,7 @@ iteraciones <- 100
 
 lista_resultados_inactivos_df_M <-list()
 lista_resultados_inactivos_df_H <-list()
+lista_pensionados_inactivos <-list()
 
 t <- proc.time() # Inicia el cronómetro
 
@@ -478,6 +516,13 @@ for (i in 1:iteraciones) {
   )
   tabla_proyeccionesH_inactivos$Inactivo[1] <- sum(inactivos_total_cotizacion$Sexo== "M")
   tabla_proyeccionesH_inactivos$SR[2] <- sum(inactivos_descartados$Sexo== "M")
+  
+  tabla_pensionados <- data.frame(
+    "Edad" = integer(),
+    "COD_TIPO_PENSION" = character(),
+    "SEXO" = character(),
+    "cont" = integer()
+  )
   
   for(j in 1: nrow(inactivos_nuevos)) {
     
@@ -511,6 +556,9 @@ for (i in 1:iteraciones) {
       }else {
         tabla_proyeccionesH_inactivos[cont+1, 3] <- tabla_proyeccionesH_inactivos[cont+1, 3] + 1
       }
+      
+      tabla_pensionados <- rbind(tabla_pensionados, data.frame(Edad = edad, COD_TIPO_PENSION = "Vejez", SEXO = sexo, cont = cont))
+    
     }
     if(estado == 2) {
       if(sexo == "F"){
@@ -518,12 +566,33 @@ for (i in 1:iteraciones) {
       }else {
         tabla_proyeccionesH_inactivos[cont+1, 4] <- tabla_proyeccionesH_inactivos[cont+1, 4] + 1
       }
+      
+      tabla_pensionados <- rbind(tabla_pensionados, data.frame(Edad = edad, COD_TIPO_PENSION = "Invalidez", SEXO = sexo, cont = cont))
+  
     }
     if(estado == 3) {
       if(sexo == "F"){
         tabla_proyeccionesM_inactivos[cont+1, 5] <- tabla_proyeccionesM_inactivos[cont+1, 5] + 1 
       }else {
         tabla_proyeccionesH_inactivos[cont+1, 5] <- tabla_proyeccionesH_inactivos[cont+1, 5] + 1
+      }
+      
+      #conyugue
+      edad_c <- edad
+      if (sexo == "M"){
+        sexo_c <- "F"
+      }else {
+        sexo_c <- "M"
+      }
+      
+      tabla_pensionados <- rbind(tabla_pensionados, data.frame(Edad = edad, COD_TIPO_PENSION = "Sucesión", SEXO = sexo, cont = cont))
+    
+      #hijo
+      edad_h <- edad-25
+      
+      if(0 <= edad_h &  edad_h < 25) {
+        sexo_h <- sample(c("F", "M"), 1)
+        tabla_pensionados <- rbind(tabla_pensionados, data.frame(Edad = edad, COD_TIPO_PENSION = "Sucesión", SEXO = sexo, cont = cont))
       }
     }
     if(estado == 4) {
@@ -535,9 +604,9 @@ for (i in 1:iteraciones) {
     }
     
   }
+  lista_pensionados_inactivos[[i]] <- tabla_pensionados
   lista_resultados_inactivos_df_M[[i]] <- tabla_proyeccionesM_inactivos
   lista_resultados_inactivos_df_H[[i]] <- tabla_proyeccionesH_inactivos
-  
 }
 
 # Combinar los dataframes para mujeres y hombres
@@ -568,17 +637,46 @@ proc.time()-t
 #----------------Pensionados--------------------------
 
 
-# Función para obtener los estados
-proyeccion_demo_pensionados <- function(edad, sexo, cont, prob_muerte, tipo) {
+
+tabla_vida_function_h <- function(tabla_sexo, año, edad_h) {
   
-  if(sexo == "F") {
-    tabla_vida <- tablas_vida_M[[edad+1-cont]]
-    px <- tabla_vida$px[tabla_vida$Edad == edad] 
-  } else {
-    tabla_vida <- tablas_vida_H[[edad+1-cont]]
-    px <- tabla_vida$px[tabla_vida$Edad == edad]
+  col_inicial <- año
+  col_final <- año + 115-edad_h
+  
+  fila_inicial <- edad_h + 1  
+  fila_final <- 116
+  
+  datos <- as.matrix(tabla_sexo[fila_inicial: fila_final, col_inicial:col_final])
+  
+  qx <- diag(datos) #probabilidades de muerte
+  px <- 1-qx #probabilidades de sobrevivencia
+  Edad <- c(edad_h:115)
+  
+  tabla_vida <- data.frame("Edad" = Edad, "qx"= qx, "px" = px)
+  return(tabla_vida)
+}
+
+# Función para obtener los estados
+proyeccion_demo_pensionados <- function(edad, sexo, cont,aux,prob_muerte, tipo) {
+  if(cont > edad){
+    if(sexo == "F") {
+      tabla_vida <- tabla_vida_function_h(mortalidad_mujeres,23 + cont, edad)
+      px <- tabla_vida$px[tabla_vida$Edad == edad] 
+    } else {
+      tabla_vida <- tabla_vida_function_h(mortalidad_hombres,23 + cont, edad)
+      px <- tabla_vida$px[tabla_vida$Edad == edad]
+    }
+  } else{
+    if(sexo == "F") {
+      tabla_vida <- tablas_vida_M[[edad+1-cont]]
+      px <- tabla_vida$px[tabla_vida$Edad == edad] 
+    } else {
+      tabla_vida <- tablas_vida_H[[edad+1-cont]]
+      px <- tabla_vida$px[tabla_vida$Edad == edad]
+    }
   }
-  if (prob_muerte[cont] < px) {
+  
+  if (prob_muerte[aux] < px) {
     return(tipo) #se mantiene la pensión
   } else{
     if(tipo == "Sucesión") {
@@ -589,16 +687,27 @@ proyeccion_demo_pensionados <- function(edad, sexo, cont, prob_muerte, tipo) {
   }
 }  
 
-proyeccion_beneficiarios_h <- function(edad_h, sexo,aux_h, prob_muerte, tipo,cont){
+proyeccion_beneficiarios_h <- function(edad_h, sexo,aux_h, prob_muerte, tipo, cont){
   
-  if(sexo == "F") {
-    tabla_vida <- tablas_vida_M[[edad_h+1-cont]]
-    px <- tabla_vida$px[tabla_vida$Edad == edad_h] 
-  } else {
-    tabla_vida <- tablas_vida_H[[edad_h+1-cont]]
-    px <- tabla_vida$px[tabla_vida$Edad == edad_h]
+  if(cont > edad_h){
+    if(sexo == "F") {
+      tabla_vida <- tabla_vida_function_h(mortalidad_mujeres,23 + cont, edad_h)
+      px <- tabla_vida$px[tabla_vida$Edad == edad_h] 
+    } else {
+      tabla_vida <- tabla_vida_function_h(mortalidad_hombres,23 + cont, edad_h)
+      px <- tabla_vida$px[tabla_vida$Edad == edad_h]
+    }
+  } else{
+    if(sexo == "F") {
+      tabla_vida <- tablas_vida_M[[edad_h+1-cont]]
+      px <- tabla_vida$px[tabla_vida$Edad == edad_h] 
+    } else {
+      tabla_vida <- tablas_vida_H[[edad_h+1-cont]]
+      px <- tabla_vida$px[tabla_vida$Edad == edad_h]
+    }
   }
-  if (prob_muerte[aux_h] < px & edad_h < 25) {
+  
+  if (prob_muerte[aux_h-cont+1] < px & edad_h < 25) {
     return(tipo) #se mantiene la pensión
   } else{
     return("SR")
@@ -606,7 +715,8 @@ proyeccion_beneficiarios_h <- function(edad_h, sexo,aux_h, prob_muerte, tipo,con
 }
 
 proyeccion_beneficiarios_c <- function(edad_c, sexo,aux_c, prob_muerte_c, tipo, cont){
-  
+  #print(edad_c)
+  #print(cont)
   if(sexo == "F") {
     tabla_vida <- tablas_vida_M[[edad_c+1-cont]]
     px <- tabla_vida$px[tabla_vida$Edad == edad_c] 
@@ -615,11 +725,149 @@ proyeccion_beneficiarios_c <- function(edad_c, sexo,aux_c, prob_muerte_c, tipo, 
     px <- tabla_vida$px[tabla_vida$Edad == edad_c]
   }
  
-  if (prob_muerte_c[aux_c] < px) {
+  if (prob_muerte_c[aux_c-cont+1] < px) {
     return(tipo) #se mantiene la pensión
   } else{
     return("SR")
   }
+}
+
+tabla_pensionados_proyeccion <- function(pensionados, tabla_proyeccionesM_pensionados, tabla_proyeccionesH_pensionados) {
+  
+  for(j in 1: nrow(pensionados)) {
+    cont <- pensionados$cont[j]
+    edad <- pensionados$Edad[j]
+    sexo <- pensionados$SEXO[j]
+    tipo <- pensionados$COD_TIPO_PENSION[j]
+    
+    n <- 115-edad
+    prob_muerte <- runif(n+1)
+    aux <- 1
+    
+    if(!identical(pensionados, pensionados_data)){
+      name <-ifelse(tipo == "Vejez", "PJ",
+                    ifelse(tipo == "Invalidez", "PI",
+                           ifelse(tipo == "Sucesión", "PS")))
+      col <- which(colnames(tabla_proyeccionesM_pensionados) == name)
+      if(sexo == "F"){
+        tabla_proyeccionesM_pensionados[cont+1, col] <- tabla_proyeccionesM_pensionados[cont+1, col] + 1 
+      }else {
+        tabla_proyeccionesH_pensionados[cont+1, col] <- tabla_proyeccionesH_pensionados[cont+1, col] + 1
+      }
+    }
+    
+    estado <- proyeccion_demo_pensionados(edad, sexo,cont, aux, prob_muerte,tipo)
+    
+    while(estado == tipo) {
+      
+      # Obtener el índice de la columna 'Edad'
+      name <-ifelse(tipo == "Vejez", "PJ",
+                    ifelse(tipo == "Invalidez", "PI",
+                           ifelse(tipo == "Sucesión", "PS")))
+      col <- which(colnames(tabla_proyeccionesM_pensionados) == name)
+      
+      if(sexo == "F"){
+        tabla_proyeccionesM_pensionados[cont+1, col] <- tabla_proyeccionesM_pensionados[cont+1, col] + 1 
+      }else {
+        tabla_proyeccionesH_pensionados[cont+1, col] <- tabla_proyeccionesH_pensionados[cont+1, col] + 1
+      }
+      
+      cont <- cont + 1
+      edad <- edad + 1
+      aux <- aux + 1
+      estado <- proyeccion_demo_pensionados(edad, sexo,cont, aux, prob_muerte, tipo)
+    }
+    
+    
+    if(estado == "PS") {
+      
+      tipo <- "PS"
+      
+      #conyugue
+      aux_c <- cont
+      edad_c <- edad
+      n_c <- 115-edad
+      prob_muerte_c <- runif(n_c+1)
+      
+      if (sexo == "M"){
+        sexo_c <- "F"
+      }else {
+        sexo_c <- "M"
+      }
+      
+      tabla_proyeccionesM_pensionados[cont+1, 3] <- tabla_proyeccionesM_pensionados[cont+1, 3] + 1 
+      
+      
+      estado_c <- proyeccion_beneficiarios_c(edad_c, sexo_c, aux_c, prob_muerte_c,tipo,cont)
+      while(estado_c == tipo) {
+        
+        if(sexo_c == "F"){
+          tabla_proyeccionesM_pensionados[aux_c+2, 3] <- tabla_proyeccionesM_pensionados[aux_c+2, 3] + 1 
+        }else {
+          tabla_proyeccionesH_pensionados[aux_c+2, 3] <- tabla_proyeccionesH_pensionados[aux_c+2, 3] + 1
+        }
+        
+        aux_c <- aux_c + 1
+        edad_c <- edad_c + 1
+        
+        estado_c <- proyeccion_beneficiarios_c(edad_c, sexo_c, aux_c, prob_muerte_c, tipo,cont)
+        
+      }
+      
+      if(estado_c == "SR") {
+        if(sexo_c == "F"){
+          tabla_proyeccionesM_pensionados[aux_c+2, 5] <- tabla_proyeccionesM_pensionados[aux_c+2, 5] + 1 
+        }else {
+          tabla_proyeccionesH_pensionados[aux_c+2, 5] <- tabla_proyeccionesH_pensionados[aux_c+2, 5] + 1
+        }
+      }
+      
+      #hijo
+      aux_h <- cont
+      edad_h <- edad-25
+      
+      if(0 <= edad_h &  edad_h < 25) {
+        sexo_h <- sample(c("F", "M"), 1)
+        n_h <- 115-edad_h
+        prob_muerte_h <- runif(n_h+1)
+        
+        tabla_proyeccionesM_pensionados[cont+1, 3] <- tabla_proyeccionesM_pensionados[cont+1, 3] + 1 
+        
+        estado_h <- proyeccion_beneficiarios_h(edad_h, sexo_h,aux_h, prob_muerte_h,tipo,cont)
+        
+        while(estado_h == tipo) {
+          
+          if(sexo_h == "F"){
+            tabla_proyeccionesM_pensionados[aux_h+2,3] <- tabla_proyeccionesM_pensionados[aux_h+2, 3] + 1 
+          }else {
+            tabla_proyeccionesH_pensionados[aux_h+2,3] <- tabla_proyeccionesH_pensionados[aux_h+2, 3] + 1
+          }
+          
+          aux_h <- aux_h + 1
+          edad_h <- edad_h + 1
+          estado_h <- proyeccion_beneficiarios_h(edad_h, sexo_h,aux_h, prob_muerte_h, tipo,cont)
+        }
+        
+        if(estado_h == "SR") {
+          if(sexo_h == "F"){
+            tabla_proyeccionesM_pensionados[aux_h+2, 5] <- tabla_proyeccionesM_pensionados[aux_h+2, 5] + 1 
+          }else {
+            tabla_proyeccionesH_pensionados[aux_h+2, 5] <- tabla_proyeccionesH_pensionados[aux_h+2, 5] + 1
+          }
+        }
+      }
+    }
+    
+    if(estado == "SR") {
+      if(sexo == "F"){
+        tabla_proyeccionesM_pensionados[cont+1, 5] <- tabla_proyeccionesM_pensionados[cont+1, 5] + 1 
+      }else {
+        tabla_proyeccionesH_pensionados[cont+1, 5] <- tabla_proyeccionesH_pensionados[cont+1, 5] + 1
+      }
+    }
+  } 
+  lista <- list(tabla_proyeccionesM_pensionados,tabla_proyeccionesH_pensionados)
+  return(lista)
 }
 
 
@@ -632,13 +880,14 @@ lista_resultados_pensionados_df_M <-list()
 lista_resultados_pensionados_df_H <-list()
 
 t <- proc.time() 
+
 for (i in 1:iteraciones) {
+  print(i)
   
   conteo <- pensionados %>%
     group_by(SEXO,COD_TIPO_PENSION) %>%
     summarise(cantidad_personas = n())
-  
-  
+
   #Mujeres
   tabla_proyeccionesM_pensionados<- data.frame(
     "Año" = 0:100,
@@ -647,7 +896,6 @@ for (i in 1:iteraciones) {
     "PJ" = rep(0, 101),
     "SR" = rep(0, 101)
   )
-  
 
   tabla_proyeccionesM_pensionados[1,-c(1,5)]<- conteo$cantidad_personas[1:3]
   
@@ -662,118 +910,15 @@ for (i in 1:iteraciones) {
   
   tabla_proyeccionesH_pensionados[1,-c(1,5)]<- conteo$cantidad_personas[4:6]
   
-  
-  for(j in 1: nrow(pensionados)) {
-    
-    cont <- 1
-    edad <- pensionados$Edad[j]
-    sexo <- pensionados$SEXO[j]
-    tipo <- pensionados$COD_TIPO_PENSION[j]
-    
-    n <- 115-edad
-    prob_muerte <- runif(n+1)
-    
-    estado <- proyeccion_demo_pensionados(edad, sexo, cont, prob_muerte,tipo)
-    
-    while(estado == tipo) {
-      
-      # Obtener el índice de la columna 'Edad'
-      name <-ifelse(tipo == "Vejez", "PJ",
-                             ifelse(tipo == "Invalidez", "PI",
-                                    ifelse(tipo == "Sucesión", "PS")))
-      col <- which(colnames(tabla_proyeccionesM_pensionados) == name)
-      
-      if(sexo == "F"){
-        tabla_proyeccionesM_pensionados[cont+1, col] <- tabla_proyeccionesM_pensionados[cont+1, col] + 1 
-      }else {
-        tabla_proyeccionesH_pensionados[cont+1, col] <- tabla_proyeccionesH_pensionados[cont+1, col] + 1
-      }
-      
-      cont <- cont + 1
-      edad <- edad + 1
-      estado <- proyeccion_demo_pensionados(edad, sexo, cont, prob_muerte, tipo)
-     
-      
-    }
-    
-        
-    if(estado == "PS") {
-      aux_c <- 1
-      aux_h <- 1
-      edad_c <- edad
-      edad_h <- edad-25
-      tipo <- "PS"
-      
-      n_c <- 115-edad
-      prob_muerte_c <- runif(n_c+1)
-    
-      if (sexo == "M"){
-        sexo_c <- "F"
-      }else {
-        sexo_c <- "M"
-      }
-      
-      if(0 <= edad_h &  edad_h < 25) {
-        sexo_h <- sample(c("F", "M"), 1)
-        n_h <- 115-edad_h
-        prob_muerte_h <- runif(n_h+1)
-        estado_h <- proyeccion_beneficiarios_h(edad_h, sexo_h,aux_h, prob_muerte_h,tipo,cont)
-        
-        # Hijos
-        while(estado_h == tipo) {
-          
-          if(sexo_h == "F"){
-            tabla_proyeccionesM_pensionados[aux_h+1,3] <- tabla_proyeccionesM_pensionados[aux_h+1, 3] + 1 
-          }else {
-            tabla_proyeccionesH_pensionados[aux_h+1,3] <- tabla_proyeccionesH_pensionados[aux_h+1, 3] + 1
-          }
-          
-          aux_h <- aux_h + 1
-          edad_h <- edad_h + 1
-          estado_h <- proyeccion_beneficiarios_h(edad_h, sexo_h,aux_h, prob_muerte_h, tipo,cont)
-        }
-        
-        if(estado_h == "SR") {
-          if(sexo_h == "F"){
-            tabla_proyeccionesM_pensionados[aux_h+1, 5] <- tabla_proyeccionesM_pensionados[aux_h+1, 5] + 1 
-          }else {
-            tabla_proyeccionesH_pensionados[aux_h+1, 5] <- tabla_proyeccionesH_pensionados[aux_h+1, 5] + 1
-          }
-        }
-      }
-      
-      #Conyugues
-      estado_c <- proyeccion_beneficiarios_c(edad_c, sexo_c, aux_c, prob_muerte_c,tipo,cont)
-      while(estado_c == tipo) {
-        
-        if(sexo_c == "F"){
-          tabla_proyeccionesM_pensionados[aux_c+1, 3] <- tabla_proyeccionesM_pensionados[aux_c+1, 3] + 1 
-        }else {
-          tabla_proyeccionesH_pensionados[aux_c+1, 3] <- tabla_proyeccionesH_pensionados[aux_c+1, 3] + 1
-        }
-        
-        aux_c <- aux_c + 1
-        edad_c <- edad_c + 1
-        
-        estado_c <- proyeccion_beneficiarios_c(edad_c, sexo_c, aux_c, prob_muerte_c, tipo,cont)
-        
-      }
-      
-      if(estado_c == "SR") {
-        if(sexo_c == "F"){
-          tabla_proyeccionesM_pensionados[aux_c+1, 5] <- tabla_proyeccionesM_pensionados[aux_c+1, 5] + 1 
-        }else {
-          tabla_proyeccionesH_pensionados[aux_c+1, 5] <- tabla_proyeccionesH_pensionados[aux_c+1, 5] + 1
-        }
-      }
-        
-    }
-  } 
-  
-  lista_resultados_pensionados_df_M[[i]] <- tabla_proyeccionesM_pensionados
-  lista_resultados_pensionados_df_H[[i]] <- tabla_proyeccionesH_pensionados
+  pensionados_finales <- tabla_pensionados_proyeccion(pensionados_data,tabla_proyeccionesM_pensionados, tabla_proyeccionesH_pensionados)
+  pensionados_finales <- tabla_pensionados_proyeccion(lista_pensionados_activos[[i]],tabla_proyeccionesM_pensionados, tabla_proyeccionesH_pensionados)
+  pensionados_finales <-tabla_pensionados_proyeccion(lista_pensionados_inactivos[[i]],tabla_proyeccionesM_pensionados, tabla_proyeccionesH_pensionados)
+
+  lista_resultados_pensionados_df_M[[i]] <- pensionados_finales[[1]]
+  lista_resultados_pensionados_df_H[[i]] <- pensionados_finales[[2]]
   
 }
+
 
 # Combinar los dataframes para mujeres y hombres
 df_combinado_pensionados_M <- combinar_dfs(lista_resultados_pensionados_df_M)
@@ -784,9 +929,9 @@ calcular_promedios_pensionados <- function(df) {
   df %>%
     group_by(Año) %>%
     summarise(
-      PJ = mean(PJ),
       PI = mean(PI),
       PS = mean(PS),
+      PJ = mean(PJ),
       SR = mean(SR)
     )
 }
