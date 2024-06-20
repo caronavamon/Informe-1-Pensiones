@@ -744,18 +744,6 @@ tabla_pensionados_proyeccion <- function(pensionados, tabla_proyeccionesM_pensio
     prob_muerte <- runif(n+1)
     aux <- 1
     
-    if(!identical(pensionados, pensionados_data)){
-      name <-ifelse(tipo == "Vejez", "PJ",
-                    ifelse(tipo == "Invalidez", "PI",
-                           ifelse(tipo == "Sucesión", "PS")))
-      col <- which(colnames(tabla_proyeccionesM_pensionados) == name)
-      if(sexo == "F"){
-        tabla_proyeccionesM_pensionados[cont+1, col] <- tabla_proyeccionesM_pensionados[cont+1, col] + 1 
-      }else {
-        tabla_proyeccionesH_pensionados[cont+1, col] <- tabla_proyeccionesH_pensionados[cont+1, col] + 1
-      }
-    }
-    
     estado <- proyeccion_demo_pensionados(edad, sexo,cont, aux, prob_muerte,tipo)
     
     while(estado == tipo) {
@@ -870,6 +858,11 @@ tabla_pensionados_proyeccion <- function(pensionados, tabla_proyeccionesM_pensio
   return(lista)
 }
 
+# Función para sumar dataframes celda por celda
+sumar_dfs <- function(dfs) {
+  Reduce(`+`, dfs)
+}
+
 
 # Proyección
 
@@ -887,9 +880,9 @@ for (i in 1:iteraciones) {
   conteo <- pensionados %>%
     group_by(SEXO,COD_TIPO_PENSION) %>%
     summarise(cantidad_personas = n())
-
+  
   #Mujeres
-  tabla_proyeccionesM_pensionados<- data.frame(
+  tabla_proyeccionesM_pensionados_pensionados<- data.frame(
     "Año" = 0:100,
     "PI" = rep(0, 101),
     "PS" = rep(0, 101),
@@ -899,8 +892,24 @@ for (i in 1:iteraciones) {
 
   tabla_proyeccionesM_pensionados[1,-c(1,5)]<- conteo$cantidad_personas[1:3]
   
+  tabla_proyeccionesM_pensionados_activos<- data.frame(
+    "Año" = 0:100,
+    "PI" = rep(0, 101),
+    "PS" = rep(0, 101),
+    "PJ" = rep(0, 101),
+    "SR" = rep(0, 101)
+  )
+  
+  tabla_proyeccionesM_pensionados_inactivos<- data.frame(
+    "Año" = 0:100,
+    "PI" = rep(0, 101),
+    "PS" = rep(0, 101),
+    "PJ" = rep(0, 101),
+    "SR" = rep(0, 101)
+  )
+  
   #Hombres
-  tabla_proyeccionesH_pensionados<- data.frame(
+  tabla_proyeccionesH_pensionados_pensionados<- data.frame(
     "Año" = 0:100,
     "PI" = rep(0, 101),
     "PS" = rep(0, 101),
@@ -910,10 +919,34 @@ for (i in 1:iteraciones) {
   
   tabla_proyeccionesH_pensionados[1,-c(1,5)]<- conteo$cantidad_personas[4:6]
   
-  pensionados_finales <- tabla_pensionados_proyeccion(pensionados_data,tabla_proyeccionesM_pensionados, tabla_proyeccionesH_pensionados)
-  pensionados_finales <- tabla_pensionados_proyeccion(lista_pensionados_activos[[i]],tabla_proyeccionesM_pensionados, tabla_proyeccionesH_pensionados)
-  pensionados_finales <-tabla_pensionados_proyeccion(lista_pensionados_inactivos[[i]],tabla_proyeccionesM_pensionados, tabla_proyeccionesH_pensionados)
-
+  tabla_proyeccionesH_pensionados_activos<- data.frame(
+    "Año" = 0:100,
+    "PI" = rep(0, 101),
+    "PS" = rep(0, 101),
+    "PJ" = rep(0, 101),
+    "SR" = rep(0, 101)
+  )
+  
+  tabla_proyeccionesH_pensionados_inactivos<- data.frame(
+    "Año" = 0:100,
+    "PI" = rep(0, 101),
+    "PS" = rep(0, 101),
+    "PJ" = rep(0, 101),
+    "SR" = rep(0, 101)
+  )
+  
+  
+  
+  pensionados_pensionados <- lapply(tabla_pensionados_proyeccion(pensionados_data,tabla_proyeccionesM_pensionados_pensionados, tabla_proyeccionesH_pensionados_pensionados), na.omit)
+  pensionados_activos <- lapply(tabla_pensionados_proyeccion(lista_pensionados_activos[[i]],tabla_proyeccionesM_pensionados_activos, tabla_proyeccionesH_pensionados_activos), na.omit)
+  pensionados_inactivos <-lapply(tabla_pensionados_proyeccion(lista_pensionados_inactivos[[i]],tabla_proyeccionesM_pensionados_inactivos, tabla_proyeccionesH_pensionados_inactivos), na.omit)
+  
+  # Aplicar la función a los dataframes en la misma posición en cada lista
+  pensiones_finales <- lapply(1:length(pensionados_pensionados), function(j) {
+    sumar_dfs(list(pensionados_pensionados[[j]], pensionados_activos[[j]], pensionados_inactivos[[j]]))
+  })
+  
+  
   lista_resultados_pensionados_df_M[[i]] <- pensionados_finales[[1]]
   lista_resultados_pensionados_df_H[[i]] <- pensionados_finales[[2]]
   
