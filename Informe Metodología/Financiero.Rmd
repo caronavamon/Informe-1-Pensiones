@@ -1,0 +1,41 @@
+---
+title: "FinancieroJM"
+output: html_document
+date: "2024-06-21"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+Salarios2023 <- subset(salarios_edad, Año == 2023)
+
+# se cambia un poco el orden de las variables 
+Salarios2023T <- data.frame(ID = Salarios2023$ID, 
+                                     Edad = Salarios2023$edad, 
+                                     "2023" = Salarios2023$Salario)
+colnames(Salarios2023T)[colnames(Salarios2023T) == "X2023"] <- "2023"
+Salarios2023T <- na.omit(Salarios2023T)
+
+for (i in 1:100) {
+  year <- 2023 + i
+  Salarios2023T[[as.character(year)]] <- 0  # Agregar columnas vacías
+}
+
+```
+
+
+```{r}
+  # Proyectar el salario con escala fija
+
+for (i in 1:100) { 
+  year <- 2023 + i
+  previo <- as.character(2023 + i - 1)
+  actual <- as.character(year)
+  
+
+  Salarios2023T[[actual]] <- Salarios2023T[[previo]]* (1 + inflacion) * (1 + 0.003)
+}
+```
+
