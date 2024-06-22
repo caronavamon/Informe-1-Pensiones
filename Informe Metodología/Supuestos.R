@@ -4,6 +4,8 @@ library(tidyr)
 library(dplyr)
 library(ggplot2)
 library(cowplot)
+library(plotly)
+library(forecast)
 
 # Inflación
 
@@ -134,6 +136,12 @@ promedios_edad <- apply(salarios_promedio[,-1], 2, promedio)
 promedios_edad <- as.data.frame(promedios_edad)
 promedios_edad <- cbind(edad = rango_edades, promedios_edad)
 
+# Hacemos un boxplot 
+plot_ly(promedios_edad, y = ~promedios_edad, type = "box", boxpoints = "all", 
+        jitter = 0.3, pointpos = 0, marker = list(color = 'rgb(7,40,89)', 
+                                                     outliercolor = 'rgba(219, 64, 82, 0.6)', 
+                                                     line = list(outliercolor = 'rgba(219, 64, 82, 1.0)', 
+                                                                 outlierwidth = 2)))
 # Sacamos la variacion 
 promedios_edad$Variacion <- c(NA, (promedios_edad$promedios_edad[-1] / promedios_edad$promedios_edad[-nrow(promedios_edad)]) - 1)
 
@@ -145,15 +153,43 @@ ggplot(promedios_edad, aes(x = edad, y = Variacion)) +
        y = "Variación del Salario Promedio") +
   theme_cowplot() 
 
-ggplot(promedios_edad, aes(x = edad, y = promedios_edad)) +
+ggplotly(ggplot(promedios_edad, aes(x = edad, y = promedios_edad)) +
   geom_bar(stat = "identity", fill = "#2F4F4F", color = "white", alpha = 0.7) +  
   labs(title = "Variación del Salario Promedio por Edad",
        x = "Edad",
        y = "Variación del Salario Promedio") +
   scale_y_continuous(labels = function(x) format(x, scientific = FALSE)) +
-  theme_cowplot()
+  theme_cowplot())
 
-table(salarios_edad$edad)
+# Eliminamos los outliers (mayores a la edad 71)
+promedios_edad_estables <- promedios_edad[1:51,]
+
+
+# Hacemos la prediccion 
+#modelo <- lm(promedios_edad ~ edad, data = promedios_edad_estables)
+modelo <- auto.arima(promedios_edad_estables$promedios_edad)
+summary(modelo)
+nuevas_edades <- data.frame(edad = c(70:78))
+#predicciones_salario <- predict(modelo, nuevas_edades)
+#predicciones_salario_data <- data.frame(nuevas_edades, 
+                                        #promedios_edad = predicciones_salario)
+predicciones_salario <- forecast(modelo, h = nrow(nuevas_edades))$mean
+predicciones_salario_data <- data.frame(edad = nuevas_edades$edad, 
+                                        promedios_edad = predicciones_salario)
+# Visualizamos la prediccion 
+predicciones_graf <- ggplot() +
+  geom_bar(data = promedios_edad_estables, aes(x = factor(edad), y = promedios_edad), 
+           fill = "#2F4F4F", color = "white", alpha = 0.7, stat = "identity") +
+  geom_bar(data = predicciones_salario_data, aes(x = factor(edad), y = promedios_edad), 
+           fill = "cadetblue3", color = "white", alpha = 0.7, stat = "identity") +
+  labs(title = "Salario Promedio por Edad con Predicciones",
+       x = "Edad",
+       y = "Salario Promedio") +
+  theme_minimal()
+
+# Convertir el gráfico en interactivo usando ggplotly
+predicciones_graf_int <- ggplotly(predicciones_graf)
+predicciones_graf_int
 
 # Densidad de cotización 
 

@@ -304,7 +304,8 @@ for (i in 1:iteraciones) {
     "Edad" = integer(),
     "COD_TIPO_PENSION" = character(),
     "SEXO" = character(),
-    "cont" = integer()
+    "cont" = integer(),
+    "Cotizaciones_principal" = integer()
   )
 
   for(j in 1: nrow(activos_total_cotizacion)) {
@@ -342,7 +343,12 @@ for (i in 1:iteraciones) {
         tabla_proyeccionesH_activos[cont+1, 3] <- tabla_proyeccionesH_activos[cont+1, 3] + 1
       }
       
-      tabla_pensionados <- rbind(tabla_pensionados, data.frame(Edad = edad, COD_TIPO_PENSION = "Vejez", SEXO = sexo, cont = cont))
+      tabla_pensionados <- rbind(tabla_pensionados, 
+                                 data.frame(Edad = edad, 
+                                            COD_TIPO_PENSION = "Vejez", 
+                                            SEXO = sexo, 
+                                            cont = cont, 
+                                            Cotizaciones_principal = cotizaciones))
     }
     if(estado == 2) {
       if(sexo == "F"){
@@ -351,7 +357,12 @@ for (i in 1:iteraciones) {
         tabla_proyeccionesH_activos[cont+1, 4] <- tabla_proyeccionesH_activos[cont+1, 4] + 1
       }
       
-      tabla_pensionados <- rbind(tabla_pensionados, data.frame(Edad = edad, COD_TIPO_PENSION = "Invalidez", SEXO = sexo, cont = cont))
+      tabla_pensionados <- rbind(tabla_pensionados, 
+                                 data.frame(Edad = edad, 
+                                            COD_TIPO_PENSION = "Invalidez", 
+                                            SEXO = sexo, 
+                                            cont = cont, 
+                                            Cotizaciones_principal = cotizaciones))
     }
     if(estado == 3) {
       if(sexo == "F"){
@@ -368,8 +379,12 @@ for (i in 1:iteraciones) {
         sexo_c <- "M"
       }
       
-      tabla_pensionados<- rbind(tabla_pensionados, data.frame(Edad = edad_c, COD_TIPO_PENSION = "Sucesión",
-                                                     SEXO = sexo_c, cont = cont))
+      tabla_pensionados<- rbind(tabla_pensionados, 
+                                data.frame(Edad = edad_c, 
+                                           COD_TIPO_PENSION = "Sucesión", 
+                                           SEXO = sexo_c, 
+                                           cont = cont, 
+                                           Cotizaciones_principal = cotizaciones))
   
       #hijo
       edad_h <- edad-25
@@ -377,8 +392,11 @@ for (i in 1:iteraciones) {
       if(0 <= edad_h &  edad_h < 25) {
         sexo_h <- sample(c("F", "M"), 1)
         tabla_pensionados <- rbind(tabla_pensionados, 
-                                            data.frame(Edad = edad_h, COD_TIPO_PENSION = "Sucesión",
-                                                       SEXO = sexo_h, cont = cont))
+                                   data.frame(Edad = edad_h, 
+                                              COD_TIPO_PENSION = "Sucesión",
+                                              SEXO = sexo_h, 
+                                              cont = cont, 
+                                              Cotizaciones_principal = cotizaciones))
       }
     }
     if(estado == 4) {
@@ -521,7 +539,8 @@ for (i in 1:iteraciones) {
     "Edad" = integer(),
     "COD_TIPO_PENSION" = character(),
     "SEXO" = character(),
-    "cont" = integer()
+    "cont" = integer(),
+    "Cotizaciones_principal" = integer()
   )
   
   for(j in 1: nrow(inactivos_nuevos)) {
@@ -557,7 +576,12 @@ for (i in 1:iteraciones) {
         tabla_proyeccionesH_inactivos[cont+1, 3] <- tabla_proyeccionesH_inactivos[cont+1, 3] + 1
       }
       
-      tabla_pensionados <- rbind(tabla_pensionados, data.frame(Edad = edad, COD_TIPO_PENSION = "Vejez", SEXO = sexo, cont = cont))
+      tabla_pensionados <- rbind(tabla_pensionados, 
+                                 data.frame(Edad = edad, 
+                                            COD_TIPO_PENSION = "Vejez", 
+                                            SEXO = sexo, 
+                                            cont = cont, 
+                                            Cotizaciones_principal = cotizaciones))
     
     }
     if(estado == 2) {
@@ -567,7 +591,12 @@ for (i in 1:iteraciones) {
         tabla_proyeccionesH_inactivos[cont+1, 4] <- tabla_proyeccionesH_inactivos[cont+1, 4] + 1
       }
       
-      tabla_pensionados <- rbind(tabla_pensionados, data.frame(Edad = edad, COD_TIPO_PENSION = "Invalidez", SEXO = sexo, cont = cont))
+      tabla_pensionados <- rbind(tabla_pensionados, 
+                                 data.frame(Edad = edad, 
+                                            COD_TIPO_PENSION = "Invalidez", 
+                                            SEXO = sexo, 
+                                            cont = cont, 
+                                            Cotizaciones_principal = cotizaciones))
   
     }
     if(estado == 3) {
@@ -585,14 +614,24 @@ for (i in 1:iteraciones) {
         sexo_c <- "M"
       }
       
-      tabla_pensionados <- rbind(tabla_pensionados, data.frame(Edad = edad, COD_TIPO_PENSION = "Sucesión", SEXO = sexo, cont = cont))
+      tabla_pensionados <- rbind(tabla_pensionados, 
+                                 data.frame(Edad = edad, 
+                                            COD_TIPO_PENSION = "Sucesión", 
+                                            SEXO = sexo, 
+                                            cont = cont, 
+                                            Cotizaciones_principal = cotizaciones))
     
       #hijo
       edad_h <- edad-25
       
       if(0 <= edad_h &  edad_h < 25) {
         sexo_h <- sample(c("F", "M"), 1)
-        tabla_pensionados <- rbind(tabla_pensionados, data.frame(Edad = edad, COD_TIPO_PENSION = "Sucesión", SEXO = sexo, cont = cont))
+        tabla_pensionados <- rbind(tabla_pensionados, 
+                                   data.frame(Edad = edad, 
+                                              COD_TIPO_PENSION = "Sucesión", 
+                                              SEXO = sexo, 
+                                              cont = cont,
+                                              Cotizaciones_principal = cotizaciones))
       }
     }
     if(estado == 4) {
