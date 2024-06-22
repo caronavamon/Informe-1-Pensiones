@@ -140,10 +140,7 @@ promedios_edad <- cbind(edad = rango_edades, promedios_edad)
 plot_ly(promedios_edad, y = ~promedios_edad, type = "box", boxpoints = "all", 
         jitter = 0.3, pointpos = 0, marker = list(color = 'rgb(7,40,89)', 
                                                      outliercolor = 'rgba(219, 64, 82, 0.6)', 
-                                                     line = list(outliercolor = 'rgba(219, 64, 82, 1.0)', 
-                                                                 outlierwidth = 2)))
-# Sacamos la variacion 
-promedios_edad$Variacion <- c(NA, (promedios_edad$promedios_edad[-1] / promedios_edad$promedios_edad[-nrow(promedios_edad)]) - 1)
+                                                     line = list(outliercolor = 'rgba(219, 64, 82, 1.0)',                                                              outlierwidth = 2)))
 
 # Graficamos 
 ggplot(promedios_edad, aes(x = edad, y = Variacion)) +
@@ -186,10 +183,20 @@ predicciones_graf <- ggplot() +
        x = "Edad",
        y = "Salario Promedio") +
   theme_minimal()
-
-# Convertir el gráfico en interactivo usando ggplotly
 predicciones_graf_int <- ggplotly(predicciones_graf)
 predicciones_graf_int
+
+# Sacamos la variacion 
+promedios_edad_final <- rbind(promedios_edad_estables,predicciones_salario_data)
+promedios_edad_final$Variacion <- c(NA, (promedios_edad_final$promedios_edad[-1] / promedios_edad_final$promedios_edad[-nrow(promedios_edad_final)]) - 1)
+
+# Graficamos la variacion 
+ggplot(promedios_edad_final, aes(x = edad, y = Variacion)) +
+  geom_line(color = "#2F4F4F") +           
+  geom_smooth(method = "loess", se = FALSE, color = "cadetblue3") +
+  labs(x = "Edad",
+       y = "Variación del Salario Promedio") +
+  theme_cowplot() 
 
 # Densidad de cotización 
 
