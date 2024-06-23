@@ -1071,9 +1071,14 @@ for (i in 1:iteraciones) {
     "Duracion" = numeric()
   )
   
-  pensionados_pensionados <- lapply(tabla_pensionados_proyeccion(pensionados_data,tabla_proyeccionesM_pensionados_pensionados, tabla_proyeccionesH_pensionados_pensionados,tabla_info_pensionados_pensionados), na.omit)
-  pensionados_activos <- lapply(tabla_pensionados_proyeccion(lista_pensionados_activos[[i]],tabla_proyeccionesM_pensionados_activos, tabla_proyeccionesH_pensionados_activos,tabla_info_pensionados_activos), na.omit)
-  pensionados_inactivos <-lapply(tabla_pensionados_proyeccion(lista_pensionados_inactivos[[i]],tabla_proyeccionesM_pensionados_inactivos, tabla_proyeccionesH_pensionados_inactivos,tabla_info_pensionados_inactivos), na.omit)
+  pensionados_pensionados <- tabla_pensionados_proyeccion(pensionados_data,tabla_proyeccionesM_pensionados_pensionados, tabla_proyeccionesH_pensionados_pensionados,tabla_info_pensionados_pensionados)
+  pensionados_pensionados[1:2] <- lapply(pensionados_pensionados[1:2], na.omit)
+
+  pensionados_activos <- tabla_pensionados_proyeccion(lista_pensionados_activos[[i]],tabla_proyeccionesM_pensionados_activos, tabla_proyeccionesH_pensionados_activos,tabla_info_pensionados_activos)
+  pensionados_activos[1:2] <- lapply(pensionados_activos[1:2], na.omit)
+  
+  pensionados_inactivos <-tabla_pensionados_proyeccion(lista_pensionados_inactivos[[i]],tabla_proyeccionesM_pensionados_inactivos, tabla_proyeccionesH_pensionados_inactivos,tabla_info_pensionados_inactivos)
+  pensionados_inactivos[1:2] <- lapply(pensionados_inactivos[1:2], na.omit)
   
   # Aplicar la función a los dataframes en la misma posición en cada lista
   pensionados_finales <- lapply(1:(length(pensionados_pensionados)-1), function(j) {
