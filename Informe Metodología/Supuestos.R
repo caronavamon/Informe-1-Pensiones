@@ -100,7 +100,7 @@ datos_salarios <- activos_VP %>%
 edades <- edades[,-(3:5)]
 salarios_edad <-  merge(datos_salarios, edades, by = c("ID", "Año"))
 
-rango_edades <- 19:78
+rango_edades <- 19:115
 salarios_promedio <- data.frame(matrix(ncol = length(rango_edades), 
                                        nrow = nrow(activos)))
 colnames(salarios_promedio) <- rango_edades
@@ -166,7 +166,7 @@ promedios_edad_estables <- promedios_edad[1:51,]
 #modelo <- lm(promedios_edad ~ edad, data = promedios_edad_estables)
 modelo <- auto.arima(promedios_edad_estables$promedios_edad)
 summary(modelo)
-nuevas_edades <- data.frame(edad = c(70:78))
+nuevas_edades <- data.frame(edad = c(70:115))
 #predicciones_salario <- predict(modelo, nuevas_edades)
 #predicciones_salario_data <- data.frame(nuevas_edades, 
                                         #promedios_edad = predicciones_salario)
