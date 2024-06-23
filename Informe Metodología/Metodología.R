@@ -15,7 +15,7 @@ tabla_vida_function <- function(tabla, tabla_sexo) {
   
   for(i in 0:115) {
     
-    col_inicial <- col
+    col_inicial <- 23
     col_final <- 23+115-i
     
     fila_inicial <- i+1 
@@ -65,7 +65,7 @@ cotizaciones_invalidez <- read_excel("Informe Metodología/cotizaciones_invalide
 
 # Leer la hoja 'Activos'
 activos <- read_excel("Informe Metodología/Fondo C.xlsx", sheet = "Activos")
-activos <- activos[, -c(1, (ncol(activos)-1):ncol(activos))]
+activos <- activos[, -c((ncol(activos)-1):ncol(activos))]
 
 # Calcular la edad al 31 de diciembre de 2023
 activos$Fec.Nac <- as.Date(activos$Fec.Nac) # Asegurar que FEC_NAC es de tipo Date
@@ -98,16 +98,16 @@ activos_ordenado <- cbind(activos_ordenado, conyugue, edad_hijo)
 # Se filtran los activos
 
 activos_ordenado <- activos_ordenado %>%
-  mutate(across(-c(1,2, 363:365), ~ ifelse(. < 10000, 0, .)))
+  mutate(across(-c(1,2,3, 364:366), ~ ifelse(. < 10000, 0, .)))
 
 # Se cuentan las cotizaciones
-num_cotizaciones <- rowSums(activos_ordenado[, -c(1,2,363:365)] > 0)
+num_cotizaciones <- rowSums(activos_ordenado[, -c(1,2,3,364:366)] > 0)
 activos_ordenado$"Cantidad Cotizaciones" <- num_cotizaciones
 
 activos_filtrados <- activos_ordenado %>%
-  filter(rowSums(select(., -c(1:350, 363:366))) != 0)
+  filter(rowSums(select(., -c(1:351, 364:367))) != 0)
 
-activos_total_cotizacion <- activos_filtrados[, c("Edad", "Sexo", "Cantidad Cotizaciones")]
+activos_total_cotizacion <- activos_filtrados[, c("ID","Edad", "Sexo", "Cantidad Cotizaciones")]
 
 
 #agregar más edades a la densidad cotización 
@@ -122,19 +122,21 @@ promedios_cotizaciones_edad <- rbind(promedios_cotizaciones_edad, nuevas_cotizac
 
 # Se filtran los inactivos
 inactivos_filtrados <- activos_ordenado %>%
-  filter(rowSums(select(.,-c(1:350, 363:366))) == 0)
+  filter(rowSums(select(.,-c(1:351, 364:367))) == 0)
 
-inactivos_total_cotizacion <- inactivos_filtrados[, c("Edad", "Sexo", "Cantidad Cotizaciones")]
+inactivos_total_cotizacion <- inactivos_filtrados[, c("ID","Edad", "Sexo", "Cantidad Cotizaciones")]
 
 # Se cuentan las cantidad de cotizaciones en el 2022
-num_cotizaciones_2022 <- rowSums(inactivos_filtrados[,339:350] > 0)
-inactivos_total_cotizacion$"Cotizaciones 2022" <- num_cotizaciones_2022
+num_cotizaciones_2022 <- rowSums(inactivos_filtrados[,340:351] > 0)
+inactivos_total_cotizacion$"Cotizaciones 2022/2026" <- num_cotizaciones_2022
 
 
-# Se cuentan las cantidad de cotizaciones en el 2020 al 2022
-num_cotizaciones_4años <- rowSums(inactivos_filtrados[,315:350] > 0)
-inactivos_total_cotizacion$"Cotizaciones hace 4 años" <- num_cotizaciones_4años
-
+# Se cuentan las cantidad de cotizaciones en el 2020 al 2023
+num_cotizaciones_4años <- rowSums(inactivos_filtrados[,316:351] > 0)
+inactivos_total_cotizacion$"Cotizaciones 2024" <- num_cotizaciones_4años
+# Se cuentan las cantidad de cotizaciones en el 2021 al 2024
+num_cotizaciones_2025 <- rowSums(inactivos_filtrados[,328:351] > 0)
+inactivos_total_cotizacion$"Cotizaciones 2025" <- num_cotizaciones_2025
 
 # Se eliminan los inactivos con menos de 12 cotizaciones
 inactivos_nuevos <- inactivos_total_cotizacion %>%
@@ -150,7 +152,7 @@ inactivos_descartados <- inactivos_total_cotizacion %>%
 # se cargan los datos de interés
 pensionados <- read_excel("Informe Metodología/Fondo C.xlsx", sheet = "Pensionados")
 # se eliminan las columnas no necesarias
-pensionados <- pensionados[,c(2:6,8)]
+pensionados <- pensionados[,c(1:6,8)]
 
 
 # Calcular la edad al 31 de diciembre de 2023
@@ -206,6 +208,7 @@ pensionados$año <- format(pensionados$`Rige de la Pensión`, "%Y")
 pensionados$cont <- rep(1, nrow(pensionados))
 
 pensionados_data <- pensionados
+colnames(pensionados_data)[1] <- "ID"
 
 #---------------Simulaciones-------------|
 
@@ -301,8 +304,10 @@ for (i in 1:iteraciones) {
   tabla_proyeccionesH_activos$Activo[1] <- sum(activos_total_cotizacion$Sexo== "M")
   
   tabla_pensionados <- data.frame(
+    "ID" = numeric(),
     "Edad" = integer(),
     "COD_TIPO_PENSION" = character(),
+    "COD_PARENTESCO" = character(),
     "SEXO" = character(),
     "cont" = integer(),
     "Cotizaciones_principal" = integer()
@@ -314,6 +319,7 @@ for (i in 1:iteraciones) {
     edad <- activos_total_cotizacion$Edad[j]
     sexo <- activos_total_cotizacion$Sexo[j]
     cotizaciones <- activos_total_cotizacion$`Cantidad Cotizaciones`[j]
+    ID <- activos_total_cotizacion$ID[[j]]
     
     n <- 115-edad
     prob_muerte <- runif(n+1)
@@ -344,8 +350,10 @@ for (i in 1:iteraciones) {
       }
       
       tabla_pensionados <- rbind(tabla_pensionados, 
-                                 data.frame(Edad = edad, 
-                                            COD_TIPO_PENSION = "Vejez", 
+                                 data.frame(ID = ID,
+                                            Edad = edad, 
+                                            COD_TIPO_PENSION = "Vejez",
+                                            COD_PARENTESCO = NA,
                                             SEXO = sexo, 
                                             cont = cont, 
                                             Cotizaciones_principal = cotizaciones))
@@ -358,8 +366,10 @@ for (i in 1:iteraciones) {
       }
       
       tabla_pensionados <- rbind(tabla_pensionados, 
-                                 data.frame(Edad = edad, 
-                                            COD_TIPO_PENSION = "Invalidez", 
+                                 data.frame(ID = ID,
+                                            Edad = edad, 
+                                            COD_TIPO_PENSION = "Invalidez",
+                                            COD_PARENTESCO = NA,
                                             SEXO = sexo, 
                                             cont = cont, 
                                             Cotizaciones_principal = cotizaciones))
@@ -380,8 +390,10 @@ for (i in 1:iteraciones) {
       }
       
       tabla_pensionados<- rbind(tabla_pensionados, 
-                                data.frame(Edad = edad_c, 
-                                           COD_TIPO_PENSION = "Sucesión", 
+                                data.frame(ID = ID,
+                                           Edad = edad_c, 
+                                           COD_TIPO_PENSION = "Sucesión",
+                                           COD_PARENTESCO = "C",
                                            SEXO = sexo_c, 
                                            cont = cont, 
                                            Cotizaciones_principal = cotizaciones))
@@ -392,8 +404,10 @@ for (i in 1:iteraciones) {
       if(0 <= edad_h &  edad_h < 25) {
         sexo_h <- sample(c("F", "M"), 1)
         tabla_pensionados <- rbind(tabla_pensionados, 
-                                   data.frame(Edad = edad_h, 
+                                   data.frame(ID = ID,
+                                              Edad = edad_h, 
                                               COD_TIPO_PENSION = "Sucesión",
+                                              COD_PARENTESCO = "H",
                                               SEXO = sexo_h, 
                                               cont = cont, 
                                               Cotizaciones_principal = cotizaciones))
@@ -470,17 +484,27 @@ proyeccion_demo_inactivos <- function(edad, sexo, cont, cotizaciones, prob_muert
         return(2) #pensión por invalidez
       }else {
         ult2_cotizaciones <- inactivos_nuevos$`Cotizaciones 2022`[j]
-        if(edad < 48 &  ult2_cotizaciones >=12) {
+        if((edad < 48) & (cont == 1) & (ult2_cotizaciones >=12)) {
           return(2)
         }else{
           return(4)
         }
-        ult4_cotizaciones <- inactivos_nuevos$`Cotizaciones hace 4 años`[j]
-        if(edad >= 48 & ult4_cotizaciones >=24){
-          return(2)
-        }else{
-          return(4)
+      
+        if(edad >= 48){
+          ult4_cotizaciones_2024 <- inactivos_nuevos$`Cotizaciones 2024`[j]
+          ult4_cotizaciones_2025 <- inactivos_nuevos$`Cotizaciones 2025`[j]
+          ult4_cotizaciones_2026 <- inactivos_nuevos$`Cotizaciones 2022/2026`[j]
+          if(cont == 1 & ult4_cotizaciones_2024>=24){
+            return(2)
+          }else if(cont == 2 & ult4_cotizaciones_2025>=24){
+            return(2)
+          }else if(cont == 3 & ult4_cotizaciones_2026>=24){
+            return(2)
+          }else{
+            return(4)
+          }
         }
+        
       }
     } 
   }else {
@@ -488,7 +512,7 @@ proyeccion_demo_inactivos <- function(edad, sexo, cont, cotizaciones, prob_muert
       return(3) #pensión por sucesión
     }else {
       ult2_cotizaciones <- inactivos_nuevos$`Cotizaciones 2022`[j]
-      if(ult2_cotizaciones >=12) {
+      if(cont == 1 & ult2_cotizaciones >=12) {
         return(3)
       }else{
         return(4)
@@ -536,8 +560,10 @@ for (i in 1:iteraciones) {
   tabla_proyeccionesH_inactivos$SR[2] <- sum(inactivos_descartados$Sexo== "M")
   
   tabla_pensionados <- data.frame(
+    "ID" = integer(),
     "Edad" = integer(),
     "COD_TIPO_PENSION" = character(),
+    "COD_PARENTESCO" = character(),
     "SEXO" = character(),
     "cont" = integer(),
     "Cotizaciones_principal" = integer()
@@ -549,6 +575,7 @@ for (i in 1:iteraciones) {
     edad <- inactivos_nuevos$Edad[j]
     sexo <- inactivos_nuevos$Sexo[j]
     cotizaciones <- inactivos_nuevos$`Cantidad Cotizaciones`[j]
+    ID <- inactivos_nuevos$ID[[j]]
     
     n <- 115-edad
     prob_muerte <- runif(n+1)
@@ -577,8 +604,10 @@ for (i in 1:iteraciones) {
       }
       
       tabla_pensionados <- rbind(tabla_pensionados, 
-                                 data.frame(Edad = edad, 
-                                            COD_TIPO_PENSION = "Vejez", 
+                                 data.frame(ID = ID,
+                                            Edad = edad, 
+                                            COD_TIPO_PENSION = "Vejez",
+                                            COD_PARENTESCO = NA,
                                             SEXO = sexo, 
                                             cont = cont, 
                                             Cotizaciones_principal = cotizaciones))
@@ -592,8 +621,10 @@ for (i in 1:iteraciones) {
       }
       
       tabla_pensionados <- rbind(tabla_pensionados, 
-                                 data.frame(Edad = edad, 
-                                            COD_TIPO_PENSION = "Invalidez", 
+                                 data.frame(ID = ID,
+                                            Edad = edad, 
+                                            COD_TIPO_PENSION = "Invalidez",
+                                            COD_PARENTESCO = NA,
                                             SEXO = sexo, 
                                             cont = cont, 
                                             Cotizaciones_principal = cotizaciones))
@@ -615,8 +646,10 @@ for (i in 1:iteraciones) {
       }
       
       tabla_pensionados <- rbind(tabla_pensionados, 
-                                 data.frame(Edad = edad, 
-                                            COD_TIPO_PENSION = "Sucesión", 
+                                 data.frame(ID = ID,
+                                            Edad = edad, 
+                                            COD_TIPO_PENSION = "Sucesión",
+                                            COD_PARENTESCO = "C",
                                             SEXO = sexo, 
                                             cont = cont, 
                                             Cotizaciones_principal = cotizaciones))
@@ -627,8 +660,10 @@ for (i in 1:iteraciones) {
       if(0 <= edad_h &  edad_h < 25) {
         sexo_h <- sample(c("F", "M"), 1)
         tabla_pensionados <- rbind(tabla_pensionados, 
-                                   data.frame(Edad = edad, 
-                                              COD_TIPO_PENSION = "Sucesión", 
+                                   data.frame(ID = ID,
+                                              Edad = edad_h, 
+                                              COD_TIPO_PENSION = "Sucesión",
+                                              COD_PARENTESCO = "H",
                                               SEXO = sexo, 
                                               cont = cont,
                                               Cotizaciones_principal = cotizaciones))
@@ -674,8 +709,6 @@ proyeccion_inactivos_H <- calcular_promedios_inactivos(df_combinado_inactivos_H)
 proc.time()-t 
 
 #----------------Pensionados--------------------------
-
-
 
 tabla_vida_function_h <- function(tabla_sexo, año, edad_h) {
   
@@ -754,8 +787,7 @@ proyeccion_beneficiarios_h <- function(edad_h, sexo,aux_h, prob_muerte, tipo, co
 }
 
 proyeccion_beneficiarios_c <- function(edad_c, sexo,aux_c, prob_muerte_c, tipo, cont){
-  #print(edad_c)
-  #print(cont)
+
   if(sexo == "F") {
     tabla_vida <- tablas_vida_M[[edad_c+1-cont]]
     px <- tabla_vida$px[tabla_vida$Edad == edad_c] 
@@ -771,13 +803,15 @@ proyeccion_beneficiarios_c <- function(edad_c, sexo,aux_c, prob_muerte_c, tipo, 
   }
 }
 
-tabla_pensionados_proyeccion <- function(pensionados, tabla_proyeccionesM_pensionados, tabla_proyeccionesH_pensionados) {
+tabla_pensionados_proyeccion <- function(pensionados, tabla_proyeccionesM_pensionados, tabla_proyeccionesH_pensionados,tabla_info_pensionados) {
   
   for(j in 1: nrow(pensionados)) {
     cont <- pensionados$cont[j]
     edad <- pensionados$Edad[j]
     sexo <- pensionados$SEXO[j]
     tipo <- pensionados$COD_TIPO_PENSION[j]
+    ID <- pensionados$ID[j]
+    parentesco <- pensionados$COD_PARENTESCO[j]
     
     n <- 115-edad
     prob_muerte <- runif(n+1)
@@ -805,10 +839,17 @@ tabla_pensionados_proyeccion <- function(pensionados, tabla_proyeccionesM_pensio
       estado <- proyeccion_demo_pensionados(edad, sexo,cont, aux, prob_muerte, tipo)
     }
     
+    tabla_info_pensionados <- rbind(tabla_info_pensionados, 
+                               data.frame(ID = ID, 
+                                          Tipo = tipo,
+                                          COD_PARENTESCO = parentesco,
+                                          SEXO = sexo, 
+                                          Duracion = aux))
     
     if(estado == "PS") {
       
       tipo <- "PS"
+      parentesco <- "C"
       
       #conyugue
       aux_c <- cont
@@ -840,6 +881,13 @@ tabla_pensionados_proyeccion <- function(pensionados, tabla_proyeccionesM_pensio
         estado_c <- proyeccion_beneficiarios_c(edad_c, sexo_c, aux_c, prob_muerte_c, tipo,cont)
         
       }
+      
+      tabla_info_pensionados <- rbind(tabla_info_pensionados, 
+                                      data.frame(ID = ID, 
+                                                 Tipo = tipo, 
+                                                 COD_PARENTESCO = parentesco,
+                                                 SEXO = sexo_c, 
+                                                 Duracion = aux_c))
       
       if(estado_c == "SR") {
         if(sexo_c == "F"){
@@ -875,6 +923,13 @@ tabla_pensionados_proyeccion <- function(pensionados, tabla_proyeccionesM_pensio
           estado_h <- proyeccion_beneficiarios_h(edad_h, sexo_h,aux_h, prob_muerte_h, tipo,cont)
         }
         
+        tabla_info_pensionados <- rbind(tabla_info_pensionados, 
+                                        data.frame(ID = ID, 
+                                                   Tipo = tipo,
+                                                   COD_PARENTESCO = "H",
+                                                   SEXO = sexo_h, 
+                                                   Duracion = aux_h))
+        
         if(estado_h == "SR") {
           if(sexo_h == "F"){
             tabla_proyeccionesM_pensionados[aux_h+2, 5] <- tabla_proyeccionesM_pensionados[aux_h+2, 5] + 1 
@@ -893,13 +948,30 @@ tabla_pensionados_proyeccion <- function(pensionados, tabla_proyeccionesM_pensio
       }
     }
   } 
-  lista <- list(tabla_proyeccionesM_pensionados,tabla_proyeccionesH_pensionados)
+  lista <- list(tabla_proyeccionesM_pensionados,tabla_proyeccionesH_pensionados, 
+                tabla_info_pensionados)
   return(lista)
 }
 
 # Función para sumar dataframes celda por celda
+#sumar_dfs <- function(dfs) {
+  #Reduce(`+`, dfs)
+#}
+
 sumar_dfs <- function(dfs) {
-  Reduce(`+`, dfs)
+  # Extraer las primeras columnas de cada dataframe
+  primeras_columnas <- lapply(dfs, function(df) df[, 1])
+  
+  # Extraer el resto de las columnas de cada dataframe y sumar
+  sumas <- Reduce(`+`, lapply(dfs, function(df) df[, -1]))
+  
+  # Combinar la primera columna con las sumas de las otras columnas
+  resultado <- cbind(primeras_columnas[[1]], sumas)
+  
+  # Restaurar el nombre de la primera columna
+  colnames(resultado)[1] <- colnames(dfs[[1]])[1]
+  
+  return(as.data.frame(resultado))
 }
 
 
@@ -910,6 +982,7 @@ iteraciones <- 100
 
 lista_resultados_pensionados_df_M <-list()
 lista_resultados_pensionados_df_H <-list()
+lista_info_pensionados <- list()
 
 t <- proc.time() 
 
@@ -929,7 +1002,7 @@ for (i in 1:iteraciones) {
     "SR" = rep(0, 101)
   )
 
-  tabla_proyeccionesM_pensionados[1,-c(1,5)]<- conteo$cantidad_personas[1:3]
+  tabla_proyeccionesM_pensionados_pensionados[1,-c(1,5)]<- conteo$cantidad_personas[1:3]
   
   tabla_proyeccionesM_pensionados_activos<- data.frame(
     "Año" = 0:100,
@@ -956,7 +1029,7 @@ for (i in 1:iteraciones) {
     "SR" = rep(0, 101)
   )
   
-  tabla_proyeccionesH_pensionados[1,-c(1,5)]<- conteo$cantidad_personas[4:6]
+  tabla_proyeccionesH_pensionados_pensionados[1,-c(1,5)]<- conteo$cantidad_personas[4:6]
   
   tabla_proyeccionesH_pensionados_activos<- data.frame(
     "Año" = 0:100,
@@ -974,21 +1047,45 @@ for (i in 1:iteraciones) {
     "SR" = rep(0, 101)
   )
   
+  tabla_info_pensionados_pensionados <- data.frame(
+    "ID" = character(),
+    "Tipo" = character(),
+    "COD_PARENTESCO" = character(),
+    "Sexo" = character(),
+    "Duracion" = numeric()
+  )
   
+  tabla_info_pensionados_activos <- data.frame(
+    "ID" = numeric(),
+    "Tipo" = character(),
+    "COD_PARENTESCO" = character(),
+    "Sexo" = character(),
+    "Duracion" = numeric()
+  )
   
-  pensionados_pensionados <- lapply(tabla_pensionados_proyeccion(pensionados_data,tabla_proyeccionesM_pensionados_pensionados, tabla_proyeccionesH_pensionados_pensionados), na.omit)
-  pensionados_activos <- lapply(tabla_pensionados_proyeccion(lista_pensionados_activos[[i]],tabla_proyeccionesM_pensionados_activos, tabla_proyeccionesH_pensionados_activos), na.omit)
-  pensionados_inactivos <-lapply(tabla_pensionados_proyeccion(lista_pensionados_inactivos[[i]],tabla_proyeccionesM_pensionados_inactivos, tabla_proyeccionesH_pensionados_inactivos), na.omit)
+  tabla_info_pensionados_inactivos <- data.frame(
+    "ID" = numeric(),
+    "Tipo" = character(),
+    "COD_PARENTESCO" = character(),
+    "Sexo" = character(),
+    "Duracion" = numeric()
+  )
+  
+  pensionados_pensionados <- lapply(tabla_pensionados_proyeccion(pensionados_data,tabla_proyeccionesM_pensionados_pensionados, tabla_proyeccionesH_pensionados_pensionados,tabla_info_pensionados_pensionados), na.omit)
+  pensionados_activos <- lapply(tabla_pensionados_proyeccion(lista_pensionados_activos[[i]],tabla_proyeccionesM_pensionados_activos, tabla_proyeccionesH_pensionados_activos,tabla_info_pensionados_activos), na.omit)
+  pensionados_inactivos <-lapply(tabla_pensionados_proyeccion(lista_pensionados_inactivos[[i]],tabla_proyeccionesM_pensionados_inactivos, tabla_proyeccionesH_pensionados_inactivos,tabla_info_pensionados_inactivos), na.omit)
   
   # Aplicar la función a los dataframes en la misma posición en cada lista
-  pensiones_finales <- lapply(1:length(pensionados_pensionados), function(j) {
+  pensionados_finales <- lapply(1:(length(pensionados_pensionados)-1), function(j) {
     sumar_dfs(list(pensionados_pensionados[[j]], pensionados_activos[[j]], pensionados_inactivos[[j]]))
   })
+  
+  pensionados_info_final <- rbind(pensionados_pensionados[[3]],pensionados_activos[[3]],pensionados_inactivos[[3]])
   
   
   lista_resultados_pensionados_df_M[[i]] <- pensionados_finales[[1]]
   lista_resultados_pensionados_df_H[[i]] <- pensionados_finales[[2]]
-  
+  lista_info_pensionados[[i]] <- pensionados_info_final
 }
 
 
