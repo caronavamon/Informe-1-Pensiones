@@ -27,7 +27,7 @@ for (i in 1:100) {
 
 
 ```{r}
-  # Proyectar el salario con escala fija
+  # Proyectar el salario con inflacion
 
 for (i in 1:100) { 
   year <- 2023 + i
@@ -35,7 +35,60 @@ for (i in 1:100) {
   actual <- as.character(year)
   
 
-  Salarios2023T[[actual]] <- Salarios2023T[[previo]]* (1 + inflacion) * (1 + 0.003)
+  Salarios2023T[[actual]] <- Salarios2023T[[previo]]* (1 + inflacion)
 }
 ```
+
+
+```{r}
+# Se crea df para tener la variacion de salarios
+escalaSalariosedad <-  Salarios2023T[, c("ID", "Edad")]
+anios <- as.character(2023:2123)
+escalaSalariosedad[anios] <- NA
+escalaSalariosedad$"2023" <- 1
+```
+
+```{r}
+# Se obtiene la varicion según edad en cada año a cada individuo
+for (i in 1:nrow(escalaSalariosedad)) {
+  for (j in 2024:2123) {
+    current_age <- escalaSalariosedad$Edad[i] + (j - 2023)
+    
+    if (current_age > 78) {
+      break  # Si la edad actual es mayor a 78, salir del bucle interno
+    }
+    
+    variacion <- promedios_edad_final$Variacion[promedios_edad_final$edad == current_age]
+    if (length(variacion) > 0) {  # Verificar que se encontró una variación
+      escalaSalariosedad[i, as.character(j)] <- 1 + variacion
+    }
+  }
+}
+```
+
+```{r}
+#Se hace la proyección final con inflación y escala salarial
+
+ID <- Salarios2023T$ID
+Edad <- Salarios2023T$Edad
+
+
+productos <- Salarios2023T[, as.character(anios)] * escalaSalariosedad[, as.character(anios)]
+
+
+ProyeccionSalarios <- data.frame(ID, Edad, productos)
+
+nombres_columnas <- colnames(ProyeccionSalarios)
+
+nuevos_nombres <- gsub("^X", "", nombres_columnas)
+
+
+colnames(ProyeccionSalarios) <- nuevos_nombres
+
+```
+
+
+
+
+
 
