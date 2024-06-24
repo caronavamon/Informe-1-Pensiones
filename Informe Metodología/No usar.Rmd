@@ -1,0 +1,167 @@
+---
+title: "Resultados"
+output: html_document
+date: "2024-06-18"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(fitdistrplus)
+library(tidyverse)
+library(POT)
+library(readxl)
+library(tidyverse)
+```
+
+```{r}
+set.seed(142)
+promedios_edad_final %>% 
+  ggplot(aes(x=edad,y=Variacion))+geom_line()
+
+
+temp <- promedios_edad_final$Variacion[-1]
+acf(temp)
+pacf(temp)
+
+temp2 <- temp[3:40]
+temp <- temp[2:39]
+plot(temp)
+templm <- lm(temp2 ~ temp)
+summary(templm)
+plot(temp2,temp);abline(templm$coefficients)
+
+plot(templm$residuals[2:40])
+
+hist(log(templm$residuals[2:40]+2))
+dtemp <- data.frame(
+  t=templm$residuals
+)
+descdist(templm$residuals)
+
+salarios_proyectados <- data.frame(
+  edad = 19:114,
+  variacion = (
+    c(
+      (
+        promedios_edad_final$Variacion[1:40]
+      ),
+      (
+        promedios_edad_final$Variacion[39]*(templm$coefficients["temp"]^(1:(114-40-18)))+rlnorm(1:(114-40-18),meanlog =mean(templm$residuals),sdlog=sd(templm$residuals))/2-1/2
+      )
+    )
+  )
+)
+
+
+salarios_proyectados %>% 
+    ggplot(aes(x=edad,y=variacion))+geom_line()
+
+```
+
+```{r}
+#Tabla mortalidad de la supen
+mortalidad_mujeres <- read_excel("TablasMortalidad_edit.xlsx",sheet = "mujeres")
+mortalidad_hombres <- read_excel("TablasMortalidad_edit.xlsx",sheet = "hombres")
+```
+
+```{r}
+
+#Función que obtiene la tabla de vida de cada edad, mediante la diagonal
+
+tabla_vida_function <- function(tabla, tabla_sexo) {
+  
+  for(i in 0:115) {
+    
+    col_inicial <- 23
+    col_final <- 138-i #23+115-i
+    
+    fila_inicial <- i+1 
+    fila_final <- 116
+    
+    datos <- as.matrix(tabla_sexo[fila_inicial: fila_final, col_inicial:col_final])
+    
+    qx <- diag(datos) #probabilidades de muerte
+    px <- 1-qx #probabilidades de sobrevivencia
+    Edad <- c(i:115)
+    
+    tabla_vida <- data.frame("Edad" = Edad, "qx"= qx, "px" = px)
+    tabla[[i+1]] <- tabla_vida
+  }
+  return(tabla)
+}
+
+tablas_vida_M <- list()
+tablas_vida_H <- list()
+
+tablas_vida_M <- tabla_vida_function(tablas_vida_M, mortalidad_mujeres)
+tablas_vida_H <- tabla_vida_function(tablas_vida_H, mortalidad_hombres)
+
+# Tabla invalidez
+invalidez <- read_excel("Informe Metodología/Invalidez.xlsx", 
+                        col_types = c("text", "numeric", "numeric"))
+
+#extender la base hasta la edad de 115
+invalidez <- rbind(invalidez, invalidez[rep(71, 26),])
+invalidez$Edad[71:nrow(invalidez)] <- 89:115
+
+#separar los datos para hombres y mujeres
+
+invalidez_M <- invalidez[, -2]
+invalidez_H <- invalidez[, -3]
+
+
+#----------- Activos--------|
+
+# Leer la hoja 'Activos'
+activos <- read_excel("Fondo C.xlsx", sheet = "Activos")
+activos <- activos[, -c(1, (ncol(activos)-1):ncol(activos))]
+
+
+# Calcular la edad al 31 de diciembre de 2023
+activos$Fec.Nac <- as.Date(activos$Fec.Nac) # Asegurar que FEC_NAC es de tipo Date
+activos$Edad <- as.numeric(format(as.Date("2023-12-31"), "%Y")) - as.numeric(format(activos$Fec.Nac, "%Y"))
+
+# Ordenar la columna 'Edad' de menor a mayor
+activos_ordenado <- activos[order(activos$Edad), ]
+
+# Se le agrega el sexo  del cónyuge y la edad el hijo(a). La edad del afiliado
+# y cónyuge es la misma por ende no se crea otra columna. El hijo es 25 años
+# menor
+
+conyugue <- c()
+sexo_afiliado <- activos_ordenado$Sexo
+
+edad_hijo <- activos_ordenado$Edad-25
+
+for(i in (1: length(sexo_afiliado))) {
+  if (sexo_afiliado[i] == "M"){
+    conyugue[i] <- "F"
+  }else {
+    conyugue[i] <- "M"
+  }
+  if(edad_hijo[i] < 0) {
+    edad_hijo[i] = NA
+  }
+} 
+activos_ordenado <- cbind(activos_ordenado, conyugue, edad_hijo)
+
+# Se filtran los activos
+Persona <- data.frame(
+  Edad = ,
+  Sexo = ,
+  Salario = ,
+  Cotizaciones = ,
+  Cotizaciones_Futuras = ,
+  Estado = ,
+  Cantidad_Pensiones_Principal = ,
+  Cantidad_Pensiones_Conyuge = ,
+  Cantidad_Pensiones_Hijo = ,
+)
+
+```
+
+
+
+
+
+
