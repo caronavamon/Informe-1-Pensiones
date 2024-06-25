@@ -86,6 +86,41 @@ colnames(ProyeccionSalarios) <- nuevos_nombres
 
 ```
 
+```{r}
+#función para inflar salarios
+rango2 <- -29:100
+
+# Mostrar la matriz
+print(matriz_resultante)
+
+
+orden_temp <- unlist(
+  lapply(
+    apply(
+      outer(
+        ProyeccionSalarios$ID, 
+        c(lista_pensionados_activos[[1]]$ID,
+          lista_pensionados_inactivos[[1]]$ID),
+        "=="
+      ),
+      1,
+      which),
+  function(x) ifelse(length(x) == 0, NA, x) #tener cuidado
+))
+
+cont <- unlist(lapply(orden_temp,function(x) c(lista_pensionados_activos[[1]],
+                            lista_pensionados_inactivos[[1]])$cont[x]))
+    
+
+# Crear la matriz resultante
+matriz_resultante <- ProyeccionSalarios[,-(1:2)]*(1+inflacion)^outer(cont, rango2, "-")
+matriz_resultante %>%  filter(ID == "013962")
+
+matriz_resultante
+
+sum(is.na(matriz_resultante) == is.na(ProyeccionSalarios[,-(1:2)]))
+
+```
 
 
 
