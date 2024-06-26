@@ -245,7 +245,7 @@ ggplot(promedios_cotizaciones_edad, aes(x = edad, y = Cotizaciones)) +
 financiero <- read_excel("Informe Metodología/Fondo C.xlsx", sheet = "Financiero")
 
 rendimiento <- function(RI, RF, C, P){
-  rend <- (RF - RI + P - C)/(RI-((P+C)/2))
+  rend <- (RF - RI + P - C)/(RI-(P/2)+(C/2))
   return(rend)
 }
 
