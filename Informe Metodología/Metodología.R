@@ -182,7 +182,7 @@ pensionados_na_con_promedio <- pensionados_na_con_promedio %>%
   mutate(Edad_Pension = ifelse(is.na(Edad_Pension), promedio_edad_pension, Edad_Pension))
 
 # Eliminar la columna 'promedio_edad_pension'
-pensionados_na_con_promedio <- pensionados_na_con_promedio[, -6]
+pensionados_na_con_promedio <- pensionados_na_con_promedio[, -10]
 
 # pone la fecha en que se pensionarían
 pensionados_na_con_promedio <- pensionados_na_con_promedio %>%
