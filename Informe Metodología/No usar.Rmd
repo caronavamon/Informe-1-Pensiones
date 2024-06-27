@@ -38,7 +38,7 @@ dtemp <- data.frame(
 )
 descdist(templm$residuals)
 
-salarios_proyectados <- data.frame(
+variacion_proyectada <- data.frame(
   edad = 19:114,
   variacion = (
     c(
@@ -46,14 +46,14 @@ salarios_proyectados <- data.frame(
         promedios_edad_final$Variacion[1:40]
       ),
       (
-        promedios_edad_final$Variacion[39]*(templm$coefficients["temp"]^(1:(114-40-18)))+rlnorm(1:(114-40-18),meanlog =mean(templm$residuals),sdlog=sd(templm$residuals))/2-1/2
+        promedios_edad_final$Variacion[39]*(templm$coefficients["temp"]^(1:(114-40-18)))
       )
     )
   )
 )
 
 
-salarios_proyectados %>% 
+variacion_proyectada %>% 
     ggplot(aes(x=edad,y=variacion))+geom_line()
 
 ```
