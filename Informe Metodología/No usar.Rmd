@@ -14,7 +14,6 @@ library(tidyverse)
 ```
 
 ```{r}
-set.seed(142)
 promedios_edad_final %>% 
   ggplot(aes(x=edad,y=Variacion))+geom_line()
 
@@ -38,35 +37,23 @@ dtemp <- data.frame(
 )
 descdist(templm$residuals)
 
-<<<<<<< HEAD
 variacion_proyectada <- data.frame(
-  edad = 19:114,
-=======
-salarios_proyectados <- data.frame(
   edad = 19:214,
->>>>>>> e6494823085e5ef45a4e30092e6287873443e5ac
   variacion = (
     c(
       (
         promedios_edad_final$Variacion[1:40]
       ),
       (
-<<<<<<< HEAD
         promedios_edad_final$Variacion[39]*(templm$coefficients["temp"]^(1:(114-40-18)))
-      )
-=======
-        promedios_edad_final$Variacion[39]*(templm$coefficients["temp"]^(1:(114-40-18)))+rlnorm(1:(114-40-18),meanlog =mean(templm$residuals),sdlog=sd(templm$residuals))/2-1/2
       ),
       rep(0,100)
->>>>>>> e6494823085e5ef45a4e30092e6287873443e5ac
     )
   )
 )
 
-
 variacion_proyectada %>% 
     ggplot(aes(x=edad,y=variacion))+geom_line()
-
 ```
 
 ```{r}
