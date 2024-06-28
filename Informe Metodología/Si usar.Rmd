@@ -1,0 +1,43 @@
+---
+title: "Si usar"
+author: "VChU"
+date: "2024-06-27"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r}
+dfActivos <- lista_pensionados_activos[[5]]
+
+Cotizaciones_Activos <- dfActivos %>% 
+  select(
+    ID,
+    cont
+  ) %>% 
+  mutate(
+    Fila = match(
+      ID,
+      Salarios_proyectados$ID
+    )
+  ) %>% 
+  cbind(
+    matrix(numeric(100*length(dfActivos)),ncol = 100)
+  )
+
+for (i in 1:length(Cotizaciones_Activos$ID)) {
+    Cotizaciones_Activos[i,3+1:Cotizaciones_Activos$cont[i]] <- Salarios_proyectados[Cotizaciones_Activos$Fila[i],31 + 1:Cotizaciones_Activos$cont[i]]
+}
+Cotizacion_Anuales <- colSums(Cotizaciones_Activos[4:103])*.85
+
+View(Cotizacion_Anuales)
+```
+```{r}
+sum(Salarios_proyectados[!is.na(Salarios_proyectados[31]),31])
+sum(Salarios_proyectados[Cotizaciones_Activos$Fila,31])
+```
+
+
