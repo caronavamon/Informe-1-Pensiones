@@ -829,11 +829,16 @@ tabla_pensionados_proyeccion <- function(pensionados, tabla_proyeccionesM_pensio
     ID <- pensionados$ID[j]
     parentesco <- pensionados$COD_PARENTESCO[j]
     
+    if(tipo == "SR"){
+      next
+    }
+    
+    
     n <- 115-edad
     prob_muerte <- runif(n+1)
     aux <- 1
     
-    estado <- proyeccion_demo_pensionados(edad, sexo,cont, aux, prob_muerte,tipo)
+    estado <- proyeccion_demo_pensionados(edad, sexo,cont, aux, prob_muerte,tipo, parentesco)
     
     while(estado == tipo) {
       

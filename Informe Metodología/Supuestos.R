@@ -53,7 +53,10 @@ meses <- as.numeric(interval(fechas, fechas[330]) %/% months(1))
 factor_acumulacion <- (1 + inflacion / 12) ^ meses
 
 # Aplicar el factor de acumulacion 
-activos_VP <- activos_salarios * factor_acumulacion
+#activos_VP <- activos_salarios * factor_acumulacion
+activos_VP <- t(apply(activos_salarios, 1, function(row) row * factor_acumulacion))
+activos_VP <- as.data.frame(activos_VP)
+
 colnames(activos_VP) <- fechas
 activos_VP <- cbind(ID = activos$ID, Fec.Nac = activos$Fec.Nac, activos_VP)
 
