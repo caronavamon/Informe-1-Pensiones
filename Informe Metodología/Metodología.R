@@ -330,7 +330,8 @@ for (i in 1:iteraciones) {
     prob_muerte <- runif(n+1)
     prob_invalidez <- runif(n+1)
     
-    estado <- proyeccion_demo(edad, sexo,cont, cotizaciones, prob_muerte, prob_invalidez )
+    estado <- proyeccion_demo(edad, sexo,cont, cotizaciones, prob_muerte, prob_invalidez)
+    edad <- edad + 1
     
     while(estado == 0) {
       
@@ -594,6 +595,7 @@ for (i in 1:iteraciones) {
     prob_invalidez <- runif(n+1)
     
     estado <- proyeccion_demo_inactivos(edad, sexo,cont, cotizaciones, prob_muerte, prob_invalidez,j )
+    edad <- edad + 1 
     
     while(estado == 0) {
       
@@ -839,6 +841,7 @@ tabla_pensionados_proyeccion <- function(pensionados, tabla_proyeccionesM_pensio
     aux <- 1
     
     estado <- proyeccion_demo_pensionados(edad, sexo,cont, aux, prob_muerte,tipo, parentesco)
+    edad <- edad + 1
     
     while(estado == tipo) {
       
@@ -866,7 +869,8 @@ tabla_pensionados_proyeccion <- function(pensionados, tabla_proyeccionesM_pensio
                                           Tipo = tipo,
                                           COD_PARENTESCO = parentesco,
                                           SEXO = sexo, 
-                                          Duracion = aux))
+                                          Duracion = aux
+                                          ))
     
     if(estado == "PS") {
       
@@ -889,6 +893,9 @@ tabla_pensionados_proyeccion <- function(pensionados, tabla_proyeccionesM_pensio
       
       
       estado_c <- proyeccion_beneficiarios_c(edad_c, sexo_c, aux_c, prob_muerte_c,tipo,cont)
+      edad_c <- edad_c + 1
+      
+      
       while(estado_c == tipo) {
         
         if(sexo_c == "F"){
@@ -910,7 +917,7 @@ tabla_pensionados_proyeccion <- function(pensionados, tabla_proyeccionesM_pensio
                                                  Tipo = tipo, 
                                                  COD_PARENTESCO = parentesco,
                                                  SEXO = sexo_c, 
-                                                 Duracion = aux_c))
+                                                 Duracion = aux_c-cont))
       
       if(estado_c == "SR") {
         if(sexo_c == "F"){
@@ -932,6 +939,7 @@ tabla_pensionados_proyeccion <- function(pensionados, tabla_proyeccionesM_pensio
         tabla_proyeccionesM_pensionados[cont+1, 3] <- tabla_proyeccionesM_pensionados[cont+1, 3] + 1 
         
         estado_h <- proyeccion_beneficiarios_h(edad_h, sexo_h,aux_h, prob_muerte_h,tipo,cont)
+        edad_h <- edad_h + 1
         
         while(estado_h == tipo) {
           
@@ -952,7 +960,7 @@ tabla_pensionados_proyeccion <- function(pensionados, tabla_proyeccionesM_pensio
                                                    Tipo = tipo,
                                                    COD_PARENTESCO = "H",
                                                    SEXO = sexo_h, 
-                                                   Duracion = aux_h))
+                                                   Duracion = aux_h-cont))
         
         if(estado_h == "SR") {
           if(sexo_h == "F"){
@@ -1006,7 +1014,6 @@ iteraciones <- 100
 
 lista_resultados_pensionados_df_M <-list()
 lista_resultados_pensionados_df_H <-list()
-lista_info_pensionados <- list()
 lista_info_pensionados_pensionados <- list()
 lista_info_pensionados_activos <- list()
 lista_info_pensionados_inactivos <- list()
@@ -1102,15 +1109,15 @@ for (i in 1:iteraciones) {
   
   pensionados_pensionados <- tabla_pensionados_proyeccion(pensionados_data,tabla_proyeccionesM_pensionados_pensionados, tabla_proyeccionesH_pensionados_pensionados,tabla_info_pensionados_pensionados)
   pensionados_pensionados[1:2] <- lapply(pensionados_pensionados[1:2], na.omit)
-  lista_info_pensionados_pensionados[[i]] <- pensionados_pensionados[3]
+  lista_info_pensionados_pensionados[i] <- pensionados_pensionados[3]
 
   pensionados_activos <- tabla_pensionados_proyeccion(lista_pensionados_activos[[i]],tabla_proyeccionesM_pensionados_activos, tabla_proyeccionesH_pensionados_activos,tabla_info_pensionados_activos)
   pensionados_activos[1:2] <- lapply(pensionados_activos[1:2], na.omit)
-  lista_info_pensionados_activos[[i]] <- pensionados_activos[3]
+  lista_info_pensionados_activos[i] <- pensionados_activos[3]
   
   pensionados_inactivos <-tabla_pensionados_proyeccion(lista_pensionados_inactivos[[i]],tabla_proyeccionesM_pensionados_inactivos, tabla_proyeccionesH_pensionados_inactivos,tabla_info_pensionados_inactivos)
   pensionados_inactivos[1:2] <- lapply(pensionados_inactivos[1:2], na.omit)
-  lista_info_pensionados_inactivos[[i]] <- pensionados_inactivos[3]
+  lista_info_pensionados_inactivos[i] <- pensionados_inactivos[3]
   
   # Aplicar la función a los dataframes en la misma posición en cada lista
   pensionados_finales <- lapply(1:(length(pensionados_pensionados)-1), function(j) {

@@ -181,118 +181,241 @@ sucesion <- function(df, salario_df){
 
 
 
-pension_base_pensionados <-  rep(list(pension_sucesion_pensionados),interaciones)
-
 for(k in 1: length(pension_base_activos)) {
   pension_base_activos[[k]]$"Pensión Sucesión" <- sucesion(lista_pensionados_activos[[k]], pension_base_activos[[k]])
   pension_base_inactivos[[k]]$"Pensión Sucesión" <- sucesion(lista_pensionados_inactivos[[k]], pension_base_inactivos[[k]])
-  pension_base_pensionados[[k]]$"Pensión Sucesión" <-sucesion(lista_) 
 }
 
 
-#-------Pensionados--------------
-
-
-sucesion_pensionados <- function(df){
-  
-  
-  pension_sucesion_pensionados <- data.frame("ID"= character(), "Tipo" = character(),
-                                             "Monto" = numeric(), "Pensión Sucesión" = numeric())
-  for(i in 1: nrow(pensionados_data)){
-    
-    tipo <- "PS"
-    
-    duracion <- df$Duracion[df$ID == pensionados_data$ID[i]]
-    
-    ID <- df$ID[df$ID == pensionados_data$ID[i] & df$Tipo == "PS"]
-    
-    if(is.vector(ID) == TRUE ){
-      parentesco <- df$COD_PARENTESCO[df$ID == pensionados_data$ID[i]][1]
-      parentesco_h <- df$COD_PARENTESCO[df$ID == pensionados_data$ID[i]][2]
-      ID <- ID[1]
-    } 
-    
-    edad_principal <- pensionados_data$Edad[pensionados_data$ID == ID]
-    edad_c <- edad_principal + duracion
-    Monto <- pensionados_data$MONTO[pensionados_data$ID == ID]
-    parentesco <- df$COD_PARENTESCO[df$ID == pensionados_data$ID[i]]
-  
-
-    if(tipo == "Sucesión") {
-      if(parentesco == "C"){
-        if(edad-c >= 60){
-          pension_sucesion <- pension*0.7 
-        }else if(edad_c >50 & edad_c < 60) {
-          pension_sucesion <- pension*0.6
-        }else if(edad_c <= 50) {
-          pension_sucesion<- pension*0.5
-        }
-        
-        pension_sucesion_pensionados <- rbind(pension_sucesion_pensionados, 
-                                              data.frame(ID = ID, 
-                                                         Tipo = Tipo,
-                                                         Monto = Monto,
-                                                         "Pensión Sucesión" = pension_sucesion))
-      } else{
-        pension_sucesion <- pension*0.3
-        pension_sucesion_pensionados <- rbind(pension_sucesion_pensionados, 
-                                              data.frame(ID = ID, 
-                                                         Tipo = Tipo,
-                                                         Monto = Monto,
-                                                         "Pensión Sucesión" = pension_sucesion))
-      }
-    }else {
-      pension_sucesion <- NA
-    }
-  }
-  return(pension_sucesion)
-}
-
-
-
-pension_sucesion_pensionados <- lapply(lista_info_pensionados, sucesion_pensionados)
-
-
-
+#------- Pension -----------
 
 pension_pensionados <- function(df_pensionados) {
   
-  años <- as.character(2024:2123)
-  monto <- pensionados_data$MONTO
-  ID <- pensionados_data$ID
-  Tipo <- pensionados_data$COD_TIPO_PENSION
+  años <- as.character(2023:2123)
+  ID <- df_pensionados$ID
+  Tipo <- df_pensionados$Tipo
   
   # Initialize the matrix with the correct dimensions
   num_years <- length(años)
-  num_rows <- length(monto)
-  monto_pensionados_matrix <- matrix(NA, nrow = num_rows, ncol = num_years + 3)
+  num_rows <- nrow(df_pensionados)
+  monto_pensionados_matrix <- matrix(NA, nrow = num_rows, ncol = num_years + 2)
   
   # Fill the matrix with data
   monto_pensionados_matrix[, 1] <- ID
   monto_pensionados_matrix[, 2] <- Tipo
-  monto_pensionados_matrix[, 3] <- monto
-  monto_pensionados_matrix[, 4:(3 + num_years)] <- NA  # or other default values for years
+  monto_pensionados_matrix[, 3:(2 + num_years)] <- NA  # or other default values for years
   
   # Assign column names
-  colnames(monto_pensionados_matrix) <- c("ID", "Tipo", "Monto", años)
+  colnames(monto_pensionados_matrix) <- c("ID", "Tipo", años)
   
   # Convert matrix to data frame
   monto_pensionados <- as.data.frame(monto_pensionados_matrix, stringsAsFactors = FALSE)
   
   
-  for(i in 1: nrow(pensionados_data)){
-    duracion <- df_pensionados$Duracion[df_pensionados$ID == pensionados_data$ID[i] & 
-                                          df_pensionados$Tipo != "PS"]
-    t <- 1:duracion
+  for(i in 1: nrow(df_pensionados)){
+    duracion <- df_pensionados$Duracion[i]
+    parentesco <- df_pensionados$COD_PARENTESCO[i]
     
-    pension <- monto[i]*(1+inflacion)^t
-    monto_pensionados[i,4:(duracion+3)] <- pension
     
+    if(Tipo[i] == "PS") {
+      pension <-df_pensionados$"Pension Sucesion"[i]
+      if(parentesco == "C"){
+        duracion_principal <- df_pensionados$Duracion[i-1] + 1
+      }else{
+        duracion_principal <- df_pensionados$Duracion[i-2] + 1 
+      }
+      duracion <- duracion_principal + duracion
+      t <- duracion_principal : duracion
+    }else{
+      pension <- df_pensionados$MONTO[i]
+      duracion_principal <- 0
+      t <- 0:duracion
+    }
+    
+    pension_inflada <- pension*(1+inflacion)^t
+    #print(pension_inflada)
+    
+    monto_pensionados[i, (duracion_principal + 3):(duracion+3)] <- pension_inflada
+    #print(vector2)
+    
+    #same_length <- identical(length(pension_inflada), length(vector2))
+    
+    # Imprimir el resultado
+    #print(same_length)
   }
   return(monto_pensionados)  
 }
 
-monto_pension_pensionados <- lapply(lista_info_pensionados,pension_pensionados)
+monto_pension_pensionados <- lapply(lista_info_pensionados_pensionados,pension_pensionados)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#-------Pensionados--------------
+
+
+asignar_monto <- function(df) {
+  monto_seleccionado <- pensionados_data %>% select(ID, MONTO)
+  df <- left_join(df, monto_seleccionado, by = "ID")
+  return(df)
+}
+
+# Aplicar la función a cada dataframe en la lista
+lista_info_pensionados_pensionados <- lapply(lista_info_pensionados_pensionados, asignar_monto)
+
+limpiar_columnas_duplicadas <- function(df) {
+  # Elimina las columnas duplicadas MONTO.x y MONTO.y si existen
+  df <- df %>% select(-matches("MONTO\\.x|MONTO\\.y"))
+  return(df)
+}
+
+# Aplicar la función de limpieza a cada dataframe en la lista
+lista_info_pensionados_pensionados <- lapply(lista_info_pensionados_pensionados, limpiar_columnas_duplicadas)
+
+
+sucesion_pensionados <- function(df){
+  
+  pension_sucesion <- c(NA)
+  
+  
+  for(i in 1: nrow(df)){
+    tipo <- df$Tipo[i]
+    
+    if(tipo != "PS") {
+      next
+    }
+    
+    pension <- df$MONTO[i]
+    edad <- df$Edad[i]
+    duracion <-df$Duracion[i]
+    edad_adq_pension <- edad - duracion
+    parentesco <- df$COD_PARENTESCO[i]
+    
+    if(parentesco == "C"){
+      if(edad_adq_pension >= 60){
+        pension_sucesion[i] <- pension*0.7 
+      }else if(edad_adq_pension >50 & edad_adq_pension < 60) {
+        pension_sucesion[i] <- pension*0.6
+      }else if(edad_adq_pension <= 50) {
+        pension_sucesion[i] <- pension*0.5
+      }
+    } else{
+      pension_sucesion[i] <- pension*0.3
+    }
+  }
+  df$"Pension Sucesion" <- pension_sucesion
+  return(df)
+}
+
+
+lista_info_pensionados_pensionados <- lapply(lista_info_pensionados_pensionados, sucesion_pensionados)
+
+
+pension_pensionados <- function(df_pensionados) {
+  
+  años <- as.character(2023:2123)
+  ID <- df_pensionados$ID
+  Tipo <- df_pensionados$Tipo
+  
+  # Initialize the matrix with the correct dimensions
+  num_years <- length(años)
+  num_rows <- nrow(df_pensionados)
+  monto_pensionados_matrix <- matrix(NA, nrow = num_rows, ncol = num_years + 2)
+  
+  # Fill the matrix with data
+  monto_pensionados_matrix[, 1] <- ID
+  monto_pensionados_matrix[, 2] <- Tipo
+  monto_pensionados_matrix[, 3:(2 + num_years)] <- NA  # or other default values for years
+  
+  # Assign column names
+  colnames(monto_pensionados_matrix) <- c("ID", "Tipo", años)
+  
+  # Convert matrix to data frame
+  monto_pensionados <- as.data.frame(monto_pensionados_matrix, stringsAsFactors = FALSE)
+
+  
+  for(i in 1: nrow(df_pensionados)){
+    duracion <- df_pensionados$Duracion[i]
+    parentesco <- df_pensionados$COD_PARENTESCO[i]
+    
+    
+    if(Tipo[i] == "PS") {
+      pension <-df_pensionados$"Pension Sucesion"[i]
+      if(parentesco == "C"){
+        duracion_principal <- df_pensionados$Duracion[i-1] + 1
+      }else{
+        duracion_principal <- df_pensionados$Duracion[i-2] + 1 
+      }
+      duracion <- duracion_principal + duracion
+      t <- duracion_principal : duracion
+    }else{
+      pension <- df_pensionados$MONTO[i]
+      duracion_principal <- 0
+      t <- 0:duracion
+    }
+      
+    pension_inflada <- pension*(1+inflacion)^t
+    #print(pension_inflada)
+    
+    monto_pensionados[i, (duracion_principal + 3):(duracion+3)] <- pension_inflada
+    #print(vector2)
+    
+    #same_length <- identical(length(pension_inflada), length(vector2))
+    
+    # Imprimir el resultado
+    #print(same_length)
+  }
+  return(monto_pensionados)  
+}
+
+monto_pension_pensionados <- lapply(lista_info_pensionados_pensionados,pension_pensionados)
+
+#pension_pensionados(lista_info_pensionados_pensionados[[1]])
+
+
+#------------- Valor presente-------------------------------------------
+
+process_pension_data <- function(df){
+
+  # Convertir datos a formato largo para facilitar el procesamiento
+   long_df <- df %>%
+    pivot_longer(cols = starts_with("2024"):starts_with("2123"), 
+                 names_to = "Año", 
+                 values_to = "Monto") %>%
+    filter(!is.na(Monto)) # Filtrar valores NA
+  
+  # Agrupar por Tipo y Año, y sumar los montos
+  grouped_df <- long_df %>%
+    group_by(Tipo, Año) %>%
+    summarise(MontoTotal = sum(as.numeric(Monto), na.rm = TRUE), .groups = 'drop')
+  
+  # Convertir Year a numérico
+  grouped_df$Año <- as.numeric(grouped_df$Año)
+  
+  # Calcular el valor presente para cada monto al base_year
+  grouped_df <- grouped_df %>%
+    mutate(PV = MontoTotal / (1 + inflacion)^(Año - 2024)) %>%
+    group_by(Tipo) %>%
+    summarise(PV_Total = sum(PV, na.rm = TRUE), .groups = 'drop')
+  
+  return(grouped_df)
+}
+
+valor_presente_pension_pensionados <- lapply(monto_pension_pensionados, process_pension_data)
 
 
 
