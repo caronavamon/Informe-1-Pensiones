@@ -34,7 +34,7 @@ Activos2023 <- activos %>%
       `ene/2023` +
       `feb/2023` +
       `mar/2023` +
-      `abr/2023` +
+      # `abr/2023` +
       `may/2023` +
       `jun/2023` +
       `jul/2023` +
@@ -52,25 +52,22 @@ Activos2023 <- activos %>%
   ) %>% 
   mutate(
     as.data.frame(
-      matrix(
-        0,
-        nrow =
-          length(ID),
-        ncol =
-          100
+      matrix(rep(Salario,100),ncol = 100,byrow = F)*(1+inflacion)*matrix(
+        (1+variacion_proyectada$variacion[outer(
+          Edad - 18,
+          1:100,
+          "+"
+        )]
+        ),
+        ncol = 100
       )
     )
   )
 
-# Salario_Anual_Proyectado <- 
+for (k in 1:length(Activos2023$ID)) {
+  Activos2023[k,4:103] <- cumprod(Activos2023[k,4:103])
+}
 
-as.data.frame(
-  (1+inflacion)*variacion_proyectada[Edad-19+1:100],
-  nrow=5353)
-)
-
-activos$Edad %>% max
-cumprod(1:4)
 ```
 
 ```{r}
@@ -84,20 +81,21 @@ Cotizaciones_Activos <- dfActivos %>%
   mutate(
     Fila = match(
       ID,
-      Salarios_proyectados$ID
+      Activos2023$ID
     )
   ) %>% 
   cbind(
-    matrix(numeric(100*length(dfActivos)),ncol = 100)
+    matrix(numeric(100*length(dfActivos$ID)),ncol = 100)
   )
 
 for (i in 1:length(Cotizaciones_Activos$ID)) {
-    Cotizaciones_Activos[i,3+1:Cotizaciones_Activos$cont[i]] <- Salarios_proyectados[Cotizaciones_Activos$Fila[i],31 + 1:Cotizaciones_Activos$cont[i]]
+    Cotizaciones_Activos[i,3+1:Cotizaciones_Activos$cont[i]] <- Activos2023[Cotizaciones_Activos$Fila[i],3 + 1:Cotizaciones_Activos$cont[i]]
 }
-Cotizacion_Anuales <- colSums(Cotizaciones_Activos[4:103])*.85
+Cotizacion_Anuales <- colSums(Cotizaciones_Activos[4:103])*.15
 
-View(Cotizacion_Anuales)
+View(data_frame(Cotizacion_Anuales))
 ```
+
 ```{r}
 sum(Salarios_proyectados[!is.na(Salarios_proyectados[31]),31])
 sum(Salarios_proyectados[Cotizaciones_Activos$Fila,31])
