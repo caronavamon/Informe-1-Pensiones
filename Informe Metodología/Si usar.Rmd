@@ -42,18 +42,52 @@ Activos2023 <- activos %>%
       `sep/2023` +
       `oct/2023` +
       `nov/2023` +
-      `dic/2023`
-    
+      `dic/2023`,
+    `ene_2023`=`ene/2023`>0,
+    `feb_2023`=`feb/2023`>0,
+    `mar_2023`=`mar/2023`>0,
+    `abr_2023`=`abr/2023`>0,
+    `may_2023`=`may/2023`>0,
+    `jun_2023`=`jun/2023`>0,
+    `jul_2023`=`jul/2023`>0,
+    `ago_2023`=`ago/2023`>0,
+    `sep_2023`=`sep/2023`>0,
+    `oct_2023`=`oct/2023`>0,
+    `nov_2023`=`nov/2023`>0,
+    `dic_2023`=`dic/2023`>0,
+    Cotizaciones =
+    `ene_2023` +
+      `feb_2023` +
+      `mar_2023` +
+      # `abr_2023` +
+      `may_2023` +
+      `jun_2023` +
+      `jul_2023` +
+      `ago_2023` +
+      `sep_2023` +
+      `oct_2023` +
+      `nov_2023` +
+      `dic_2023`,
+    Mensual =
+      Salario/Cotizaciones
   ) %>% 
   select(
     ID,
     Edad,
-    Salario
+    Mensual
   ) %>% 
   mutate(
     as.data.frame(
-      matrix(rep(Salario,100),ncol = 100,byrow = F)*(1+inflacion)*matrix(
+      matrix(rep(Mensual,100),ncol = 100,byrow = F)*(1+inflacion)*matrix(
         (1+variacion_proyectada$variacion[outer(
+          Edad - 18,
+          1:100,
+          "+"
+        )]
+        ),
+        ncol = 100
+      )*matrix(
+        (promedios_cotizaciones_edad$Cotizaciones[outer(
           Edad - 18,
           1:100,
           "+"
@@ -65,7 +99,7 @@ Activos2023 <- activos %>%
   )
 
 for (k in 1:length(Activos2023$ID)) {
-  Activos2023[k,4:103] <- cumprod(Activos2023[k,4:103])
+  Activos2023[k,3:103] <- cumprod(Activos2023[k,3:103])
 }
 
 ```
