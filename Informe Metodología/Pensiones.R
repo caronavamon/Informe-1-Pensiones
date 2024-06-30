@@ -48,20 +48,25 @@ cuantia <- function(df, lista_info_pensionados){
     salario <-df$Salario[i]
     
     if(salario < 2*Salario_minimo) {
-      salario_cuantia[i] <- 0.525*salario
+      pension <- 0.525*salario
     }else if(salario >= 2*Salario_minimo & salario < 3*Salario_minimo) {
-      salario_cuantia[i] <-  0.51*salario
+      pension <-  0.51*salario
     } else if(salario >= 3*Salario_minimo & salario < 4*Salario_minimo){
-      salario_cuantia[i] <- 0.494*salario
+      pension <- 0.494*salario
     } else if(salario >= 4*Salario_minimo & salario < 5*Salario_minimo){
-      salario_cuantia[i] <- 0.478*salario
+      pension <- 0.478*salario
     }else if(salario >= 5*Salario_minimo & salario < 6*Salario_minimo){
-      salario_cuantia[i] <- 0.462*salario
+      pension <- 0.462*salario
     }else if(salario >= 6*Salario_minimo & salario < 8*Salario_minimo){
-      salario_cuantia[i] <- 0.446*salario
+      pension <- 0.446*salario
     }else if(salario >= 8*Salario_minimo){
-      salario_cuantia[i] <- 0.43*salario
+      pension <- 0.43*salario
     }
+    
+    if(pension > 3500000) {
+      pension <- 3500000
+    }
+    salario_cuantia[i] <- salario
     
     #Tipo[i]<- lista_info_pensionados$Tipo[lista_info_pensionados$ID == df$ID[i]]
   }
@@ -92,13 +97,19 @@ bonificacion<- function(df, salario_df){
     cotizaciones_extra <- cotizaciones - 300
     if(cotizaciones_extra > 0) {
       if(tipo == "Vejez" | tipo == "Invalidez") {
-        pension_bonificacion[i] <- pension + salario*0.000833*cotizaciones_extra
+        pension_bonif <- pension + salario*0.000833*cotizaciones_extra
       } else {
-        pension_bonificacion[i] <- pension
+        pension_bonif <- pension
       }
     }else{
-      pension_bonificacion[i] <- pension
+      pension_bonif <- pension
     }
+    
+    if(pension_bonif > 3500000) {
+      pension_bonif <- 3500000
+    }
+    pension_bonificacion[i] <- pension_bonif
+    
   }
   return(pension_bonificacion)
 }
@@ -125,13 +136,18 @@ postergacion <- function(df, salario_df){
     
     if(postergacion_tiempo > 0) {
       if(tipo == "Vejez" | tipo == "Invalidez") {
-        pension_postergacion[i] <- pension + salario* 0.001333*postergacion_tiempo
+        pension_post <- pension + salario* 0.001333*postergacion_tiempo
       } else{
-        pension_postergacion[i] <- pension
+        pension_post <- pension
       }
     }else {
-      pension_postergacion[i] <- pension
+      pension_post <- pension
     }
+    
+    if(pension_post > 3500000) {
+      pension_post <- 3500000
+    }
+    pension_postergacion[i] <- pension_post
   }
   return(pension_postergacion)
 }
@@ -162,23 +178,26 @@ sucesion <- function(df, salario_df){
     if(tipo == "Sucesión") {
       if(parentesco == "C"){
         if(edad >= 60){
-          pension_sucesion[i] <- pension*0.7 
+          pension_suc <- pension*0.7 
         }else if(edad >50 & edad < 60) {
-          pension_sucesion[i] <- pension*0.6
+          pension_suc <- pension*0.6
         }else if(edad <= 50) {
-          pension_sucesion[i] <- pension*0.5
+          pension_suc<- pension*0.5
         }
       } else{
-        pension_sucesion[i] <- pension*0.3
+        pension_suc <- pension*0.3
       }
     }else {
-      pension_sucesion[i] <- NA
+      pension_suc <- NA
     }
+    
+    if(is.na(pension_suc) == FALSE & pension_suc > 3500000) {
+      pension_suc <- 3500000
+    }
+    pension_sucesion[i] <- pension_suc
   }
   return(pension_sucesion)
 }
-
-
 
 
 for(k in 1: length(pension_base_activos)) {
@@ -187,17 +206,17 @@ for(k in 1: length(pension_base_activos)) {
 }
 
 
-#------- Pension -----------
+#------- Inflar pensión de activos e inactivos  -----------
 
-pension_pensionados <- function(df_pensionados) {
-  
+inflar_pension <- function(df_pensiones, df_cont, df_duracion) {
+
   años <- as.character(2023:2123)
-  ID <- df_pensionados$ID
-  Tipo <- df_pensionados$Tipo
+  ID <- df_pensiones$ID
+  Tipo <- df_pensiones$Tipo
   
   # Initialize the matrix with the correct dimensions
   num_years <- length(años)
-  num_rows <- nrow(df_pensionados)
+  num_rows <- nrow(df_pensiones)
   monto_pensionados_matrix <- matrix(NA, nrow = num_rows, ncol = num_years + 2)
   
   # Fill the matrix with data
@@ -211,31 +230,38 @@ pension_pensionados <- function(df_pensionados) {
   # Convert matrix to data frame
   monto_pensionados <- as.data.frame(monto_pensionados_matrix, stringsAsFactors = FALSE)
   
-  
-  for(i in 1: nrow(df_pensionados)){
-    duracion <- df_pensionados$Duracion[i]
-    parentesco <- df_pensionados$COD_PARENTESCO[i]
+  # Filtrar las filas donde Tipo no es "SR"
+  df_cont <- df_cont[df_cont$COD_TIPO_PENSION != "SR", ]
+
+  for(i in 1: 4){
+   
+    año_inicio <- df_cont$cont[i]
+    parentesco <- df_cont$COD_PARENTESCO[i]
+    año_final <- df_duracion$Duracion[i]
     
-    
-    if(Tipo[i] == "PS") {
-      pension <-df_pensionados$"Pension Sucesion"[i]
+    if(Tipo[i] == "Sucesión") {
+      pension <-df_pensiones$"Pensión Sucesión"[i]
+      t <- 0 : año_final
+    }else if (Tipo[i] == "PS"){
+      pension <-df_pensiones$"Pensión Sucesión"[i]
+      
       if(parentesco == "C"){
-        duracion_principal <- df_pensionados$Duracion[i-1] + 1
+        año_inicio <- df_duracion$Duracion[i-1] + 1
       }else{
-        duracion_principal <- df_pensionados$Duracion[i-2] + 1 
+        año_inicio <- df_duracion$Duracion[i-2] + 1 
       }
-      duracion <- duracion_principal + duracion
-      t <- duracion_principal : duracion
+      año_final <- año_inicio + año_final
+      t <- año_inicio : año_final
     }else{
-      pension <- df_pensionados$MONTO[i]
-      duracion_principal <- 0
-      t <- 0:duracion
+      pension <- df_pensiones$"Pensión con postergación"[i]
+      t <- 0 : año_final
     }
     
     pension_inflada <- pension*(1+inflacion)^t
-    #print(pension_inflada)
     
-    monto_pensionados[i, (duracion_principal + 3):(duracion+3)] <- pension_inflada
+    pension_inflada[pension_inflada > 3500000] <- 3500000
+  
+    #monto_pensionados[i, (año_inicio + 3):(año_final + 3)] <- pension_inflada
     #print(vector2)
     
     #same_length <- identical(length(pension_inflada), length(vector2))
@@ -246,21 +272,16 @@ pension_pensionados <- function(df_pensionados) {
   return(monto_pensionados)  
 }
 
-monto_pension_pensionados <- lapply(lista_info_pensionados_pensionados,pension_pensionados)
 
+monto_pension_activos <- list()
+monto_pension_inactivos <- list()
 
-
-
-
-
-
-
-
-
-
-
-
-
+for(k in 1: 100) {
+  monto_pension_activos[[k]] <- inflar_pension(pension_base_activos[[k]], lista_pensionados_activos[[k]], 
+                                               lista_info_pensionados_activos[[k]])
+  monto_pension_inactivos[[k]] <- inflar_pension(pension_base_inactivos[[k]], lista_pensionados_inactivos[[k]], 
+                                               lista_info_pensionados_inactivos[[k]])
+}
 
 
 
@@ -307,14 +328,14 @@ sucesion_pensionados <- function(df){
     
     if(parentesco == "C"){
       if(edad_adq_pension >= 60){
-        pension_sucesion[i] <- pension*0.7 
+        pension_sucesion[i]<- pension*0.7 
       }else if(edad_adq_pension >50 & edad_adq_pension < 60) {
-        pension_sucesion[i] <- pension*0.6
+        pension_sucesion[i]<- pension*0.6
       }else if(edad_adq_pension <= 50) {
         pension_sucesion[i] <- pension*0.5
       }
     } else{
-      pension_sucesion[i] <- pension*0.3
+      pension_suc <- pension*0.3
     }
   }
   df$"Pension Sucesion" <- pension_sucesion
@@ -369,6 +390,9 @@ pension_pensionados <- function(df_pensionados) {
     }
       
     pension_inflada <- pension*(1+inflacion)^t
+    
+    pension_inflada[pension_inflada > 3500000] <- 3500000
+    
     #print(pension_inflada)
     
     monto_pensionados[i, (duracion_principal + 3):(duracion+3)] <- pension_inflada

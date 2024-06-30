@@ -689,7 +689,19 @@ for (i in 1:iteraciones) {
       }else {
         tabla_proyeccionesH_inactivos[cont+1, 6] <- tabla_proyeccionesH_inactivos[cont+1, 6] + 1
       }
+      tabla_pensionados <- rbind(tabla_pensionados, 
+                                 data.frame(ID = ID,
+                                            Edad = edad_h, 
+                                            COD_TIPO_PENSION = "SR",
+                                            COD_PARENTESCO = NA,
+                                            SEXO = sexo, 
+                                            cont = cont,
+                                            Cotizaciones_principal = cotizaciones))
+      
+      
     }
+    
+    
     
   }
   lista_pensionados_inactivos[[i]] <- tabla_pensionados
@@ -813,7 +825,6 @@ proyeccion_beneficiarios_c <- function(edad_c, sexo,aux_c, prob_muerte_c, tipo, 
     tabla_vida <- tablas_vida_H[[edad_c+1-cont]]
     px <- tabla_vida$px[tabla_vida$Edad == edad_c]
   }
- 
   if (prob_muerte_c[aux_c-cont+1] < px) {
     return(tipo) #se mantiene la pensión
   } else{
@@ -836,12 +847,11 @@ tabla_pensionados_proyeccion <- function(pensionados, tabla_proyeccionesM_pensio
     }
     
     
-    n <- 115-edad
+    n <- 116-edad
     prob_muerte <- runif(n+1)
     aux <- 1
     
     estado <- proyeccion_demo_pensionados(edad, sexo,cont, aux, prob_muerte,tipo, parentesco)
-    edad <- edad + 1
     
     while(estado == tipo) {
       
@@ -880,7 +890,7 @@ tabla_pensionados_proyeccion <- function(pensionados, tabla_proyeccionesM_pensio
       #conyugue
       aux_c <- cont
       edad_c <- edad
-      n_c <- 115-edad
+      n_c <- 116-edad
       prob_muerte_c <- runif(n_c+1)
       
       if (sexo == "M"){
@@ -893,8 +903,6 @@ tabla_pensionados_proyeccion <- function(pensionados, tabla_proyeccionesM_pensio
       
       
       estado_c <- proyeccion_beneficiarios_c(edad_c, sexo_c, aux_c, prob_muerte_c,tipo,cont)
-      edad_c <- edad_c + 1
-      
       
       while(estado_c == tipo) {
         
@@ -933,13 +941,12 @@ tabla_pensionados_proyeccion <- function(pensionados, tabla_proyeccionesM_pensio
       
       if(0 <= edad_h &  edad_h < 25) {
         sexo_h <- sample(c("F", "M"), 1)
-        n_h <- 115-edad_h
+        n_h <- 116-edad_h
         prob_muerte_h <- runif(n_h+1)
         
         tabla_proyeccionesM_pensionados[cont+1, 3] <- tabla_proyeccionesM_pensionados[cont+1, 3] + 1 
         
         estado_h <- proyeccion_beneficiarios_h(edad_h, sexo_h,aux_h, prob_muerte_h,tipo,cont)
-        edad_h <- edad_h + 1
         
         while(estado_h == tipo) {
           
