@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='468.00pt' height='324.00pt' viewBox='0 0 468.00 324.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: none;'/>
+<defs>
+  <clipPath id='cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA='>
+    <rect x='0.00' y='0.00' width='468.00' height='324.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA=)'>
+</g>
+<defs>
+  <clipPath id='cpNTMuMjZ8MTkzLjk1fDQ2Ljg2fDI2Ni45MA=='>
+    <rect x='53.26' y='46.86' width='140.69' height='220.03' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpNTMuMjZ8MTkzLjk1fDQ2Ljg2fDI2Ni45MA==)'>
+<rect x='62.85' y='56.86' width='14.39' height='200.03' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F; fill-opacity: 0.70;' />
+<rect x='126.80' y='70.70' width='14.39' height='186.19' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F; fill-opacity: 0.70;' />
+<rect x='91.63' y='231.76' width='14.39' height='25.13' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
+<rect x='155.58' y='233.11' width='14.39' height='23.78' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
+<rect x='77.24' y='244.64' width='14.39' height='12.26' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BCEE68; fill-opacity: 0.70;' />
+<rect x='141.19' y='245.29' width='14.39' height='11.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BCEE68; fill-opacity: 0.70;' />
+<rect x='106.02' y='244.64' width='14.39' height='12.26' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #6E8B3D; fill-opacity: 0.70;' />
+<rect x='169.97' y='245.30' width='14.39' height='11.60' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #6E8B3D; fill-opacity: 0.70;' />
+</g>
+<g clip-path='url(#cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA=)'>
+<polyline points='53.26,266.90 53.26,46.86 ' style='stroke-width: 1.07; stroke-linecap: square;' />
+<text x='46.78' y='261.19' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.0</text>
+<text x='46.78' y='212.40' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>2.5</text>
+<text x='46.78' y='163.61' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>5.0</text>
+<text x='46.78' y='114.82' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>7.5</text>
+<text x='46.78' y='66.03' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='23.36px' lengthAdjust='spacingAndGlyphs'>10.0</text>
+<polyline points='49.77,256.90 53.26,256.90 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='49.77,208.11 53.26,208.11 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='49.77,159.32 53.26,159.32 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='49.77,110.53 53.26,110.53 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='49.77,61.74 53.26,61.74 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='53.26,266.90 193.95,266.90 ' style='stroke-width: 1.07; stroke-linecap: square;' />
+<polyline points='91.63,270.38 91.63,266.90 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='155.58,270.38 155.58,266.90 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<text x='91.63' y='281.97' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2022</text>
+<text x='155.58' y='281.97' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2023</text>
+<text x='123.61' y='298.00' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='24.90px' lengthAdjust='spacingAndGlyphs'>Año</text>
+<text transform='translate(17.00,156.88) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='29.56px' lengthAdjust='spacingAndGlyphs'>Tasa</text>
+<text x='207.90' y='127.72' style='font-size: 14.00px; font-family: "Arial";' textLength='76.50px' lengthAdjust='spacingAndGlyphs'>Tipo de tasa</text>
+<rect x='208.61' y='136.87' width='13.93' height='13.93' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F; fill-opacity: 0.70;' />
+<rect x='208.61' y='152.22' width='13.93' height='13.93' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BCEE68; fill-opacity: 0.70;' />
+<rect x='208.61' y='167.56' width='13.93' height='13.93' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
+<rect x='208.61' y='182.90' width='13.93' height='13.93' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #6E8B3D; fill-opacity: 0.70;' />
+<text x='230.22' y='148.14' style='font-size: 12.00px; font-family: "Arial";' textLength='230.81px' lengthAdjust='spacingAndGlyphs'>Tasa bruta de natalidad (por mil habitantes)</text>
+<text x='230.22' y='163.48' style='font-size: 12.00px; font-family: "Arial";' textLength='207.45px' lengthAdjust='spacingAndGlyphs'>Tasa bruta de reproducción (por mujer)</text>
+<text x='230.22' y='178.82' style='font-size: 12.00px; font-family: "Arial";' textLength='201.46px' lengthAdjust='spacingAndGlyphs'>Tasa global de fecundidad (por mujer)</text>
+<text x='230.22' y='194.16' style='font-size: 12.00px; font-family: "Arial";' textLength='203.46px' lengthAdjust='spacingAndGlyphs'>Tasa neta de reproducción (por mujer)</text>
+<text x='123.61' y='37.37' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='57.39px' lengthAdjust='spacingAndGlyphs'>2022-2023</text>
+<text x='123.61' y='18.43' text-anchor='middle' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='420.20px' lengthAdjust='spacingAndGlyphs'>Gráfico 8: Costa Rica. Tasas de natalidad y fecundidad.</text>
+<text x='53.26' y='313.75' style='font-size: 8.00px; font-weight: bold; font-family: "Arial";' textLength='31.12px' lengthAdjust='spacingAndGlyphs'>Fuente: </text>
+<text x='84.38' y='313.75' style='font-size: 8.00px; font-family: "Arial";' textLength='132.99px' lengthAdjust='spacingAndGlyphs'>Elaborado a partir de datos del INEC.</text>
+</g>
+</svg>

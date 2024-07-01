@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='468.00pt' height='324.00pt' viewBox='0 0 468.00 324.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: none;'/>
+<defs>
+  <clipPath id='cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA='>
+    <rect x='0.00' y='0.00' width='468.00' height='324.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA=)'>
+</g>
+<defs>
+  <clipPath id='cpNDMuMjV8NDYxLjAzfDQ2Ljg2fDE2OC4xMw=='>
+    <rect x='43.25' y='46.86' width='417.77' height='121.27' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpNDMuMjV8NDYxLjAzfDQ2Ljg2fDE2OC4xMw==)'>
+<polyline points='54.54,149.38 73.36,150.00 92.18,152.69 111.00,153.31 129.82,153.10 148.64,153.10 167.46,152.69 186.27,153.93 205.09,153.52 223.91,153.31 242.73,153.10 261.55,154.76 280.37,155.58 299.19,157.45 318.00,156.62 336.82,157.65 355.64,157.65 374.46,159.31 393.28,160.76 412.10,161.58 430.92,162.62 449.73,162.41 ' style='stroke-width: 2.13; stroke: #BCEE68; stroke-linecap: butt;' />
+<polyline points='54.54,54.24 73.36,53.41 92.18,53.62 111.00,54.24 129.82,53.20 148.64,53.00 167.46,52.38 186.27,52.79 205.09,53.41 223.91,54.03 242.73,55.27 261.55,56.93 280.37,60.03 299.19,62.30 318.00,62.10 336.82,60.44 355.64,60.65 374.46,62.10 393.28,65.20 412.10,66.44 430.92,67.47 449.73,66.23 ' style='stroke-width: 2.13; stroke: #2F4F4F; stroke-linecap: butt;' />
+<polyline points='54.54,70.99 73.36,69.96 92.18,68.30 111.00,68.72 129.82,67.89 148.64,67.68 167.46,67.27 186.27,67.06 205.09,67.68 223.91,68.30 242.73,69.54 261.55,70.16 280.37,72.64 299.19,73.47 318.00,73.68 336.82,71.61 355.64,71.82 374.46,72.23 393.28,74.09 412.10,75.13 430.92,75.33 449.73,74.30 ' style='stroke-width: 2.13; stroke: #7AC5CD; stroke-linecap: butt;' />
+</g>
+<g clip-path='url(#cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA=)'>
+<polyline points='43.25,168.13 43.25,46.86 ' style='stroke-width: 1.07; stroke-linecap: square;' />
+<text x='36.78' y='140.44' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>20</text>
+<text x='36.78' y='99.07' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>40</text>
+<text x='36.78' y='57.71' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>60</text>
+<polyline points='39.77,136.14 43.25,136.14 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='39.77,94.78 43.25,94.78 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='39.77,53.41 43.25,53.41 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='43.25,168.13 461.03,168.13 ' style='stroke-width: 1.07; stroke-linecap: square;' />
+<polyline points='54.54,171.62 54.54,168.13 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='111.00,171.62 111.00,168.13 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='167.46,171.62 167.46,168.13 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='223.91,171.62 223.91,168.13 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='280.37,171.62 280.37,168.13 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='336.82,171.62 336.82,168.13 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='393.28,171.62 393.28,168.13 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='449.73,171.62 449.73,168.13 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<text transform='translate(60.62,180.68) rotate(-45)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='98.04px' lengthAdjust='spacingAndGlyphs'>ENE(22)-MAR(22)</text>
+<text transform='translate(117.08,180.68) rotate(-45)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='94.70px' lengthAdjust='spacingAndGlyphs'>ABR(22)-JUN(22)</text>
+<text transform='translate(173.53,180.68) rotate(-45)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='92.04px' lengthAdjust='spacingAndGlyphs'>JUL(22)-SEP(22)</text>
+<text transform='translate(229.99,180.68) rotate(-45)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='97.36px' lengthAdjust='spacingAndGlyphs'>OCT(22)-DEC(22)</text>
+<text transform='translate(286.45,180.68) rotate(-45)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='98.04px' lengthAdjust='spacingAndGlyphs'>ENE(23)-MAR(23)</text>
+<text transform='translate(342.90,180.68) rotate(-45)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='94.70px' lengthAdjust='spacingAndGlyphs'>ABR(23)-JUN(23)</text>
+<text transform='translate(399.36,180.68) rotate(-45)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='92.04px' lengthAdjust='spacingAndGlyphs'>JUL(23)-SEP(23)</text>
+<text transform='translate(455.81,180.68) rotate(-45)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='97.36px' lengthAdjust='spacingAndGlyphs'>OCT(23)-DEC(23)</text>
+<text x='252.14' y='265.30' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='116.89px' lengthAdjust='spacingAndGlyphs'>Trimestres móviles</text>
+<text transform='translate(17.00,107.50) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='66.91px' lengthAdjust='spacingAndGlyphs'>Porcentaje</text>
+<text x='43.25' y='294.87' style='font-size: 14.00px; font-family: "Arial";' textLength='57.57px' lengthAdjust='spacingAndGlyphs'>Indicador</text>
+<line x1='109.33' y1='289.86' x2='121.61' y2='289.86' style='stroke-width: 2.13; stroke: #BCEE68; stroke-linecap: butt;' />
+<line x1='244.70' y1='289.86' x2='256.97' y2='289.86' style='stroke-width: 2.13; stroke: #7AC5CD; stroke-linecap: butt;' />
+<line x1='376.74' y1='289.86' x2='389.01' y2='289.86' style='stroke-width: 2.13; stroke: #2F4F4F; stroke-linecap: butt;' />
+<text x='130.11' y='294.16' style='font-size: 12.00px; font-family: "Arial";' textLength='106.08px' lengthAdjust='spacingAndGlyphs'>Tasa de Desempleo</text>
+<text x='265.48' y='294.16' style='font-size: 12.00px; font-family: "Arial";' textLength='102.75px' lengthAdjust='spacingAndGlyphs'>Tasa de Ocupación</text>
+<text x='397.52' y='294.16' style='font-size: 12.00px; font-family: "Arial";' textLength='114.08px' lengthAdjust='spacingAndGlyphs'>Tasa de Participación</text>
+<text x='252.14' y='37.37' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='57.39px' lengthAdjust='spacingAndGlyphs'>2022-2023</text>
+<text x='252.14' y='18.43' text-anchor='middle' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='513.89px' lengthAdjust='spacingAndGlyphs'>Gráfico 11: Costa Rica. Principales indicadores del mercado laboral</text>
+<text x='43.25' y='312.52' style='font-size: 11.00px; font-weight: bold; font-family: "Arial";' textLength='42.78px' lengthAdjust='spacingAndGlyphs'>Fuente: </text>
+<text x='86.03' y='312.52' style='font-size: 11.00px; font-family: "Arial";' textLength='224.48px' lengthAdjust='spacingAndGlyphs'>Elaboración propia a partir de datos del INEC.</text>
+</g>
+</svg>
