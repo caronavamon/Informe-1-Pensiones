@@ -12,7 +12,6 @@ library(tidyverse)
 
 
 ```{r}
-
 nuevas_cotizaciones215 <- data.frame(
   edad = 116:215,
   Cotizaciones = rep(12, length(116:215))  # Repetir el valor 10
@@ -92,7 +91,6 @@ Activos2023 <- activos %>%
   ) %>% 
   mutate(
     as.data.frame(
-      # matrix(rep(Mensual,100),ncol = 100,byrow = F)*
       (1+inflacion)*matrix(
         (1+variacion_proyectada_215$variacion[outer(
           Edad - 18,
@@ -101,62 +99,17 @@ Activos2023 <- activos %>%
         )]
         ),
         ncol = 100
-      )*matrix(
-        (promedios_cotizaciones_edad_215$Cotizaciones[outer(
-          Edad - 18,
-          1:100,
-          "+"
-        )]
-        ),
-        ncol = 100
       )
     )
-  )
-
-
-for (k in 1:length(Activos2023$ID)) {
-  Activos2023[k,4:103] <- cumprod(Activos2023[k,4:103])*Activos2023$Mensual[k]
+  );for (k in 1:100) {
+  Activos2023[k,4:103] <-  t(cumprod(t(Activos2023[k,4:103])))*Activos2023$Mensual[k]*promedios_cotizaciones_edad_215$Cotizaciones[activos$Edad[k]-18+(1:100)]
 }
 
 ```
 
 ```{r}
-d <- 0.04
-cotizaciones_FUN <- function(dfActivos) {
-  Cotizaciones_Activos <- dfActivos %>% 
-    dplyr::select(
-      ID,
-      cont
-    ) %>% 
-    dplyr::mutate(
-      Fila = match(
-        ID,
-        Activos2023$ID
-      )
-    ) %>% 
-    cbind(
-      matrix(numeric(100*length(dfActivos$ID)),ncol = 100)
-    )
-  
-  for (i in 1:length(Cotizaciones_Activos$ID)) {
-    Cotizaciones_Activos[i,3+1:Cotizaciones_Activos$cont[i]] <- Activos2023[Cotizaciones_Activos$Fila[i],3 + 1:Cotizaciones_Activos$cont[i]]
-  }
-  Cotizacion_Anuales <- colSums(Cotizaciones_Activos[4:103])*.15
-  
-  # View(data_frame(Cotizacion_Anuales))
-  # 
-  # sum(Cotizacion_Anuales*(1+d)^(1:100))
-  retun <- list(
-    "ANUAL" = Cotizacion_Anuales,
-    PVC = sum(Cotizacion_Anuales*(1+d)^(1:100))
-  ) 
-  return(retun)
-}
-Balances_Activos <- lapply(lista_pensionados_activos, cotizaciones_FUN)
-```
+dfActivos <- lista_pensionados_activos[[5]]
 
-
-```{r}
 Cotizaciones_Activos <- dfActivos %>% 
   dplyr::select(
     ID,
@@ -178,7 +131,7 @@ for (i in 1:length(Cotizaciones_Activos$ID)) {
 Cotizacion_Anuales <- colSums(Cotizaciones_Activos[4:103])*.15
 
 View(data_frame(Cotizacion_Anuales))
-
+d <- 0.04
  sum(Cotizacion_Anuales*(1+d)^(1:100))
 ```
 
