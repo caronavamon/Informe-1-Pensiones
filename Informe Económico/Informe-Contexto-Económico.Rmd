@@ -39,6 +39,7 @@ library(zoo)
 library(dplyr)
 library(scales)
 library(reshape2)
+library(cowplot)
 ```
 
 # Inflación
@@ -49,7 +50,7 @@ Inflacion$Fecha <- as.Date(Inflacion$Fecha, format = "%d/%m/%Y")
 ```
 
 ```{r,echo=FALSE, message=FALSE, warning=FALSE}
-ggplot(Inflacion, aes(x = Fecha)) +
+plot1 <- ggplot(Inflacion, aes(x = Fecha)) +
   geom_line(aes(y = `Variacion.mensual....`, color = "Variación Mensual"),size = 1) +
   geom_line(aes(y = `Variacion.interanual....`, color = "Variación Interanual"),size = 1) +
   geom_line(aes(y = `Variacion.acumulada.....n3`, color = "Variación Acumulada"),size = 1) +
@@ -60,7 +61,7 @@ ggplot(Inflacion, aes(x = Fecha)) +
        y = "Variación",
        color = "Tipo de Variación",
        caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del BCCR.")) +
-  theme_minimal()+
+  theme_cowplot()+
   scale_y_continuous(labels = scales::percent_format(scale = 1), breaks = seq(-4, 13, by = 1))+
   geom_hline(yintercept = 2, linetype = "dashed", color = "black")+
   geom_hline(yintercept = 4, linetype = "dashed", color = "black")+
@@ -71,6 +72,9 @@ ggplot(Inflacion, aes(x = Fecha)) +
         plot.caption = element_text(hjust = 0),
         plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5))
+plot1
+
+ggsave("plot1.svg", plot = plot1)
 ```
 
 En enero de 2022, el país experimentó una inflación interanual del 3.50%. A lo largo del año, este índice se mantuvo por encima del límite superior de la meta inflacionaria establecida por el Banco Central de Costa Rica (3%, ±1 p.p.), con la excepción del mes de enero. El valor más alto se registró en agosto, alcanzando un 12.13%, seguido de una desaceleración en los cuatro meses siguientes, donde en diciembre se registró una inflación interanual de 7.88%. La inflación importada fue la principal causa del aumento de esta variable, lo que provocó un alza en los precios de los alimentos y los derivados del petróleo. La situación geopolítica, particularmente la Guerra entre Rusia y Ucrania, contribuyó a estas presiones inflacionarias, aunque se observó un freno en ellas a partir del mes de agosto, coincidiendo con una disminución en el tipo de cambio.
@@ -109,7 +113,7 @@ En el siguiente gráfico se muestra el comportamiento de estas tasas.
        x = "Años", 
        y = "Tasa (%)",
        color = "") +
-  theme_minimal()+
+  theme_cowplot()+
   scale_color_manual(values = c("Tasa Básica Pasiva" =  "#2F4F4F", "Tasa de Política Monetaria" = "cadetblue3")) +
   scale_x_continuous(breaks = c(1, 12, 24), labels = c("2022", "2022/2023", "2023")) +
   theme(legend.position = "bottom",
@@ -120,6 +124,7 @@ En el siguiente gráfico se muestra el comportamiento de estas tasas.
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del BCCR."))
 
 Tasas_experimentadas_plot
+ggsave("Tasas_experimentadas_plot.svg", plot = Tasas_experimentadas_plot)
 ```
 
 La tasa de política monetaria en el 2022 presentó un comportamiento al alza, iniciando con un 1.75%  y en los últimos tres meses del año las tasas fueron constantes, especificamente de 9%. Esto se debe a las presiones inflacionarias sufridas en el 2021 ,por lo que, con el fin de contrarrestar la tendencia al crecimiento de la inflación y alcanzar la neutralidad en la política monetaria, el BCCR realizó ocho ajustes al alza de la TPM durante ese año. Esto ocasionó incrementos en la tasa básica pasiva  donde, en los primeros 4 meses del 2022 dicha tasa experimentó un leve decrecimiento pero para el resto del año tuvo una gran subida, pasando de una tasa de 2.90% en abril a una de 6.35% en diciembre.
@@ -151,30 +156,36 @@ PIB$Trimestre <- as.yearqtr(PIB$Trimestre)
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
-ggplot(PIB, aes(x = Trimestre, y = `Producto Interno Bruto a precios de mercado`)) +
+plot3 <- ggplot(PIB, aes(x = Trimestre, y = `Producto Interno Bruto a precios de mercado`)) +
   geom_line(color = "cadetblue3") +
   geom_point(color = "#2F4F4F") +
   labs(x = "Trimestre", y = "Producto Interno Bruto", title = "Evolución del Producto Interno Bruto por trimestre en Costa Rica", subtitle = "2022-2023") +
-  theme_minimal() +
+  theme_cowplot() +
     theme(legend.position = "bottom",
         plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
         plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del BCCR."))
+plot3
+ggsave("plot3.svg", plot = plot3)
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
-ggplot(PIB, aes(x = Trimestre, y = `Tasa de Variación Interanual`)) +
+plot4 <- ggplot(PIB, aes(x = Trimestre, y = `Tasa de Variación Interanual`)) +
   geom_line(color = "cadetblue3") +
   geom_point(color = "#2F4F4F") +
   geom_text(aes(label = paste(round(`Tasa de Variación Interanual`, 2), "%")), vjust = -0.05, hjust = 0.05, size = 3, nudge_y = 0.1) +
   labs(x = "Trimestre", y = "Tasa de Variación Interanual (%)", title = "Tasa de Variación Interanual del Producto Interno Bruto por trimestre en \n Costa Rica", subtitle = "2022-2023") +
-  theme_minimal() + 
+  theme_cowplot() + 
   theme(legend.position = "bottom",
         plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
         plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del BCCR."))
+
+plot4
+
+ggsave("plot4.svg", plot = plot4)
 ```
 
 Tras la pandemia del COVID-19, en el 2022 la economía del mundo se comenzó a recuperar debido a las campañas de vacunación contra el virus y en consecuencia la eliminación de muchas de las restricciones sanitarias que impedían el desenvolvimiento económico. Esto se puede observar por medio del gráfico que muestra la evolución del PIB en donde para cada uno de los trimestres del año 2022 existe un crecimiento. 
@@ -213,18 +224,22 @@ variaciones_largas <- pivot_longer(variaciones_salarios, cols = c(`Variación in
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
-ggplot(variaciones_largas, aes(x = Fecha, y = Variación, fill = Tipo)) +
+plot5 <- ggplot(variaciones_largas, aes(x = Fecha, y = Variación, fill = Tipo)) +
   geom_bar(stat = "identity", alpha = 0.7, position = position_dodge(width = 0)) +
   scale_fill_manual(values = c(`Variación interanual (%) nominal` = "#2F4F4F", `Variación interanual (%) real` = "cadetblue3"),
                     name = "Tipo de Variación",  # Define el nombre en la leyenda
                     labels = c("Variación Nominal", "Variación Real")) +  # Define las etiquetas
   labs(title = "Variaciones Interanuales del Índice de Salario Mínimo Nominal vs Real en \n Costa Rica",subtitle = "2022-2023", x = "Fecha", y = "Variación (%)") +
-  theme_minimal() +
+  theme_cowplot() +
   theme(legend.position = "bottom",
         plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
         plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del BCCR."))
+
+plot5
+
+ggsave("plot5.svg", plot = plot5)
 ```
 
 Según el informe de la Organzación Mundial del Trabajo (OIT), entre enero y octubre del 2022 el salario mínimo real de Costa Rica en promedio se desvalorizó en un 4.7% ya que, como se puede observar en el gráfico anterior en donde se refleja que si bien las variaciones nominales muestran una estabilidad positiva y un aumento en julio del 2022, las variaciones reales son todo lo contrario pues, cada mes se da un aumento de manera negativa hasta en agosto de ese año donde empiezan a disminuir. 
@@ -264,7 +279,7 @@ Balance_Fiscal_L <- Balance_Fiscal_L %>%
         )
     )
 
-Balance_Fiscal_L %>%
+plot5 <- Balance_Fiscal_L %>%
   filter(
     Detalle == 
         "A- Ingresos totales" |
@@ -296,7 +311,7 @@ Balance_Fiscal_L %>%
       "Evolución del Balance Fiscal mensual en Costa Rica en millones",
     subtitle =
       "2022-2023") +
-  theme_minimal() +
+  theme_cowplot() +
     theme(
       legend.position =
         "bottom",
@@ -339,6 +354,9 @@ Balance_Fiscal_L %>%
     labels = 
       comma
   )
+
+plot5
+ggsave("plot5.svg", plot = plot5)
 ```
 
 
@@ -358,7 +376,7 @@ TipoCambio1$Fecha <- as.Date(TipoCambio1$Fecha, format = "%d/%m/%Y")
 ```
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
-ggplot(TipoCambio1, aes(x = Fecha)) +
+plot6 <- ggplot(TipoCambio1, aes(x = Fecha)) +
   geom_line(aes(y = TIPO.CAMBIO.COMPRA, color = "Compra")) +
   geom_line(aes(y = TIPO.DE.CAMBIO.VENTA, color = "Venta")) +
   scale_color_manual(values = c("Compra" = "#2F4F4F", "Venta" = "cadetblue3")) +
@@ -368,7 +386,7 @@ ggplot(TipoCambio1, aes(x = Fecha)) +
        subtitle = "Ene 2022 a Dic 2023",
        color = "Tipo de Cambio",
        caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del BCCR."))+
-  theme_minimal()+
+  theme_cowplot() +
   scale_y_continuous(limits = c(500, 700),  # Establece los límites del eje y
                      breaks = seq(500, 700, by = 20))+
    scale_x_date(date_labels = "%b-%Y", date_breaks = "2 month")+
@@ -378,6 +396,8 @@ ggplot(TipoCambio1, aes(x = Fecha)) +
         plot.caption = element_text(hjust = 0),
         plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5))
+plot6
+ggsave("plot6.svg", plot = plot6)
 ```
 
 En diciembre de 2022, el tipo de cambio cerró con una tasa de compra de $₡594/US\$$ y una tasa de venta de $₡601/US\$$. Estas cifras fueron notablemente más bajas en comparación con los niveles observados a lo largo del año, el cual estuvo caracterizado por una alta volatilidad en esta variable. Durante el año, el tipo de cambio experimentó una apreciación del 7%. Inicialmente, el tipo de cambio mostró una tendencia al alza en los primeros meses, alcanzando su punto más alto a mediados del año, sin embargo, experimentó un alto en el segundo semestre tras el anuncio por parte del Banco Central de Costa Rica (BCCR) de una serie de medidas destinadas a controlar esta tendencia. Como resultado, en el segundo semestre del año, el tipo de cambio comenzó a descender. Entre las medidas adoptadas por el BCCR para contrarrestar el alza en el tipo de cambio se encuentran la emisión de instrumentos financieros en dólares, la reducción del horario de negociación del MONEX y el otorgamiento de un préstamo de $1 000 millones al Fondo Latinoamérica de Reservas (FLAR) con el fin de fortalecer las reservas del país.
