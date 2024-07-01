@@ -23,9 +23,9 @@ top_300_prom <- function(df) {
     salario_prom <- mean(top)
     
     salario_referencia <- rbind(salario_referencia, 
-                                     data.frame(ID = ID,
-                                                Tipo = Tipo,
-                                                Salario = salario_prom))
+                                data.frame(ID = ID,
+                                           Tipo = Tipo,
+                                           Salario = salario_prom))
   }
   return(salario_referencia)
 }
@@ -70,7 +70,7 @@ cuantia <- function(df, lista_info_pensionados){
     
     #Tipo[i]<- lista_info_pensionados$Tipo[lista_info_pensionados$ID == df$ID[i]]
   }
-
+  
   df$"Pensión base" <- salario_cuantia
   return(df)
 }
@@ -85,7 +85,7 @@ pension_base_inactivos<- lapply(salario_referencia_inactivos, cuantia)
 #Bonificación
 
 bonificacion<- function(df, salario_df){
- 
+  
   pension_bonificacion <- rep(NA, nrow(salario_df))
   
   for(i in 1: nrow(df) ){
@@ -93,7 +93,7 @@ bonificacion<- function(df, salario_df){
     cotizaciones <- df$Cotizaciones_principal[i]
     pension  <- salario_df$`Pensión base`[i]
     salario <- salario_df$Salario[i]
-
+    
     cotizaciones_extra <- cotizaciones - 300
     if(cotizaciones_extra > 0) {
       if(tipo == "Vejez" | tipo == "Invalidez") {
@@ -117,7 +117,7 @@ bonificacion<- function(df, salario_df){
 for(k in 1: length(pension_base_activos)) {
   pension_base_activos[[k]]$"Pensión con bonificación" <- bonificacion(lista_pensionados_activos[[k]], pension_base_activos[[k]])
   pension_base_inactivos[[k]]$"Pensión con bonificación" <- bonificacion(lista_pensionados_inactivos[[k]], pension_base_inactivos[[k]])
-
+  
 }
 
 #Postergación 
@@ -174,7 +174,7 @@ sucesion <- function(df, salario_df){
     }else{
       pension  <- salario_df$`Pensión con postergacion`[i]
     }
-  
+    
     if(tipo == "Sucesión") {
       if(parentesco == "C"){
         if(edad >= 60){
@@ -206,17 +206,70 @@ for(k in 1: length(pension_base_activos)) {
 }
 
 
+#Añadir una columna con el contador y el monto de pensión a lista_info_pensionados de activos e inactivos
+
+
+añadir_columnas <- function(lista_info_pensionados, pension_base, lista_pensionados){
+  
+  cont <- c()
+  pension <- c()
+  
+  for(i in 1 : nrow(lista_info_pensionados)) {
+    Tipo <- lista_info_pensionados$Tipo[i]
+    ID <- lista_info_pensionados$ID[i]
+    cont[i] <-lista_pensionados$cont[lista_pensionados$ID == ID][1]
+    
+    if(Tipo == "Sucesión") {
+      pension_sucesion  <- pension_base$`Pensión Sucesión`[pension_base$ID == ID]
+      if(length(pension_sucesion) == 2) {
+        parentesco <- lista_info_pensionados$COD_PARENTESCO[i]
+        if(parentesco == "C"){
+          pension[i] <- pension_sucesion[1]
+        }else{
+          pension[i] <- pension_sucesion[2]
+        }
+      }else{
+        pension[i] <- pension_sucesion
+      }
+    } else{
+      pension[i] <- pension_base$"Pensión con postergacion"[pension_base$ID == ID][1]
+    }
+  }
+  
+  lista_info_pensionados$cont <- cont
+  lista_info_pensionados$MONTO <- pension
+  
+  return(lista_info_pensionados)
+}
+
+for(k in 1: length(lista_info_pensionados_activos)) {
+  lista_info_pensionados_activos[[k]] <- añadir_columnas(lista_info_pensionados_activos[[k]],
+                                                         pension_base_activos[[k]], 
+                                                         lista_pensionados_activos[[k]])
+  lista_info_pensionados_inactivos[[k]] <- añadir_columnas(lista_info_pensionados_inactivos[[k]],
+                                                           pension_base_inactivos[[k]], 
+                                                           lista_pensionados_inactivos[[k]])
+}
+
+
+
+# Se agrega la columna con la pension para PS
+
+lista_info_pensionados_activos <- lapply(lista_info_pensionados_activos, sucesion_pensionados)
+lista_info_pensionados_inactivos <- lapply(lista_info_pensionados_inactivos, sucesion_pensionados)
+
+
 #------- Inflar pensión de activos e inactivos  -----------
 
-inflar_pension <- function(df_pensiones, df_cont, df_duracion) {
-
+inflar_pension <- function(df) {
+  
   años <- as.character(2023:2123)
-  ID <- df_pensiones$ID
-  Tipo <- df_pensiones$Tipo
+  ID <- df$ID
+  Tipo <- df$Tipo
   
   # Initialize the matrix with the correct dimensions
   num_years <- length(años)
-  num_rows <- nrow(df_pensiones)
+  num_rows <- nrow(df)
   monto_pensionados_matrix <- matrix(NA, nrow = num_rows, ncol = num_years + 2)
   
   # Fill the matrix with data
@@ -231,37 +284,38 @@ inflar_pension <- function(df_pensiones, df_cont, df_duracion) {
   monto_pensionados <- as.data.frame(monto_pensionados_matrix, stringsAsFactors = FALSE)
   
   # Filtrar las filas donde Tipo no es "SR"
-  df_cont <- df_cont[df_cont$COD_TIPO_PENSION != "SR", ]
-
-  for(i in 1: 4){
-   
-    año_inicio <- df_cont$cont[i]
-    parentesco <- df_cont$COD_PARENTESCO[i]
-    año_final <- df_duracion$Duracion[i]
+  #df_cont <- df_cont[df_cont$COD_TIPO_PENSION != "SR", ]
+  
+  for(i in 1: nrow(df)){
     
-    if(Tipo[i] == "Sucesión") {
-      pension <-df_pensiones$"Pensión Sucesión"[i]
-      t <- 0 : año_final
-    }else if (Tipo[i] == "PS"){
-      pension <-df_pensiones$"Pensión Sucesión"[i]
-      
+    año_inicio_pension <- df$cont[i]
+    parentesco <- df$COD_PARENTESCO[i]
+    duracion_pensionado <- df$Duracion[i]
+    
+    if (Tipo[i] == "PS"){
+      pension <-df$"Pension Sucesion"[i] 
       if(parentesco == "C"){
-        año_inicio <- df_duracion$Duracion[i-1] + 1
+        año_inicio_pension <- año_inicio_pension + df$Duracion[i-1] + 1
       }else{
-        año_inicio <- df_duracion$Duracion[i-2] + 1 
+        año_inicio_pension <- año_inicio_pension + df$Duracion[i-2] + 1
       }
-      año_final <- año_inicio + año_final
-      t <- año_inicio : año_final
+      año_final_pension <- año_inicio_pension + duracion_pensionado
+      t <- año_inicio_pension : año_final_pension
     }else{
-      pension <- df_pensiones$"Pensión con postergación"[i]
-      t <- 0 : año_final
+      pension <- df$MONTO[i]
+      año_final_pension <- año_inicio_pension + duracion_pensionado
+      t <- 0 : duracion_pensionado
     }
     
     pension_inflada <- pension*(1+inflacion)^t
     
+    
     pension_inflada[pension_inflada > 3500000] <- 3500000
-  
-    #monto_pensionados[i, (año_inicio + 3):(año_final + 3)] <- pension_inflada
+    
+    #vector2 <- monto_pensionados[i, (año_inicio + 3):(año_final + 3)]
+    #print(vector2)
+    
+    monto_pensionados[i, (año_inicio_pension + 3):(año_final_pension + 3)] <- pension_inflada
     #print(vector2)
     
     #same_length <- identical(length(pension_inflada), length(vector2))
@@ -273,16 +327,8 @@ inflar_pension <- function(df_pensiones, df_cont, df_duracion) {
 }
 
 
-monto_pension_activos <- list()
-monto_pension_inactivos <- list()
-
-for(k in 1: 100) {
-  monto_pension_activos[[k]] <- inflar_pension(pension_base_activos[[k]], lista_pensionados_activos[[k]], 
-                                               lista_info_pensionados_activos[[k]])
-  monto_pension_inactivos[[k]] <- inflar_pension(pension_base_inactivos[[k]], lista_pensionados_inactivos[[k]], 
-                                               lista_info_pensionados_inactivos[[k]])
-}
-
+monto_pension_activos <- lapply(lista_info_pensionados_activos, inflar_pension)
+monto_pension_inactivos <-lapply(lista_info_pensionados_inactivos, inflar_pension)
 
 
 
@@ -310,7 +356,7 @@ lista_info_pensionados_pensionados <- lapply(lista_info_pensionados_pensionados,
 
 sucesion_pensionados <- function(df){
   
-  pension_sucesion <- c(NA)
+  pension_sucesion <- rep(NA, nrow(df))
   
   
   for(i in 1: nrow(df)){
@@ -335,7 +381,7 @@ sucesion_pensionados <- function(df){
         pension_sucesion[i] <- pension*0.5
       }
     } else{
-      pension_suc <- pension*0.3
+      pension_sucesion[i] <- pension*0.3
     }
   }
   df$"Pension Sucesion" <- pension_sucesion
@@ -367,7 +413,7 @@ pension_pensionados <- function(df_pensionados) {
   
   # Convert matrix to data frame
   monto_pensionados <- as.data.frame(monto_pensionados_matrix, stringsAsFactors = FALSE)
-
+  
   
   for(i in 1: nrow(df_pensionados)){
     duracion <- df_pensionados$Duracion[i]
@@ -388,7 +434,7 @@ pension_pensionados <- function(df_pensionados) {
       duracion_principal <- 0
       t <- 0:duracion
     }
-      
+    
     pension_inflada <- pension*(1+inflacion)^t
     
     pension_inflada[pension_inflada > 3500000] <- 3500000
@@ -414,9 +460,9 @@ monto_pension_pensionados <- lapply(lista_info_pensionados_pensionados,pension_p
 #------------- Valor presente-------------------------------------------
 
 process_pension_data <- function(df){
-
+  
   # Convertir datos a formato largo para facilitar el procesamiento
-   long_df <- df %>%
+  long_df <- df %>%
     pivot_longer(cols = starts_with("2024"):starts_with("2123"), 
                  names_to = "Año", 
                  values_to = "Monto") %>%
@@ -425,7 +471,7 @@ process_pension_data <- function(df){
   # Agrupar por Tipo y Año, y sumar los montos
   grouped_df <- long_df %>%
     group_by(Tipo, Año) %>%
-    summarise(MontoTotal = sum(as.numeric(Monto), na.rm = TRUE), .groups = 'drop')
+    summarise(MontoTotal = sum(as.numeric(Monto), na.rm = TRUE)*13, .groups = 'drop')
   
   # Convertir Year a numérico
   grouped_df$Año <- as.numeric(grouped_df$Año)
@@ -440,6 +486,150 @@ process_pension_data <- function(df){
 }
 
 valor_presente_pension_pensionados <- lapply(monto_pension_pensionados, process_pension_data)
+valor_presente_pension_activos <- lapply(monto_pension_activos, process_pension_data)
+valor_presente_pension_inactivos <- lapply(monto_pension_inactivos, process_pension_data)
+
+#Pensiones en gen actual
+
+VP_GenActual <- list()
+
+# Iterar sobre los índices de los dataframes
+for (i in seq_along(valor_presente_pension_activos)) {
+  # Combina el dataframe correspondiente de lista1 y lista2
+  df1 <- valor_presente_pension_activos[[i]]
+  df2 <- valor_presente_pension_inactivos[[i]]
+  
+  # Combina ambos dataframes en uno solo
+  df_combinado <- rbind(df1, df2)
+  
+  # Agrupa por la columna 'tipo' y suma las cantidades
+  resultado <- aggregate(PV_Total ~ Tipo, data = df_combinado, FUN = sum)
+  
+  
+  df_ps <- valor_presente_pension_pensionados[[i]]
+  
+  ps_valor <- df_ps$PV_Total[df_ps$Tipo == "PS"]
+  
+  resultado <- resultado %>%
+    dplyr::mutate(PV_Total = ifelse(Tipo == "PS", PV_Total + ps_valor, PV_Total))
+  
+  # Almacena el resultado en la lista
+  VP_GenActual[[i]] <- resultado
+}
+
+# Total pensiones por año, pensiones en curso de pago
+
+# Función para filtrar y sumar
+process_dataframe <- function(df) {
+  
+  # Eliminar las dos primeras columnas (suponiendo que no son necesarias)
+  filtered_df <- df[,-c(1,2)]
+  
+  # Convertir todas las columnas a numérico
+  filtered_df[] <- lapply(filtered_df, function(x) as.numeric(as.character(x)))
+  
+  # Sumar los elementos de las columnas numéricas
+  sums <- colSums(filtered_df, na.rm = TRUE)
+  return(sums)
+}
 
 
+# Aplicar la función a cada dataframe en la lista
+Pensiones_CP <- lapply(monto_pension_pensionados, function(df) {
+  filtered_df <- df[df$Tipo != "PS", ]
+  process_dataframe(filtered_df) * 13
+})
+
+
+#Total pensiones por año, pensiones generación actual
+
+Pensiones_GenActual <- list()
+GenActual <- list()
+
+# Iterar sobre los índices de los dataframes
+for (i in seq_along(monto_pension_activos)) {
+  # Combina el dataframe correspondiente de lista1 y lista2
+  df1 <- monto_pension_activos[[i]]
+  df2 <- monto_pension_inactivos[[i]]
+  df3 <- monto_pension_pensionados[[i]][monto_pension_pensionados[[i]]$Tipo == "PS",]
+  
+  # Combina ambos dataframes en uno solo
+  df_combinado <- rbind(df1, df2,df3)
+  
+  # Agrupa por la columna 'tipo' y suma las cantidades
+  resultado <- process_dataframe(df_combinado)
+  
+  
+  # Almacena el resultado en la lista
+  Pensiones_GenActual[[i]] <- resultado * 13
+  GenActual[[i]] <- df_combinado
+}
+
+# Contribuciones pensiones mayores a dos millones 
+
+#Gen Actual
+
+GenActual <- lapply(GenActual, function(df) {
+  df <- df[,-c(1:4)]
+})
+
+contribuciones_pensionados_superiores <- function(df) {
+  df[] <- lapply(df, function(x) as.numeric(as.character(x)))
+  resultado <- df %>%
+    mutate(across(everything(), ~ if_else(!is.na(.), ifelse(. > 2000000, . * 0.05, 0), NA)))
+  resultado <- resultado*13
+}
+
+contri_pensionados_superiores_GA <- lapply(GenActual, 
+                                           contribuciones_pensionados_superiores)
+
+#Curso de pago 
+
+Curso_pago <- lapply(monto_pension_pensionados, function(df) {
+  filtered_df <- df[df$Tipo != "PS", ]
+  filtered_df <- filtered_df[,-c(1:4)]
+})
+contri_pensionados_superiores_CP <- lapply(Curso_pago, 
+                                           contribuciones_pensionados_superiores)
+
+#Valor presente de las contribuciones 
+VP_contribuciones <- function(df){
+  
+  # Convertir datos a formato largo para facilitar el procesamiento
+  long_df <- df %>%
+    pivot_longer(cols = starts_with("2025"):starts_with("2123"), 
+                 names_to = "Año", 
+                 values_to = "Monto") %>%
+    filter(!is.na(Monto)) # Filtrar valores NA
+  
+  # Agrupar por Tipo y Año, y sumar los montos
+  grouped_df <- long_df %>%
+    group_by(Año) %>%
+    summarise(MontoTotal = sum(as.numeric(Monto), na.rm = TRUE), .groups = 'drop')
+  
+  # Convertir Year a numérico
+  grouped_df$Año <- as.numeric(grouped_df$Año)
+  
+  # Calcular el valor presente para cada monto al base_year
+  grouped_df <- grouped_df %>%
+    mutate(PV = MontoTotal / (1 + inflacion)^(Año - 2024)) %>%
+    summarise(PV_Total = sum(PV, na.rm = TRUE), .groups = 'drop')
+  
+  return(grouped_df)
+}
+
+VP_contribuciones_GA <- lapply(contri_pensionados_superiores_GA, 
+                               VP_contribuciones)
+VP_contribuciones_CP <- lapply(contri_pensionados_superiores_CP, 
+                               VP_contribuciones)
+
+# SEM Generacion Actual
+SEM_GA <- lapply(VP_GenActual, function(df) {
+  sum(df[,2])*0.085*12/13
+})
+
+#SEM Curso de Pago
+SEM_CP <- lapply(valor_presente_pension_pensionados, function(df) {
+  sum(df[-2,2])*0.085*12/13
+})
 
