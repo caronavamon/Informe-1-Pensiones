@@ -489,6 +489,19 @@ valor_presente_pension_pensionados <- lapply(monto_pension_pensionados, process_
 valor_presente_pension_activos <- lapply(monto_pension_activos, process_pension_data)
 valor_presente_pension_inactivos <- lapply(monto_pension_inactivos, process_pension_data)
 
+#Promedio valor presente de curso de pago por tipo 
+calcular_promedios_VP_CP <- function(df) {
+  
+  df_filtrado <- df[df$Tipo != "PS",]
+  df_filtrado %>%
+    group_by(Tipo) %>%
+    summarise(Promedio_PV_Total = mean(PV_Total, na.rm = TRUE))
+  
+}
+
+combinado_VP_CP <- combinar_dfs(valor_presente_pension_pensionados)
+promedio_VP_CP <- calcular_promedios_VP_CP(combinado_VP_CP)
+
 #Pensiones en gen actual
 
 VP_GenActual <- list()
@@ -517,6 +530,17 @@ for (i in seq_along(valor_presente_pension_activos)) {
   VP_GenActual[[i]] <- resultado
 }
 
+#Promedio Valor presente de la generacion actual por tipo 
+calcular_promedios_VP <- function(df) {
+  
+  df %>%
+    group_by(Tipo) %>%
+    summarise(Promedio_PV_Total = mean(PV_Total, na.rm = TRUE))
+  
+}
+combinado_VP_GenActual <- combinar_dfs(VP_GenActual)
+promedio_VP_GenActual <- calcular_promedios_VP(combinado_VP_GenActual)
+
 # Total pensiones por año, pensiones en curso de pago
 
 # Función para filtrar y sumar
@@ -540,6 +564,9 @@ Pensiones_CP <- lapply(monto_pension_pensionados, function(df) {
   process_dataframe(filtered_df) * 13
 })
 
+#Promedio por año CP
+combinado_Pensiones_CP <- combinar_dfs(Pensiones_CP)
+promedio_Pensiones_CP <- colMeans(combinado_Pensiones_CP)
 
 #Total pensiones por año, pensiones generación actual
 
@@ -564,6 +591,10 @@ for (i in seq_along(monto_pension_activos)) {
   Pensiones_GenActual[[i]] <- resultado * 13
   GenActual[[i]] <- df_combinado
 }
+
+#Promedio por año Generacion Actual
+combinado_Pensiones_GenActual <- combinar_dfs(Pensiones_GenActual)
+promedio_Pensiones_GenActual <- colMeans(combinado_Pensiones_GenActual)
 
 # Contribuciones pensiones mayores a dos millones 
 
@@ -623,6 +654,12 @@ VP_contribuciones_GA <- lapply(contri_pensionados_superiores_GA,
 VP_contribuciones_CP <- lapply(contri_pensionados_superiores_CP, 
                                VP_contribuciones)
 
+#Promedio contribuciones valor presente
+combinado_VP_contribuciones_GA <- combinar_dfs(VP_contribuciones_GA)
+promedio_VP_contribuciones_GA <- colMeans(combinado_VP_contribuciones_GA)
+combinado_VP_contribuciones_CP <- combinar_dfs(VP_contribuciones_CP)
+promedio_VP_contribuciones_CP <- colMeans(combinado_VP_contribuciones_CP)
+
 # SEM Generacion Actual
 SEM_GA <- lapply(VP_GenActual, function(df) {
   sum(df[,2])*0.085*12/13
@@ -633,3 +670,6 @@ SEM_CP <- lapply(valor_presente_pension_pensionados, function(df) {
   sum(df[-2,2])*0.085*12/13
 })
 
+#Promedio
+promedio_SEM_CP <- mean(unlist(SEM_CP))
+promedio_SEM_GA <- mean(unlist(SEM_GA))
