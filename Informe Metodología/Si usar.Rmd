@@ -12,7 +12,6 @@ library(tidyverse)
 
 
 ```{r}
-
 nuevas_cotizaciones215 <- data.frame(
   edad = 116:215,
   Cotizaciones = rep(12, length(116:215))  # Repetir el valor 10
@@ -177,24 +176,55 @@ for (i in 1:length(Cotizaciones_Activos$ID)) {
 }
 Cotizacion_Anuales <- colSums(Cotizaciones_Activos[4:103])*.15
 
-View(data_frame(Cotizacion_Anuales))
+plot(Cotizacion_Anuales)
 
  sum(Cotizacion_Anuales*(1+d)^(1:100))
 ```
 
 ```{r}
-sum(Salarios_proyectados[!is.na(Salarios_proyectados[31]),31])
-sum(Salarios_proyectados[Cotizaciones_Activos$Fila,31])
+# Historico_Completo <- cbind(
+#   activos %>% 
+#     dplyr::select(
+#     ID,
+#     Edad
+#   ),
+#   activos[,4:363],
+#   mensual_proyectado[,4:103]
+# )
+
+mensual_proyectado <- matrix(0,nrow = length(activos$ID),ncol = 1200)
+for (k in 1:length(activos$ID)) {
+  Edad1 <- activos$Edad[k]
+  v1 <- 1 
+  d1 <- 1
+  for (a in 0:99) {
+    v1 <- v1*1.04
+    d1 <- d1*(1+variacion_proyectada_215$variacion[Edad1-18])
+    densidad <- promedios_cotizaciones_edad_215$Cotizaciones[Edad1-18]
+    mensual1 <- Activos2023$Mensual[k]*v1*d1
+    mensual_proyectado[k,(a*12+(1:12))] <-  c(rep(mensual1,densidad),rep(0,12-densidad))
+  }
+}
+mensual_completo <- cbind(activos[,4:363],mensual_proyectado)
+pensiones_proyectados <- 0*mensual_completo
+for (k in 1:length(activos$ID)) {
+  pensiones_proyectados[k,] <- mensual_completo[k,]*(1+d)^-rep((-30):99, each = 12)
+}
 ```
 
+
 ```{r}
-sum(salarios_edad %>% 
-      filter(
-        Año == "2023" & !is.na(Salario)
-      ) %>% 
-      select(
-        Salario
-      ))
+dfActivos <- lista_pensionados_activos[[5]]
+
+salarios_acumulados <- pensiones_proyectados*0
+for (k in 1:length(dfActivos$ID)) {
+  Edad1 <- dfActivos$Edad[k]
+  salarios_acumulados[k,1:(30+Edad1)] <- pensiones_proyectados[k,1:(30+Edad1)]*(1+d)^Edad1
+}
+
+dim(mensual_proyectado)
 ```
+
+
 
 
