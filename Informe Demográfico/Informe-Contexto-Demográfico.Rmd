@@ -186,7 +186,7 @@ pob_porc_plot <- ggplot(Pob_3rangos_porc_long, aes(x = Porcentaje, y = factor(An
         legend.title = element_blank()) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 
-ggsave("pob_porc_plot.svg", plot = pob_porc_plot)
+ggsave("pob_porc_plot.svg", plot = pob_porc_plot, width = 10, height = 6, units = "in")
 
 ```
 
@@ -256,7 +256,7 @@ plot1 <- ggplot(Variacion_pob_long, aes(x = Periodo, y = Porcentaje, fill = Edad
         legend.title = element_blank()) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 
-ggsave("plot1.svg", plot = plot1)
+ggsave("plot1.svg", plot = plot1,width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[15]{r}{0.5\textwidth}
@@ -329,7 +329,7 @@ plot2 <- ggplot() +
         legend.title = element_blank()) +
   labs(caption = "Fuente: Elaborado con datos del DGME.")
 
-ggsave("plot2.svg", plot = plot2)
+ggsave("plot2.svg", plot = plot2, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[12]{l}{0.5\textwidth}
@@ -413,7 +413,7 @@ plot3 <- ggplot(tasa_nupcialidad_graf, aes(x = factor(Año), y = Tasa, fill = Nu
         plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 
-ggsave("plot3.svg", plot = plot3)
+ggsave("plot3.svg", plot = plot3, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[15]{r}{0.5\textwidth}
@@ -446,7 +446,7 @@ plot4 <-ggplot(matrimonios_parejas_graf, aes(x = factor(Año), y = Cantidad, fil
         plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 
-ggsave("plot4.svg", plot = plot4)
+ggsave("plot4.svg", plot = plot4, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[15]{l}{0.5\textwidth}
@@ -492,7 +492,7 @@ plot5 <- ggplot(matrimonios_edad_graf, aes(x = `Grupos de edades`, y = Cantidad,
   theme(axis.text.x = element_text(angle = 45, hjust = 1), plot.subtitle = element_text(hjust = 0.5), plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 
-ggsave("plot5.svg", plot = plot5)
+ggsave("plot5.svg", plot = plot5, width = 10, height = 6, units = "in")
 ```
 
 \newpage
@@ -557,7 +557,7 @@ plot6 <-ggplot(fecundidad_graf, aes(x = factor(Año), y = Tasa, fill = `Natalida
         plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 
-ggsave("plot6.svg", plot = plot6)
+ggsave("plot6.svg", plot = plot6, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[13]{r}{0.5\textwidth}
@@ -592,7 +592,7 @@ plot7 <- ggplot(esperanza_vida_graf, aes(x = factor(Año), y = EPV, fill = `Espe
         plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
 
-ggsave("plot7.svg", plot = plot7)
+ggsave("plot7.svg", plot = plot7,width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[15]{l}{0.5\textwidth}
@@ -643,7 +643,7 @@ plot8 <-ggplot(Desempleo, aes(x = Trimestre, y = `Tasa desempleo`)) +
   theme_cowplot()+
   scale_color_manual(values = c("Población desempleada" = "#2F4F4F")) + 
   guides(color = guide_legend(title = " ")) 
-ggsave("plot8.svg", plot = plot8)
+ggsave("plot8.svg", plot = plot8, width = 10, height = 6, units = "in")
 ```
 \begin{wrapfigure}[10]{l}{0.5\textwidth}
 
@@ -692,7 +692,7 @@ plot9 <- ggplot(ocupaDesempleo, aes(x = Trimestre)) +
         plot.caption = element_text(hjust = 0)) +
   scale_x_discrete(breaks = c("ENE(22)-MAR(22)", "ABR(22)-JUN(22)", "JUL(22)-SEP(22)", "OCT(22)-DEC(22)",
                                "ENE(23)-MAR(23)", "ABR(23)-JUN(23)", "JUL(23)-SEP(23)", "OCT(23)-DEC(23)"))
-ggsave("plot9.svg", plot = plot9)
+ggsave("plot9.svg", plot = plot9, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[15]{r}{0.5\textwidth}
@@ -891,7 +891,7 @@ plot10 <- PEAComp %>%
           )
       )
 
-ggsave("plot10.svg", plot = plot10)
+ggsave("plot10.svg", plot = plot10, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[15]{r}{0.5\textwidth}

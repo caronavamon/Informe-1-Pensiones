@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='468.00pt' height='324.00pt' viewBox='0 0 468.00 324.00'>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='720.00pt' height='432.00pt' viewBox='0 0 720.00 432.00'>
 <defs>
   <style type='text/css'><![CDATA[
     .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
@@ -16,75 +16,75 @@
 </defs>
 <rect width='100%' height='100%' style='stroke: none; fill: none;'/>
 <defs>
-  <clipPath id='cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA='>
-    <rect x='0.00' y='0.00' width='468.00' height='324.00' />
+  <clipPath id='cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA='>
+    <rect x='0.00' y='0.00' width='720.00' height='432.00' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA=)'>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
 </g>
 <defs>
-  <clipPath id='cpNTYuNjB8NDYxLjAzfDQ2Ljg2fDIzNy42MQ=='>
-    <rect x='56.60' y='46.86' width='404.42' height='190.74' />
+  <clipPath id='cpNTYuNjB8NzEzLjAzfDQ2Ljg2fDM0NS42MQ=='>
+    <rect x='56.60' y='46.86' width='656.42' height='298.74' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpNTYuNjB8NDYxLjAzfDQ2Ljg2fDIzNy42MQ==)'>
-<rect x='364.28' y='65.03' width='78.36' height='18.17' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F; fill-opacity: 0.70;' />
-<rect x='110.33' y='65.03' width='253.95' height='18.17' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
-<rect x='74.98' y='65.03' width='35.34' height='18.17' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BCEE68; fill-opacity: 0.70;' />
-<rect x='365.29' y='110.44' width='77.35' height='18.17' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F; fill-opacity: 0.70;' />
-<rect x='111.74' y='110.44' width='253.55' height='18.17' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
-<rect x='74.98' y='110.44' width='36.76' height='18.17' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BCEE68; fill-opacity: 0.70;' />
-<rect x='366.40' y='155.86' width='76.24' height='18.17' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F; fill-opacity: 0.70;' />
-<rect x='113.23' y='155.86' width='253.17' height='18.17' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
-<rect x='74.98' y='155.86' width='38.25' height='18.17' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BCEE68; fill-opacity: 0.70;' />
-<rect x='367.41' y='201.28' width='75.23' height='18.17' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F; fill-opacity: 0.70;' />
-<rect x='114.82' y='201.28' width='252.59' height='18.17' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
-<rect x='74.98' y='201.28' width='39.84' height='18.17' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BCEE68; fill-opacity: 0.70;' />
-<text x='403.46' y='77.17' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='28.94px' lengthAdjust='spacingAndGlyphs'>21.31%</text>
-<text x='237.30' y='77.17' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='28.94px' lengthAdjust='spacingAndGlyphs'>69.07%</text>
-<text x='92.66' y='77.17' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='24.19px' lengthAdjust='spacingAndGlyphs'>9.61%</text>
-<text x='403.97' y='122.58' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='28.94px' lengthAdjust='spacingAndGlyphs'>21.04%</text>
-<text x='238.52' y='122.58' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='28.94px' lengthAdjust='spacingAndGlyphs'>68.96%</text>
-<text x='93.36' y='122.58' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='17.08px' lengthAdjust='spacingAndGlyphs'>10%</text>
-<text x='404.52' y='168.00' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='28.94px' lengthAdjust='spacingAndGlyphs'>20.74%</text>
-<text x='239.82' y='168.00' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='28.94px' lengthAdjust='spacingAndGlyphs'>68.86%</text>
-<text x='94.11' y='168.00' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='24.19px' lengthAdjust='spacingAndGlyphs'>10.4%</text>
-<text x='405.03' y='213.41' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='28.94px' lengthAdjust='spacingAndGlyphs'>20.46%</text>
-<text x='241.12' y='213.41' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='24.19px' lengthAdjust='spacingAndGlyphs'>68.7%</text>
-<text x='94.90' y='213.41' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='28.94px' lengthAdjust='spacingAndGlyphs'>10.84%</text>
+<g clip-path='url(#cpNTYuNjB8NzEzLjAzfDQ2Ljg2fDM0NS42MQ==)'>
+<rect x='556.00' y='75.31' width='127.19' height='28.45' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F; fill-opacity: 0.70;' />
+<rect x='143.80' y='75.31' width='412.20' height='28.45' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
+<rect x='86.44' y='75.31' width='57.36' height='28.45' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BCEE68; fill-opacity: 0.70;' />
+<rect x='557.64' y='146.44' width='125.55' height='28.45' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F; fill-opacity: 0.70;' />
+<rect x='146.10' y='146.44' width='411.54' height='28.45' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
+<rect x='86.44' y='146.44' width='59.66' height='28.45' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BCEE68; fill-opacity: 0.70;' />
+<rect x='559.44' y='217.57' width='123.75' height='28.45' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F; fill-opacity: 0.70;' />
+<rect x='148.52' y='217.57' width='410.92' height='28.45' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
+<rect x='86.44' y='217.57' width='62.08' height='28.45' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BCEE68; fill-opacity: 0.70;' />
+<rect x='561.08' y='288.70' width='122.10' height='28.45' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F; fill-opacity: 0.70;' />
+<rect x='151.10' y='288.70' width='409.98' height='28.45' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
+<rect x='86.44' y='288.70' width='64.67' height='28.45' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BCEE68; fill-opacity: 0.70;' />
+<text x='619.59' y='92.60' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='28.94px' lengthAdjust='spacingAndGlyphs'>21.31%</text>
+<text x='349.90' y='92.60' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='28.94px' lengthAdjust='spacingAndGlyphs'>69.07%</text>
+<text x='115.12' y='92.60' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='24.19px' lengthAdjust='spacingAndGlyphs'>9.61%</text>
+<text x='620.41' y='163.73' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='28.94px' lengthAdjust='spacingAndGlyphs'>21.04%</text>
+<text x='351.87' y='163.73' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='28.94px' lengthAdjust='spacingAndGlyphs'>68.96%</text>
+<text x='116.27' y='163.73' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='17.08px' lengthAdjust='spacingAndGlyphs'>10%</text>
+<text x='621.31' y='234.86' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='28.94px' lengthAdjust='spacingAndGlyphs'>20.74%</text>
+<text x='353.98' y='234.86' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='28.94px' lengthAdjust='spacingAndGlyphs'>68.86%</text>
+<text x='117.48' y='234.86' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='24.19px' lengthAdjust='spacingAndGlyphs'>10.4%</text>
+<text x='622.14' y='305.99' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='28.94px' lengthAdjust='spacingAndGlyphs'>20.46%</text>
+<text x='356.09' y='305.99' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='24.19px' lengthAdjust='spacingAndGlyphs'>68.7%</text>
+<text x='118.77' y='305.99' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='28.94px' lengthAdjust='spacingAndGlyphs'>10.84%</text>
 </g>
-<g clip-path='url(#cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA=)'>
-<polyline points='56.60,237.61 56.60,46.86 ' style='stroke-width: 1.07; stroke-linecap: square;' />
-<text x='50.13' y='214.66' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2025</text>
-<text x='50.13' y='169.24' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2024</text>
-<text x='50.13' y='123.83' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2023</text>
-<text x='50.13' y='78.41' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2022</text>
-<polyline points='53.11,210.36 56.60,210.36 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='53.11,164.94 56.60,164.94 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='53.11,119.53 56.60,119.53 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='53.11,74.11 56.60,74.11 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='56.60,237.61 461.03,237.61 ' style='stroke-width: 1.07; stroke-linecap: square;' />
-<polyline points='74.98,241.09 74.98,237.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='166.90,241.09 166.90,237.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='258.81,241.09 258.81,237.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='350.73,241.09 350.73,237.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='442.64,241.09 442.64,237.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<text x='74.98' y='252.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='166.90' y='252.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>25</text>
-<text x='258.81' y='252.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>50</text>
-<text x='350.73' y='252.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>75</text>
-<text x='442.64' y='252.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>100</text>
-<text x='258.81' y='268.71' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='92.56px' lengthAdjust='spacingAndGlyphs'>Porcentaje (%)</text>
-<text transform='translate(17.00,142.24) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='31.90px' lengthAdjust='spacingAndGlyphs'>Años</text>
-<rect x='57.31' y='286.31' width='13.93' height='13.93' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F; fill-opacity: 0.70;' />
-<rect x='110.62' y='286.31' width='13.93' height='13.93' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
-<rect x='170.60' y='286.31' width='13.93' height='13.93' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BCEE68; fill-opacity: 0.70;' />
-<text x='78.92' y='297.57' style='font-size: 12.00px; font-family: "Arial";' textLength='24.02px' lengthAdjust='spacingAndGlyphs'>0-14</text>
-<text x='132.23' y='297.57' style='font-size: 12.00px; font-family: "Arial";' textLength='30.69px' lengthAdjust='spacingAndGlyphs'>15-64</text>
-<text x='192.21' y='297.57' style='font-size: 12.00px; font-family: "Arial";' textLength='48.70px' lengthAdjust='spacingAndGlyphs'>65 y mas</text>
-<text x='258.81' y='37.37' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='57.39px' lengthAdjust='spacingAndGlyphs'>2022-2025</text>
-<text x='258.81' y='18.43' text-anchor='middle' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='574.26px' lengthAdjust='spacingAndGlyphs'>Gráfico 2: Estructura porcentual de la población según edad, en Costa Rica</text>
-<text x='56.60' y='313.75' style='font-size: 8.00px; font-weight: bold; font-family: "Arial";' textLength='31.12px' lengthAdjust='spacingAndGlyphs'>Fuente: </text>
-<text x='87.72' y='313.75' style='font-size: 8.00px; font-family: "Arial";' textLength='132.99px' lengthAdjust='spacingAndGlyphs'>Elaborado a partir de datos del INEC.</text>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
+<polyline points='56.60,345.61 56.60,46.86 ' style='stroke-width: 1.07; stroke-linecap: square;' />
+<text x='50.13' y='307.23' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2025</text>
+<text x='50.13' y='236.10' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2024</text>
+<text x='50.13' y='164.97' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2023</text>
+<text x='50.13' y='93.84' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2022</text>
+<polyline points='53.11,302.93 56.60,302.93 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='53.11,231.80 56.60,231.80 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='53.11,160.67 56.60,160.67 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='53.11,89.54 56.60,89.54 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='56.60,345.61 713.03,345.61 ' style='stroke-width: 1.07; stroke-linecap: square;' />
+<polyline points='86.44,349.09 86.44,345.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='235.63,349.09 235.63,345.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='384.81,349.09 384.81,345.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='534.00,349.09 534.00,345.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='683.19,349.09 683.19,345.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<text x='86.44' y='360.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='235.63' y='360.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>25</text>
+<text x='384.81' y='360.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>50</text>
+<text x='534.00' y='360.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>75</text>
+<text x='683.19' y='360.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>100</text>
+<text x='384.81' y='376.71' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='92.56px' lengthAdjust='spacingAndGlyphs'>Porcentaje (%)</text>
+<text transform='translate(17.00,196.24) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='31.90px' lengthAdjust='spacingAndGlyphs'>Años</text>
+<rect x='57.31' y='394.31' width='13.93' height='13.93' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F; fill-opacity: 0.70;' />
+<rect x='110.62' y='394.31' width='13.93' height='13.93' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
+<rect x='170.60' y='394.31' width='13.93' height='13.93' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BCEE68; fill-opacity: 0.70;' />
+<text x='78.92' y='405.57' style='font-size: 12.00px; font-family: "Arial";' textLength='24.02px' lengthAdjust='spacingAndGlyphs'>0-14</text>
+<text x='132.23' y='405.57' style='font-size: 12.00px; font-family: "Arial";' textLength='30.69px' lengthAdjust='spacingAndGlyphs'>15-64</text>
+<text x='192.21' y='405.57' style='font-size: 12.00px; font-family: "Arial";' textLength='48.70px' lengthAdjust='spacingAndGlyphs'>65 y mas</text>
+<text x='384.81' y='37.37' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='57.39px' lengthAdjust='spacingAndGlyphs'>2022-2025</text>
+<text x='384.81' y='18.43' text-anchor='middle' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='574.26px' lengthAdjust='spacingAndGlyphs'>Gráfico 2: Estructura porcentual de la población según edad, en Costa Rica</text>
+<text x='56.60' y='421.75' style='font-size: 8.00px; font-weight: bold; font-family: "Arial";' textLength='31.12px' lengthAdjust='spacingAndGlyphs'>Fuente: </text>
+<text x='87.72' y='421.75' style='font-size: 8.00px; font-family: "Arial";' textLength='132.99px' lengthAdjust='spacingAndGlyphs'>Elaborado a partir de datos del INEC.</text>
 </g>
 </svg>

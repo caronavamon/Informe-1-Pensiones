@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='468.00pt' height='324.00pt' viewBox='0 0 468.00 324.00'>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='720.00pt' height='432.00pt' viewBox='0 0 720.00 432.00'>
 <defs>
   <style type='text/css'><![CDATA[
     .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
@@ -16,43 +16,43 @@
 </defs>
 <rect width='100%' height='100%' style='stroke: none; fill: none;'/>
 <defs>
-  <clipPath id='cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA='>
-    <rect x='0.00' y='0.00' width='468.00' height='324.00' />
+  <clipPath id='cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA='>
+    <rect x='0.00' y='0.00' width='720.00' height='432.00' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA=)'>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
 </g>
 <defs>
-  <clipPath id='cpNjMuNjF8NDYxLjAzfDQ2Ljg2fDIzOS4zMA=='>
-    <rect x='63.61' y='46.86' width='397.41' height='192.44' />
+  <clipPath id='cpNjMuNjF8NzEzLjAzfDQ2Ljg2fDM0Ny4zMA=='>
+    <rect x='63.61' y='46.86' width='649.41' height='300.44' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpNjMuNjF8NDYxLjAzfDQ2Ljg2fDIzOS4zMA==)'>
-<polyline points='81.68,174.04 97.39,194.49 113.09,172.58 128.80,174.68 144.51,213.33 160.22,192.89 175.93,157.38 191.63,200.62 207.34,230.55 223.05,214.62 238.76,171.54 254.47,120.80 270.17,69.51 285.88,128.92 301.59,121.33 317.30,134.50 333.01,180.59 348.71,166.41 364.42,110.55 380.13,174.24 395.84,203.00 411.55,191.42 427.25,146.90 442.96,66.26 ' style='stroke-width: 2.13; stroke: #2F4F4F; stroke-linecap: butt;' />
-<polyline points='81.68,176.89 97.39,206.96 113.09,162.38 128.80,158.09 144.51,206.52 160.22,193.17 175.93,163.21 191.63,177.22 207.34,218.96 223.05,220.24 238.76,188.12 254.47,111.71 270.17,93.65 285.88,139.06 301.59,98.33 317.30,111.15 333.01,175.67 348.71,165.39 364.42,120.92 380.13,150.31 395.84,190.18 411.55,202.16 427.25,163.57 442.96,55.61 ' style='stroke-width: 2.13; stroke: #7AC5CD; stroke-linecap: butt;' />
+<g clip-path='url(#cpNjMuNjF8NzEzLjAzfDQ2Ljg2fDM0Ny4zMA==)'>
+<polyline points='93.13,245.41 118.80,277.34 144.47,243.14 170.14,246.42 195.81,306.76 221.48,274.84 247.14,219.41 272.81,286.91 298.48,333.64 324.15,308.77 349.82,241.51 375.49,162.30 401.15,82.22 426.82,174.98 452.49,163.13 478.16,183.69 503.83,255.64 529.50,233.51 555.17,146.30 580.83,245.72 606.50,290.63 632.17,272.55 657.84,203.04 683.51,77.15 ' style='stroke-width: 2.13; stroke: #2F4F4F; stroke-linecap: butt;' />
+<polyline points='93.13,249.87 118.80,296.80 144.47,227.21 170.14,220.52 195.81,296.12 221.48,275.29 247.14,228.51 272.81,250.38 298.48,315.54 324.15,317.54 349.82,267.40 375.49,148.10 401.15,119.91 426.82,190.80 452.49,127.21 478.16,147.24 503.83,247.95 529.50,231.91 555.17,162.48 580.83,208.37 606.50,270.62 632.17,289.32 657.84,229.07 683.51,60.52 ' style='stroke-width: 2.13; stroke: #7AC5CD; stroke-linecap: butt;' />
 </g>
-<g clip-path='url(#cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA=)'>
-<polyline points='63.61,239.30 63.61,46.86 ' style='stroke-width: 1.07; stroke-linecap: square;' />
-<text x='57.14' y='197.93' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='33.71px' lengthAdjust='spacingAndGlyphs'>3e+05</text>
-<text x='57.14' y='133.92' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='33.71px' lengthAdjust='spacingAndGlyphs'>4e+05</text>
-<text x='57.14' y='69.91' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='33.71px' lengthAdjust='spacingAndGlyphs'>5e+05</text>
-<polyline points='60.13,193.63 63.61,193.63 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='60.13,129.62 63.61,129.62 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='60.13,65.61 63.61,65.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='63.61,239.30 461.03,239.30 ' style='stroke-width: 1.07; stroke-linecap: square;' />
-<polyline points='81.68,242.79 81.68,239.30 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='254.47,242.79 254.47,239.30 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='442.96,242.79 442.96,239.30 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<text x='81.68' y='254.37' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='62.06px' lengthAdjust='spacingAndGlyphs'>Enero 2022</text>
-<text x='254.47' y='254.37' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='84.05px' lengthAdjust='spacingAndGlyphs'>Diciembre 2022</text>
-<text x='442.96' y='254.37' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='84.05px' lengthAdjust='spacingAndGlyphs'>Diciembre 2023</text>
-<text x='262.32' y='270.40' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='31.90px' lengthAdjust='spacingAndGlyphs'>Años</text>
-<line x1='65.15' y1='294.97' x2='77.42' y2='294.97' style='stroke-width: 2.13; stroke: #7AC5CD; stroke-linecap: butt;' />
-<line x1='138.47' y1='294.97' x2='150.75' y2='294.97' style='stroke-width: 2.13; stroke: #2F4F4F; stroke-linecap: butt;' />
-<text x='85.93' y='299.26' style='font-size: 12.00px; font-family: "Arial";' textLength='44.04px' lengthAdjust='spacingAndGlyphs'>Egresos</text>
-<text x='159.26' y='299.26' style='font-size: 12.00px; font-family: "Arial";' textLength='46.04px' lengthAdjust='spacingAndGlyphs'>Ingresos</text>
-<text x='262.32' y='37.37' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='57.39px' lengthAdjust='spacingAndGlyphs'>2022-2023</text>
-<text x='262.32' y='18.43' text-anchor='middle' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='333.35px' lengthAdjust='spacingAndGlyphs'> Gráfico 4: Flujos migratorios en Costa Rica</text>
-<text x='63.61' y='315.34' style='font-size: 8.00px; font-family: "Arial";' textLength='144.11px' lengthAdjust='spacingAndGlyphs'>Fuente: Elaborado con datos del DGME.</text>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
+<polyline points='63.61,347.30 63.61,46.86 ' style='stroke-width: 1.07; stroke-linecap: square;' />
+<text x='57.14' y='280.30' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='33.71px' lengthAdjust='spacingAndGlyphs'>3e+05</text>
+<text x='57.14' y='180.37' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='33.71px' lengthAdjust='spacingAndGlyphs'>4e+05</text>
+<text x='57.14' y='80.44' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='33.71px' lengthAdjust='spacingAndGlyphs'>5e+05</text>
+<polyline points='60.13,276.00 63.61,276.00 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='60.13,176.07 63.61,176.07 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='60.13,76.14 63.61,76.14 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='63.61,347.30 713.03,347.30 ' style='stroke-width: 1.07; stroke-linecap: square;' />
+<polyline points='93.13,350.79 93.13,347.30 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='375.49,350.79 375.49,347.30 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='683.51,350.79 683.51,347.30 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<text x='93.13' y='362.37' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='62.06px' lengthAdjust='spacingAndGlyphs'>Enero 2022</text>
+<text x='375.49' y='362.37' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='84.05px' lengthAdjust='spacingAndGlyphs'>Diciembre 2022</text>
+<text x='683.51' y='362.37' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='84.05px' lengthAdjust='spacingAndGlyphs'>Diciembre 2023</text>
+<text x='388.32' y='378.40' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='31.90px' lengthAdjust='spacingAndGlyphs'>Años</text>
+<line x1='65.15' y1='402.97' x2='77.42' y2='402.97' style='stroke-width: 2.13; stroke: #7AC5CD; stroke-linecap: butt;' />
+<line x1='138.47' y1='402.97' x2='150.75' y2='402.97' style='stroke-width: 2.13; stroke: #2F4F4F; stroke-linecap: butt;' />
+<text x='85.93' y='407.26' style='font-size: 12.00px; font-family: "Arial";' textLength='44.04px' lengthAdjust='spacingAndGlyphs'>Egresos</text>
+<text x='159.26' y='407.26' style='font-size: 12.00px; font-family: "Arial";' textLength='46.04px' lengthAdjust='spacingAndGlyphs'>Ingresos</text>
+<text x='388.32' y='37.37' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='57.39px' lengthAdjust='spacingAndGlyphs'>2022-2023</text>
+<text x='388.32' y='18.43' text-anchor='middle' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='333.35px' lengthAdjust='spacingAndGlyphs'> Gráfico 4: Flujos migratorios en Costa Rica</text>
+<text x='63.61' y='423.34' style='font-size: 8.00px; font-family: "Arial";' textLength='144.11px' lengthAdjust='spacingAndGlyphs'>Fuente: Elaborado con datos del DGME.</text>
 </g>
 </svg>

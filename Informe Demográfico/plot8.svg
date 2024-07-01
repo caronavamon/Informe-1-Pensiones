@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='468.00pt' height='324.00pt' viewBox='0 0 468.00 324.00'>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='720.00pt' height='432.00pt' viewBox='0 0 720.00 432.00'>
 <defs>
   <style type='text/css'><![CDATA[
     .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
@@ -16,84 +16,84 @@
 </defs>
 <rect width='100%' height='100%' style='stroke: none; fill: none;'/>
 <defs>
-  <clipPath id='cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA='>
-    <rect x='0.00' y='0.00' width='468.00' height='324.00' />
+  <clipPath id='cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA='>
+    <rect x='0.00' y='0.00' width='720.00' height='432.00' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA=)'>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
 </g>
 <defs>
-  <clipPath id='cpNDMuMjV8Mjk2LjY1fDQ2Ljg2fDI2My4zNg=='>
-    <rect x='43.25' y='46.86' width='253.40' height='216.49' />
+  <clipPath id='cpNDMuMjV8NTQ4LjY1fDQ2Ljg2fDM3MS4zNg=='>
+    <rect x='43.25' y='46.86' width='505.40' height='324.49' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpNDMuMjV8Mjk2LjY1fDQ2Ljg2fDI2My4zNg==)'>
-<rect x='50.98' y='62.61' width='21.63' height='190.91' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
-<rect x='81.88' y='89.32' width='21.63' height='164.20' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
-<rect x='112.78' y='84.82' width='21.63' height='168.70' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
-<rect x='143.69' y='89.46' width='21.63' height='164.06' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
-<rect x='174.59' y='104.50' width='21.63' height='149.01' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
-<rect x='205.49' y='118.56' width='21.63' height='134.96' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
-<rect x='236.39' y='139.93' width='21.63' height='113.59' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
-<rect x='267.30' y='150.89' width='21.63' height='102.62' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
-<text x='61.79' y='58.66' text-anchor='middle' style='font-size: 11.04px;fill: #2F4F4F; font-family: "Arial";' textLength='37.41px' lengthAdjust='spacingAndGlyphs'>13.58%</text>
-<text x='92.70' y='85.37' text-anchor='middle' style='font-size: 11.04px;fill: #2F4F4F; font-family: "Arial";' textLength='36.59px' lengthAdjust='spacingAndGlyphs'>11.68%</text>
-<text x='123.60' y='80.87' text-anchor='middle' style='font-size: 11.04px;fill: #2F4F4F; font-family: "Arial";' textLength='22.08px' lengthAdjust='spacingAndGlyphs'>12%</text>
-<text x='154.50' y='85.51' text-anchor='middle' style='font-size: 11.04px;fill: #2F4F4F; font-family: "Arial";' textLength='36.59px' lengthAdjust='spacingAndGlyphs'>11.67%</text>
-<text x='185.40' y='100.55' text-anchor='middle' style='font-size: 11.04px;fill: #2F4F4F; font-family: "Arial";' textLength='31.28px' lengthAdjust='spacingAndGlyphs'>10.6%</text>
-<text x='216.31' y='114.61' text-anchor='middle' style='font-size: 11.04px;fill: #2F4F4F; font-family: "Arial";' textLength='25.14px' lengthAdjust='spacingAndGlyphs'>9.6%</text>
-<text x='247.21' y='135.98' text-anchor='middle' style='font-size: 11.04px;fill: #2F4F4F; font-family: "Arial";' textLength='31.28px' lengthAdjust='spacingAndGlyphs'>8.08%</text>
-<text x='278.11' y='146.94' text-anchor='middle' style='font-size: 11.04px;fill: #2F4F4F; font-family: "Arial";' textLength='25.14px' lengthAdjust='spacingAndGlyphs'>7.3%</text>
-<circle cx='61.79' cy='98.77' r='2.49' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
-<circle cx='92.70' cy='120.06' r='2.49' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
-<circle cx='123.60' cy='114.35' r='2.49' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
-<circle cx='154.50' cy='118.99' r='2.49' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
-<circle cx='185.40' cy='136.94' r='2.49' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
-<circle cx='216.31' cy='148.13' r='2.49' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
-<circle cx='247.21' cy='167.92' r='2.49' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
-<circle cx='278.11' cy='176.72' r='2.49' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
-<text x='61.79' y='95.71' text-anchor='middle' style='font-size: 8.54px;fill: #528B8B; font-family: "Arial";' textLength='28.47px' lengthAdjust='spacingAndGlyphs'>330227</text>
-<text x='92.70' y='117.00' text-anchor='middle' style='font-size: 8.54px;fill: #528B8B; font-family: "Arial";' textLength='28.47px' lengthAdjust='spacingAndGlyphs'>284800</text>
-<text x='123.60' y='111.30' text-anchor='middle' style='font-size: 8.54px;fill: #528B8B; font-family: "Arial";' textLength='28.47px' lengthAdjust='spacingAndGlyphs'>296971</text>
-<text x='154.50' y='115.93' text-anchor='middle' style='font-size: 8.54px;fill: #528B8B; font-family: "Arial";' textLength='28.47px' lengthAdjust='spacingAndGlyphs'>287085</text>
-<text x='185.40' y='133.88' text-anchor='middle' style='font-size: 8.54px;fill: #528B8B; font-family: "Arial";' textLength='28.47px' lengthAdjust='spacingAndGlyphs'>248779</text>
-<text x='216.31' y='145.07' text-anchor='middle' style='font-size: 8.54px;fill: #528B8B; font-family: "Arial";' textLength='28.47px' lengthAdjust='spacingAndGlyphs'>224899</text>
-<text x='247.21' y='164.86' text-anchor='middle' style='font-size: 8.54px;fill: #528B8B; font-family: "Arial";' textLength='28.47px' lengthAdjust='spacingAndGlyphs'>182670</text>
-<text x='278.11' y='173.66' text-anchor='middle' style='font-size: 8.54px;fill: #528B8B; font-family: "Arial";' textLength='28.47px' lengthAdjust='spacingAndGlyphs'>163884</text>
+<g clip-path='url(#cpNDMuMjV8NTQ4LjY1fDQ2Ljg2fDM3MS4zNg==)'>
+<rect x='58.66' y='70.46' width='43.14' height='286.14' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
+<rect x='120.30' y='110.50' width='43.14' height='246.11' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
+<rect x='181.93' y='103.75' width='43.14' height='252.85' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
+<rect x='243.56' y='110.71' width='43.14' height='245.90' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
+<rect x='305.20' y='133.25' width='43.14' height='223.35' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
+<rect x='366.83' y='154.32' width='43.14' height='202.28' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
+<rect x='428.47' y='186.35' width='43.14' height='170.25' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
+<rect x='490.10' y='202.79' width='43.14' height='153.82' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD; fill-opacity: 0.70;' />
+<text x='80.23' y='66.51' text-anchor='middle' style='font-size: 11.04px;fill: #2F4F4F; font-family: "Arial";' textLength='37.41px' lengthAdjust='spacingAndGlyphs'>13.58%</text>
+<text x='141.87' y='106.55' text-anchor='middle' style='font-size: 11.04px;fill: #2F4F4F; font-family: "Arial";' textLength='36.59px' lengthAdjust='spacingAndGlyphs'>11.68%</text>
+<text x='203.50' y='99.81' text-anchor='middle' style='font-size: 11.04px;fill: #2F4F4F; font-family: "Arial";' textLength='22.08px' lengthAdjust='spacingAndGlyphs'>12%</text>
+<text x='265.14' y='106.76' text-anchor='middle' style='font-size: 11.04px;fill: #2F4F4F; font-family: "Arial";' textLength='36.59px' lengthAdjust='spacingAndGlyphs'>11.67%</text>
+<text x='326.77' y='129.30' text-anchor='middle' style='font-size: 11.04px;fill: #2F4F4F; font-family: "Arial";' textLength='31.28px' lengthAdjust='spacingAndGlyphs'>10.6%</text>
+<text x='388.40' y='150.38' text-anchor='middle' style='font-size: 11.04px;fill: #2F4F4F; font-family: "Arial";' textLength='25.14px' lengthAdjust='spacingAndGlyphs'>9.6%</text>
+<text x='450.04' y='182.40' text-anchor='middle' style='font-size: 11.04px;fill: #2F4F4F; font-family: "Arial";' textLength='31.28px' lengthAdjust='spacingAndGlyphs'>8.08%</text>
+<text x='511.67' y='198.84' text-anchor='middle' style='font-size: 11.04px;fill: #2F4F4F; font-family: "Arial";' textLength='25.14px' lengthAdjust='spacingAndGlyphs'>7.3%</text>
+<circle cx='80.23' cy='124.67' r='2.49' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
+<circle cx='141.87' cy='156.57' r='2.49' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
+<circle cx='203.50' cy='148.02' r='2.49' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
+<circle cx='265.14' cy='154.97' r='2.49' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
+<circle cx='326.77' cy='181.87' r='2.49' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
+<circle cx='388.40' cy='198.64' r='2.49' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
+<circle cx='450.04' cy='228.30' r='2.49' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
+<circle cx='511.67' cy='241.50' r='2.49' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
+<text x='80.23' y='121.61' text-anchor='middle' style='font-size: 8.54px;fill: #528B8B; font-family: "Arial";' textLength='28.47px' lengthAdjust='spacingAndGlyphs'>330227</text>
+<text x='141.87' y='153.52' text-anchor='middle' style='font-size: 8.54px;fill: #528B8B; font-family: "Arial";' textLength='28.47px' lengthAdjust='spacingAndGlyphs'>284800</text>
+<text x='203.50' y='144.97' text-anchor='middle' style='font-size: 8.54px;fill: #528B8B; font-family: "Arial";' textLength='28.47px' lengthAdjust='spacingAndGlyphs'>296971</text>
+<text x='265.14' y='151.91' text-anchor='middle' style='font-size: 8.54px;fill: #528B8B; font-family: "Arial";' textLength='28.47px' lengthAdjust='spacingAndGlyphs'>287085</text>
+<text x='326.77' y='178.82' text-anchor='middle' style='font-size: 8.54px;fill: #528B8B; font-family: "Arial";' textLength='28.47px' lengthAdjust='spacingAndGlyphs'>248779</text>
+<text x='388.40' y='195.59' text-anchor='middle' style='font-size: 8.54px;fill: #528B8B; font-family: "Arial";' textLength='28.47px' lengthAdjust='spacingAndGlyphs'>224899</text>
+<text x='450.04' y='225.25' text-anchor='middle' style='font-size: 8.54px;fill: #528B8B; font-family: "Arial";' textLength='28.47px' lengthAdjust='spacingAndGlyphs'>182670</text>
+<text x='511.67' y='238.44' text-anchor='middle' style='font-size: 8.54px;fill: #528B8B; font-family: "Arial";' textLength='28.47px' lengthAdjust='spacingAndGlyphs'>163884</text>
 </g>
-<g clip-path='url(#cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA=)'>
-<polyline points='43.25,263.36 43.25,46.86 ' style='stroke-width: 1.07; stroke-linecap: square;' />
-<text x='36.78' y='257.81' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='36.78' y='187.52' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>5</text>
-<text x='36.78' y='117.23' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>10</text>
-<polyline points='39.77,253.51 43.25,253.51 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='39.77,183.23 43.25,183.23 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='39.77,112.94 43.25,112.94 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='43.25,263.36 296.65,263.36 ' style='stroke-width: 1.07; stroke-linecap: square;' />
-<polyline points='61.79,266.84 61.79,263.36 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='92.70,266.84 92.70,263.36 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='123.60,266.84 123.60,263.36 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='154.50,266.84 154.50,263.36 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='185.40,266.84 185.40,263.36 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='216.31,266.84 216.31,263.36 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='247.21,266.84 247.21,263.36 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='278.11,266.84 278.11,263.36 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<text x='61.79' y='278.43' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='86.71px' lengthAdjust='spacingAndGlyphs'>I Trimestre 2022</text>
-<text x='92.70' y='278.43' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='90.04px' lengthAdjust='spacingAndGlyphs'>II Trimestre 2022</text>
-<text x='123.60' y='278.43' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='93.38px' lengthAdjust='spacingAndGlyphs'>III Trimestre 2022</text>
-<text x='154.50' y='278.43' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='94.72px' lengthAdjust='spacingAndGlyphs'>IV Trimestre 2022</text>
-<text x='185.40' y='278.43' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='86.71px' lengthAdjust='spacingAndGlyphs'>I Trimestre 2023</text>
-<text x='216.31' y='278.43' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='90.04px' lengthAdjust='spacingAndGlyphs'>II Trimestre 2023</text>
-<text x='247.21' y='278.43' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='93.38px' lengthAdjust='spacingAndGlyphs'>III Trimestre 2023</text>
-<text x='278.11' y='278.43' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='94.72px' lengthAdjust='spacingAndGlyphs'>IV Trimestre 2023</text>
-<text x='169.95' y='294.46' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='58.56px' lengthAdjust='spacingAndGlyphs'>Trimestre</text>
-<text transform='translate(17.00,155.11) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='149.34px' lengthAdjust='spacingAndGlyphs'>Tasa de Desempleo (%)</text>
-<text x='310.60' y='148.96' style='font-size: 14.00px; font-family: "Arial";' textLength='3.89px' lengthAdjust='spacingAndGlyphs'> </text>
-<circle cx='318.27' cy='165.08' r='2.49' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
-<text x='332.92' y='169.38' style='font-size: 12.00px; font-family: "Arial";' textLength='128.11px' lengthAdjust='spacingAndGlyphs'>Población desempleada</text>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
+<polyline points='43.25,371.36 43.25,46.86 ' style='stroke-width: 1.07; stroke-linecap: square;' />
+<text x='36.78' y='360.90' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='36.78' y='255.55' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>5</text>
+<text x='36.78' y='150.19' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>10</text>
+<polyline points='39.77,356.61 43.25,356.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='39.77,251.25 43.25,251.25 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='39.77,145.90 43.25,145.90 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='43.25,371.36 548.65,371.36 ' style='stroke-width: 1.07; stroke-linecap: square;' />
+<polyline points='80.23,374.84 80.23,371.36 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='141.87,374.84 141.87,371.36 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='203.50,374.84 203.50,371.36 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='265.14,374.84 265.14,371.36 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='326.77,374.84 326.77,371.36 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='388.40,374.84 388.40,371.36 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='450.04,374.84 450.04,371.36 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='511.67,374.84 511.67,371.36 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<text x='80.23' y='386.43' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='86.71px' lengthAdjust='spacingAndGlyphs'>I Trimestre 2022</text>
+<text x='141.87' y='386.43' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='90.04px' lengthAdjust='spacingAndGlyphs'>II Trimestre 2022</text>
+<text x='203.50' y='386.43' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='93.38px' lengthAdjust='spacingAndGlyphs'>III Trimestre 2022</text>
+<text x='265.14' y='386.43' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='94.72px' lengthAdjust='spacingAndGlyphs'>IV Trimestre 2022</text>
+<text x='326.77' y='386.43' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='86.71px' lengthAdjust='spacingAndGlyphs'>I Trimestre 2023</text>
+<text x='388.40' y='386.43' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='90.04px' lengthAdjust='spacingAndGlyphs'>II Trimestre 2023</text>
+<text x='450.04' y='386.43' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='93.38px' lengthAdjust='spacingAndGlyphs'>III Trimestre 2023</text>
+<text x='511.67' y='386.43' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='94.72px' lengthAdjust='spacingAndGlyphs'>IV Trimestre 2023</text>
+<text x='295.95' y='402.46' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='58.56px' lengthAdjust='spacingAndGlyphs'>Trimestre</text>
+<text transform='translate(17.00,209.11) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='149.34px' lengthAdjust='spacingAndGlyphs'>Tasa de Desempleo (%)</text>
+<text x='562.60' y='202.96' style='font-size: 14.00px; font-family: "Arial";' textLength='3.89px' lengthAdjust='spacingAndGlyphs'> </text>
+<circle cx='570.27' cy='219.08' r='2.49' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
+<text x='584.92' y='223.38' style='font-size: 12.00px; font-family: "Arial";' textLength='128.11px' lengthAdjust='spacingAndGlyphs'>Población desempleada</text>
 <text x='43.25' y='37.37' style='font-size: 12.00px; font-family: "Arial";' textLength='57.39px' lengthAdjust='spacingAndGlyphs'>2022-2023</text>
 <text x='43.25' y='18.43' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='582.06px' lengthAdjust='spacingAndGlyphs'>Gráfico 10: Costa Rica. Tasa de desempleo abierta y población desempleada</text>
-<text x='-13.39' y='312.39' style='font-size: 11.00px; font-weight: bold; font-family: "Arial";' textLength='42.78px' lengthAdjust='spacingAndGlyphs'>Fuente: </text>
-<text x='29.39' y='312.39' style='font-size: 11.00px; font-family: "Arial";' textLength='267.26px' lengthAdjust='spacingAndGlyphs'>Elaboración propia a partir de datos del INEC y BCCR.</text>
+<text x='238.61' y='420.39' style='font-size: 11.00px; font-weight: bold; font-family: "Arial";' textLength='42.78px' lengthAdjust='spacingAndGlyphs'>Fuente: </text>
+<text x='281.39' y='420.39' style='font-size: 11.00px; font-family: "Arial";' textLength='267.26px' lengthAdjust='spacingAndGlyphs'>Elaboración propia a partir de datos del INEC y BCCR.</text>
 </g>
 </svg>

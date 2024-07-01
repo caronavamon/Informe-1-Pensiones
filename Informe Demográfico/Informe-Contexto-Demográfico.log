@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.5.17)  1 JUL 2024 16:00
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.5.17)  1 JUL 2024 17:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -878,12 +878,12 @@ File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-12-1.pdf Gr
 File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-19-1.pdf Graphic file (type pdf)
 <use Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-19-1.pdf>
 
-Package wrapfig Warning: Collision between wrapping environments on input line 297.
+Package wrapfig Warning: Collision between wrapping environments on input line 289.
 
 File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (type pdf)
 <use Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-22-1.pdf>
 
-Package wrapfig Warning: Stationary wrapfigure forced to float on input line 307.
+Package wrapfig Warning: Stationary wrapfigure forced to float on input line 299.
 
 [4]
 File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-25-1.pdf Graphic file (type pdf)
@@ -893,27 +893,26 @@ File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-30-1.pdf Gr
 [5]
 File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-32-1.pdf Graphic file (type pdf)
 <use Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-32-1.pdf>
-[6]
 File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-35-1.pdf Graphic file (type pdf)
 <use Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-35-1.pdf>
+[6]
 File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-38-1.pdf Graphic file (type pdf)
 <use Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-38-1.pdf>
-[7]
 File: Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-40-1.pdf Graphic file (type pdf)
 <use Informe-Contexto-Demográfico_files/figure-latex/unnamed-chunk-40-1.pdf>
-[8] (./Informe-Contexto-Demográfico.aux)
+[7] [8] (./Informe-Contexto-Demográfico.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-04-11>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 18317 strings out of 476704
- 345445 string characters out of 5799637
- 1934406 words of memory out of 5000000
- 40179 multiletter control sequences out of 15000+600000
- 561731 words of font info for 78 fonts, out of 8000000 for 9000
+ 18311 strings out of 476704
+ 345324 string characters out of 5799637
+ 1936406 words of memory out of 5000000
+ 40175 multiletter control sequences out of 15000+600000
+ 561723 words of font info for 77 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 90i,6n,121p,371b,493s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,6n,121p,371b,355s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on Informe-Contexto-Demográfico.pdf (8 pages).
