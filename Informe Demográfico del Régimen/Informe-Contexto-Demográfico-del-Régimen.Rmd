@@ -219,7 +219,7 @@ Graf1 <- rbind(
       expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C.")
   )
 
-ggsave("Graf1.svg", plot = Graf1)
+ggsave("Graf1.svg", plot = Graf1, width = 10, height = 6, units = "in")
 ```
 
 
@@ -302,7 +302,7 @@ Graf2 <- ggplot(piramide2, aes(x = Edad_intervalo, y = ifelse(Sexo == "M", -Coun
                     labels = c( "Mujeres","Hombres"))+
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C."))
 
-ggsave("Graf2.svg", plot = Graf2)
+ggsave("Graf2.svg", plot = Graf2, width = 10, height = 6, units = "in")
 ```
 
 Al 31 de diciembre de 2023 hay un total de 3.758 de cotizantes activos del fondo de pensiones, cuya distribución por sexo es la siguiente: 1.907 mujeres (50,75%) y 1.851 hombres (49,25%). 
@@ -359,7 +359,7 @@ Graf3 <- ggplot(datos_long, aes(x = Antiguedad_Interva, y = Cantidad, fill = Sex
         legend.title = element_blank())+
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C."))
 
-ggsave("Graf3.svg", plot = Graf3)
+ggsave("Graf3.svg", plot = Graf3, width = 10, height = 6, units = "in")
 ```
 
 
@@ -425,7 +425,7 @@ Graf4 <- ggplot(piramide, aes(x = Edad_intervalo, y = ifelse(SEXO == "M", -Count
                     labels = c( "Mujeres","Hombres"))+
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C."))
 
-ggsave("Graf4.svg", plot = Graf4)
+ggsave("Graf4.svg", plot = Graf4, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[9]{r}{0.5\textwidth}
@@ -463,7 +463,7 @@ Graf5 <- ggplot(datos_long2, aes(x = COD_TIPO_PENSION, y = Cantidad, fill = Sexo
         legend.title = element_blank())+
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C."))
 
-ggsave("Graf5.svg", plot = Graf5)
+ggsave("Graf5.svg", plot = Graf5, width = 10, height = 6, units = "in")
 ```
 
 En cuanto al tipo de pensión, se observa que los pensionados por vejez son 236 (57.42%), seguidos por los de sucesión con 110 (26.76%) y, finalmente, los de invalidez con 65 (15.82%). Además, tanto en hombres como en mujeres, se mantiene esta distribución según lo refleja el gráfico 5. En la población masculina, destacan los pensionados por vejez, con 123 casos, lo que representa el 58.12% de los pensionados por vejez, así como los de sucesión, con 59 casos, lo que equivale al 54.64% de los pensionados por sucesión. La situación es diferente en el caso de las mujeres, donde destacan los pensionados por invalidez, con 34 casos, que constituyen el 52.30% de los pensionados por invalidez.
@@ -565,7 +565,7 @@ Graf6 <- ggplot(datos_long, aes(x = Antiguedad_intervalo, y = Cantidad, fill = S
         legend.title = element_blank())+
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C."))
 
-ggsave("Graf6.svg", plot = Graf6)
+ggsave("Graf6.svg", plot = Graf6, width = 10, height = 6, units = "in")
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE,fig.width=6, fig.height=4}
@@ -626,7 +626,7 @@ Graf7 <- ggplot(conteo_anual, aes(x = Año)) +
         plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C."))
 
-ggsave("Graf7.svg", plot = Graf7)
+ggsave("Graf7.svg", plot = Graf7, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[12]{r}{0.5\textwidth}
@@ -681,7 +681,7 @@ Graf8 <-  ggplot(conteo, aes(x = as.numeric(año), y = cantidad_personas, color 
         legend.title = element_blank()) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C."))
 
-ggsave("Graf8.svg", plot = Graf8)
+ggsave("Graf8.svg", plot = Graf8, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[15]{r}{0.5\textwidth}

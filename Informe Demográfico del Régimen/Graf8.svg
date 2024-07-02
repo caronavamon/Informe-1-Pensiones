@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='468.00pt' height='324.00pt' viewBox='0 0 468.00 324.00'>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='720.00pt' height='432.00pt' viewBox='0 0 720.00 432.00'>
 <defs>
   <style type='text/css'><![CDATA[
     .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
@@ -16,58 +16,58 @@
 </defs>
 <rect width='100%' height='100%' style='stroke: none; fill: none;'/>
 <defs>
-  <clipPath id='cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA='>
-    <rect x='0.00' y='0.00' width='468.00' height='324.00' />
+  <clipPath id='cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA='>
+    <rect x='0.00' y='0.00' width='720.00' height='432.00' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA=)'>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
 </g>
 <defs>
-  <clipPath id='cpNDMuMjV8NDYxLjAzfDQ2Ljg2fDIzNy42MQ=='>
-    <rect x='43.25' y='46.86' width='417.77' height='190.74' />
+  <clipPath id='cpNDMuMjV8NzEzLjAzfDQ2Ljg2fDM0NS42MQ=='>
+    <rect x='43.25' y='46.86' width='669.77' height='298.74' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpNDMuMjV8NDYxLjAzfDQ2Ljg2fDIzNy42MQ==)'>
-<polyline points='62.24,228.94 79.51,228.94 96.77,228.94 114.03,225.25 148.56,228.94 165.82,225.25 183.09,228.94 200.35,221.56 234.88,225.25 252.14,225.25 269.40,221.56 286.67,221.56 321.19,210.49 338.46,217.87 355.72,217.87 372.98,195.73 390.25,210.49 407.51,210.49 424.77,210.49 442.04,228.94 ' style='stroke-width: 1.07; stroke: #2F4F4F; stroke-linecap: butt;' />
-<polyline points='114.03,228.94 165.82,225.25 183.09,221.56 200.35,217.87 217.61,225.25 234.88,228.94 252.14,221.56 269.40,206.80 286.67,210.49 303.93,221.56 321.19,221.56 338.46,225.25 355.72,199.42 372.98,177.29 390.25,195.73 407.51,158.84 424.77,166.22 442.04,228.94 ' style='stroke-width: 1.07; stroke: #7AC5CD; stroke-linecap: butt;' />
-<polyline points='217.61,228.94 234.88,225.25 252.14,228.94 269.40,210.49 286.67,225.25 303.93,206.80 321.19,192.04 338.46,184.66 355.72,188.35 372.98,147.77 390.25,107.19 407.51,62.91 424.77,55.53 442.04,121.94 ' style='stroke-width: 1.07; stroke: #BCEE68; stroke-linecap: butt;' />
+<g clip-path='url(#cpNDMuMjV8NzEzLjAzfDQ2Ljg2fDM0NS42MQ==)'>
+<polyline points='73.70,332.03 101.37,332.03 129.05,332.03 156.73,326.25 212.08,332.03 239.76,326.25 267.43,332.03 295.11,320.47 350.46,326.25 378.14,326.25 405.82,320.47 433.49,320.47 488.85,303.14 516.52,314.69 544.20,314.69 571.88,280.02 599.55,303.14 627.23,303.14 654.91,303.14 682.58,332.03 ' style='stroke-width: 1.07; stroke: #2F4F4F; stroke-linecap: butt;' />
+<polyline points='156.73,332.03 239.76,326.25 267.43,320.47 295.11,314.69 322.79,326.25 350.46,332.03 378.14,320.47 405.82,297.36 433.49,303.14 461.17,320.47 488.85,320.47 516.52,326.25 544.20,285.80 571.88,251.13 599.55,280.02 627.23,222.24 654.91,233.80 682.58,332.03 ' style='stroke-width: 1.07; stroke: #7AC5CD; stroke-linecap: butt;' />
+<polyline points='322.79,332.03 350.46,326.25 378.14,332.03 405.82,303.14 433.49,326.25 461.17,297.36 488.85,274.24 516.52,262.69 544.20,268.47 571.88,204.90 599.55,141.34 627.23,72.00 654.91,60.44 682.58,164.45 ' style='stroke-width: 1.07; stroke: #BCEE68; stroke-linecap: butt;' />
 </g>
-<g clip-path='url(#cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA=)'>
-<polyline points='43.25,237.61 43.25,46.86 ' style='stroke-width: 1.07; stroke-linecap: square;' />
-<text x='36.78' y='236.93' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='36.78' y='200.03' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>10</text>
-<text x='36.78' y='163.14' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>20</text>
-<text x='36.78' y='126.24' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>30</text>
-<text x='36.78' y='89.35' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>40</text>
-<text x='36.78' y='52.45' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>50</text>
-<polyline points='39.77,232.63 43.25,232.63 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='39.77,195.73 43.25,195.73 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='39.77,158.84 43.25,158.84 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='39.77,121.94 43.25,121.94 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='39.77,85.05 43.25,85.05 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='39.77,48.15 43.25,48.15 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='43.25,237.61 461.03,237.61 ' style='stroke-width: 1.07; stroke-linecap: square;' />
-<polyline points='44.98,241.09 44.98,237.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='131.30,241.09 131.30,237.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='217.61,241.09 217.61,237.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='303.93,241.09 303.93,237.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='390.25,241.09 390.25,237.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<text x='44.98' y='252.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2000</text>
-<text x='131.30' y='252.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2005</text>
-<text x='217.61' y='252.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2010</text>
-<text x='303.93' y='252.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2015</text>
-<text x='390.25' y='252.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2020</text>
-<text x='252.14' y='268.71' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='224.88px' lengthAdjust='spacingAndGlyphs'> Año de inicio de pago de la pensión</text>
-<text transform='translate(17.00,142.24) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='220.20px' lengthAdjust='spacingAndGlyphs'>Cantidad de personas pensionadas</text>
-<line x1='44.79' y1='293.27' x2='57.06' y2='293.27' style='stroke-width: 1.07; stroke: #2F4F4F; stroke-linecap: butt;' />
-<line x1='121.45' y1='293.27' x2='133.72' y2='293.27' style='stroke-width: 1.07; stroke: #7AC5CD; stroke-linecap: butt;' />
-<line x1='200.11' y1='293.27' x2='212.39' y2='293.27' style='stroke-width: 1.07; stroke: #BCEE68; stroke-linecap: butt;' />
-<text x='65.57' y='297.57' style='font-size: 12.00px; font-family: "Arial";' textLength='47.37px' lengthAdjust='spacingAndGlyphs'>Invalidez</text>
-<text x='142.23' y='297.57' style='font-size: 12.00px; font-family: "Arial";' textLength='49.38px' lengthAdjust='spacingAndGlyphs'>Sucesión</text>
-<text x='220.90' y='297.57' style='font-size: 12.00px; font-family: "Arial";' textLength='29.36px' lengthAdjust='spacingAndGlyphs'>Vejez</text>
-<text x='252.14' y='37.37' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='57.39px' lengthAdjust='spacingAndGlyphs'>2001-2023</text>
-<text x='252.14' y='18.43' text-anchor='middle' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='435.57px' lengthAdjust='spacingAndGlyphs'> Gráfico 8: Entradas de pensionados por año del régimen</text>
-<text x='43.25' y='313.75' style='font-size: 8.00px; font-weight: bold; font-family: "Arial";' textLength='31.12px' lengthAdjust='spacingAndGlyphs'>Fuente: </text>
-<text x='74.37' y='313.75' style='font-size: 8.00px; font-family: "Arial";' textLength='144.57px' lengthAdjust='spacingAndGlyphs'>Elaborado a partir de datos del Fondo C.</text>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
+<polyline points='43.25,345.61 43.25,46.86 ' style='stroke-width: 1.07; stroke-linecap: square;' />
+<text x='36.78' y='342.11' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='36.78' y='284.32' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>10</text>
+<text x='36.78' y='226.54' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>20</text>
+<text x='36.78' y='168.75' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>30</text>
+<text x='36.78' y='110.97' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>40</text>
+<text x='36.78' y='53.18' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>50</text>
+<polyline points='39.77,337.81 43.25,337.81 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='39.77,280.02 43.25,280.02 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='39.77,222.24 43.25,222.24 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='39.77,164.45 43.25,164.45 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='39.77,106.67 43.25,106.67 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='39.77,48.89 43.25,48.89 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='43.25,345.61 713.03,345.61 ' style='stroke-width: 1.07; stroke-linecap: square;' />
+<polyline points='46.02,349.09 46.02,345.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='184.40,349.09 184.40,345.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='322.79,349.09 322.79,345.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='461.17,349.09 461.17,345.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='599.55,349.09 599.55,345.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<text x='46.02' y='360.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2000</text>
+<text x='184.40' y='360.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2005</text>
+<text x='322.79' y='360.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2010</text>
+<text x='461.17' y='360.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2015</text>
+<text x='599.55' y='360.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2020</text>
+<text x='378.14' y='376.71' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='224.88px' lengthAdjust='spacingAndGlyphs'> Año de inicio de pago de la pensión</text>
+<text transform='translate(17.00,196.24) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='220.20px' lengthAdjust='spacingAndGlyphs'>Cantidad de personas pensionadas</text>
+<line x1='44.79' y1='401.27' x2='57.06' y2='401.27' style='stroke-width: 1.07; stroke: #2F4F4F; stroke-linecap: butt;' />
+<line x1='121.45' y1='401.27' x2='133.72' y2='401.27' style='stroke-width: 1.07; stroke: #7AC5CD; stroke-linecap: butt;' />
+<line x1='200.11' y1='401.27' x2='212.39' y2='401.27' style='stroke-width: 1.07; stroke: #BCEE68; stroke-linecap: butt;' />
+<text x='65.57' y='405.57' style='font-size: 12.00px; font-family: "Arial";' textLength='47.37px' lengthAdjust='spacingAndGlyphs'>Invalidez</text>
+<text x='142.23' y='405.57' style='font-size: 12.00px; font-family: "Arial";' textLength='49.38px' lengthAdjust='spacingAndGlyphs'>Sucesión</text>
+<text x='220.90' y='405.57' style='font-size: 12.00px; font-family: "Arial";' textLength='29.36px' lengthAdjust='spacingAndGlyphs'>Vejez</text>
+<text x='378.14' y='37.37' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='57.39px' lengthAdjust='spacingAndGlyphs'>2001-2023</text>
+<text x='378.14' y='18.43' text-anchor='middle' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='435.57px' lengthAdjust='spacingAndGlyphs'> Gráfico 8: Entradas de pensionados por año del régimen</text>
+<text x='43.25' y='421.75' style='font-size: 8.00px; font-weight: bold; font-family: "Arial";' textLength='31.12px' lengthAdjust='spacingAndGlyphs'>Fuente: </text>
+<text x='74.37' y='421.75' style='font-size: 8.00px; font-family: "Arial";' textLength='144.57px' lengthAdjust='spacingAndGlyphs'>Elaborado a partir de datos del Fondo C.</text>
 </g>
 </svg>

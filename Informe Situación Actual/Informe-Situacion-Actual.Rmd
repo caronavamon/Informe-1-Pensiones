@@ -47,6 +47,7 @@ library(gridExtra)
 library(lubridate)
 library(tidyverse)
 library(readxl)
+library(cowplot)
 ```
 
 \newpage
@@ -108,7 +109,7 @@ Activo <- Financiero %>%
   labs(title = "Gráfico 1: Comportamiendo de las Reservas",
        x = "Año",
        y = "Millones de colones") +
-  theme_minimal() +
+  theme_cowplot() +
    theme(legend.position = "none",
           plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
@@ -123,7 +124,7 @@ Activo <- Financiero %>%
   )
 
 Activo
-
+ggsave("Activo.svg", plot = Activo, width = 10, height = 6, units = "in")
 ```
 
 \newpage
@@ -260,13 +261,15 @@ graf_sector <- ggplot(inversiones_sector, aes(x = RCC, y = Sector)) +
        subtitle = "por Sector",
        x = "RCC (%)",
        y = "Sector") +
-    theme_minimal()+
+    theme_cowplot()+
   theme(legend.position = "bottom",
         plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
         plot.caption = element_text(hjust = 0, color = "black", size = 8),
         legend.title = element_blank()) +
   labs(caption = expression(bold("Fuente: ") *"Elaborado a partir de datos del Fondo C."))
+
+ggsave("graf_sector.svg", plot = graf_sector, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[15]{r}{0.5\textwidth}
@@ -312,13 +315,15 @@ graf_plazo <- ggplot(inversiones_plazo, aes(x = Plazo, y = RCC)) +
       subtitle = "por Plazo de Vencimiento",
        x = "Plazo de vencimiento",
        y = "RCC (%)") +
-  theme_minimal() +
+  theme_cowplot() +
   theme(legend.position = "bottom",
         plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
         plot.caption = element_text(hjust = 0, color = "black", size = 8),
         legend.title = element_blank()) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C."))
+
+ggsave("graf_plazo.svg", plot = graf_plazo, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[7]{l}{0.5\textwidth}
@@ -344,7 +349,7 @@ graf_moneda <- ggplot(inversiones_moneda, aes(x = Moneda, y = RCC)) +
        subtitle = "por Moneda",
        x = "Moneda",
        y = "RCC (%)") +
-  theme_minimal() +
+  theme_cowplot() +
   theme(legend.position = "bottom",
         plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
@@ -352,6 +357,7 @@ graf_moneda <- ggplot(inversiones_moneda, aes(x = Moneda, y = RCC)) +
         legend.title = element_blank()) +
   labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C."))
 
+ggsave("graf_moneda.svg", plot = graf_moneda, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[7]{l}{0.5\textwidth}

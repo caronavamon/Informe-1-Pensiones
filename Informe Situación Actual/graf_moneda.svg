@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='720.00pt' height='432.00pt' viewBox='0 0 720.00 432.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: none;'/>
+<defs>
+  <clipPath id='cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA='>
+    <rect x='0.00' y='0.00' width='720.00' height='432.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
+</g>
+<defs>
+  <clipPath id='cpNDMuMjV8NzEzLjAzfDQ2Ljg2fDM3NC45MA=='>
+    <rect x='43.25' y='46.86' width='669.77' height='328.03' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpNDMuMjV8NzEzLjAzfDQ2Ljg2fDM3NC45MA==)'>
+<rect x='116.51' y='61.77' width='104.65' height='298.21' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BCEE68;' />
+<rect x='325.81' y='270.16' width='104.65' height='89.83' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BCEE68;' />
+<rect x='535.12' y='261.28' width='104.65' height='98.71' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BCEE68;' />
+<text x='168.84' y='213.94' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='24.19px' lengthAdjust='spacingAndGlyphs'>57.1%</text>
+<text x='378.14' y='318.13' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='24.19px' lengthAdjust='spacingAndGlyphs'>17.2%</text>
+<text x='587.44' y='313.69' text-anchor='middle' style='font-size: 8.54px; font-family: "Arial";' textLength='24.19px' lengthAdjust='spacingAndGlyphs'>18.9%</text>
+</g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
+<polyline points='43.25,374.90 43.25,46.86 ' style='stroke-width: 1.07; stroke-linecap: square;' />
+<text x='36.78' y='364.29' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='36.78' y='259.83' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>20</text>
+<text x='36.78' y='155.38' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>40</text>
+<polyline points='39.77,359.99 43.25,359.99 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='39.77,255.53 43.25,255.53 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='39.77,151.08 43.25,151.08 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='43.25,374.90 713.03,374.90 ' style='stroke-width: 1.07; stroke-linecap: square;' />
+<polyline points='168.84,378.38 168.84,374.90 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='378.14,378.38 378.14,374.90 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='587.44,378.38 587.44,374.90 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<text x='168.84' y='389.97' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='44.04px' lengthAdjust='spacingAndGlyphs'>Colones</text>
+<text x='378.14' y='389.97' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='41.36px' lengthAdjust='spacingAndGlyphs'>Dólares</text>
+<text x='587.44' y='389.97' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='125.42px' lengthAdjust='spacingAndGlyphs'>Unidades de Desarrollo</text>
+<text x='378.14' y='406.00' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='50.57px' lengthAdjust='spacingAndGlyphs'>Moneda</text>
+<text transform='translate(17.00,210.88) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='55.98px' lengthAdjust='spacingAndGlyphs'>RCC (%)</text>
+<text x='378.14' y='37.37' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='64.05px' lengthAdjust='spacingAndGlyphs'>por Moneda</text>
+<text x='378.14' y='18.43' text-anchor='middle' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='366.29px' lengthAdjust='spacingAndGlyphs'>Gráfico 4: Composición de la Cartera de Valores</text>
+<text x='43.25' y='421.75' style='font-size: 8.00px; font-weight: bold; font-family: "Arial";' textLength='31.12px' lengthAdjust='spacingAndGlyphs'>Fuente: </text>
+<text x='74.37' y='421.75' style='font-size: 8.00px; font-family: "Arial";' textLength='144.57px' lengthAdjust='spacingAndGlyphs'>Elaborado a partir de datos del Fondo C.</text>
+</g>
+</svg>

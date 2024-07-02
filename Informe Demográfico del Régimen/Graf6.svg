@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='468.00pt' height='324.00pt' viewBox='0 0 468.00 324.00'>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='720.00pt' height='432.00pt' viewBox='0 0 720.00 432.00'>
 <defs>
   <style type='text/css'><![CDATA[
     .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
@@ -16,60 +16,60 @@
 </defs>
 <rect width='100%' height='100%' style='stroke: none; fill: none;'/>
 <defs>
-  <clipPath id='cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA='>
-    <rect x='0.00' y='0.00' width='468.00' height='324.00' />
+  <clipPath id='cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA='>
+    <rect x='0.00' y='0.00' width='720.00' height='432.00' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA=)'>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
 </g>
 <defs>
-  <clipPath id='cpNDkuOTN8NDYxLjAzfDY0LjE0fDIzNy42MQ=='>
-    <rect x='49.93' y='64.14' width='411.10' height='173.46' />
+  <clipPath id='cpNDkuOTN8NzEzLjAzfDY0LjE0fDM0NS42MQ=='>
+    <rect x='49.93' y='64.14' width='663.10' height='281.46' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpNDkuOTN8NDYxLjAzfDY0LjE0fDIzNy42MQ==)'>
-<rect x='61.79' y='220.89' width='35.58' height='8.83' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD;' />
-<rect x='97.36' y='225.94' width='35.58' height='3.78' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F;' />
-<rect x='140.84' y='85.91' width='35.58' height='143.82' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD;' />
-<rect x='176.42' y='72.03' width='35.58' height='157.69' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F;' />
-<rect x='219.90' y='162.86' width='35.58' height='66.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD;' />
-<rect x='255.48' y='165.38' width='35.58' height='64.34' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F;' />
-<rect x='298.96' y='191.88' width='35.58' height='37.85' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD;' />
-<rect x='334.53' y='200.71' width='35.58' height='29.02' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F;' />
-<rect x='378.02' y='224.68' width='35.58' height='5.05' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD;' />
-<rect x='413.59' y='228.46' width='35.58' height='1.26' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F;' />
+<g clip-path='url(#cpNDkuOTN8NzEzLjAzfDY0LjE0fDM0NS42MQ==)'>
+<rect x='69.05' y='318.48' width='57.38' height='14.33' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD;' />
+<rect x='126.44' y='326.67' width='57.38' height='6.14' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F;' />
+<rect x='196.57' y='99.45' width='57.38' height='233.36' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD;' />
+<rect x='253.96' y='76.94' width='57.38' height='255.88' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F;' />
+<rect x='324.09' y='224.32' width='57.38' height='108.49' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD;' />
+<rect x='381.48' y='228.42' width='57.38' height='104.40' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F;' />
+<rect x='451.61' y='271.40' width='57.38' height='61.41' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD;' />
+<rect x='509.00' y='285.73' width='57.38' height='47.08' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F;' />
+<rect x='579.13' y='324.63' width='57.38' height='8.19' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD;' />
+<rect x='636.51' y='330.77' width='57.38' height='2.05' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F;' />
 </g>
-<g clip-path='url(#cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA=)'>
-<polyline points='49.93,237.61 49.93,64.14 ' style='stroke-width: 1.07; stroke-linecap: square;' />
-<text x='43.45' y='234.02' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='43.45' y='183.56' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>40</text>
-<text x='43.45' y='133.10' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>80</text>
-<text x='43.45' y='82.63' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>120</text>
-<polyline points='46.44,229.72 49.93,229.72 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='46.44,179.26 49.93,179.26 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='46.44,128.80 49.93,128.80 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='46.44,78.34 49.93,78.34 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='49.93,237.61 461.03,237.61 ' style='stroke-width: 1.07; stroke-linecap: square;' />
-<polyline points='97.36,241.09 97.36,237.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='176.42,241.09 176.42,237.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='255.48,241.09 255.48,237.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='334.53,241.09 334.53,237.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='413.59,241.09 413.59,237.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<text x='97.36' y='252.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='13.69px' lengthAdjust='spacingAndGlyphs'>&lt;1</text>
-<text x='176.42' y='252.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='17.34px' lengthAdjust='spacingAndGlyphs'>1-5</text>
-<text x='255.48' y='252.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='24.02px' lengthAdjust='spacingAndGlyphs'>5-10</text>
-<text x='334.53' y='252.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='30.69px' lengthAdjust='spacingAndGlyphs'>10-20</text>
-<text x='413.59' y='252.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='20.36px' lengthAdjust='spacingAndGlyphs'>20&lt;</text>
-<text x='255.48' y='268.71' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='114.37px' lengthAdjust='spacingAndGlyphs'>Antigüedad (años)</text>
-<text transform='translate(17.00,150.88) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='56.02px' lengthAdjust='spacingAndGlyphs'>Cantidad</text>
-<rect x='50.64' y='286.31' width='13.93' height='13.93' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD;' />
-<rect x='122.61' y='286.31' width='13.93' height='13.93' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F;' />
-<text x='72.24' y='297.57' style='font-size: 12.00px; font-family: "Arial";' textLength='42.69px' lengthAdjust='spacingAndGlyphs'>Mujeres</text>
-<text x='144.22' y='297.57' style='font-size: 12.00px; font-family: "Arial";' textLength='48.69px' lengthAdjust='spacingAndGlyphs'>Hombres</text>
-<text x='255.48' y='54.65' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2023</text>
-<text x='255.48' y='18.43' text-anchor='middle' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='217.78px' lengthAdjust='spacingAndGlyphs'>Gráfico 6: Distribución de la </text>
-<text x='255.48' y='35.71' text-anchor='middle' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='218.94px' lengthAdjust='spacingAndGlyphs'> Antigüedad de Pensionados</text>
-<text x='49.93' y='313.75' style='font-size: 8.00px; font-weight: bold; font-family: "Arial";' textLength='31.12px' lengthAdjust='spacingAndGlyphs'>Fuente: </text>
-<text x='81.05' y='313.75' style='font-size: 8.00px; font-family: "Arial";' textLength='144.57px' lengthAdjust='spacingAndGlyphs'>Elaborado a partir de datos del Fondo C.</text>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
+<polyline points='49.93,345.61 49.93,64.14 ' style='stroke-width: 1.07; stroke-linecap: square;' />
+<text x='43.45' y='337.11' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='43.45' y='255.23' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>40</text>
+<text x='43.45' y='173.35' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>80</text>
+<text x='43.45' y='91.47' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>120</text>
+<polyline points='46.44,332.81 49.93,332.81 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='46.44,250.93 49.93,250.93 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='46.44,169.05 49.93,169.05 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='46.44,87.17 49.93,87.17 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='49.93,345.61 713.03,345.61 ' style='stroke-width: 1.07; stroke-linecap: square;' />
+<polyline points='126.44,349.09 126.44,345.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='253.96,349.09 253.96,345.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='381.48,349.09 381.48,345.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='509.00,349.09 509.00,345.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='636.51,349.09 636.51,345.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<text x='126.44' y='360.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='13.69px' lengthAdjust='spacingAndGlyphs'>&lt;1</text>
+<text x='253.96' y='360.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='17.34px' lengthAdjust='spacingAndGlyphs'>1-5</text>
+<text x='381.48' y='360.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='24.02px' lengthAdjust='spacingAndGlyphs'>5-10</text>
+<text x='509.00' y='360.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='30.69px' lengthAdjust='spacingAndGlyphs'>10-20</text>
+<text x='636.51' y='360.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='20.36px' lengthAdjust='spacingAndGlyphs'>20&lt;</text>
+<text x='381.48' y='376.71' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='114.37px' lengthAdjust='spacingAndGlyphs'>Antigüedad (años)</text>
+<text transform='translate(17.00,204.88) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='56.02px' lengthAdjust='spacingAndGlyphs'>Cantidad</text>
+<rect x='50.64' y='394.31' width='13.93' height='13.93' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7AC5CD;' />
+<rect x='122.61' y='394.31' width='13.93' height='13.93' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #2F4F4F;' />
+<text x='72.24' y='405.57' style='font-size: 12.00px; font-family: "Arial";' textLength='42.69px' lengthAdjust='spacingAndGlyphs'>Mujeres</text>
+<text x='144.22' y='405.57' style='font-size: 12.00px; font-family: "Arial";' textLength='48.69px' lengthAdjust='spacingAndGlyphs'>Hombres</text>
+<text x='381.48' y='54.65' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2023</text>
+<text x='381.48' y='18.43' text-anchor='middle' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='217.78px' lengthAdjust='spacingAndGlyphs'>Gráfico 6: Distribución de la </text>
+<text x='381.48' y='35.71' text-anchor='middle' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='218.94px' lengthAdjust='spacingAndGlyphs'> Antigüedad de Pensionados</text>
+<text x='49.93' y='421.75' style='font-size: 8.00px; font-weight: bold; font-family: "Arial";' textLength='31.12px' lengthAdjust='spacingAndGlyphs'>Fuente: </text>
+<text x='81.05' y='421.75' style='font-size: 8.00px; font-family: "Arial";' textLength='144.57px' lengthAdjust='spacingAndGlyphs'>Elaborado a partir de datos del Fondo C.</text>
 </g>
 </svg>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='468.00pt' height='324.00pt' viewBox='0 0 468.00 324.00'>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='720.00pt' height='432.00pt' viewBox='0 0 720.00 432.00'>
 <defs>
   <style type='text/css'><![CDATA[
     .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
@@ -16,52 +16,52 @@
 </defs>
 <rect width='100%' height='100%' style='stroke: none; fill: none;'/>
 <defs>
-  <clipPath id='cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA='>
-    <rect x='0.00' y='0.00' width='468.00' height='324.00' />
+  <clipPath id='cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA='>
+    <rect x='0.00' y='0.00' width='720.00' height='432.00' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA=)'>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
 </g>
 <defs>
-  <clipPath id='cpODMuMzB8NDYxLjAzfDQ2Ljg2fDI2Ni45MA=='>
-    <rect x='83.30' y='46.86' width='377.73' height='220.03' />
+  <clipPath id='cpODMuMzB8NzEzLjAzfDQ2Ljg2fDM3NC45MA=='>
+    <rect x='83.30' y='46.86' width='629.73' height='328.03' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpODMuMzB8NDYxLjAzfDQ2Ljg2fDI2Ni45MA==)'>
-<polyline points='100.47,256.90 149.52,236.78 198.58,204.29 247.63,169.47 296.69,175.10 345.75,122.53 394.80,90.44 443.86,56.86 ' style='stroke-width: 1.07; stroke: #7AC5CD; stroke-linecap: butt;' />
-<circle cx='100.47' cy='256.90' r='1.95' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
-<circle cx='149.52' cy='236.78' r='1.95' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
-<circle cx='198.58' cy='204.29' r='1.95' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
-<circle cx='247.63' cy='169.47' r='1.95' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
-<circle cx='296.69' cy='175.10' r='1.95' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
-<circle cx='345.75' cy='122.53' r='1.95' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
-<circle cx='394.80' cy='90.44' r='1.95' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
-<circle cx='443.86' cy='56.86' r='1.95' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
+<g clip-path='url(#cpODMuMzB8NzEzLjAzfDQ2Ljg2fDM3NC45MA==)'>
+<polyline points='111.92,359.99 193.71,330.00 275.49,281.56 357.27,229.64 439.05,238.04 520.84,159.66 602.62,111.83 684.40,61.77 ' style='stroke-width: 1.07; stroke: #7AC5CD; stroke-linecap: butt;' />
+<circle cx='111.92' cy='359.99' r='1.95' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
+<circle cx='193.71' cy='330.00' r='1.95' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
+<circle cx='275.49' cy='281.56' r='1.95' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
+<circle cx='357.27' cy='229.64' r='1.95' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
+<circle cx='439.05' cy='238.04' r='1.95' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
+<circle cx='520.84' cy='159.66' r='1.95' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
+<circle cx='602.62' cy='111.83' r='1.95' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
+<circle cx='684.40' cy='61.77' r='1.95' style='stroke-width: 0.71; stroke: #2F4F4F; fill: #2F4F4F;' />
 </g>
-<g clip-path='url(#cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA=)'>
-<polyline points='83.30,266.90 83.30,46.86 ' style='stroke-width: 1.07; stroke-linecap: square;' />
-<text x='76.82' y='220.32' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='46.72px' lengthAdjust='spacingAndGlyphs'>9750000</text>
-<text x='76.82' y='166.77' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='53.40px' lengthAdjust='spacingAndGlyphs'>10000000</text>
-<text x='76.82' y='113.22' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='53.40px' lengthAdjust='spacingAndGlyphs'>10250000</text>
-<text x='76.82' y='59.68' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='53.40px' lengthAdjust='spacingAndGlyphs'>10500000</text>
-<polyline points='79.81,216.02 83.30,216.02 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='79.81,162.47 83.30,162.47 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='79.81,108.93 83.30,108.93 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='79.81,55.38 83.30,55.38 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='83.30,266.90 461.03,266.90 ' style='stroke-width: 1.07; stroke-linecap: square;' />
-<polyline points='100.47,270.38 100.47,266.90 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='198.58,270.38 198.58,266.90 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='296.69,270.38 296.69,266.90 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='394.80,270.38 394.80,266.90 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<text x='100.47' y='281.97' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='37.37px' lengthAdjust='spacingAndGlyphs'>2022-1</text>
-<text x='198.58' y='281.97' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='37.37px' lengthAdjust='spacingAndGlyphs'>2022-3</text>
-<text x='296.69' y='281.97' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='37.37px' lengthAdjust='spacingAndGlyphs'>2023-1</text>
-<text x='394.80' y='281.97' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='37.37px' lengthAdjust='spacingAndGlyphs'>2023-3</text>
-<text x='272.16' y='298.00' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='58.56px' lengthAdjust='spacingAndGlyphs'>Trimestre</text>
-<text transform='translate(17.00,156.88) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='140.81px' lengthAdjust='spacingAndGlyphs'>Producto Interno Bruto</text>
-<text x='272.16' y='37.37' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='57.39px' lengthAdjust='spacingAndGlyphs'>2022-2023</text>
-<text x='272.16' y='18.43' text-anchor='middle' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='497.76px' lengthAdjust='spacingAndGlyphs'>Evolución del Producto Interno Bruto por trimestre en Costa Rica</text>
-<text x='83.30' y='313.75' style='font-size: 8.00px; font-weight: bold; font-family: "Arial";' textLength='31.12px' lengthAdjust='spacingAndGlyphs'>Fuente: </text>
-<text x='114.42' y='313.75' style='font-size: 8.00px; font-family: "Arial";' textLength='136.54px' lengthAdjust='spacingAndGlyphs'>Elaborado a partir de datos del BCCR.</text>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
+<polyline points='83.30,374.90 83.30,46.86 ' style='stroke-width: 1.07; stroke-linecap: square;' />
+<text x='76.82' y='303.34' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='46.72px' lengthAdjust='spacingAndGlyphs'>9750000</text>
+<text x='76.82' y='223.52' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='53.40px' lengthAdjust='spacingAndGlyphs'>10000000</text>
+<text x='76.82' y='143.69' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='53.40px' lengthAdjust='spacingAndGlyphs'>10250000</text>
+<text x='76.82' y='63.86' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='53.40px' lengthAdjust='spacingAndGlyphs'>10500000</text>
+<polyline points='79.81,299.05 83.30,299.05 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='79.81,219.22 83.30,219.22 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='79.81,139.39 83.30,139.39 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='79.81,59.56 83.30,59.56 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='83.30,374.90 713.03,374.90 ' style='stroke-width: 1.07; stroke-linecap: square;' />
+<polyline points='111.92,378.38 111.92,374.90 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='275.49,378.38 275.49,374.90 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='439.05,378.38 439.05,374.90 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='602.62,378.38 602.62,374.90 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<text x='111.92' y='389.97' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='37.37px' lengthAdjust='spacingAndGlyphs'>2022-1</text>
+<text x='275.49' y='389.97' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='37.37px' lengthAdjust='spacingAndGlyphs'>2022-3</text>
+<text x='439.05' y='389.97' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='37.37px' lengthAdjust='spacingAndGlyphs'>2023-1</text>
+<text x='602.62' y='389.97' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='37.37px' lengthAdjust='spacingAndGlyphs'>2023-3</text>
+<text x='398.16' y='406.00' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='58.56px' lengthAdjust='spacingAndGlyphs'>Trimestre</text>
+<text transform='translate(17.00,210.88) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='140.81px' lengthAdjust='spacingAndGlyphs'>Producto Interno Bruto</text>
+<text x='398.16' y='37.37' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='57.39px' lengthAdjust='spacingAndGlyphs'>2022-2023</text>
+<text x='398.16' y='18.43' text-anchor='middle' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='497.76px' lengthAdjust='spacingAndGlyphs'>Evolución del Producto Interno Bruto por trimestre en Costa Rica</text>
+<text x='83.30' y='421.75' style='font-size: 8.00px; font-weight: bold; font-family: "Arial";' textLength='31.12px' lengthAdjust='spacingAndGlyphs'>Fuente: </text>
+<text x='114.42' y='421.75' style='font-size: 8.00px; font-family: "Arial";' textLength='136.54px' lengthAdjust='spacingAndGlyphs'>Elaborado a partir de datos del BCCR.</text>
 </g>
 </svg>

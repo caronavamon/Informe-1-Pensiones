@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='468.00pt' height='324.00pt' viewBox='0 0 468.00 324.00'>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='720.00pt' height='432.00pt' viewBox='0 0 720.00 432.00'>
 <defs>
   <style type='text/css'><![CDATA[
     .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
@@ -16,47 +16,47 @@
 </defs>
 <rect width='100%' height='100%' style='stroke: none; fill: none;'/>
 <defs>
-  <clipPath id='cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA='>
-    <rect x='0.00' y='0.00' width='468.00' height='324.00' />
+  <clipPath id='cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA='>
+    <rect x='0.00' y='0.00' width='720.00' height='432.00' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA=)'>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
 </g>
 <defs>
-  <clipPath id='cpMzYuNTh8NDYxLjAzfDQ2Ljg2fDIzNy42MQ=='>
-    <rect x='36.58' y='46.86' width='424.45' height='190.74' />
+  <clipPath id='cpMzYuNTh8NzEzLjAzfDQ2Ljg2fDM0NS42MQ=='>
+    <rect x='36.58' y='46.86' width='676.45' height='298.74' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMzYuNTh8NDYxLjAzfDQ2Ljg2fDIzNy42MQ==)'>
-<polyline points='55.87,197.84 72.65,197.84 89.42,200.24 106.20,201.43 122.98,196.17 139.75,178.47 156.53,161.25 173.31,142.35 190.08,130.87 206.86,126.81 223.64,121.55 240.41,118.92 257.19,114.85 273.97,110.78 290.74,112.22 307.52,111.02 324.30,114.61 341.07,120.59 357.85,126.57 374.63,133.74 391.40,137.33 408.18,140.20 424.96,142.35 441.73,142.59 ' style='stroke-width: 2.13; stroke: #2F4F4F; stroke-linecap: butt;' />
-<polyline points='55.87,228.94 72.65,228.94 89.42,211.00 106.20,175.12 122.98,175.12 139.75,139.25 156.53,91.41 173.31,91.41 190.08,67.49 206.86,55.53 223.64,55.53 240.41,55.53 257.19,55.53 273.97,55.53 290.74,67.49 307.52,91.41 324.30,91.41 341.07,103.37 357.85,115.33 374.63,115.33 391.40,115.33 408.18,121.31 424.96,121.31 441.73,127.29 ' style='stroke-width: 2.13; stroke: #7AC5CD; stroke-linecap: butt;' />
+<g clip-path='url(#cpMzYuNTh8NzEzLjAzfDQ2Ljg2fDM0NS42MQ==)'>
+<polyline points='67.33,283.33 94.06,283.33 120.80,287.08 147.54,288.95 174.27,280.71 201.01,252.99 227.75,226.02 254.49,196.42 281.22,178.44 307.96,172.07 334.70,163.83 361.43,159.71 388.17,153.34 414.91,146.98 441.64,149.22 468.38,147.35 495.12,152.97 521.86,162.33 548.59,171.70 575.33,182.94 602.07,188.56 628.80,193.05 655.54,196.42 682.28,196.80 ' style='stroke-width: 2.13; stroke: #2F4F4F; stroke-linecap: butt;' />
+<polyline points='67.33,332.03 94.06,332.03 120.80,303.93 147.54,247.74 174.27,247.74 201.01,191.55 227.75,116.63 254.49,116.63 281.22,79.17 307.96,60.44 334.70,60.44 361.43,60.44 388.17,60.44 414.91,60.44 441.64,79.17 468.38,116.63 495.12,116.63 521.86,135.36 548.59,154.09 575.33,154.09 602.07,154.09 628.80,163.46 655.54,163.46 682.28,172.82 ' style='stroke-width: 2.13; stroke: #7AC5CD; stroke-linecap: butt;' />
 </g>
-<g clip-path='url(#cpMC4wMHw0NjguMDB8MC4wMHwzMjQuMDA=)'>
-<polyline points='36.58,237.61 36.58,46.86 ' style='stroke-width: 1.07; stroke-linecap: square;' />
-<text x='30.10' y='227.26' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>2</text>
-<text x='30.10' y='179.42' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>4</text>
-<text x='30.10' y='131.59' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>6</text>
-<text x='30.10' y='83.75' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>8</text>
-<polyline points='33.09,222.96 36.58,222.96 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='33.09,175.12 36.58,175.12 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='33.09,127.29 36.58,127.29 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='33.09,79.45 36.58,79.45 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='36.58,237.61 461.03,237.61 ' style='stroke-width: 1.07; stroke-linecap: square;' />
-<polyline points='55.87,241.09 55.87,237.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='240.41,241.09 240.41,237.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='441.73,241.09 441.73,237.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<text x='55.87' y='252.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2022</text>
-<text x='240.41' y='252.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='56.73px' lengthAdjust='spacingAndGlyphs'>2022/2023</text>
-<text x='441.73' y='252.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2023</text>
-<text x='248.80' y='268.71' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='31.90px' lengthAdjust='spacingAndGlyphs'>Años</text>
-<text transform='translate(17.00,142.24) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='55.21px' lengthAdjust='spacingAndGlyphs'>Tasa (%)</text>
-<line x1='38.11' y1='293.27' x2='50.39' y2='293.27' style='stroke-width: 2.13; stroke: #2F4F4F; stroke-linecap: butt;' />
-<line x1='171.48' y1='293.27' x2='183.75' y2='293.27' style='stroke-width: 2.13; stroke: #7AC5CD; stroke-linecap: butt;' />
-<text x='58.89' y='297.57' style='font-size: 12.00px; font-family: "Arial";' textLength='104.08px' lengthAdjust='spacingAndGlyphs'>Tasa Básica Pasiva</text>
-<text x='192.26' y='297.57' style='font-size: 12.00px; font-family: "Arial";' textLength='141.42px' lengthAdjust='spacingAndGlyphs'>Tasa de Política Monetaria</text>
-<text x='248.80' y='37.37' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='57.39px' lengthAdjust='spacingAndGlyphs'>2022-2023</text>
-<text x='248.80' y='18.43' text-anchor='middle' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='434.51px' lengthAdjust='spacingAndGlyphs'>Tasa Básica Pasiva y de Política Monetaria en Costa Rica</text>
-<text x='36.58' y='313.75' style='font-size: 8.00px; font-weight: bold; font-family: "Arial";' textLength='31.12px' lengthAdjust='spacingAndGlyphs'>Fuente: </text>
-<text x='67.70' y='313.75' style='font-size: 8.00px; font-family: "Arial";' textLength='136.54px' lengthAdjust='spacingAndGlyphs'>Elaborado a partir de datos del BCCR.</text>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)'>
+<polyline points='36.58,345.61 36.58,46.86 ' style='stroke-width: 1.07; stroke-linecap: square;' />
+<text x='30.10' y='326.96' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>2</text>
+<text x='30.10' y='252.04' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>4</text>
+<text x='30.10' y='177.12' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>6</text>
+<text x='30.10' y='102.20' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>8</text>
+<polyline points='33.09,322.66 36.58,322.66 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='33.09,247.74 36.58,247.74 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='33.09,172.82 36.58,172.82 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='33.09,97.90 36.58,97.90 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='36.58,345.61 713.03,345.61 ' style='stroke-width: 1.07; stroke-linecap: square;' />
+<polyline points='67.33,349.09 67.33,345.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='361.43,349.09 361.43,345.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='682.28,349.09 682.28,345.61 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<text x='67.33' y='360.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2022</text>
+<text x='361.43' y='360.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='56.73px' lengthAdjust='spacingAndGlyphs'>2022/2023</text>
+<text x='682.28' y='360.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>2023</text>
+<text x='374.80' y='376.71' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='31.90px' lengthAdjust='spacingAndGlyphs'>Años</text>
+<text transform='translate(17.00,196.24) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arial";' textLength='55.21px' lengthAdjust='spacingAndGlyphs'>Tasa (%)</text>
+<line x1='38.11' y1='401.27' x2='50.39' y2='401.27' style='stroke-width: 2.13; stroke: #2F4F4F; stroke-linecap: butt;' />
+<line x1='171.48' y1='401.27' x2='183.75' y2='401.27' style='stroke-width: 2.13; stroke: #7AC5CD; stroke-linecap: butt;' />
+<text x='58.89' y='405.57' style='font-size: 12.00px; font-family: "Arial";' textLength='104.08px' lengthAdjust='spacingAndGlyphs'>Tasa Básica Pasiva</text>
+<text x='192.26' y='405.57' style='font-size: 12.00px; font-family: "Arial";' textLength='141.42px' lengthAdjust='spacingAndGlyphs'>Tasa de Política Monetaria</text>
+<text x='374.80' y='37.37' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='57.39px' lengthAdjust='spacingAndGlyphs'>2022-2023</text>
+<text x='374.80' y='18.43' text-anchor='middle' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='434.51px' lengthAdjust='spacingAndGlyphs'>Tasa Básica Pasiva y de Política Monetaria en Costa Rica</text>
+<text x='36.58' y='421.75' style='font-size: 8.00px; font-weight: bold; font-family: "Arial";' textLength='31.12px' lengthAdjust='spacingAndGlyphs'>Fuente: </text>
+<text x='67.70' y='421.75' style='font-size: 8.00px; font-family: "Arial";' textLength='136.54px' lengthAdjust='spacingAndGlyphs'>Elaborado a partir de datos del BCCR.</text>
 </g>
 </svg>
