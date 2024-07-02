@@ -11,7 +11,7 @@ library(tidyverse)
 ```
 
 
-```{r}
+```{r correr} 
 nuevas_cotizaciones215 <- data.frame(
   edad = 116:215,
   Cotizaciones = rep(12, length(116:215))  # Repetir el valor 10
@@ -119,7 +119,7 @@ for (k in 1:length(Activos2023$ID)) {
 
 ```
 
-```{r}
+```{r correr}
 d <- 0.04
 cotizaciones_FUN <- function(dfActivos) {
   Cotizaciones_Activos <- dfActivos %>% 
@@ -147,15 +147,47 @@ cotizaciones_FUN <- function(dfActivos) {
   # sum(Cotizacion_Anuales*(1+d)^(1:100))
   retun <- list(
     "ANUAL" = Cotizacion_Anuales,
-    PVC = sum(Cotizacion_Anuales*(1+d)^(1:100))
+    PVC = sum(Cotizacion_Anuales*(1+ii)^(1:100))
   ) 
   return(retun)
 }
 Balances_Activos <- lapply(lista_pensionados_activos, cotizaciones_FUN)
 ```
 
+```{r optimizado}
+d <- 0.04
 
-```{r}
+tiempo <- proc.time()
+
+cotizaciones_FUN2 <- function(dfActivos) {
+  # Crear matriz inicial con la estructura deseada
+  Cotizaciones_Activos <- dfActivos %>% 
+    select(ID, cont) %>% 
+    mutate(Fila = match(ID, Activos2023$ID)) %>% 
+    mutate(matrix = list(matrix(0, nrow = 1, ncol = 100))) %>%
+    rowwise() %>%
+    mutate(matrix = list(replace(matrix[[1]], 1:cont, Activos2023[Fila, 3 + 1:cont]))) %>%
+    unnest(cols = matrix)
+  
+  # Calcular cotizaciones anuales
+  Cotizacion_Anuales <- colSums(Cotizaciones_Activos[, 4:103]) * 0.15
+  
+  # Calcular el retorno
+  retun <- list(
+    "ANUAL" = Cotizacion_Anuales,
+    PVC = sum(Cotizacion_Anuales * (1 + d)^(1:100))
+  )
+  
+  return(retun)
+}
+
+# Aplicar la función a cada elemento de lista_pensionados_activos
+Balances_Activos2 <- lapply(lista_pensionados_activos, cotizaciones_FUN)
+proc.time()- tiempo
+```
+
+
+```{r ignorar}
 Cotizaciones_Activos <- dfActivos %>% 
   dplyr::select(
     ID,
@@ -191,7 +223,7 @@ plot(Cotizacion_Anuales)
 #   activos[,4:363],
 #   mensual_proyectado[,4:103]
 # )
-
+#correr dura 20 min
 mensual_proyectado <- matrix(0,nrow = length(activos$ID),ncol = 1200)
 for (k in 1:length(activos$ID)) {
   Edad1 <- activos$Edad[k]
@@ -214,17 +246,66 @@ for (k in 1:length(activos$ID)) {
 
 
 ```{r}
-dfActivos <- lista_pensionados_activos[[5]]
 
-salarios_acumulados <- pensiones_proyectados*0
-for (k in 1:length(dfActivos$ID)) {
-  Edad1 <- dfActivos$Edad[k]
-  salarios_acumulados[k,1:(30+Edad1)] <- pensiones_proyectados[k,1:(30+Edad1)]*(1+d)^Edad1
+tiempo <- proc.time()
+kkH <- 0
+Salarios_proyectados_FUN <- function(dfActivos) {
+   salarios_acumulados <- dfActivos %>% 
+    dplyr::select(
+      ID,
+      cont
+    ) %>% 
+    dplyr::mutate(
+      Fila = match(
+        ID,
+        Activos2023$ID
+      )
+    ) %>% 
+    cbind(
+      matrix(numeric(0),nrow = length(dfActivos$ID),ncol = 360+100*12)
+    )
+  
+   for (k in 1:length(dfActivos$ID)) {
+     Edad1 <- dfActivos$cont[k]
+     salarios_acumulados[k,4:((30+Edad1)*12+3)] <- pensiones_proyectados[salarios_acumulados$Fila[k],1:((30+Edad1)*12)]*((1+d)^Edad1)
+   }
+   kkH <- kkH + 1
+   print(c(proc.time()-tiempo, kkH))
+   return(salarios_acumulados)
 }
 
-dim(mensual_proyectado)
+dfInactivos <- lista_pensionados_inactivos[[5]]
+temp <- Salarios_proyectados_FUN(dfInactivos)
+
+Mensual_Activos <- lapply(lista_pensionados_activos, Salarios_proyectados_FUN)
+Mensual_Inactivos <- lapply(lista_pensionados_inactivos, Salarios_proyectados_FUN)
 ```
 
 
 
+```{r}
+Salarios_proyectados_FUN2 <- function(dfActivos) {
+  
+  # Crear matriz inicial
+  n_cols <- 360 + 100 * 12
+  salarios_acumulados <- dfActivos %>% 
+    select(ID, cont) %>% 
+    mutate(Fila = match(ID, Activos2023$ID)) %>% 
+    mutate(matrix = list(matrix(numeric(0), nrow = 1, ncol = n_cols))) %>%
+    rowwise() %>%
+    mutate(matrix = list(replace(matrix[[1]], 4:((30 + cont) * 12 + 3), 
+                                 pensiones_proyectados[Fila, 1:((30 + cont) * 12)] * ((1 + d)^cont)))) %>%
+    unnest(cols = matrix)
+  
+  # Actualizar contador global
+  assign("kkH", kkH + 1, envir = .GlobalEnv)
+  
+  print(c(proc.time() - tiempo, kkH))
+  return(salarios_acumulados)
+}
+
+dfActivos <- lista_pensionados_activos[[5]]
+temp2 <- Salarios_proyectados_FUN2(dfActivos)
+
+```
 

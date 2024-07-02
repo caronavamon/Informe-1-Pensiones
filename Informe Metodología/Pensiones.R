@@ -1,5 +1,40 @@
 #---------- Cálculo Pensiones -----------------------
 
+#top_300_prom <- function(df) {
+#salario_referencia <- data.frame("ID"= character(), "Tipo" = character(),
+#"Salario" = numeric())
+
+#for(i in 1: nrow(df)) {
+
+# salarios <- df[i,]
+
+#top <- head(sort(salarios, decreasing = TRUE), 300)
+
+# salario_prom <- mean(top)
+
+#salario_referencia <- rbind(salario_referencia, 
+#data.frame(ID = ID,
+# Tipo = Tipo,
+# Salario = salario_prom))
+# }
+# return(salario_referencia)
+#}
+
+#salario_referencia_activos <- lapply(Mensual_Activos, top_300_prom)
+#salario_referencia_inactivos<- lapply(Mensual_Inactivos, top_300_prom)
+
+
+# Se filtran los datos para que no salgan los SR
+
+lista_pensionados_activos <- lapply(lista_pensionados_activos, function(df) {
+  filtered_df <- df[df$COD_TIPO_PENSION != "SR", ]
+})
+
+lista_pensionados_inactivos <- lapply(lista_pensionados_inactivos, function(df) {
+  filtered_df <- df[df$COD_TIPO_PENSION != "SR", ]
+})
+
+
 top_300_prom <- function(df) {
   salario_referencia <- data.frame("ID"= character(), "Tipo" = character(),
                                    "Salario" = numeric())
@@ -34,8 +69,8 @@ salario_referencia_activos <- lapply(lista_pensionados_activos, top_300_prom)
 salario_referencia_inactivos<- lapply(lista_pensionados_inactivos, top_300_prom)
 
 
-Salario_minimo <- 11953.64*12
 
+Salario_minimo <- 11953.64*12
 
 
 #----Pensión base-------------
@@ -459,6 +494,9 @@ monto_pension_pensionados <- lapply(lista_info_pensionados_pensionados,pension_p
 
 #------------- Valor presente-------------------------------------------
 
+ii <- (1+inflacion)*(1+ 0.07) - 1
+
+
 process_pension_data <- function(df){
   
   # Convertir datos a formato largo para facilitar el procesamiento
@@ -478,7 +516,7 @@ process_pension_data <- function(df){
   
   # Calcular el valor presente para cada monto al base_year
   grouped_df <- grouped_df %>%
-    mutate(PV = MontoTotal / (1 + inflacion)^(Año - 2024)) %>%
+    mutate(PV = MontoTotal / (1 + ii)^(Año - 2024)) %>%
     group_by(Tipo) %>%
     summarise(PV_Total = sum(PV, na.rm = TRUE), .groups = 'drop')
   
@@ -643,7 +681,7 @@ VP_contribuciones <- function(df){
   
   # Calcular el valor presente para cada monto al base_year
   grouped_df <- grouped_df %>%
-    mutate(PV = MontoTotal / (1 + inflacion)^(Año - 2024)) %>%
+    mutate(PV = MontoTotal / (1 + ii)^(Año - 2024)) %>%
     summarise(PV_Total = sum(PV, na.rm = TRUE), .groups = 'drop')
   
   return(grouped_df)
@@ -673,3 +711,57 @@ SEM_CP <- lapply(valor_presente_pension_pensionados, function(df) {
 #Promedio
 promedio_SEM_CP <- mean(unlist(SEM_CP))
 promedio_SEM_GA <- mean(unlist(SEM_GA))
+
+#----------------------Balance-------------------------------
+
+PVC <- map(Balances_Activos[1:100], "PVC")
+PVC_promedio <- mean(unlist(PVC))
+
+
+# ACTIVO
+
+#RESERVA PENSIONES EN CURSO DE PAGO
+Reserva_PPCP <- 40930473298.35
+## Contribuciones pensionados 
+contribuciones_pensionados <- promedio_VP_contribuciones_CP
+
+# ACTIVO GENERACIONES ACTUALES
+## Reserva beneficios en formación
+Reserva_BF <- 250858785692.97
+
+## VPA Cotizaciones
+VPA_cotizaciones <- PVC_promedio
+## Contribuciones pensionados
+contribuciones_pensionados_genActual <- promedio_VP_contribuciones_GA
+Total_VPA_ACTIVO_GA <- VPA_cotizaciones + contribuciones_pensionados_genActual 
+
+# PASIVO
+
+# VPA Curso de Pago
+## Vejez
+Vejez_CP <- promedio_VP_CP$Promedio_PV_Total[3]
+## Invalidez
+Invalidez_CP <- promedio_VP_CP$Promedio_PV_Total[1]
+## Muerte
+Muerte_CP <- promedio_VP_CP$Promedio_PV_Total[2]
+
+Total_VPA_CP <- Vejez_CP + Invalidez_CP + Muerte_CP
+
+
+#VPA Costo Gen Actuales
+## Vejez
+Vejez_GA <- promedio_VP_GenActual$Promedio_PV_Total[4]
+## Invalidez
+Invalidez_GA <- promedio_VP_GenActual$Promedio_PV_Total[1]
+## Muerte
+Muerte_GA <- promedio_VP_GenActual$Promedio_PV_Total[2] + promedio_VP_GenActual$Promedio_PV_Total[3]
+
+Total_VPA_GA <- Vejez_GA + Invalidez_GA + Muerte_GA
+
+# OTROS GASTOS
+## Costo Enfermedad y Maternidad (SEM)
+### Curso
+SEM_CursoPago <- promedio_SEM_CP
+### Gen Actuales
+SEM_GenActual <- promedio_SEM_GA
+Total_Otros_Gastos <- SEM_CursoPago + SEM_GenActual
