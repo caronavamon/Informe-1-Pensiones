@@ -277,7 +277,7 @@ proyeccion_demo <- function(edad, sexo, cont, cotizaciones, prob_muerte, prob_in
 # Proyección
 
 set.seed(2901)
-iteraciones <- 100
+iteraciones <- 500
 
 lista_resultados_df_M <-list()
 lista_resultados_df_H <-list()
@@ -537,7 +537,7 @@ proyeccion_demo_inactivos <- function(edad, sexo, cont, cotizaciones, prob_muert
 # Proyección
 
 set.seed(2901)
-iteraciones <- 100
+
 
 lista_resultados_inactivos_df_M <-list()
 lista_resultados_inactivos_df_H <-list()
@@ -659,10 +659,10 @@ for (i in 1:iteraciones) {
       
       tabla_pensionados <- rbind(tabla_pensionados, 
                                  data.frame(ID = ID,
-                                            Edad = edad, 
+                                            Edad = edad_c, 
                                             COD_TIPO_PENSION = "Sucesión",
                                             COD_PARENTESCO = "C",
-                                            SEXO = sexo, 
+                                            SEXO = sexo_c, 
                                             cont = cont, 
                                             Cotizaciones_principal = cotizaciones))
       
@@ -676,7 +676,7 @@ for (i in 1:iteraciones) {
                                               Edad = edad_h, 
                                               COD_TIPO_PENSION = "Sucesión",
                                               COD_PARENTESCO = "H",
-                                              SEXO = sexo, 
+                                              SEXO = sexo_h, 
                                               cont = cont,
                                               Cotizaciones_principal = cotizaciones))
       }
@@ -689,7 +689,7 @@ for (i in 1:iteraciones) {
       }
       tabla_pensionados <- rbind(tabla_pensionados, 
                                  data.frame(ID = ID,
-                                            Edad = edad_h, 
+                                            Edad = edad, 
                                             COD_TIPO_PENSION = "SR",
                                             COD_PARENTESCO = NA,
                                             SEXO = sexo, 
@@ -1015,7 +1015,6 @@ sumar_dfs <- function(dfs) {
 # Proyección
 
 set.seed(2901)
-iteraciones <- 100
 
 lista_resultados_pensionados_df_M <-list()
 lista_resultados_pensionados_df_H <-list()

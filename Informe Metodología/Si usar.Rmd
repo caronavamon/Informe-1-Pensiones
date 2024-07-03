@@ -12,6 +12,7 @@ library(tidyverse)
 
 
 ```{r correr} 
+# ya se corrió una vez, no volver a correr
 nuevas_cotizaciones215 <- data.frame(
   edad = 116:215,
   Cotizaciones = rep(12, length(116:215))  # Repetir el valor 10
@@ -151,7 +152,7 @@ cotizaciones_FUN <- function(dfActivos) {
   ) 
   return(retun)
 }
-Balances_Activos <- lapply(lista_pensionados_activos, cotizaciones_FUN)
+Balances_Activos2 <- lapply(lista_pensionados_activos, cotizaciones_FUN)
 ```
 
 ```{r optimizado}
@@ -223,7 +224,7 @@ plot(Cotizacion_Anuales)
 #   activos[,4:363],
 #   mensual_proyectado[,4:103]
 # )
-#correr dura 20 min
+#correr dura 20 min. No volver a correr
 mensual_proyectado <- matrix(0,nrow = length(activos$ID),ncol = 1200)
 for (k in 1:length(activos$ID)) {
   Edad1 <- activos$Edad[k]

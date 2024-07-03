@@ -714,7 +714,7 @@ promedio_SEM_GA <- mean(unlist(SEM_GA))
 
 #----------------------Balance-------------------------------
 
-PVC <- map(Balances_Activos[1:100], "PVC")
+PVC <- map(Balances_Activos2[1:100], "PVC")
 PVC_promedio <- mean(unlist(PVC))
 
 
@@ -765,3 +765,83 @@ SEM_CursoPago <- promedio_SEM_CP
 ### Gen Actuales
 SEM_GenActual <- promedio_SEM_GA
 Total_Otros_Gastos <- SEM_CursoPago + SEM_GenActual
+
+
+#--------------- Gráficos ------------------------------------------------
+#Graficos
+library(cowplot)
+library(plotly)
+# Activos vs pensionados 
+proyeccion_pensionados_combinado <- proyeccion_pensionados_H %>%
+  full_join(proyeccion_pensionados_M, by = "Año") %>%
+  mutate(
+    PI = PI.x + PI.y,
+    PS = PS.x + PS.y,
+    PJ = PJ.x + PJ.y,
+    SR = SR.x + SR.y
+  ) %>%
+  select(Año, PI, PS, PJ, SR)
+proyeccion_pensionados_combinado$Año <- 2023:2123
+
+proyeccion_pensionados_long <- tidyr::pivot_longer(proyeccion_pensionados_combinado, 
+                                                   cols = c(PI, PS, PJ), 
+                                                   names_to = "Variable", 
+                                                   values_to = "Valor")
+
+proyeccion_activos_combinado <- proyeccion_activos_H %>%
+  full_join(proyeccion_activos_M, by = "Año") %>%
+  mutate(
+    Activo = Activo.x + Activo.y,
+    PI = PI.x + PI.y,
+    PS = PS.x + PS.y,
+    PJ = PJ.x + PJ.y,
+    SR = SR.x + SR.y
+  ) %>%
+  select(Año, Activo, PI, PS, PJ, SR)
+proyeccion_activos_combinado$Año <- 2023:2123
+proyeccion_activos_long <- tidyr::pivot_longer(proyeccion_activos_combinado, 
+                                               cols = c(Activo), 
+                                               names_to = "Variable", 
+                                               values_to = "Valor")
+
+colores_especificos <- c(
+  "Activo" = "#2F4F4F",
+  "PI" = "cadetblue3",
+  "PJ" = "#BCEE68",
+  "PS" = "#4B7F52"
+)
+nombres_variables <- c(
+  "Activo" = "Activos",
+  "PI" = "Invalidez",
+  "PJ" = "Vejez",
+  "PS" = "Sucesión"
+)
+
+graf_proyeccion_demo <- ggplot() +
+  geom_line(data = proyeccion_pensionados_long, aes(x = Año, y = Valor, color = Variable), linetype = "solid", size = 1.5) +
+  geom_line(data = proyeccion_activos_long, aes(x = Año, y = Valor, color = Variable), linetype = "solid", size = 1.5) +
+  scale_color_manual(values = colores_especificos, labels = nombres_variables) +
+  labs(
+       x = "Año",
+       y = "Proyección",
+       color = "") +
+  theme_cowplot()
+graf_proyeccion_demo_int <- ggplotly(graf_proyeccion_demo)
+
+# Barras Activos 
+
+proyeccion_activos_long_box <- proyeccion_activos_combinado %>%
+  pivot_longer(cols = -c(Año,Activo), names_to = "Variable", values_to = "Valor")
+
+graf_proyeccion_barras_activos <- ggplot(proyeccion_activos_long_box, 
+                                         aes(x = Año, y = Valor, fill = Variable)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Proyección de Activos y Variables por Año",
+       x = "Año",
+       y = "Valor",
+       fill = "Variable") +
+  scale_x_continuous(limits = c(2023, 2075)) +
+  theme_minimal()
+
+
+
