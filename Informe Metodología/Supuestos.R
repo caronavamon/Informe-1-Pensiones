@@ -201,8 +201,8 @@ variacion_proyectada <- promedios_edad_final[,-2]
 
 
 # Graficamos la variacion 
-ggplot(promedios_edad_final, aes(x = edad, y = Variacion)) +
-  geom_line(color = "cadetblue3") +           
+ggplot(promedios_edad_final, aes(x = edad, y = variacion)) +
+  geom_line(color = "cadetblue3", size = 1.5) +           
   labs(x = "Edad",
        y = "Variación") +
   theme_cowplot() 
