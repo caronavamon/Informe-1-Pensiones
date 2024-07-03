@@ -15,24 +15,24 @@ mean(inflacion$Variacion.mensual....)
 
 # Escala Salarial 
 
-activos <- read_excel("Informe Metodología/Fondo C.xlsx", sheet = "Activos")
-activos <- activos[, -c(364, 365)]
-activos_salarios <- activos[, -c(1, 2, 3)]
+activos_supuestos <- read_excel("Informe Metodología/Fondo C.xlsx", sheet = "Activos")
+activos_supuestos <- activos_supuestos[, -c(364, 365)]
+activos_salarios <- activos_supuestos[, -c(1, 2, 3)]
 activos_salarios[activos_salarios <= 10000] <- 0
 inflacion <- 0.04
 inicio <- as.Date("01/01/1994",format="%d/%m/%Y")
 fin <- as.Date("01/12/2023",format="%d/%m/%Y")
 fechas <- seq(inicio,fin,by="month")
 fechas <- fechas[format(fechas, "%m") != "04"]
-activos <- activos %>%
-  select(-grep("abr/", names(activos)))
+activos_supuestos <- activos_supuestos %>%
+  select(-grep("abr/", names(activos_supuestos)))
 activos_salarios <- activos_salarios %>%
   select(-grep("abr/", names(activos_salarios)))
-rownames(activos_salarios) <- activos$ID
+rownames(activos_salarios) <- activos_supuestos$ID
 
 # Quitamos los salarios atipicos 
-conteo_atipicos <- apply(activos[,-(1:3)], 1, function(row) sum(row > 5000000))
-conteo_atipicos <- as.data.frame(cbind(ID = activos$ID, Cantidad = conteo_atipicos))
+conteo_atipicos <- apply(activos_supuestos[,-(1:3)], 1, function(row) sum(row > 5000000))
+conteo_atipicos <- as.data.frame(cbind(ID = activos_supuestos$ID, Cantidad = conteo_atipicos))
 conteo_atipicos <- conteo_atipicos %>% filter(Cantidad > 0)
 
 atipicos <- conteo_atipicos %>%
@@ -58,13 +58,13 @@ activos_VP <- t(apply(activos_salarios, 1, function(row) row * factor_acumulacio
 activos_VP <- as.data.frame(activos_VP)
 
 colnames(activos_VP) <- fechas
-activos_VP <- cbind(ID = activos$ID, Fec.Nac = activos$Fec.Nac, activos_VP)
+activos_VP <- cbind(ID = activos_supuestos$ID, Fec.Nac = activos_supuestos$Fec.Nac, activos_VP)
 
 # Calcular cuando la persona inicia a tener un salario
 activos_efectivos <- as.matrix(activos_salarios >= 10000, 
                                nrow = nrow(activos_salarios), 
                                ncol = ncol(activos_salarios))
-activos_efectivos<- cbind(ID = activos$ID, activos_efectivos)
+activos_efectivos<- cbind(ID = activos_supuestos$ID, activos_efectivos)
 activos_efectivos<- as.data.frame(activos_efectivos)
 
 años <- year(fechas)
@@ -80,7 +80,7 @@ activos_efectivos_agrupado <- activos_efectivos_long %>%
   summarize(Valor = any(Valor == TRUE), .groups = 'drop')
 
 # Hacer una dataframe con ID y fecha de nacimiento 
-nacimiento <- activos[,1:2]
+nacimiento <- activos_supuestos[,1:2]
 nacimiento$Fec.Nac <- year(nacimiento$Fec.Nac)
 
 # Se encuentran las edades 
@@ -105,9 +105,9 @@ salarios_edad <-  merge(datos_salarios, edades, by = c("ID", "Año"))
 
 rango_edades <- 19:78
 salarios_promedio <- data.frame(matrix(ncol = length(rango_edades), 
-                                       nrow = nrow(activos)))
+                                       nrow = nrow(activos_supuestos)))
 colnames(salarios_promedio) <- rango_edades
-salarios_promedio <- cbind(ID = activos$ID, salarios_promedio)
+salarios_promedio <- cbind(ID = activos_supuestos$ID, salarios_promedio)
 
 for (i in 1:nrow(salarios_edad)) {
   # Obtenemos el ID, el salario y la edad correspondiente a la fila actual
@@ -143,7 +143,7 @@ promedios_edad <- cbind(edad = rango_edades, promedios_edad)
 plot_ly(promedios_edad, y = ~promedios_edad, type = "box", boxpoints = "all", 
         jitter = 0.3, pointpos = 0, marker = list(color = 'rgb(7,40,89)', 
                                                      outliercolor = 'rgba(219, 64, 82, 0.6)', 
-                                                     line = list(outliercolor = 'rgba(219, 64, 82, 1.0)',                                                              outlierwidth = 2)))
+                                                     line = list(outliercolor = 'rgba(219, 64, 82, 1.0)', outlierwidth = 2)))
 
 # Graficamos 
 ggplot(promedios_edad, aes(x = edad, y = Variacion)) +
@@ -162,43 +162,49 @@ ggplotly(ggplot(promedios_edad, aes(x = edad, y = promedios_edad)) +
   theme_cowplot())
 
 # Eliminamos los outliers (mayores a la edad 71)
-promedios_edad_estables <- promedios_edad[1:51,]
+#promedios_edad_estables <- promedios_edad[1:51,]
 
 
 # Hacemos la prediccion 
 #modelo <- lm(promedios_edad ~ edad, data = promedios_edad_estables)
-modelo <- auto.arima(promedios_edad_estables$promedios_edad)
-summary(modelo)
-nuevas_edades <- data.frame(edad = c(70:78))
+#modelo <- auto.arima(promedios_edad_estables$promedios_edad)
+#summary(modelo)
+#nuevas_edades <- data.frame(edad = c(70:78))
 #predicciones_salario <- predict(modelo, nuevas_edades)
 #predicciones_salario_data <- data.frame(nuevas_edades, 
                                         #promedios_edad = predicciones_salario)
-predicciones_salario <- forecast(modelo, h = nrow(nuevas_edades))$mean
-predicciones_salario_data <- data.frame(edad = nuevas_edades$edad, 
-                                        promedios_edad = predicciones_salario)
-# Visualizamos la prediccion 
-predicciones_graf <- ggplot() +
-  geom_bar(data = promedios_edad_estables, aes(x = factor(edad), y = promedios_edad), 
-           fill = "#2F4F4F", color = "white", alpha = 0.7, stat = "identity") +
-  geom_bar(data = predicciones_salario_data, aes(x = factor(edad), y = promedios_edad), 
-           fill = "cadetblue3", color = "white", alpha = 0.7, stat = "identity") +
-  labs(title = "Salario Promedio por Edad con Predicciones",
-       x = "Edad",
-       y = "Salario Promedio") +
-  theme_minimal()
-predicciones_graf_int <- ggplotly(predicciones_graf)
-predicciones_graf_int
+#predicciones_salario <- forecast(modelo, h = nrow(nuevas_edades))$mean
+#predicciones_salario_data <- data.frame(edad = nuevas_edades$edad, 
+                                        #promedios_edad = predicciones_salario)
 
 # Sacamos la variacion 
-promedios_edad_final <- rbind(promedios_edad_estables,predicciones_salario_data)
-promedios_edad_final$Variacion <- c(NA, (promedios_edad_final$promedios_edad[-1] / promedios_edad_final$promedios_edad[-nrow(promedios_edad_final)]) - 1)
+#promedios_edad_final <- rbind(promedios_edad_estables,predicciones_salario_data)
+#promedios_edad_final$Variacion <- c(NA, (promedios_edad_final$promedios_edad[-1] / promedios_edad_final$promedios_edad[-nrow(promedios_edad_final)]) - 1)
+
+promedios_edad$variacion <- c(NA, (promedios_edad$promedios_edad[-1] / promedios_edad$promedios_edad[-nrow(promedios_edad)]) - 1)
+
+var_edad_66 <- promedios_edad$variacion[promedios_edad$edad == 66]
+
+# Cambiar la variación de las edades de 66 a 78
+promedios_edad$variacion[promedios_edad$edad >= 66] <- var_edad_66
+
+edad_nueva <- data.frame(
+  edad = 79:114,
+  promedios_edad = NA,  # No es necesario, se eliminará después
+  variacion = rep(promedios_edad$variacion[promedios_edad$edad == 66], 114 - 79 + 1)
+)
+
+# Combinar el dataframe original con los nuevos datos
+promedios_edad_final <- rbind(promedios_edad, edad_nueva)
+
+variacion_proyectada <- promedios_edad_final[,-2]
+
 
 # Graficamos la variacion 
 ggplot(promedios_edad_final, aes(x = edad, y = Variacion)) +
-  geom_line(color = "#2F4F4F") +           
-  geom_smooth(method = "loess", se = FALSE, color = "cadetblue3") +
+  geom_line(color = "cadetblue3") +           
   labs(x = "Edad",
-       y = "Variación del Salario Promedio") +
+       y = "Variación") +
   theme_cowplot() 
 
 # Densidad de cotización 
@@ -211,9 +217,9 @@ cotizaciones_año <- activos_efectivos_long %>%
 cotizaciones_año <-  merge(cotizaciones_año, edades, by = c("ID", "Año"))
 
 cotizaciones_promedio <- data.frame(matrix(ncol = length(rango_edades), 
-                                       nrow = nrow(activos)))
+                                       nrow = nrow(activos_supuestos)))
 colnames(cotizaciones_promedio) <- rango_edades
-cotizaciones_promedio <- cbind(ID = activos$ID, cotizaciones_promedio)
+cotizaciones_promedio <- cbind(ID = activos_supuestos$ID, cotizaciones_promedio)
 
 for (i in 1:nrow(cotizaciones_año)) {
   id <- cotizaciones_año[i, 1]
