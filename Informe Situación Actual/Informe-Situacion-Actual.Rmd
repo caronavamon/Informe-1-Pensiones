@@ -106,7 +106,7 @@ Activo <- Financiero %>%
       3
   ) +
   geom_line(linewidth = 1) + 
-  labs(title = "Gráfico 1: Comportamiendo de las Reservas",
+  labs(
        x = "Año",
        y = "Millones de colones") +
   theme_cowplot() +
@@ -114,7 +114,6 @@ Activo <- Financiero %>%
           plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
         plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
-  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C.")) +
   scale_y_continuous(labels = scales::label_number())+
   scale_color_manual(
     values =
@@ -124,7 +123,7 @@ Activo <- Financiero %>%
   )
 
 Activo
-ggsave("Activo.svg", plot = Activo, width = 10, height = 6, units = "in")
+ggsave("Activo.pdf", plot = Activo, width = 10, height = 6, units = "in")
 ```
 
 \newpage
@@ -257,8 +256,7 @@ graf_sector <- ggplot(inversiones_sector, aes(x = RCC, y = Sector)) +
    geom_bar(stat = "identity", alpha = 0.7, position = "stack", width = 0.4, 
             fill = "#2F4F4F") +
   geom_text(aes(label = paste0(RCC,"%")), position = position_stack(vjust = 0.5), size = 3) +
-  labs(title = " Gráfico 2: Composición de la Cartera de \n Valores", 
-       subtitle = "por Sector",
+  labs(
        x = "RCC (%)",
        y = "Sector") +
     theme_cowplot()+
@@ -266,10 +264,9 @@ graf_sector <- ggplot(inversiones_sector, aes(x = RCC, y = Sector)) +
         plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
         plot.caption = element_text(hjust = 0, color = "black", size = 8),
-        legend.title = element_blank()) +
-  labs(caption = expression(bold("Fuente: ") *"Elaborado a partir de datos del Fondo C."))
+        legend.title = element_blank())
 
-ggsave("graf_sector.svg", plot = graf_sector, width = 10, height = 6, units = "in")
+ggsave("graf_sector.pdf", plot = graf_sector, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[15]{r}{0.5\textwidth}
@@ -311,8 +308,7 @@ inversiones_plazo$Plazo <- factor(inversiones_plazo$Plazo, levels = c(
 graf_plazo <- ggplot(inversiones_plazo, aes(x = Plazo, y = RCC)) +
   geom_bar(stat = "identity", fill = "cadetblue3", width = 0.5) +
   geom_text(aes(label = paste0(RCC,"%")), position = position_stack(vjust = 0.5), size = 3) +
-  labs(title = " Gráfico 3: Composición de la Cartera de Valores", 
-      subtitle = "por Plazo de Vencimiento",
+  labs(
        x = "Plazo de vencimiento",
        y = "RCC (%)") +
   theme_cowplot() +
@@ -320,10 +316,9 @@ graf_plazo <- ggplot(inversiones_plazo, aes(x = Plazo, y = RCC)) +
         plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
         plot.caption = element_text(hjust = 0, color = "black", size = 8),
-        legend.title = element_blank()) +
-  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C."))
+        legend.title = element_blank())
 
-ggsave("graf_plazo.svg", plot = graf_plazo, width = 10, height = 6, units = "in")
+ggsave("graf_plazo.pdf", plot = graf_plazo, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[7]{l}{0.5\textwidth}
@@ -345,8 +340,7 @@ inversiones_moneda <- data.frame("Moneda"= c("Colones","Dólares",
 graf_moneda <- ggplot(inversiones_moneda, aes(x = Moneda, y = RCC)) +
   geom_bar(stat = "identity", fill = "#BCEE68",  width = 0.5) +
   geom_text(aes(label = paste0(RCC,"%")), position = position_stack(vjust = 0.5), size = 3) +
-  labs(title = "Gráfico 4: Composición de la Cartera de Valores",
-       subtitle = "por Moneda",
+  labs(
        x = "Moneda",
        y = "RCC (%)") +
   theme_cowplot() +
@@ -354,10 +348,9 @@ graf_moneda <- ggplot(inversiones_moneda, aes(x = Moneda, y = RCC)) +
         plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
         plot.caption = element_text(hjust = 0, color = "black", size = 8),
-        legend.title = element_blank()) +
-  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del Fondo C."))
+        legend.title = element_blank())
 
-ggsave("graf_moneda.svg", plot = graf_moneda, width = 10, height = 6, units = "in")
+ggsave("graf_moneda.pdf", plot = graf_moneda, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[7]{l}{0.5\textwidth}

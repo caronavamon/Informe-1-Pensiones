@@ -128,8 +128,7 @@ datos_piramide <- datos_piramide  %>%
 piramide_plot <- ggplot(datos_piramide, aes(x = Poblacion, y = Edades, fill = Sexo)) +
   geom_bar(stat = "identity", position = "identity",color = "white") +
   scale_fill_manual(values = c("Hombre" = "#2F4F4F", "Mujer" = "cadetblue3")) +
-  labs(title = "Gráfico 1: Pirámide Poblacional de Costa Rica",
-       subtitle = "2023",
+  labs(
        x = "Población", 
        y = "Edad", fill = "Sexo" ) +
   theme_cowplot()+
@@ -138,9 +137,9 @@ piramide_plot <- ggplot(datos_piramide, aes(x = Poblacion, y = Edades, fill = Se
         plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
         plot.caption = element_text(hjust = 0, color = "black", size = 8),
-        legend.title = element_blank()) +
-  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
-ggsave("piramide_plot.svg", plot = piramide_plot)
+        legend.title = element_blank())
+
+ggsave("piramide_plot.pdf", plot = piramide_plot)
 ```
 
 
@@ -173,8 +172,7 @@ pob_porc_plot <- ggplot(Pob_3rangos_porc_long, aes(x = Porcentaje, y = factor(An
    geom_bar(stat = "identity", alpha = 0.7, position = "stack", width = 0.4) +
   geom_text(aes(label = paste0(round(Porcentaje, 2), "%")), position = position_stack(vjust = 0.5), size = 3) +
   scale_fill_manual(values = c(`0-14` = "#2F4F4F", `15-64` = "cadetblue3",`65 y mas`= "#BCEE68"))+
-  labs(title = "Gráfico 2: Estructura porcentual de la población según edad, en Costa Rica",
-       subtitle = "2022-2025",
+  labs(
        x = "Porcentaje (%)", 
        y = "Años",fill = "Edad" ) +
     theme_cowplot()+
@@ -183,10 +181,9 @@ pob_porc_plot <- ggplot(Pob_3rangos_porc_long, aes(x = Porcentaje, y = factor(An
         plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
         plot.caption = element_text(hjust = 0, color = "black", size = 8),
-        legend.title = element_blank()) +
-  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+        legend.title = element_blank())
 
-ggsave("pob_porc_plot.svg", plot = pob_porc_plot, width = 10, height = 6, units = "in")
+ggsave("pob_porc_plot.pdf", plot = pob_porc_plot, width = 10, height = 6, units = "in")
 
 ```
 
@@ -244,8 +241,7 @@ plot1 <- ggplot(Variacion_pob_long, aes(x = Periodo, y = Porcentaje, fill = Edad
   geom_bar(stat = "identity", position = "dodge", width = 0.5) +
   geom_text(aes(label = paste0(round(Porcentaje, 2), "%")), position = position_stack(vjust = 0.5), size = 3) +
   scale_fill_manual(values = c(`0-14` = "#2F4F4F", `15-64` = "cadetblue3",`65 y mas`= "#BCEE68"))+
-  labs(title = "Gráfico 3: Variación porcentual de la población según edad, en Costa Rica",
-       subtitle = "2022-2025",
+  labs(
        x = "Período", 
        y = "Porcentaje (%)",fill = "Edad" ) +
     theme_cowplot()+
@@ -253,10 +249,9 @@ plot1 <- ggplot(Variacion_pob_long, aes(x = Periodo, y = Porcentaje, fill = Edad
         plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
         plot.caption = element_text(hjust = 0, color = "black", size = 8),
-        legend.title = element_blank()) +
-  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+        legend.title = element_blank()) 
 
-ggsave("plot1.svg", plot = plot1,width = 10, height = 6, units = "in")
+ggsave("plot1.pdf", plot = plot1,width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[15]{r}{0.5\textwidth}
@@ -314,8 +309,7 @@ en estudio.
 plot2 <- ggplot() + 
   geom_line(aes(x = 1:24, y = migracion_datos$Ingresos, color = "Ingresos"), lwd = 1) +      
   geom_line(aes(x = 1:24, y = migracion_datos$Egresos, color = "Egresos"), lwd = 1) +
-  labs(title = " Gráfico 4: Flujos migratorios en Costa Rica",
-       subtitle = "2022-2023",
+  labs(
        x = "Años", 
        y = "",
        color = "") +
@@ -326,10 +320,9 @@ plot2 <- ggplot() +
         plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
         plot.caption = element_text(hjust = 0, color = "black", size = 8),
-        legend.title = element_blank()) +
-  labs(caption = "Fuente: Elaborado con datos del DGME.")
+        legend.title = element_blank()) 
 
-ggsave("plot2.svg", plot = plot2, width = 10, height = 6, units = "in")
+ggsave("plot2.pdf", plot = plot2, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[12]{l}{0.5\textwidth}
@@ -406,14 +399,13 @@ tasa_nupcialidad_graf <- tasa_nupcialidad %>%
 plot3 <- ggplot(tasa_nupcialidad_graf, aes(x = factor(Año), y = Tasa, fill = Nupcialidad)) +
   geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
   scale_fill_manual(values = c(`Tasa de nupcialidad (por mil habitantes)` = "#2F4F4F", Católicos = "cadetblue3", Civiles = "#BCEE68"), name = "Nupcialidad") +  
-  labs(title = "Gráfico 5: Costa Rica. Tasa de nupcialidad.", subtitle = "2022-2023", x = "Año") +
+  labs(x = "Año") +
   theme_cowplot()+
   theme(plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
-        plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
-  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+        plot.caption = element_text(hjust = 0, color = "black", size = 8)) 
 
-ggsave("plot3.svg", plot = plot3, width = 10, height = 6, units = "in")
+ggsave("plot3.pdf", plot = plot3, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[15]{r}{0.5\textwidth}
@@ -439,14 +431,13 @@ plot4 <-ggplot(matrimonios_parejas_graf, aes(x = factor(Año), y = Cantidad, fil
   geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
   geom_text(aes(label = Cantidad), position = position_dodge(width = 0.9), vjust = -0.5) +
   scale_fill_manual(values = c(Total = "#2F4F4F", `Hombre - Mujer` = "cadetblue3", `Hombre - Hombre` = "#BCEE68",`Mujer - Mujer` = "#6E8B3D" ), name = "Tipo de Composición") +  
-  labs(title = "Gráfico 6: Costa Rica. Total de matrimonios por composición de la pareja.", subtitle = "2022-2023", x = "Año") +
+  labs(x = "Año") +
   theme_cowplot()+
   theme(plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
-        plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
-  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+        plot.caption = element_text(hjust = 0, color = "black", size = 8))
 
-ggsave("plot4.svg", plot = plot4, width = 10, height = 6, units = "in")
+ggsave("plot4.pdf", plot = plot4, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[15]{l}{0.5\textwidth}
@@ -488,11 +479,10 @@ plot5 <- ggplot(matrimonios_edad_graf, aes(x = `Grupos de edades`, y = Cantidad,
                      name = "Tipo de Composición") +
   facet_wrap(~ Año) +
   theme_cowplot()+
-  labs(x = "Grupos de Edades", y = "Cantidad", title = "Gráfico 7: Costa Rica. Total de matrimonios por grupos de edades de las personas contrayentes,  \n según sexo.", subtitle = "2022 - 2023") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1), plot.subtitle = element_text(hjust = 0.5), plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
-  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+  labs(x = "Grupos de Edades", y = "Cantidad") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), plot.subtitle = element_text(hjust = 0.5), plot.caption = element_text(hjust = 0, color = "black", size = 8)) 
 
-ggsave("plot5.svg", plot = plot5, width = 10, height = 6, units = "in")
+ggsave("plot5.pdf", plot = plot5, width = 10, height = 6, units = "in")
 ```
 
 \newpage
@@ -550,14 +540,13 @@ Como último indicador de medición de la fecundidad se presenta la tasa de repr
 plot6 <-ggplot(fecundidad_graf, aes(x = factor(Año), y = Tasa, fill = `Natalidad y fecundidad`)) +
   geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
   scale_fill_manual(values = c(`Tasa bruta de natalidad (por mil habitantes)` = "#2F4F4F", `Tasa global de fecundidad (por mujer)` = "cadetblue3", `Tasa bruta de reproducción (por mujer)` = "#BCEE68", `Tasa neta de reproducción (por mujer)` = "#6E8B3D"), name = "Tipo de tasa") +  
-  labs(title = "Gráfico 8: Costa Rica. Tasas de natalidad y fecundidad.", subtitle = "2022-2023", x = "Año") +
+  labs(x = "Año") +
   theme_cowplot()+
   theme(plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
-        plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
-  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+        plot.caption = element_text(hjust = 0, color = "black", size = 8)) 
 
-ggsave("plot6.svg", plot = plot6, width = 10, height = 6, units = "in")
+ggsave("plot6.pdf", plot = plot6, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[13]{r}{0.5\textwidth}
@@ -585,14 +574,13 @@ plot7 <- ggplot(esperanza_vida_graf, aes(x = factor(Año), y = EPV, fill = `Espe
   geom_bar(stat = "identity", alpha = 0.7, position = "dodge") +
   geom_text(aes(label = round(EPV,1)), position = position_dodge(width = 0.9), vjust = -0.5) +
   scale_fill_manual(values = c(Total = "#2F4F4F", Mujeres = "cadetblue3", Hombres = "#BCEE68")) +  
-  labs(title = "Gráfico 9: Costa Rica. Esperanza de vida al nacimiento.", subtitle = "2022-2023", x = "Año", y = "Esperanza de vida", fill = NULL) +
+  labs(x = "Año", y = "Esperanza de vida", fill = NULL) +
   theme_cowplot()+
   theme(plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
-        plot.caption = element_text(hjust = 0, color = "black", size = 8)) +
-  labs(caption = expression(bold("Fuente: ") * "Elaborado a partir de datos del INEC."))
+        plot.caption = element_text(hjust = 0, color = "black", size = 8)) 
 
-ggsave("plot7.svg", plot = plot7,width = 10, height = 6, units = "in")
+ggsave("plot7.pdf", plot = plot7,width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[15]{l}{0.5\textwidth}
@@ -624,9 +612,7 @@ Desempleo$Trimestre <- factor(Desempleo$Trimestre, levels = unique(Desempleo$Tri
 plot8 <-ggplot(Desempleo, aes(x = Trimestre, y = `Tasa desempleo`)) +
   geom_bar(stat = "identity", fill = "cadetblue3", width = 0.7,alpha = 0.7) +
   geom_text(aes(label = paste0(`Tasa desempleo`, "%")), vjust = -0.5, color = "#2F4F4F") +
-  labs(title = "Gráfico 10: Costa Rica. Tasa de desempleo abierta y población desempleada", 
-       subtitle = "2022-2023",
-       caption = expression(bold("Fuente: ") * "Elaboración propia a partir de datos del INEC y BCCR."),
+  labs(
        x = "Trimestre",
        y = "Tasa de Desempleo (%)") +
   theme_cowplot()+
@@ -636,14 +622,13 @@ plot8 <-ggplot(Desempleo, aes(x = Trimestre, y = `Tasa desempleo`)) +
         plot.subtitle = element_text(hjust = 0.5),
         plot.caption = element_text(hjust = 0)) +
   coord_cartesian(ylim = c(0, 14)) +
-  
-  
   geom_point(aes(x = Trimestre, y = `Población desempleada`/30000, color = "Población desempleada"), size = 2) +
   geom_text(data = Desempleo, aes(x = Trimestre, y = `Población desempleada`/30000, label = `Población desempleada`), vjust = -0.5, color = "#528B8B", size = 3) +
   theme_cowplot()+
   scale_color_manual(values = c("Población desempleada" = "#2F4F4F")) + 
-  guides(color = guide_legend(title = " ")) 
-ggsave("plot8.svg", plot = plot8, width = 10, height = 6, units = "in")
+  guides(color = guide_legend(title = " "))
+
+ggsave("plot8.pdf", plot = plot8, width = 14, height = 6, units = "in")
 ```
 \begin{wrapfigure}[10]{l}{0.5\textwidth}
 
@@ -682,9 +667,7 @@ plot9 <- ggplot(ocupaDesempleo, aes(x = Trimestre)) +
   geom_line(aes(y = Tasa_participacion, color = "Tasa de Participación", group = 1), size = 1) +
   geom_line(aes(y = Tasa_ocupacion, color = "Tasa de Ocupación", group = 1), size = 1) +
   scale_color_manual(values = c("Tasa de Desempleo" = "#BCEE68", "Tasa de Participación" = "#2F4F4F", "Tasa de Ocupación" = "cadetblue3")) +
-  labs(x = "Trimestres móviles", y = "Porcentaje", color = "Indicador",title = "Gráfico 11: Costa Rica. Principales indicadores del mercado laboral", 
-       subtitle = "2022-2023",
-       caption = expression(bold("Fuente: ") * "Elaboración propia a partir de datos del INEC.")) +
+  labs(x = "Trimestres móviles", y = "Porcentaje", color = "Indicador") +
   theme_cowplot() +
   theme(legend.position ="bottom",
         axis.text.x = element_text(angle = 45, hjust = 1),plot.title = element_text(hjust = 0.5),
@@ -692,7 +675,7 @@ plot9 <- ggplot(ocupaDesempleo, aes(x = Trimestre)) +
         plot.caption = element_text(hjust = 0)) +
   scale_x_discrete(breaks = c("ENE(22)-MAR(22)", "ABR(22)-JUN(22)", "JUL(22)-SEP(22)", "OCT(22)-DEC(22)",
                                "ENE(23)-MAR(23)", "ABR(23)-JUN(23)", "JUL(23)-SEP(23)", "OCT(23)-DEC(23)"))
-ggsave("plot9.svg", plot = plot9, width = 10, height = 6, units = "in")
+ggsave("plot9.pdf", plot = plot9, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[15]{r}{0.5\textwidth}
@@ -847,16 +830,10 @@ plot10 <- PEAComp %>%
       )
   ) +
   labs(
-    title = 
-      "Gráfico 12: Pirámide Económica",
-    subtitle =
-    "por Edad segun el Genero",
     y =
-      "Porcentage",
+      "Porcentaje",
     x =
-      "Edad",
-    caption = 
-      expression(bold("Fuente: ") * "Elaborado a partir de datos de la Organización Internacional del Trabajo (2024).")
+      "Edad"
   ) +
   scale_x_discrete(
     breaks = 
@@ -891,7 +868,7 @@ plot10 <- PEAComp %>%
           )
       )
 
-ggsave("plot10.svg", plot = plot10, width = 10, height = 6, units = "in")
+ggsave("plot10.pdf", plot = plot10, width = 10, height = 6, units = "in")
 ```
 
 \begin{wrapfigure}[15]{r}{0.5\textwidth}
